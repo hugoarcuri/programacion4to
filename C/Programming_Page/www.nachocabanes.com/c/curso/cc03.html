@@ -1,0 +1,761 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 3 - Estructuras alternativas</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="bucle,alternativa,if,while,repeat,switch,case" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 3 - Estructuras alternativas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc02e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc03b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2>3. Estructuras de control</h2>
+
+<h3>3.1. Estructuras alternativas</h3>
+
+
+<p style="margin-left:150px;margin-right:150px;text-align:center;"><i>(Nota: 
+En la <a href="https://www.nachocabanes.com/c/curso2016/">versión 2016 del curso</a>
+tienes <a href="https://www.nachocabanes.com/c/curso2016/cc002a.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
+
+
+<h4>3.1.1. if</h4>
+<p>Vamos a ver c&oacute;mo podemos comprobar si se cumplen condiciones. La primera construcci&oacute;n que usaremos ser&aacute; &quot;si ... entonces ...&quot;. El formato en C es</p>
+<p> if (condici&oacute;n) sentencia;</p>
+<p>Vamos a verlo con un ejemplo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 14:      */
+/*  C014.C                   */
+/*                           */
+/*  Condiciones con if       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero>0)  printf("El numero es positivo.\n");
+    
+  return 0;
+}
+</code></pre></p>
+
+<p>Nota: para comprobar si un valor num&eacute;rico es mayor que otro, usamos el s&iacute;mbolo &ldquo;&gt;&rdquo;, como se ve en este ejemplo. Para ver si dos valores son iguales, usaremos dos s&iacute;mbolos de &ldquo;igual&rdquo;: if (numero==0). Las dem&aacute;s posibilidades las veremos algo m&aacute;s adelante. En todos los casos, la condici&oacute;n que queremos comprobar deber&aacute; indicarse entre par&eacute;ntesis.</p>
+
+<p><strong>Ejercicios propuestos</strong>: </p>
+<ul>
+  <li>Crear un programa que pida al usuario un n&uacute;mero entero y diga si es par (pista: habr&aacute; que comprobar si el resto que se obtiene al dividir entre dos es cero: if (x % 2 == 0) &hellip;).</li>
+  <li>Crear un programa que pida al usuario dos n&uacute;meros enteros y diga cual es el mayor de ellos.</li>
+  <li>Crear un programa que pida al usuario dos n&uacute;meros enteros y diga si el primero es m&uacute;ltiplo del segundo (pista: igual que antes, habr&aacute; que ver si el resto de la divisi&oacute;n es cero: a % b == 0).<br />
+    </li>
+</ul>
+<h4>3.1.2. if y sentencias compuestas</h4>
+<p>La &quot;sentencia&quot; que se ejecuta si se cumple la condici&oacute;n puede ser una sentencia simple o una compuesta. Las sentencias compuestas se forman agrupando varias sentencias simples entre llaves ( { y } ):</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 15:      */
+/*  C015.C                   */
+/*                           */
+/*  Condiciones con if (2)   */
+/*  Sentencias compuestas    */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero>0)  
+  {  
+    printf("El numero es positivo.\n");
+    printf("Recuerde que tambien puede usar negativos.\n");
+  }  /* Aqui acaba el "if" */
+    
+  return 0;
+}    /* Aqui acaba el cuerpo del programa */
+</code></pre></p>
+<p>En este caso, si el n&uacute;mero es negativo, se hacen dos cosas: escribir un texto y luego... &iexcl;escribir otro! (Claramente, en este ejemplo, esos dos &ldquo;printf&rdquo; podr&iacute;an ser uno solo; m&aacute;s adelante iremos encontrando casos en lo que necesitemos hacer cosas &ldquo;m&aacute;s serias&rdquo; dentro de una sentencia compuesta).</p>
+
+
+<p>Se pueden incluir siempre las llaves después de un "if", como medida de seguridad: un <b>fallo frecuente</b> es escribir una única sentencia tras "if", sin llaves, luego añadir una segunda sentencia y olvidar las llaves... de modo que la segunda orden no se ejecutará si se cumple la condición, sino siempre, como en este ejemplo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 15:      */
+/*  c015b.c                  */
+/*                           */
+/*  Condiciones con if (2b)  */
+/*  Sentencias compuestas    */
+/*  incorrectas!!!           */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un número: ");
+  scanf("%d", &numero);
+  if (numero>0)  
+    printf("El número es positivo.\n");
+    printf("Recuerde que también puede usar negativos.\n");
+
+  return 0;
+}
+</code></pre></p>
+<p>En este caso, siempre se nos dirá "Recuerde que también puede usar negativos", incluso cuando hemos tecleado un número negativo. En un vistazo rápido, vemos las dos sentencias tabuladas a la derecha y tendemos a pensar que las dos dependen del "if", pero no es así. Se trata de un error difícil de detectar. Por eso, muchos autores recomiendan incluir siempre las llaves tras un "if", e incluso algún lenguaje de programación posterior a C obliga a que siempre sea así.</p>
+
+
+<h4>3.1.3. Operadores relacionales: &lt;, &lt;=, &gt;, &gt;=, ==, !=</h4>
+<p>Hemos visto que el s&iacute;mbolo &ldquo;&gt;&rdquo; es el que se usa para comprobar si un n&uacute;mero es mayor que otro. El s&iacute;mbolo de &ldquo;menor que&rdquo; tambi&eacute;n es sencillo, pero los dem&aacute;s son un poco menos evidentes, as&iacute; que vamos a verlos:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="83" valign="top"><p><strong>Operador </strong></p></td>
+    <td width="213" valign="top"><p><strong>Operaci&oacute;n </strong></p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">&lt; </p></td>
+    <td width="213" valign="top"><p>Menor que </p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">&gt; </p></td>
+    <td width="213" valign="top"><p>Mayor que </p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">&lt;= </p></td>
+    <td width="213" valign="top"><p>Menor o igual que </p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">&gt;= </p></td>
+    <td width="213" valign="top"><p>Mayor o igual que </p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">== </p></td>
+    <td width="213" valign="top"><p>Igual a </p></td>
+  </tr>
+  <tr>
+    <td width="83" valign="top"><p align="center">!= </p></td>
+    <td width="213" valign="top"><p>No igual a (distinto de) </p></td>
+  </tr>
+</table>
+<p>Y un ejemplo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 16:      */
+/*  C016.C                   */
+/*                           */
+/*  Condiciones con if (3)   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero!=0)  printf("El numero no es cero.\n");
+    
+  return 0;
+}
+</code></pre></p>
+<p>Los operadores s&oacute;lo se pueden usar tal y como aparecen en esa tabla. Por ejemplo, no es un operador v&aacute;lido “!&lt;” para expresar que un n&uacute;mero no es menor que otro. </p>
+
+<p><strong>Ejercicios propuestos</strong>: </p>
+
+<ul>
+  <li>Crear un programa que multiplique dos n&uacute;meros enteros de la siguiente forma: pedir&aacute; al usuario un primer n&uacute;mero entero. Si el n&uacute;mero que se que teclee es 0, escribir&aacute; en pantalla &ldquo;El producto de 0 por cualquier n&uacute;mero es 0&rdquo;. Si se ha tecleado un n&uacute;mero distinto de cero, se pedir&aacute; al usuario un segundo n&uacute;mero y se mostrar&aacute; el producto de ambos.</li>
+  <li>Crear un programa que pida al usuario dos n&uacute;meros reales. Si el segundo no es cero, mostrar&aacute; el resultado de dividir entre el primero y el segundo. Por el contrario, si el segundo n&uacute;mero es cero, escribir&aacute; &ldquo;Error: No se puede dividir entre cero&rdquo;.</li>
+</ul>
+
+<h4>3.1.4. if-else</h4>
+
+<p>Podemos indicar lo que queremos que ocurra en caso de que no se cumpla la condici&oacute;n, usando la orden &ldquo;else&rdquo; (en caso contrario), as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 17:      */
+/*  C017.C                   */
+/*                           */
+/*  Condiciones con if (4)   */
+/*  Uso de else              */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero>0)  printf("El numero es positivo.\n");
+    else  printf("El numero es cero o negativo.\n");
+      
+  return 0;  
+}
+</code></pre></p>
+<p>Podr&iacute;amos intentar evitar el uso de &ldquo;else&rdquo; si utilizamos un &ldquo;if&rdquo; a continuaci&oacute;n de otro, as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 18:      */
+/*  C018.C                   */
+/*                           */
+/*  Condiciones con if (5)   */
+/*  Esquivando else          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero>0)  printf("El numero es positivo.\n");
+  if (numero<=0) printf("El numero es cero o negativo.\n");
+    
+  return 0;
+}
+</code></pre></p>
+<p>Pero el comportamiento no es el mismo: en el primer caso (ejemplo 17) se mira si el valor es positivo; si no lo es, se pasa a la segunda orden, pero si lo es, el programa ya ha terminado. En el segundo caso (ejemplo 18), aunque el n&uacute;mero sea positivo, se vuelve a realizar la segunda comprobaci&oacute;n para ver si es negativo o cero, por lo que el programa es algo m&aacute;s lento.</p>
+<p>Podemos enlazar los &ldquo;if&rdquo; usando &ldquo;else&rdquo;, para decir &ldquo;si no se cumple esta condici&oacute;n, mira a ver si se cumple esta otra&rdquo;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 19:      */
+/*  C019.C                   */
+/*                           */
+/*  Condiciones con if (6)   */
+/*  if encadenados           */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+  int numero;
+
+  printf("Escriba un numero: ");
+  scanf("%d", &numero);
+  if (numero < 0)
+    printf("El numero es negativo.\n");
+  else 
+    if (numero == 0)
+      printf("El numero es cero.\n");
+    else
+      printf("El numero es positivo.\n");
+        
+  return 0;
+}
+</code></pre></p>
+
+<p><strong>Ejercicio propuesto </strong>: </p>
+<ul>
+  <li>Mejorar la soluci&oacute;n a los dos ejercicios del apartado anterior, usando “else”. </li>
+  </ul>
+<p>&nbsp;</p>
+<h4>3.1.5. Operadores l&oacute;gicos: &amp;&amp;, ||, !</h4>
+<p>Estas condiciones se puede encadenar con &ldquo;y&rdquo;, &ldquo;o&rdquo;, etc., que se indican de la siguiente forma</p>
+
+  <table cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="41" valign="top"><p><strong>Operador </strong></p></td>
+      <td width="138" valign="top"><p><strong>Significado </strong></p></td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p align="center">&amp;&amp; </p></td>
+      <td width="138" valign="top"><p align="center">Y </p></td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p align="center">|| </p></td>
+      <td width="138" valign="top"><p align="center">O </p></td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p align="center">! </p></td>
+      <td width="138" valign="top"><p align="center">No </p></td>
+    </tr>
+  </table>
+  <p>De modo que podremos escribir cosas como</p>  
+  <p> if ((opcion==1) &amp;&amp; (usuario==2)) ...<br />
+  if ((opcion==1) || (opcion==3)) ...<br />
+  if ((!(opcion==opcCorrecta)) || (tecla==ESC)) ...</p>
+<p>(Suponiendo que ESC fuera una constante ya definido con anterioridad).</p>
+<p>La siguiente forma de escribir una condici&oacute;n es incorrecta (y es un error muy frecuente en los que empiezan a programar en C):</p>
+<p>if ( opcion1 || opcion2 == 3 ) ...</p>
+<p>porque la forma correcta de comprobar si la variable “opcion1” o bien “opcion2” valen “3” ser&iacute;a &eacute;sta:</p>
+<p>if (( opcion1 == 3 ) || ( opcion2 == 3 )) ... </p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Crear un programa que pida una letra al usuario y diga si se trata de una vocal. </li>
+  <li> Crear un programa que pida al usuario dos n&uacute;meros enteros y diga “Uno de los n&uacute;meros es positivo”, “Los dos n&uacute;meros son positivos” o bien “Ninguno de los n&uacute;meros es positivo”, seg&uacute;n corresponda. </li>
+  <li> Crear un programa que pida al usuario tres n&uacute;meros reales y muestre cu&aacute;l es el mayor de los tres. </li>
+  <li> Crear un programa que pida al usuario dos n&uacute;meros enteros cortos y diga si son iguales o, en caso contrario, cu&aacute;l es el mayor de ellos. </li>
+</ul>
+<h4>3.1.6. C&oacute;mo funciona realmente la condici&oacute;n en un &ldquo;if&rdquo;</h4>
+<p>Como suele ocurrir en C, lo que hemos visto tiene m&aacute;s miga de la que parece: una condici&oacute;n cuyo resultado sea &ldquo;falso&rdquo; nos devolver&aacute; un 0, y otra cuyo resultado sea &ldquo;verdadero&rdquo; devolver&aacute; el valor 1:<br />
+  </p>
+
+    <p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 20:      */
+/*  C020.C                   */
+/*                           */
+/*  Condiciones con if (7)   */
+/*  Valor de verdad          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("2==3 vale %d\n", 2==3);  /* Escribe 0 */
+  printf("2!=3 vale %d\n", 2!=3);  /* Escribe 1 */
+    
+  return 0;
+}
+</code></pre></p>    
+
+<p>En general, si la &ldquo;condici&oacute;n&rdquo; de un if es algo que valga 0, se considerar&aacute; que la condici&oacute;n es falsa (no se cumple), y si es algo distinto de cero, se considerar&aacute; que la condici&oacute;n es verdadera (s&iacute; se cumple). Eso nos permite hacer cosas como &eacute;sta:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 21:      */
+/*  C021.C                   */
+/*                           */
+/*  Condiciones con if (8)   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int numero;
+
+  printf("Escribe un numero: ");
+  scanf("%d", &numero);
+  if (numero!=0)  /* Comparacion normal */
+    printf("El numero no es cero.\n");
+  if (numero)     /* Comparacion "con truco" */
+    printf("Y sigue sin ser cero.\n");
+      
+  return 0;
+}
+</code></pre></p>    
+
+<p>En este ejemplo, la expresi&oacute;n &ldquo;if (numero)&rdquo; se fijar&aacute; en el valor de la variable &ldquo;numero&rdquo;. Si es distinto de cero, se considerar&aacute; que la condici&oacute;n es correcta, y se ejecutar&aacute; la sentencia correspondiente (el &ldquo;printf&rdquo;). En cambio, si la variable &ldquo;numero&rdquo; vale 0, es considera que la condici&oacute;n es falsa, y no se sigue analizando.</p>
+<p>En general, es preferible evitar este tipo de construcciones. Resulta mucho m&aacute;s legible algo como &ldquo;if (numero!=0)&rdquo; que &ldquo;if(numero)&rdquo;.</p>
+<h4>3.1.7. El peligro de la asignaci&oacute;n en un &ldquo;if&rdquo;</h4>
+<p>Cuidado con el operador de igualdad: hay que recordar que el formato es if (a==b) ... Si no nos damos cuenta y escribimos if (a=b) estamos asignando a &ldquo;a&rdquo; el valor de &ldquo;b&rdquo;.</p>
+<p>Afortunadamente, la mayor&iacute;a de los compiladores nos avisan con un mensaje parecido a &ldquo;Possibly incorrect assignment&rdquo; (que podr&iacute;amos traducir por &ldquo;posiblemente esta asignaci&oacute;n es incorrecta&rdquo;) o &ldquo;Possibly unintended assignment&rdquo; (algo as&iacute; como &ldquo;es posible que no se pretendiese hacer esta asignaci&oacute;n&rdquo;). Aun as&iacute;, s&oacute;lo es un aviso, la compilaci&oacute;n prosigue, y se genera un ejecutable, que puede que se comporte incorrectamente. Vamos a verlo con un ejemplo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 22:      */
+/*  C022.C                   */
+/*                           */
+/*  Condiciones con if (9)   */
+/*  Comportamiento           */
+/*    incorrecto             */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+  int numero;
+
+  printf("Escriba un número: ");
+  scanf("%d", &numero);
+  if (numero < 0)
+    printf("El número es negativo.\n");
+  else 
+    if (numero = 0)
+      printf("El número es cero.\n");
+    else
+      printf("El número es positivo.\n");
+  
+  return 0;
+}
+</code></pre></p>    
+
+<p>En este caso, si tecleamos un n&uacute;mero negativo, se comprueba la primera condici&oacute;n, se ve que es correcta y se termina sin problemas. Pero si se teclea cualquier otra cosa (0 o positivo), la expresi&oacute;n &ldquo;if (numero=0)&rdquo; no comprueba su valor, sino que le asigna un valor 0 (falso), por lo que siempre se realiza la acci&oacute;n correspondiente a el &ldquo;caso contrario&rdquo; (else): siempre se escribe &ldquo;El n&uacute;mero es positivo&rdquo;... &iexcl;aunque hayamos tecleado un 0!</p>
+
+<p>Y si esto es un error, &iquest;por qu&eacute; el compilador &ldquo;avisa&rdquo; en vez de parar y dar un error &ldquo;serio&rdquo;? Pues porque no tiene por qu&eacute; ser necesariamente un error: podemos hacer</p>
+<p> a = b<br />
+  if (a &gt; 2) ...</p>
+<p> o bien</p>
+<p> if ((a=b) &gt; 2) ...</p>
+<p>Es decir, en la misma orden asignamos el valor y comparamos (algo parecido a lo que hac&iacute;amos con &ldquo;b = ++a&rdquo;, por ejemplo). En este caso, la asignaci&oacute;n dentro del &ldquo;if&rdquo; ser&iacute;a correcta.</p>
+<p>Ejercicios resueltos: </p>
+<p>&gt; &iquest;Qu&eacute; escribir&iacute;a en pantalla este fragmento de c&oacute;digo?</p>
+<p>int x = 5; if (x==5) printf(&quot;%d&quot;, x);</p>
+<p>Respuesta: x vale 5, luego se cumple la condici&oacute;n y se escribe un 5.<br />
+</p>
+<p>&gt; &iquest;Qu&eacute; escribir&iacute;a en pantalla este fragmento de c&oacute;digo?</p>
+<p>int x = 5; if (x) printf(&quot;Si&quot;); else printf(&quot;No&quot;);</p>
+<p>Respuesta: x vale 5, luego la condici&oacute;n se eval&uacute;a como verdadera y se escribe Si.<br />
+</p>
+<p>&gt; &iquest;Qu&eacute; escribir&iacute;a en pantalla este fragmento de c&oacute;digo?</p>
+<p>int x = 0; if (x=5) printf(&quot;Si&quot;); else printf(&quot;No&quot;);</p>
+<p>Respuesta: no hemos escrito una comparaci&oacute;n dentro de &ldquo;if&rdquo;, sino una asignaci&oacute;n. Por tanto, lo que hay escrito dentro del par&eacute;ntesis se eval&uacute;a como verdadero (distinto de cero) y se escribe Si.<br />
+</p>
+<p>&gt; &iquest;Qu&eacute; escribir&iacute;a en pantalla este fragmento de c&oacute;digo?</p>
+<p>int x = 5; if (x=0) printf(&quot;Si&quot;); else printf(&quot;No&quot;);</p>
+<p>Respuesta: de nuevo, no hemos escrito una comparaci&oacute;n dentro de &ldquo;if&rdquo;, sino una asignaci&oacute;n. Por tanto, lo que hay escrito dentro del par&eacute;ntesis se eval&uacute;a como falso (cero) y se escribe No.<br />
+</p>
+<p>&gt; &iquest;Qu&eacute; escribir&iacute;a en pantalla este fragmento de c&oacute;digo?</p>
+<p>int x = 0; if (x==5) printf(&quot;Si&quot;) else printf(&quot;No&quot;);</p>
+<p>Respuesta: no compila, falta un punto y coma antes de &ldquo;else&rdquo;.<br />
+</p>
+<p>&nbsp;</p>
+
+<h4>3.1.8. Introducci&oacute;n a los diagramas de flujo</h4>
+<p>A veces puede resultar dif&iacute;cil ver claro donde usar un &ldquo;else&rdquo; o qu&eacute; instrucciones de las que siguen a un &ldquo;if&rdquo; deben ir entre llaves y cuales no. Generalmente la dificultad est&aacute; en el hecho de intentar teclear directamente un programa en C, en vez de pensar en el problema que se pretende resolver.</p>
+<p>Para ayudarnos a centrarnos en el problema, existen notaciones gr&aacute;ficas, como los diagramas de flujo, que nos permiten ver mejor qu&eacute; se debe hacer y cuando.</p>
+<p>En primer lugar, vamos a ver los 4 elementos b&aacute;sicos de un diagrama de flujo, y luego los aplicaremos a un caso concreto.</p>
+<p align="center"><img src="cc_dflujo1.jpg" width="226" height="119" alt="Diagrama de flujo 1" /></p>
+<p>El inicio o el final del programa se indica dentro de un c&iacute;rculo. Los procesos internos, como realizar operaciones, se encuadran en un rect&aacute;ngulo. Las entradas y salidas (escrituras en pantalla y lecturas de teclado) se indican con un paralelogramo que tenga su lados superior e inferior horizontales, pero no tenga verticales los otros dos. Las decisiones se indican dentro de un rombo.</p>
+<p>Vamos a aplicarlo al ejemplo de un programa que pida un n&uacute;mero al usuario y diga si es positivo, negativo o cero:</p>
+<p align="center"><img src="cc_dflujo2.jpg" width="439" height="613" alt="Diagrama de flujo 2" /></p>
+<p>El paso de aqu&iacute; al correspondiente programa en lenguaje C (el que vimos en el ejemplo 19) debe ser casi inmediato: sabemos como leer de teclado, como escribir en pantalla, y las decisiones ser&aacute;n un &ldquo;if&rdquo;, que si se cumple ejecutar&aacute; la sentencia que aparece en su salida &ldquo;si&rdquo; y si no se cumple (&ldquo;else&rdquo;) ejecutar&aacute; lo que aparezca en su salida &ldquo;no&rdquo;.</p>
+<p><strong>Ejercicios propuestos</strong>: </p>
+<ul>
+  <li> Crear el diagrama de flujo y la versi&oacute;n en C de un programa que d&eacute; al usuario tres oportunidades para adivinar un n&uacute;mero del 1 al 10.</li>
+  <li>Crear el diagrama de flujo para el programa que pide al usuario dos n&uacute;meros y dice si uno de ellos es positivo, si lo son los dos o si no lo es ninguno.</li>
+  <li> Crear el diagrama de flujo para el programa que pide tres n&uacute;meros al usuario y dice cu&aacute;l es el mayor de los tres. <br />
+  </li>
+</ul>
+<h4>3.1.9. Operador condicional: ?</h4>
+<p>En C hay otra forma de asignar un valor seg&uacute;n se d&eacute; una condici&oacute;n o no. Es el &ldquo;operador condicional&rdquo; ? : que se usa</p>
+<p class="nsource"> condicion ? valor1 : valor2;</p>
+<p>y equivale a decir &ldquo;si se cumple la condici&oacute;n, toma el valor v1; si no, toma el valor v2&rdquo;. Un ejemplo de c&oacute;mo podr&iacute;amos usarlo ser&iacute;a</p>
+<p class="nsource"> numeroMayor = (a&gt;b) ? a : b;</p>
+<p>que, aplicado a un programa sencillo, podr&iacute;a ser</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 23:      */
+/*  C023.C                   */
+/*                           */
+/*  El operador condicional  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+  int a, b, mayor;
+
+  printf("Escriba un número: ");
+  scanf("%d", &a);
+  printf("Escriba otro: ");
+  scanf("%d", &b);
+  mayor = (a>b) ?  a : b;
+  printf("El mayor de los números es %d.\n", mayor);
+    
+  return 0;
+}
+</code></pre></p>    
+
+<p>Un segundo ejemplo, que sume o reste dos n&uacute;meros seg&uacute;n la opci&oacute;n que se escoja, ser&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 24:      */
+/*  C024.C                   */
+/*                           */
+/*  Operador condicional - 2 */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+  int a, b, resultado;
+  int operacion;
+
+  printf("Escriba un número: ");
+  scanf("%d", &a);
+  printf("Escriba otro: ");
+  scanf("%d", &b);
+  printf("Escriba una operación (1 = resta; otro = suma): ");
+  scanf("%d", &operacion);
+  resultado = (operacion == 1) ?  a-b : a+b;
+  printf("El resultado es %d.\n", resultado);
+    
+  return 0;
+}
+</code></pre></p>    
+
+
+
+<p><strong>Ejercicios propuestos:</strong></p>
+
+
+<ul>
+  <li> Crear un programa que use el operador condicional para mostrar un el valor absoluto de un n&uacute;mero de la siguiente forma: si el n&uacute;mero es positivo, se mostrar&aacute; tal cual; si es negativo, se mostrar&aacute; cambiado de signo. </li>
+  <li> Crear un programa que use el operador condicional para dar a una variable llamada “iguales” (entera) el valor 1 si los dos n&uacute;meros que ha tecleado el usuario son iguales, o el valor 0 si son distintos. </li>
+  <li> Usar el operador condicional para calcular el mayor de dos n&uacute;meros. </li>
+</ul>
+<h4>3.1.10. switch</h4>
+<p>Si queremos ver varios posibles valores, ser&iacute;a muy pesado tener que hacerlo con muchos &ldquo;if&rdquo; seguidos o encadenados. La alternativa es la orden &ldquo;switch&rdquo;, cuya sintaxis es</p>
+<p> <span class="nsource">switch (expresi&oacute;n)<br />
+  {<br />
+ &nbsp;&nbsp; case valor1: sentencia1;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+ &nbsp;&nbsp; case valor2: sentencia2;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; sentencia2b;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+ &nbsp;&nbsp; ...<br />
+ &nbsp;&nbsp; case valorN: sentenciaN;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+ &nbsp;&nbsp; default:<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; otraSentencia;<br />
+  };</span><br />
+  <br />
+  Es decir, se escribe tras &ldquo;<strong>switch</strong>&rdquo; la expresi&oacute;n a analizar, entre par&eacute;ntesis. Despu&eacute;s, tras varias &oacute;rdenes &ldquo;<strong>case</strong>&rdquo; se indica cada uno de los valores posibles. Los pasos (porque pueden ser varios) que se deben dar si se trata de ese valor se indican a continuaci&oacute;n, terminando con &ldquo;<strong>break</strong>&rdquo;. Si hay que hacer algo en caso de que no se cumpla ninguna de las condiciones, se detalla tras &ldquo;<strong>default</strong>&rdquo;.</p>
+<p>Vamos con un ejemplo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 25:      */
+/*  C025.C                   */
+/*                           */
+/*  La orden switch        */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+  char tecla;
+
+  printf("Pulse una tecla y luego Intro: ");
+  scanf("%c", &tecla);
+  switch (tecla)
+  {
+    case ' ': printf("Espacio.\n");
+              break;
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+    case '0': printf("Dígito.\n");
+              break;
+    default:  printf("Ni espacio ni dígito.\n");
+  }
+      
+  return 0;
+}
+</code></pre></p>    
+
+<p>Ejercicios propuestos:</p>
+<ul>
+  <li> Crear un programa que lea una letra tecleada por el usuario y diga si se trata de una vocal, una cifra num&eacute;rica o una consonante.</li>
+  <li>Crear un programa que lea una letra tecleada por el usuario y diga si se trata de un signo de puntuaci&oacute;n, una cifra num&eacute;rica o alg&uacute;n otro car&aacute;cter. </li>
+  <li> Repetir los dos programas anteriores, empleando “if” en lugar de “switch”. </li>
+</ul>
+
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   66172 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc02e.html">Anterior</a></li>
+                    <li><a href="cc03b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+</html>
+        

@@ -1,0 +1,283 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 11 - Caracteristicas avanzadas</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="or,and,not,desplazamiento,directiva,preprocesador,makefile,coma" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 11 - Caracteristicas avanzadas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc10e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc11b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2>11. Otras caracter&iacute;sticas avanzadas de C</h2>
+<h3>11.1 Operaciones con bits</h3>
+<p>Podemos hacer desde C operaciones entre bits de dos n&uacute;meros (AND, OR, XOR, etc). Vamos primero a ver qu&eacute; significa cada una de esas operaciones.</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="168" valign="top"><p>Operaci&oacute;n </p></td>
+    <td width="180" valign="top"><p>Qu&eacute; hace </p></td>
+    <td width="48" valign="top"><p>En C </p></td>
+    <td width="144" valign="top"><p>Ejemplo </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Complemento (not) </p></td>
+    <td width="180" valign="top"><p>Cambiar 0 por 1 y viceversa </p></td>
+    <td width="48" valign="top"><p>~ </p></td>
+    <td width="144" valign="top"><p>~1100 = 0011 </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Producto l&oacute;gico (and) </p></td>
+    <td width="180" valign="top"><p>1 s&oacute;lo si los 2 bits son 1 </p></td>
+    <td width="48" valign="top"><p>&amp; </p></td>
+    <td width="144" valign="top"><p>1101 &amp; 1011 = 1001 </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Suma l&oacute;gica (or) </p></td>
+    <td width="180" valign="top"><p>1 si uno de los bits es 1 </p></td>
+    <td width="48" valign="top"><p>| </p></td>
+    <td width="144" valign="top"><p>1101 | 1011 = 1111 </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Suma exclusiva (xor) </p></td>
+    <td width="180" valign="top"><p>1 s&oacute;lo si los 2 bits son distintos </p></td>
+    <td width="48" valign="top"><p>^ </p></td>
+    <td width="144" valign="top"><p>1101 ^ 1011 = 0110 </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Desplazamiento a la izquierda </p></td>
+    <td width="180" valign="top"><p>Desplaza y rellena con ceros </p></td>
+    <td width="48" valign="top"><p>&lt;&lt; </p></td>
+    <td width="144" valign="top"><p>1101 &lt;&lt; 2 = 110100 </p></td>
+  </tr>
+  <tr>
+    <td width="168" valign="top"><p>Desplazamiento a la derecha </p></td>
+    <td width="180" valign="top"><p>Desplaza y rellena con ceros </p></td>
+    <td width="48" valign="top"><p>&gt;&gt; </p></td>
+    <td width="144" valign="top"><p>1101 &gt;&gt; 2 = 0011 </p></td>
+  </tr>
+</table>
+<p><br />
+  Ahora vamos a aplicarlo a un ejemplo completo en C:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 93:      */
+/*  C093.C                   */
+/*                           */
+/*  Operaciones de bits en   */
+/*  números enteros          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+    int a   = 67;
+    int b   =  33;
+          
+    printf("La variable a vale %d\n", a);
+    printf("y b vale %d\n", b);
+    printf("  El complemento de a es: %d\n", ~a);
+    printf("  El producto lógico de a y b es: %d\n", a&b);
+    printf("  Su suma lógica es: %d\n", a|b);
+    printf("  Su suma lógica exclusiva es: %d\n", a^b);
+    printf("  Desplacemos a a la izquierda: %d\n", a << 1);
+    printf("  Desplacemos a a la derecha: %d\n", a >> 1);
+    return 0;
+}
+</code></pre></p>
+<p>La respuesta que nos da Dev-C++ 4.9.9.2 es la siguiente:</p>
+<p> La variable a vale 67<br />
+  y b vale 33<br />
+  El complemento de a es: -68<br />
+  El producto l&oacute;gico de a y b es: 1<br />
+  Su suma l&oacute;gica es: 99<br />
+  Su suma l&oacute;gica exclusiva es: 98<br />
+  Desplacemos a a la izquierda: 134<br />
+  Desplacemos a a la derecha: 33</p>
+<p>Para comprobar que es correcto, podemos convertir al sistema binario esos dos n&uacute;meros y seguir las operaciones paso a paso:</p>
+<p> 67 = 0100 0011<br />
+  33 = 0010 0001</p>
+<p>En primer lugar complementamos &quot;a&quot;, cambiando los ceros por unos:</p>
+<p> 1011 1100 = -68</p>
+<p>Despu&eacute;s hacemos el producto l&oacute;gico de A y B, multiplicando cada bit, de modo que 1*1 = 1, 1*0 = 0, 0*0 = 0</p>
+<p> 0000 0001 = 1</p>
+<p>Despu&eacute;s hacemos su suma l&oacute;gica, sumando cada bit, de modo que 1+1 = 1, 1+0 = 1, 0+0 = 0<br />
+  0110 0011 = 99</p>
+<p>La suma l&oacute;gica exclusiva devuelve un 1 cuando los dos bits son distintos: 1^1 = 0, 1^0 = 1, 0^0 = 0</p>
+<p> 0110 0010 = 98</p>
+<p>Desplazar los bits una posici&oacute;n a la izquierda es como multiplicar por dos:</p>
+<p> 1000 0110 = 134</p>
+<p>Desplazar los bits una posici&oacute;n a la derecha es como dividir entre dos:</p>
+<p> 0010 0001 = 33</p>
+<p>&iquest;Qu&eacute; utilidades puede tener todo esto? Posiblemente, m&aacute;s de las que parece a primera vista. Por ejemplo: desplazar a la izquierda es una forma muy r&aacute;pida de multiplicar por potencias de dos; desplazar a la derecha es dividir por potencias de dos; la suma l&oacute;gica exclusiva (xor) es un m&eacute;todo r&aacute;pido y sencillo de cifrar mensajes; el producto l&oacute;gico nos permite obligar a que ciertos bits sean 0 (algo que se puede usar para comprobar m&aacute;scaras de red); la suma l&oacute;gica, por el contrario, puede servir para obligar a que ciertos bits sean 1...</p>
+<p>Un &uacute;ltimo comentario: igual que hac&iacute;amos operaciones abreviadas como</p>
+<p> x += 2;</p>
+<p>tambi&eacute;n podremos hacer cosas como</p>
+<p> x &lt;&lt;= 2;<br />
+  x &amp;= 2;<br />
+  x |= 2;<br />
+  ...</p>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   11465 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc10e.html">Anterior</a></li>
+                    <li><a href="cc11b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:04 GMT -->
+</html>
+        

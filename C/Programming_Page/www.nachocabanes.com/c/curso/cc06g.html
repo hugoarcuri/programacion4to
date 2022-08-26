@@ -1,0 +1,192 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 6 - Ficheros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 6 - Ficheros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="aleatorio,fichero,texto,fopen,fclose,eof,feof,fgets,fprintf,fscanf,fread,fwrite" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 6 - Ficheros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc06f.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06h.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>6.7 Ficheros binarios</h3>
+<p>Hasta ahora nos hemos centrado en los ficheros de texto, que son sencillos de crear y de leer. Pero tambi&eacute;n podemos manejar ficheros que contengan informaci&oacute;n de cualquier tipo.<br />
+    <br />
+    En este caso, utilizamos &ldquo;fread&rdquo; para leer un bloque de datos y &ldquo;fwrite&rdquo; para guardar un bloque de datos. Estos datos que leamos se guardan en un <strong>buffer</strong> (una zona intermedia de memoria). En el momento en que se lean menos bytes de los que hemos pedido, quiere decir que hemos llegado al final del fichero.</p>
+<p>En general, el manejo de &ldquo;fread&rdquo; es el siguiente:</p>
+<p> cantidadLeida = fread(donde, tama&ntilde;oDeCadaDato, cuantosDatos, fichero); </p>
+<p>Por ejemplo, para leer 10 n&uacute;meros enteros de un fichero (cada uno de los cuales ocupar&iacute;a 4 bytes, si estamos en un sistema operativo de 32 bits), har&iacute;amos</p>
+<p> int datos[10]; <br />
+  resultado = fread(&amp;datos, 4, 10, fichero);<br />
+  if (resultado &lt; 10) <br />
+  printf(&quot;Hab&iacute;a menos de 10 datos!&quot;);</p>
+<p>Al igual que ocurr&iacute;a con &ldquo;scanf&rdquo;, la variable en la que guardemos los datos se deber&aacute; indicar precedida del s&iacute;mbolo &amp;, por motivos con detalle que veremos cuando hablemos sobre punteros. Tambi&eacute;n al igual que pasaba con &ldquo;scanf&rdquo;, si se trata de una cadena de caracteres (bien porque vayamos a leer una cadena de texto, o bien porque queramos leer datos de cualquier tipo pero con la intenci&oacute;n de manejarlos byte a byte), como char dato[500] no ser&aacute; necesario indicar ese s&iacute;mbolo &amp;, como en este ejemplo:</p>
+<p> char cabecera [40]; <br />
+  resultado = fread(cabecera, 1, 40, fichero);<br />
+  if (resultado &lt; 40) <br />
+  printf(&quot;Formato de fichero incorrecto, no est&aacute; toda la cabecera!&quot;);<br />
+  else <br />
+  printf(&quot;El byte en la posici&oacute;n 5 es un %d&rdquo;, cabecera[4]);</p>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   22159 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc06f.html">Anterior</a></li>
+                    <li><a href="cc06h.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:27 GMT -->
+</html>
+        

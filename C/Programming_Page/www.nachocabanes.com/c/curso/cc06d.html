@@ -1,0 +1,194 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 6 - Ficheros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 6 - Ficheros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="aleatorio,fichero,texto,fopen,fclose,eof,feof,fgets,fprintf,fscanf,fread,fwrite" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 6 - Ficheros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc06c.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06e.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>6.4. Ficheros con tipo</h3>
+<p>Es frecuente que los ficheros que queramos manejar no sean de texto, pero que aun as&iacute; tengan un formato bastante definido. Por ejemplo, podemos querer crear una agenda, en la que los datos de cada persona est&eacute;n guardados en un &ldquo;struct&rdquo;. En este caso, podr&iacute;amos guardar los datos usando &ldquo;fprintf&rdquo; y &ldquo;fscanf&rdquo;, an&aacute;logos a &ldquo;printf&rdquo; y &ldquo;scanf&rdquo; que ya conocemos.</p>
+<p> fprintf( fichero, &quot;%40s%5d\n&quot;, persona.nombre, persona.numero);<br />
+  fscanf( fichero, &quot;%40s%5d\n&quot;, &amp;persona.nombre, &amp;persona.numero);</p>
+<p>Como se puede ver en este ejemplo, suele ser recomendable indicar la anchura que debe tener cada dato cuando guardamos con &ldquo;fprintf&rdquo;, para que se pueda recuperar despu&eacute;s de la misma forma con &ldquo;fscanf&rdquo;.</p>
+<p>Aun as&iacute;, &ldquo;fscanf&rdquo; tiene el mismo problema que &ldquo;scanf&rdquo;: si leemos una cadena de texto, la considera terminada despu&eacute;s del primer espacio en blanco, y lo que haya a continuaci&oacute;n lo asignar&aacute; a la siguiente cadena. Por eso, cuando manejemos textos con espacios, ser&aacute; preferible usar &ldquo;fgets&rdquo; o bien otras dos &oacute;rdenes para manejo de ficheros que veremos un poco m&aacute;s adelante.<br />
+</p>
+<p>Ejercicios propuestos: </p>
+<ul>
+  <li> 
+    <p> Crear un “struct” que almacene los siguientes datos de una persona: nombre, edad, ciudad de residencia. Pedir al usuario esos datos de una persona y guardarlos en un fichero llamado “gente.dat”. Cerrar el fichero, volverlo a abrir para lectura y mostrar los datos que se hab&iacute;an guardado. </p>
+  </li>
+  <li>
+    <p> Ampliar el programa anterior para que use un “array de structs”, de forma que se puedan tener datos de 10 personas. Se deber&aacute; pedir al usuario los datos de las 10 personas y guardarlos en el fichero. Despu&eacute;s se pedir&aacute; al usuario un n&uacute;mero del 1 al 10 y se mostrar&aacute;n los datos de la persona indicada por ese n&uacute;mero, que se deber&aacute;n leer de fichero (1 ser&aacute; la primera ficha, y 10 ser&aacute; la &uacute;ltima). 
+
+
+ Por ejemplo, si el usuario indica que quiere ver los datos de la persona 3 (tercera), se deber&aacute; leer las dos primeras, ignorando su contenido, y despu&eacute;s leer la tercera, que s&iacute; se deber&aacute; mostrar. </p>
+  </li>
+  <li>Una agenda que maneje los siguientes datos: nombre, direcci&oacute;n, tlf m&oacute;vil, email, y d&iacute;a, mes y a&ntilde;o de nacimiento (estos tres &uacute;ltimos datos deber&aacute;n ser n&uacute;meros enteros cortos). Deber&aacute; tener capacidad para 100 fichas. Se deber&aacute; poder a&ntilde;adir un dato nuevo, visualizar los nombres de las fichas existentes, o mostrar todos los datos de una persona (se preguntar&aacute; al usuario cual es el nombre de esa persona que quiere visualizar). Al empezar el programa, leer&aacute; los datos de un fichero llamado &ldquo;agenda.dat&rdquo; (si existe). Al terminar, guardar&aacute; todos los datos en ese fichero.<br />
+  </li>
+</ul>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   23080 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc06c.html">Anterior</a></li>
+                    <li><a href="cc06e.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:20 GMT -->
+</html>
+        

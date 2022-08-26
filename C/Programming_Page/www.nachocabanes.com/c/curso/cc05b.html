@@ -1,0 +1,564 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema  5 - Arrays y estructuras</title>
+
+    
+    <meta name="description" content="Curso de C - Tema  5 - Arrays y estructuras - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="array,arreglo,struct,vector,matriz,estructura,registro" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema  5 - Arrays y estructuras          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc05.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc05c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>5.2. Cadenas de caracteres</h3>
+<h4>5.2.1. Definici&oacute;n. Lectura desde teclado</h4>
+<p>Para las<strong> cadenas de texto</strong>, la situaci&oacute;n se complica un poco: se crean como &ldquo;arrays&rdquo; de caracteres. Est&aacute;n formadas por una sucesi&oacute;n de caracteres <strong>terminada con un car&aacute;cter nulo (\0)</strong>, de modo que tendremos que reservar una letra m&aacute;s de las que necesitamos. Por ejemplo, para guardar el texto &ldquo;Hola&rdquo; usar&iacute;amos &ldquo;char saludo[5]&rdquo;.</p>
+<p>Este car&aacute;cter nulo lo utilizar&aacute;n todas las &oacute;rdenes est&aacute;ndar que tienen que ver con manejo de cadenas: las que las muestran en pantalla, las que comparan cadenas, las que dan a una cadena un cierto valor, etc. Por tanto, si no queremos usar esas funciones y s&oacute;lo vamos a acceder letra a letra (como hemos hecho con los n&uacute;meros en los &uacute;ltimos ejemplos) nos bastar&iacute;a con &ldquo;char saludo[4]&rdquo;, pero si queremos usar cualquiera de esta posibilidades (ser&aacute; lo habitual), deberemos tener la prudencia de reservar una letra m&aacute;s de las &ldquo;necesarias&rdquo;, para ese car&aacute;cter nulo, que indica el final de la cadena, y que todas esas &oacute;rdenes utilizan para saber cuando deben terminar de manipular la cadena.</p>
+<p>Un primer ejemplo que nos pidiese nuestro nombre y nos saludase ser&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 40:      */
+/*  C040.C                   */
+/*                           */
+/*  Primer ejemplo de        */
+/*  cadenas de texto         */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    char texto[40];         /* Para guardar hasta 39 letras */
+
+    printf("Introduce tu nombre: ");
+    scanf("%s", &texto);
+    printf("Hola, %s\n", texto);
+            
+    return 0;
+}
+</code></pre></p>
+<p>Dos comentarios:</p>
+<ul>
+  <li> Si la cadena contiene espacios, se lee s&oacute;lo<strong> hasta el primer espacio</strong>. Esto se puede considerar una ventaja o un inconveniente, seg&uacute;n el uso que se le quiera dar. En cualquier caso, dentro de muy poco veremos c&oacute;mo evitarlo si queremos.</li>
+  <li> Siendo estrictos,<strong> no hace falta el &ldquo;&amp;&rdquo;</strong> en &ldquo;scanf&rdquo; cuando estamos leyendo cadenas de texto (s&iacute; para los dem&aacute;s tipos de datos). Los motivos exactos los veremos m&aacute;s adelante, cuando hablemos de direcciones de memoria y de punteros. Pero este programa se podr&iacute;a haber escrito as&iacute;:<br />
+  </li>
+</ul>
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 41:      */
+/*  C041.C                   */
+/*                           */
+/*  Segundo ejemplo de       */
+/*  cadenas de texto: scanf  */
+/*  sin &                    */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    char texto[40];         /* Para guardar hasta 39 letras */
+
+    printf("Introduce tu nombre: ");
+    scanf("%s", texto);
+    printf("Hola, %s\n", texto);
+            
+    return 0;
+}
+</code></pre></p>
+<p><strong>Ejercicio propuesto: </strong></p>
+<ul>
+  <li>Un programa que te pida tu nombre y una cifra numérica, y escriba tu nombre tantas veces como indique esa cifra numérica.</li>
+  <li>Un programa similar al anterior, pero que pida en primer lugar la cifra numérica y después tu nombre, y luego escriba el nombre tantas veces como indique esa cifra numérica.</li>
+</ul>
+
+
+
+
+<h4>5.2.2. C&oacute;mo acceder a las letras que forman una cadena</h4>
+<p>Podemos leer (o modificar) una de las letras de una cadena de igual forma que leemos o modificamos los elementos de cualquier tabla: el primer elemento ser&aacute; texto[0], el segundo ser&aacute; texto[1] y as&iacute; sucesivamente:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 42:      */
+/*  C042.C                   */
+/*                           */
+/*  Tercer ejemplo de        */
+/*  cadenas de texto:        */
+/*  acceder letra a letra    */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    char texto[40];         /* Para guardar hasta 39 letras */
+
+    printf("Introduce tu nombre: ");
+    scanf("%s", texto);
+    printf("Hola, %s. Tu inicial es %c\n", texto, texto[0]);
+            
+    return 0;
+}
+</code></pre></p>
+<p><strong>Ejercicio propuesto: </strong></p>
+<ul>
+  <li>Un programa que pida al usuario que introduzca una palabra, cambie su primera letra por una "A" y muestre la palabra resultante.</li>
+</ul>
+
+
+
+<h4>5.2.3. Longitud de la cadena.</h4>
+<p>En una cadena que definamos como &ldquo;char texto[40]&rdquo; lo habitual es que realmente no ocupemos las 39 letras que podr&iacute;amos llegar a usar. Si guardamos 9 letras (y el car&aacute;cter nulo que marca el final), tendremos 30 posiciones que no hemos usado. Pero estas 30 posiciones generalmente contendr&aacute;n &ldquo;basura&rdquo;, lo que hubiera previamente en esas posiciones de memoria, porque el compilador las reserva para nosotros pero no las &ldquo;limpia&rdquo;. Si queremos saber cual es la longitud real de nuestra cadena tenemos dos opciones:</p>
+<p>&gt; Podemos leer la cadena car&aacute;cter por car&aacute;cter desde el principio hasta que encontremos el car&aacute;cter nulo (\0) que marca el final.</p>
+<p>&gt; Hay una orden predefinida que lo hace por nosotros, y que nos dice cuantas letras hemos usado realmente en nuestra cadena. Es &ldquo;<strong>strlen</strong>&rdquo;, que se usa as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 43:      */
+/*  C043.C                   */
+/*                           */
+/*  Longitud de una cadena   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char texto[40];
+
+    printf("Introduce una palabra: ");
+    scanf("%s", texto);
+    printf("Has tecleado %d letras", strlen(texto));
+            
+    return 0;
+}
+</code></pre></p>
+
+<p>Como es de esperar, si escribimos &ldquo;Hola&rdquo;, esta orden nos dir&aacute; que hemos tecleado 4 letras (no cuenta el \0 que se a&ntilde;ade autom&aacute;ticamente al final).</p>
+<p>Si empleamos “strlen”, o alguna de las otras &oacute;rdenes relacionadas con cadenas de texto que veremos en este tema, debemos <strong>incluir &lt;string.h&gt; </strong>, que es donde se definen todas ellas. </p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Un programa que te pida tu nombre y lo muestre en pantalla separando cada letra de la siguiente con un espacio. Por ejemplo, si tu nombre es “Juan”, deber&iacute;a aparecer en pantalla “J u a n”. </li>
+  <li> Un programa que te pida tu nombre y lo muestre en pantalla separando al rev&eacute;s. Por ejemplo, si tu nombre es “Juan”, deber&iacute;a aparecer en pantalla “nauJ”. </li>
+</ul>
+<h4>5.2.4. Entrada/salida para cadenas: gets, puts</h4>
+<p>Hemos visto que si leemos una cadena de texto con &ldquo;scanf&rdquo;, se paraba en el primer espacio en blanco y no segu&iacute;a leyendo a partir de ese punto. Existen otras &oacute;rdenes que est&aacute;n dise&ntilde;adas espec&iacute;ficamente para manejar cadenas de texto, y que nos podr&aacute;n servir en casos como &eacute;ste.</p>
+<p>Para leer una cadena de texto (completa, sin parar en el primer espacio), usar&iacute;amos la orden &ldquo;gets&rdquo;, as&iacute;:</p>
+<p>gets(texto);</p>
+<p>De igual modo, para escribir un texto en pantalla podemos usar &ldquo;puts&rdquo;, que muestra la cadena de texto y avanza a la l&iacute;nea siguiente:</p>
+<p>puts(texto);</p>
+<p>Ser&iacute;a equivalente a esta otra orden:</p>
+<p>printf(&quot;%s\n&quot;, texto);</p>
+<p><strong>Ejercicio propuesto: </strong></p>
+<ul>
+  <li> Un programa que te pida una frase y la muestre en pantalla sin espacios. Por ejemplo, si la frase es “Hola, como est&aacute;s”, deber&iacute;a aparecer en pantalla “Hola,comoest&aacute;s”. </li>
+</ul>
+
+
+<p>Existe un <b>posible problema</b> cuando se mezcla el uso de &quot;gets&quot; y el de &quot;scanf&quot;: si primero leemos un n&uacute;mero, al usar &quot;scanf(&quot;%d&quot;, ...&quot;, la variable num&eacute;rica guardar&aacute; el n&uacute;mero... pero el Intro que pulsamos en el teclado despu&eacute;s de introducir ese n&uacute;mero queda esperando en el buffer (la memoria intermedia del teclado). Si a continuaci&oacute;n leemos un segundo n&uacute;mero, no hay problema, porque se omite ese Intro, pero si leemos una cadena de texto, ese Intro es aceptable, porque representar&iacute;a una cadena vac&iacute;a. Por eso, cuando primero leemos un n&uacute;mero y luego una cadena usando &quot;gets&quot;, tendremos que &quot;absorber&quot; el Intro, o de lo contrario el texto no se leer&iacute;a correctamente. Una forma de hacerlo ser&iacute;a usando &quot;getchar&quot;:
+</p>
+
+<p>scanf(&quot;%d&quot;, &amp;numero);<br />
+getchar();<br />
+gets(texto);</p>
+
+<p>Además, existe un <b>problema adicional</b>: muchos compiladores que sigan el estándar C99 pueden dar el aviso de que "gets es una orden <b>no segura</b> y no debería utilizarse". En compiladores que sigan el estándar C11 (propuesto en diciembre de 2011), es posible que esta orden ni siquiera esté disponible. Se debe a que "gets" no comprueba que haya espacio suficiente para los datos que introduzca el usuario, lo que puede dar lugar a un error de desbordamiento y a que el programa se comporte de forma imprevisible. En un fuente de práctica, creado por un principiante, no es peligroso, pero sí en caso de un programa en C "profesional" que esté dando servicio a una página Web, donde el uso de "gets" sí podría suponer una vulnerabilidad. Por eso, en el estándar C11 se propone una orden "gets_s", en la que se indica el nombre de la variable pero también el tamaño máximo permitido. En el próximo tema (ficheros, tema 6) veremos una alternativa segura a "gets" que sí se puede utilizar en cualquier compilador.</p>
+
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li>Un programa que te pida tu nombre (usando "gets") y una cifra numérica, y escriba tu nombre tantas veces como indique esa cifra numérica. </li>
+  <li>Un programa similar al anterior, pero que pida en primer lugar la cifra numérica y después tu nombre (con "gets"), y luego escriba el nombre tantas veces como indique esa cifra numérica.</li>
+</ul>
+
+<p><br />
+</p>
+
+
+<h4>5.2.5. Asignando a una cadena el valor de otra: strcpy, strncpy; strcat</h4>
+<p>Cuando queremos dar a una variable el valor de otra, normalmente usamos construcciones como a =2, o como a = b. Pero en el caso de las cadenas de texto, esta NO es la forma correcta, no podemos hacer algo como saludo=&quot;hola&quot; ni algo como texto1=texto2. Si hacemos algo as&iacute;, haremos que las dos cadenas est&eacute;n en la misma posici&oacute;n de memoria, y que los cambios que hagamos a una de ellas se reflejen tambi&eacute;n en la otra. La forma correcta de guardar en una cadena de texto un cierto valor es:</p>
+<p> strcpy (destino, origen);</p>
+<p>Es decir, debemos usar una funci&oacute;n llamada &ldquo;<strong>strcpy</strong>&rdquo; (string copy, copiar cadena), que se encuentra tambi&eacute;n en &ldquo;string.h&rdquo;. Vamos a ver dos ejemplos de su uso:</p>
+<p> strcpy (saludo, &quot;hola&quot;);</p>
+<p> strcpy (textoDefinitivo, textoProvisional);</p>
+<p>Es nuestra responsabilidad que en la cadena de destino haya suficiente espacio reservado para copiar lo que queremos. Si no es as&iacute;, estaremos sobreescribiendo direcciones de memoria en las que no sabemos qu&eacute; hay.<br />
+</p>
+<p>Para evitar este problema, tenemos una forma de indicar que queremos copiar s&oacute;lo los primeros<strong> n bytes</strong> de origen, usando la funci&oacute;n &ldquo;<strong>strncpy</strong>&rdquo;, as&iacute;:</p>
+<p> strncpy (destino, origen, n);</p>
+<p>Vamos a ver un ejemplo, que nos pida que tecleemos una frase y guarde en otra variable s&oacute;lo las 4 primeras letras:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 44:      */
+/*  C044.C                   */
+/*                           */
+/*  Tomar 4 letras de una    */
+/*  cadena                   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char texto1[40], texto2[40], texto3[10];
+
+    printf("Introduce un frase: ");
+    gets(texto1);
+
+    strcpy(texto2, texto1);
+    printf("Una copia de tu texto es %s\n", texto2);
+    strncpy(texto3, texto1, 4);
+    printf("Y sus 4 primeras letras son %s\n", texto3);
+            
+    return 0;
+}
+</code></pre></p>
+
+<p>Finalmente, existe otra orden relacionada con estas dos: podemos <strong>a&ntilde;adir</strong> una cadena al final de otra (concatenarla), con</p>
+<p> strcat (destino, origen);</p>
+<p>Vamos a ver un ejemplo de su uso, que nos pida nuestro nombre, nuestro apellido y cree una nueva cadena de texto que contenga los dos, separados por un espacio:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 45:      */
+/*  C045.C                   */
+/*                           */
+/*  Concatenar dos cadenas   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char texto1[40], texto2[40], texto3[40];
+
+    printf("Introduce tu nombre: ");
+    gets(texto1);
+
+    printf("Introduce tu apellido: ");
+    gets(texto2);
+
+    strcat(texto1, " ");     /* Añado un espacio al nombre */
+    strcat(texto1, texto2);  /* Y luego el apellido */
+    printf("Te llamas %s\n", texto1);
+            
+    return 0;
+}
+</code></pre></p>
+
+<p><strong>Ejercicio propuesto: </strong></p>
+<ul>
+  <li> Un programa que te pida una palabra, y la almacene en la variable llamada “texto”. Luego deber&aacute; pedir una segunda palabra, y a&ntilde;adirla al final de “texto”. Finalmente, deber&aacute; pedir una tercera palabra, y guardarla en la variable “texto” y en otra variable llamada “texto2”. </li>
+</ul>
+<h4>5.2.6. Comparando cadenas: strcmp</h4>
+<p>Para <strong>comparar</strong> dos cadenas alfab&eacute;ticamente (para ver si son iguales o para poder ordenarlas, por ejemplo), usamos </p>
+<p> strcmp (cad1, cad2);</p>
+<p>Esta funci&oacute;n devuelve un n&uacute;mero entero, que ser&aacute;:</p>
+<ul>
+  <li> 0 si ambas cadenas son iguales.</li>
+  <li>Un n&uacute;mero negativo, si cadena1 &lt; cadena2.</li>
+  <li>Un n&uacute;mero positivo, si cad1 &gt; cad2.</li>
+</ul>
+<p>Hay que tener cuidado, porque las cadenas se comparan como en un diccionario, pero hay que tener en cuenta ciertas cosas:</p>
+<ul>
+  <li> Al igual que en un diccionario, todas las palabras que empiecen por B se consideran &ldquo;mayores&rdquo; que las que empiezan por A.</li>
+  <li>Si dos cadenas empiezan por la misma letra (o las mismas letras), se ordenan bas&aacute;ndose en la primera letra diferente, tambi&eacute;n al igual que en el diccionario.</li>
+  <li>La primera diferencia est&aacute; que en que se distingue entre may&uacute;sculas y min&uacute;sculas. Para m&aacute;s detalles, en el c&oacute;digo ASCII las may&uacute;sculas aparecen antes que las min&uacute;sculas, as&iacute; que las palabras escritas en may&uacute;sculas se consideran &ldquo;menores&rdquo; que las palabras escritas en min&uacute;sculas. Por ejemplo, &ldquo;ala&rdquo; es menor que &ldquo;hola&rdquo;, porque una empieza por &ldquo;a&rdquo; y la otra empieza por &ldquo;h&rdquo;, pero &ldquo;Hola&rdquo; es menor que &ldquo;ala&rdquo; porque la primera empieza con una letra en may&uacute;sculas y la segunda con una letra en min&uacute;sculas.</li>
+  <li>La segunda diferencia es que el c&oacute;digo ASCII est&aacute;ndar no incluye e&ntilde;e, vocales acentuadas ni caracteres internacionales, as&iacute; que estos caracteres &ldquo;extra&ntilde;os&rdquo; aparecen despu&eacute;s de los caracteres &ldquo;normales&rdquo;, de modo que &ldquo;adi&oacute;s&rdquo; se considera &ldquo;mayor&rdquo; que &ldquo;adiposo&rdquo;, porque la o acentuada est&aacute; despu&eacute;s de todas las letras del alfabeto ingl&eacute;s.</li>
+</ul>
+<p>Vamos a ver un primer ejemplo que nos pida dos palabras y diga si hemos tecleado la misma las dos veces:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 46:      */
+/*  C046.C                   */
+/*                           */
+/*  Comparar dos cadenas     */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+
+int main()
+{
+    char texto1[40], texto2[40];
+
+    printf("Introduce una palabra: ");
+    gets(texto1);
+
+    printf("Introduce otra palabra: ");
+    gets(texto2);
+
+    if (strcmp(texto1, texto2)==0)
+        printf("Son iguales\n");
+    else
+        printf("Son distintas\n");
+           
+    return 0;
+}
+</code></pre></p>
+<p>Podemos mejorarlo ligeramente para que nos diga qu&eacute; palabra es &ldquo;menor&rdquo; de las dos:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 47:      */
+/*  C047.C                   */
+/*                           */
+/*  Comparar dos cadenas (2) */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char texto1[40], texto2[40];
+    int comparacion;
+
+    printf("Introduce una palabra: ");
+    gets(texto1);
+
+    printf("Introduce otra palabra: ");
+    gets(texto2);
+
+    comparacion = strcmp(texto1, texto2);
+
+    if (comparacion==0)
+        printf("Son iguales\n");
+    else if (comparacion>0)
+        printf("La primera palabra es mayor\n");
+    else 
+        printf("La segunda palabra es mayor\n");
+                
+    return 0;
+}
+</code></pre></p>
+
+<p><strong>Ejercicio propuesto: </strong></p>
+<ul>
+  <li> Crear un programa que pida al usuario su contrase&ntilde;a. Deber&aacute; terminar cuando introduzca como contrase&ntilde;a la palabra &quot;clave&quot;, pero volv&eacute;rsela a pedir tantas veces como sea necesario. </li>
+  <li> Crear un programa que pida al usuario su nombre y su contrase&ntilde;a, y no le permita seguir hasta que introduzca como nombre &quot;Pedro&quot; y como contrase&ntilde;a &quot;Peter&quot;. </li>
+</ul>
+<h4>5.2.7. Otras funciones de cadenas: sprintf, sscanf, strstr, &hellip;</h4>
+<p>Hay dos posibilidades m&aacute;s de las cadenas de texto que merece la pena comentar. Son las que nos ofrecen las funciones &ldquo;sprintf&rdquo; y &ldquo;sscanf&rdquo;: </p>
+<p>La funcion &ldquo;<strong>sprintf</strong>&rdquo; crea una cadena de texto a partir de una especificaci&oacute;n de formato y unos ciertos par&aacute;metros, al igual que hace &ldquo;printf&rdquo;, pero la diferencia est&aacute; en que &ldquo;printf&rdquo; manda su salida a la pantalla, mientras que &ldquo;sprintf&rdquo; la deja guardada en una cadena de texto.</p>
+<p>Por ejemplo, si escribimos</p>
+<p>printf(&rdquo;El n&uacute;mero %d multiplicado por 2 vale %d\n&rdquo;, 50, 50*2);</p>
+<p>En pantalla aparecer&aacute; escrito</p>
+<p>El n&uacute;mero 50 multiplicado por 2 vale 100<br />
+    <br />
+    Pues bien, si tenemos una cadena de texto que hayamos definido (por ejemplo) como char cadena[100] y escribimos</p>
+<p>sprintf(cadena,&rdquo;El n&uacute;mero %d multiplicado por 2 vale %d\n&rdquo;, 50, 50*2);</p>
+<p>Esta vez en pantalla no aparece nada escrito, sino que &ldquo;cadena&rdquo; pasa a contener el texto que antes hab&iacute;amos mostrado. Ahora ya podr&iacute;amos escribir este texto con:</p>
+<p>puts(cadena);</p>
+<p>o bien con</p>
+<p>printf(&rdquo;%s&rdquo;, cadena);</p>
+<p>&iquest;Qu&eacute; utilidad tiene esta orden? Nos puede resultar c&oacute;moda cuando queramos formatear texto que no vaya a aparecer directamente en pantalla de texto, sino que lo vayamos a enviar a un fichero, o que queramos mostrar en pantalla gr&aacute;fica, o enviar a trav&eacute;s de una red mediante &ldquo;sockets&rdquo;, por ejemplo.<br />
+</p>
+<p>Por otra parte &ldquo;<strong>sscanf</strong>&rdquo; es similar a &ldquo;scanf&rdquo;, con la diferencia de que los valores para las variables no se leen desde el teclado, sino desde una cadena de texto</p>
+<p>strcpy(cadena, &quot;20 30&quot;);<br />
+  sscanf(cadena, &quot;%d %d&quot;, &amp;primerNum, &amp;segundoNum);<br />
+</p>
+<p>Nota: sscanf devuelve el n&uacute;mero de valores que realmente se han detectado, de modo que podemos comprobar si ha tomado todos los que esper&aacute;bamos o alguno menos (porque el usuario haya tecleado menos de los que esper&aacute;bamos o porque alguno est&eacute; tecleado incorrectamente).</p>
+<p>if (sscanf(cadena, &quot;%d %d&quot;, &amp;primerNum, &amp;segundoNum)&lt;2)<br />
+  printf(&quot;Debia teclear dos numeros&quot;);<br />
+</p>
+<p><strong>Ejercicio propuesto</strong>: Un programa que pida tu nombre, tu d&iacute;a de nacimiento y tu mes de nacimiento y lo junte todo en una cadena, separando el nombre de la fecha por una coma y el d&iacute;a del mes por una barra inclinada, as&iacute;: &ldquo;Juan, nacido el 31/12&rdquo;.<br />
+</p>
+<p>Una tercera orden que puede resultar &uacute;til m&aacute;s de una vez es &ldquo;<strong>strstr</strong>&rdquo;. Permite comprobar si una cadena contiene un cierto texto. Devuelve NULL (un valor especial, que nos encontraremos cada vez m&aacute;s a partir de ahora) si no la contiene, y otro valor (no daremos m&aacute;s detalles por ahora sobre qu&eacute; tipo de valor ni por qu&eacute;) en casi de que s&iacute; la contenga:</p>
+<p>if (strstr (frase, &quot;Hola &quot;) == NULL)<br />
+  printf(&quot;No has dicho la palabra Hola &quot;);<br />
+</p>
+<p>Nota: estas no son todas las posibilidades que tenemos para manipular cadenas, pero posiblemente s&iacute; son las m&aacute;s habituales. Hay otras que nos permiten buscar una letra dentro de una cadena (strchr), una cadena dentro de otra cadena (strstr), &ldquo;dar la vuelta&rdquo; a una cadena (strrev), etc. Seg&uacute;n el compilador que usemos, podemos tener incluso funciones ya preparadas para convertir una cadena a <strong>may&uacute;sculas</strong> (strupr) o a min&uacute;sculas (strlwr).</p>
+
+<h4>5.2.8. Valor inicial de una cadena de texto</h4>
+<p>Podemos dar un valor inicial a una cadena de texto, usando dos formatos distintos:</p>
+<p>El formato &ldquo;cl&aacute;sico&rdquo; para dar valores a tablas:</p>
+
+<p><pre><code class='language-c'>char nombre[50]= {'J','u','a','n'};</code></pre></p>
+<p>O bien un formato m&aacute;s compacto:</p>
+
+<p><pre><code class='language-c'>char nombre[50]="Juan";</code></pre></p>
+<p>Pero cuidado con este &uacute;ltimo formato: hay que recordar que <strong>s&oacute;lo se puede usar cuando se declara la variable</strong>, al principio del programa. Si ya estamos dentro del programa, deberemos usar necesariamente la orden &ldquo;strcpy&rdquo; para dar un valor a una cadena de texto.</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   44830 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc05.html">Anterior</a></li>
+                    <li><a href="cc05c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+</html>
+        

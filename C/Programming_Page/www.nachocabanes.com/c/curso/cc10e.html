@@ -1,0 +1,447 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 10 - Bibliotecas frecuentes: SDL</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 10 - Bibliotecas frecuentes: SDL - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="SDL,juegos" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 10 - Bibliotecas frecuentes: SDL          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc10d.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc11.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h3>10.5. Juegos multiplataforma: SDL</h3>
+<h4>10.5.1. Dibujando una imagen de fondo y un personaje</h4>
+<p>Existen distintas bibliotecas que permiten crear gr&aacute;ficos desde el lenguaje C. Unas son espec&iacute;ficas para un sistema, y otras est&aacute;n dise&ntilde;adas para ser portables de un sistema a otro. Por otra parte, unas se centran en las funciones b&aacute;sicas de dibujo (l&iacute;neas, c&iacute;rculos, rect&aacute;ngulos, etc), y otras se orientan m&aacute;s a la representaci&oacute;n de im&aacute;genes que ya existan como fichero. </p>
+
+<p>Nosotros veremos las nociones b&aacute;sicas del uso de SDL, que es una de las bibliotecas m&aacute;s adecuadas para crear juegos, porque es multiplataforma (existe para Windows, Linux y otros sistemas) y porque esta orientada a la manipulaci&oacute;n de im&aacute;genes, que es algo m&aacute;s frecuente en juegos que el dibujar l&iacute;neas o pol&iacute;gonos. </p>
+<p>No veremos detalles de su instalaci&oacute;n, porque en los sistemas Linux deber&iacute;a bastar un instalar el paquete SDL-Dev (que normalmente tendr&aacute; un nombre como libsdl1.2-dev), y en Windows hay entornos que permiten crear un “proyecto de SDL” tan s&oacute;lo con dos clics, como CodeBlocks. </p>
+<p>Vamos a ver algunas de las operaciones b&aacute;sicas, y un primer ejemplo: </p>
+<p>Para poder utilizar SDL, debemos incluir SDL.h, as&iacute; </p>
+<p>#include &lt;SDL/SDL.h&gt; </p>
+<p>&nbsp; </p>
+<p>Ya dentro del cuerpo del programa, el primer paso ser&iacute;a tratar de inicializar la biblioteca SDL, y abandonar el programa en caso de no conseguirlo: </p>
+<p><strong>if </strong><strong>( </strong>SDL_Init <strong>( </strong>SDL_INIT_VIDEO <strong>) </strong><strong>&lt; </strong>0 <strong>) </strong><strong>{ </strong></p>
+<p>printf <strong>( </strong>&quot;No se pudo inicializar SDL: %s\n&quot; <strong>, </strong> SDL_GetError <strong>()); </strong></p>
+<p>exit <strong>( </strong>1 <strong>); </strong></p>
+<p><strong>} </strong></p>
+<p>&nbsp; </p>
+<p>Al terminar nuestro programa, deber&iacute;amos llamar a SQL_Quit: </p>
+<p>SDL_Quit <strong>(); </strong></p>
+<p>&nbsp; </p>
+<p>Para escoger modo de pantalla de 640x480 puntos, con 16 bits de color har&iacute;amos </p>
+<p><strong>if </strong><strong>( </strong> screen <strong>== </strong><strong>NULL </strong><strong>) </strong><strong>{ </strong></p>
+<p>printf <strong>( </strong>&quot;Error al entrar a modo grafico: %s\n&quot; <strong>, </strong> SDL_GetError <strong>() </strong><strong>); </strong></p>
+<p>SDL_Quit <strong>(); </strong></p>
+<p><strong>return </strong><strong>- </strong>1 <strong>; </strong></p>
+<p><strong>} </strong></p>
+<p>&nbsp; </p>
+<p>Podemos cambiar simplemente el texto (caption) de la ventana: </p>
+<p>SDL_WM_SetCaption <strong>( </strong>&quot;Prueba 1 de SDL&quot; <strong>, </strong>&quot;Prueba 1 de SDL&quot; <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>Para mostrar una imagen en pantalla: deberemos declararla del tipo SDL_Surface, cargarla con SDL_LoadBMP, y volcarla con SDL_BlitSurface usando como dato auxiliar la posici&oacute;n de destino, que ser&aacute; de tipo SDL_Rect: </p>
+<p>SDL_Surface <strong>* </strong>protagonista <strong>; </strong><strong></strong></p>
+<p>protagonista <strong>= </strong> SDL_LoadBMP <strong>( </strong>&quot;protag.bmp&quot; <strong>); </strong><strong></strong></p>
+<p>SDL_Rect destino <strong>; </strong><strong></strong></p>
+<p>destino <strong>. </strong>x <strong>= </strong>320 <strong>; </strong></p>
+<p>destino <strong>. </strong>y <strong>= </strong>400 <strong>; </strong></p>
+<p>SDL_BlitSurface <strong>( </strong>protagonista <strong>, </strong><strong>NULL </strong><strong>, </strong> screen <strong>, </strong><strong>&amp; </strong>destino <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>Con SDL_Flip hacemos toda la imagen visible: </p>
+<p>SDL_Flip <strong>( </strong>screen <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>Y para esperar 5 segundos y que nos d&eacute; tiempo a comprobar que todo ha funcionado, utilizar&iacute;amos: </p>
+<p>SDL_Delay <strong>( </strong>5000 <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>Todo esto, junto en un programa, quedar&iacute;a: </p>
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C son SDL     */
+/*  sdl01.c                  */
+/*                           */
+/*  Ejemplo de SDL (1)       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <SDL/SDL.h>
+ 
+int main()
+{
+    SDL_Surface *screen;
+    SDL_Surface *fondo;
+    SDL_Surface *protagonista;
+    SDL_Rect destino;
+    int i, j;
+      
+    /* Tratamos de inicializar la biblioteca SDL */
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        printf("No se pudo inicializar SDL: %s\n", SDL_GetError());
+        exit(1);
+    }
+     
+    /* Preparamos las imagenes a mostrar */
+    fondo = SDL_LoadBMP("fondo.bmp");
+    protagonista = SDL_LoadBMP("protag.bmp");
+     
+    /* Si todo ha ido bien, hacemos algo: 
+        entrar a modo grafico y cambiar el título de la ventana */
+    screen = SDL_SetVideoMode( 640, 480, 16, SDL_HWSURFACE );
+    if( screen == NULL ) {
+        printf( "Error al entrar a modo grafico: %s\n", SDL_GetError() );
+        SDL_Quit();
+        return -1;
+    }
+     
+    /* Titulo de la ventana */
+    SDL_WM_SetCaption( "Prueba 1 de SDL", "Prueba 1 de SDL" );
+     
+    /* Dibujamos la imagen de fondo */
+    destino.x=0;
+    destino.y=0;
+    SDL_BlitSurface(fondo, NULL, screen, &destino);
+   
+    /* Dibujamos el protagonista */
+    destino.x=320;
+    destino.y=400;
+    SDL_BlitSurface(protagonista, NULL, screen, &destino);
+   
+    /* Actualizamos la pantalla */
+    SDL_Flip(screen);
+     
+    /* Y esperamos antes de salir */
+    SDL_Delay( 5000 );
+     
+    /* Finalmente, preparamos para salir */
+    SDL_Quit();
+    return 0;
+}
+</code></pre></p>
+<p>En principio, si s&oacute;lo usamos SDL, las im&aacute;genes tendr&aacute;n que ser en formato BMP, pero hay otras bibliotecas adicionales, como SDL_Image, que permiten mostrar tambi&eacute;n im&aacute;genes en formatos PNG, JPG, etc. </p>
+<p>&nbsp; </p>
+<p>El tipo SDL_Rect representa un rect&aacute;ngulo, y se trata de un registro (struct), que tiene como campos: </p>
+<p>* x: posici&oacute;n horizontal </p>
+<p>* y: posici&oacute;n vertical </p>
+<p>* w: anchura (width) </p>
+<p>* h: altura (height) </p>
+<p>(nosotros no hemos usado la anchura ni la altura, pero podr&iacute;an ser &uacute;tiles si no queremos volcar toda la imagen, sino s&oacute;lo parte de ella). </p>
+<p>&nbsp;</p>
+<p>Para <strong>compilar </strong>este fuente en Linux deber&iacute;amos teclear lo siguiente: </p>
+<p>cc -o sdl01 sdl01.c `sdl-config --cflags --libs` </p>
+<p>Hay cosas que ya conocemos: el compilador (cc), el nombre para el ejecutable (-o sdl01) y el nombre del fuente (sdl01.c). Las opciones adicionales debemos indicarlas tal y como aparecen, entre acentos graves (acentos “hacia atr&aacute;s”): `sdl-config --cflags --libs` </p>
+<p>En Windows (con entornos como CodeBlocks), bastar&iacute;a con pulsar el bot&oacute;n “compilar el proyecto” de nuestro entorno de desarrollo. </p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Crea (o busca en Internet) una imagen de fondo de tama&ntilde;o 800x600 que represente un cielo negro con estrellas, y tres im&aacute;genes de planetas con un tama&ntilde;o menor (cercano a 100x100, por ejemplo). Entra a modo gr&aacute;fico 800x600 con 24 bits de color usando SDL, dibuja la imagen de fondo, y sobre ella, las de los tres planetas. El t&iacute;tulo de la ventana deber&aacute; ser “Planetas”. Las im&aacute;genes deber&aacute;n mostrarse durante 7 segundos. </li>
+</ul>
+<p>&nbsp; </p>
+
+<h4>10.5.2. 
+
+
+ Un personaje m&oacute;vil </h4>
+<p>Para poder mover a ese protagonista por encima del fondo de forma “no planificada” necesitamos poder comprobar qu&eacute; teclas se est&aacute;n pulsando. Lo podemos conseguir haciendo: </p>
+<p>teclas <strong>= </strong> SDL_GetKeyState <strong>( </strong><strong>NULL </strong><strong>); </strong></p>
+<p><strong>if </strong><strong>( </strong>teclas <strong>[ </strong>SDLK_UP <strong>]) </strong></p>
+<p><strong>{ </strong></p>
+<p>posicionY <strong>-= </strong>2 <strong>; </strong></p>
+<p><strong>} </strong></p>
+<p>&nbsp; </p>
+<p>Donde la variable &quot;teclas&quot;, ser&aacute; un array de &quot;unsigned int&quot;. La forma normal de declararla ser&aacute;: </p>
+<p>Uint8 <strong>* </strong> teclas <strong>; </strong></p>
+<p>&nbsp; </p>
+<p>Eso s&iacute;, antes de poner acceder al estado de cada tecla, deberemos poner en marcha todo el sistema de comprobaci&oacute;n de sucesos (&quot;events&quot;, en ingl&eacute;s). Al menos deberemos comprobar si hay alguna petici&oacute;n de abandonar el programa (por ejemplo, pulsando la X de la ventana), a lo que corresponde el suceso de tipo SDL_QUIT. De paso, podr&iacute;amos comprobar en este mismo paso si se ha pulsado la tecla ESC, que es otra forma razonable de indicar que queremos terminar el programa: </p>
+<p><strong>while </strong><strong>( </strong>SDL_PollEvent <strong>(&amp; </strong>suceso <strong>)) </strong><strong>{ </strong></p>
+<p><strong>if </strong><strong>( </strong>suceso <strong>. </strong>type <strong>== </strong> SDL_QUIT <strong>) </strong>terminado <strong>= </strong>1 <strong>; </strong></p>
+<p><strong>if </strong><strong>( </strong>suceso <strong>. </strong>type <strong>== </strong> SDL_KEYDOWN <strong>) </strong></p>
+<p><strong>if </strong><strong>( </strong>suceso <strong>. </strong>key <strong>. </strong>keysym <strong>. </strong>sym <strong>== </strong> SDLK_ESCAPE <strong>) </strong>terminado <strong>= </strong>1 <strong>; </strong></p>
+<p><strong>} </strong></p>
+<p>donde la variable suceso se declarar&iacute;a con </p>
+<p>SDL_Event suceso <strong>; </strong></p>
+<p>&nbsp; </p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Ampl&iacute;a el ejercicio anterior, a&ntilde;adiendo la imagen de una nave espacial, que deber&aacute; moverse cada vez que el usuario pulse una de las flechas del cursor. Ya no se saldr&aacute; al cabo de varios segundos, sino cuando el usuario pulse la tecla ESC. </li>
+</ul>
+<p>Existen distintas bibliotecas que permiten crear gr&aacute;ficos desde el lenguaje C. Unas son espec&iacute;ficas para un sistema, y otras est&aacute;n dise&ntilde;adas para ser portables de un sistema a otro. Por otra parte, unas se centran en las funciones b&aacute;sicas de dibujo (l&iacute;neas, c&iacute;rculos, rect&aacute;ngulos, etc), y otras se orientan m&aacute;s a la representaci&oacute;n de im&aacute;genes que ya existan como fichero. </p>
+<h4>10.5.3. 
+
+
+ Im&aacute;genes transparentes, escribir texto y otras mejoras </h4>
+<p>Hemos visto c&oacute;mo dibujar im&aacute;genes en pantalla, y c&oacute;mo comprobar qu&eacute; teclas se han pulsado, para hacer que una imagen se mueva sobre la otra.</p>
+<p>Pero ten&iacute;a un defecto, que hac&iacute;a que no quedara vistoso: si la imagen del “protagonista” tiene un recuadro negro alrededor, al moverse tapar&aacute; parte del fondo. Esto se debe evitar: una imagen que se mueve en pantalla (lo que se suele llamar un “sprite”) deber&iacute;a tener zonas <strong>transparentes </strong>, a trav&eacute;s de las que se vea el fondo.</p>
+<p>Es algo f&aacute;cil de conseguir con SDL: podemos hacer que un color se considere transparente, usando</p>
+<p>SDL_SetColorKey <strong>( </strong>surface <strong>, </strong> SDL_SRCCOLORKEY <strong>, </strong></p>
+<p>SDL_MapRGB <strong>( </strong>surface <strong>-&gt; </strong>format <strong>, </strong> r <strong>, </strong> g <strong>, </strong> b <strong>));</strong></p>
+<p>donde &quot;surface&quot; es la superficie que queremos que tenga un color transparente (por ejemplo, nuestro protagonista), y &quot;r, g, b&quot; son las componentes roja, verde y azul del color que queremos que se considere transparente (si es el color negro el que queremos que no sea vea, ser&iacute;an 0,0,0).</p>
+<p>As&iacute;, con nuestro protagonista har&iacute;amos</p>
+<p>/* Preparamos las imagenes a mostrar */ </p>
+<p>fondo <strong>= </strong> SDL_LoadBMP <strong>( </strong>&quot;fondo.bmp&quot; <strong>); </strong></p>
+<p>protagonista <strong>= </strong> SDL_LoadBMP <strong>( </strong>&quot;protag.bmp&quot; <strong>); </strong></p>
+<p>/* El protagonista debe tener contorno transparente */ </p>
+<p>SDL_SetColorKey <strong>( </strong>protagonista <strong>, </strong> SDL_SRCCOLORKEY <strong>, </strong></p>
+<p>SDL_MapRGB <strong>( </strong>protagonista <strong>-&gt; </strong>format <strong>, </strong>0 <strong>, </strong>0 <strong>, </strong>0 <strong>));</strong></p>
+<p>Si usamos la biblioteca adicional SDL_Image, podremos usar im&aacute;genes PNG con transparencia, y entonces no necesitar&iacute;amos usar esta orden. </p>
+<p>&nbsp;</p>
+<p>Escribir <strong>texto </strong> con SDL no es algo “trivial”: A no ser que empleemos la biblioteca adicional SDL_TTF, no tendremos funciones predefinidas que muestren una frase en ciertas coordenadas de la pantalla.</p>
+<p>Pero podr&iacute;amos hacerlo “a mano”: preparar una imagen que tenga las letras que queremos mostrar (o una imagen para cada letra), y tratarlas como si fueran im&aacute;genes. Podemos crearnos nuestras propias funciones para escribir cualquier texto. Podr&iacute;amos comenzar por una funci&oacute;n “escribirLetra(int x, int y, char letra)”, y apoy&aacute;ndonos en ella, crear otra “escribirFrase(int x, int y, char *frase)” </p>
+<p>&nbsp;</p>
+<p>Si queremos que nuestro juego funcione a <strong>pantalla completa </strong>, los cambios son m&iacute;nimos: basta a&ntilde;adir SDL_FULLSCREEN a la lista de par&aacute;metros que indicamos al escoger el modo de pantalla. Estos par&aacute;metros se deben indicar separados por una barra vertical (|), porque entre ellos se va a realizar una operaci&oacute;n OR (suma l&oacute;gica) a nivel de bit: </p>
+<p>&nbsp; </p>
+<p>screen <strong>= </strong> SDL_SetVideoMode <strong>( </strong>640 <strong>, </strong>480 <strong>, </strong>16 <strong>, </strong> SDL_FULLSCREEN <strong>| </strong> SDL_HWSURFACE <strong>); </strong><strong></strong></p>
+<p>&nbsp; </p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Ampl&iacute;a el ejercicio anterior, para que la imagen de la nave espacial tenga el contorno transparente (y quiz&aacute; tambi&eacute;n alguna zona interior). </li>
+  <li> Crea una imagen que contenga varias letras (al menos H, O, L, A), y &uacute;sala para escribir las frases HOLA y OH en modo gr&aacute;fico con SDL. </li>
+  </ul>
+<p>&nbsp;</p>
+
+<h4>10.5.4. 
+
+
+ El doble buffer</h4>
+<p>Si intentamos mover varias im&aacute;genes a la vez en pantalla, es probable que el resultado parpadee.</p>
+<p>El motivo es que mandamos informaci&oacute;n a la pantalla en distintos instantes, por lo que es f&aacute;cil que alguno de todos esos bloques de informaci&oacute;n llegue en un momento que no coincida con el barrido de la pantalla (el movimiento del haz de electrones que redibuja la informaci&oacute;n que vemos).</p>
+<p>Una soluci&oacute;n habitual es preparar toda la informaci&oacute;n, trozo a trozo, en una “imagen oculta”, y s&oacute;lo volcar a la pantalla visible cuando la imagen est&aacute; totalmente preparada. Esta t&eacute;cnica es la que se conoce como “usar un doble buffer”.</p>
+<p>El segundo paso es sincronizar con el barrido, algo que en la mayor&iacute;a de bibliotecas hace una funci&oacute;n llamada “retrace” o “sync”, y que en SDL se hace autom&aacute;ticamente cuando volcamos la informaci&oacute;n con “SDL_Flip”. </p>
+<p>&nbsp; </p>
+<p>Ya en la pr&aacute;ctica, en SDL, comenzaremos por a&ntilde;adir el par&aacute;metro correspondiente (SDL_DOUBLEBUF) cuando entramos a modo gr&aacute;fico:</p>
+<p>screen <strong>= </strong>SDL_SetVideoMode <strong>( </strong>640 <strong>, </strong>480 <strong>, </strong>16 <strong>, </strong>SDL_HWSURFACE <strong>| </strong>SDL_DOUBLEBUF <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>A la hora de dibujar, no lo hacemos directamente sobre “screen”, sino sobre una superficie (“surface”) auxiliar. Cuando toda esta superficie est&aacute; lista, es cuando la volcamos a la pantalla, as&iacute;:</p>
+<p>SDL_BlitSurface <strong>( </strong>fondo <strong>, </strong><strong>NULL </strong><strong>, </strong> pantallaOculta <strong>, </strong><strong>&amp; </strong>destino <strong>); </strong></p>
+<p>SDL_BlitSurface <strong>( </strong>protagonista <strong>, </strong><strong>NULL </strong><strong>, </strong> pantallaOculta <strong>, </strong><strong>&amp; </strong>destino <strong>); </strong></p>
+<p><strong>... </strong></p>
+<p>SDL_BlitSurface <strong>( </strong>pantallaOculta <strong>, </strong><strong>NULL </strong><strong>, </strong> screen <strong>, </strong><strong>&amp; </strong>destino <strong>); </strong></p>
+<p>SDL_Flip <strong>( </strong>screen <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>S&oacute;lo queda un detalle: &iquest;c&oacute;mo reservamos espacio para esa pantalla oculta? </p>
+<p>&nbsp; </p>
+<p>Si la pantalla oculta es del mismo tama&ntilde;o que nuestro fondo o que alguna otra imagen, nos puede bastar con cargar la imagen :</p>
+<p>fondo <strong>= </strong> SDL_LoadBMP <strong>( </strong>&quot;fondo.bmp&quot; <strong>); </strong></p>
+<p>&nbsp; </p>
+<p>Si no es el caso (por ejemplo, porque el fondo se forme repitiendo varias im&aacute;genes de peque&ntilde;o tama&ntilde;o), podemos usar &quot;SDL_CreateRGBSurface&quot;, que reserva el espacio para una superficie de un cierto tama&ntilde;o y con una cierta cantidad de colores, as&iacute;:</p>
+<p>pantallaOculta <strong>= </strong> SDL_CreateRGBSurface <strong>( </strong>SDL_SWSURFACE <strong>, </strong>640 <strong>, </strong>480 <strong>, </strong>16 <strong>, </strong></p>
+<p>0 <strong>, </strong>0 <strong>, </strong>0 <strong>, </strong>0 <strong>);</strong></p>
+<p>(el par&aacute;metro SDL_SWSURFACE indica que no se trabaje en memoria f&iacute;sica de la tarjeta, sino en memoria del sistema; 640x480 es el tama&ntilde;o de la superficie; 16 es la cantidad de color -16bpp = 655356 colores-; los otros 0,0,0,0 se refieren a la cantidad de rojo, verde, azul y transparencia -alpha- de la imagen). </p>
+<p>&nbsp;</p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Ampl&iacute;a el ejercicio de la nave, para que emplee un doble buffer que permita evitar parpadeos. </li>
+</ul>
+<p>&nbsp;</p>
+
+
+<h4>10.5.5. 
+
+
+ El bucle de juego (game loop)</h4>
+<p>Para abordar un juego completo, es frecuente no tener claro c&oacute;mo deber&iacute;a ser la estructura del juego: qu&eacute; repetir y cuando. </p>
+<p>Pues bien, en un juego t&iacute;pico encontrar&iacute;amos: </p>
+<ul>
+  <li> Cosas que no se repiten, como la inicializaci&oacute;n para entrar a modo gr&aacute;fico, o la liberaci&oacute;n de recursos al final del programa. </li>
+  <li> Cosas que no deber&iacute;an repetirse, como la lectura de las im&aacute;genes que vamos a usar (si no son muy grandes, bastar&aacute; con leerlas al principio y memorizarlas). </li>
+  <li> Cosas que s&iacute; deber&aacute;n repetirse, como dibujar el fondo, comprobar si el usuario ha pulsado alguna tecla, mover los elementos de la pantalla si procede, etc.  </li>
+  </ul>
+<p>Esta parte que se repite es lo que se suele llamar el “bucle de juego” (en ingl&eacute;s, “game loop”). Su apariencia exacta depende de cada juego, pero en la mayor&iacute;a podr&iacute;amos encontrar algo parecido a: </p>
+<pre><code>
+Inicializar
+Mientras (partida en marcha)
+    Comprobar sucesos (teclas / ratón / joystick)
+    Dibujar fondo (en pantalla oculta)
+    Actualizar posición de personajes (en pantalla oculta)
+    Comprobar colisiones y otras situaciones del juego
+    Corregir personajes según la situación
+    Mostrar pantalla oculta
+    Atender a situaciones especiales (una vida menos, etc)
+Fin Mientras
+Liberar recursos
+</code></pre>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+<p>El orden no tiene por qu&eacute; ser exactamente &eacute;ste, pero habitualmente ser&aacute; parecido. Vamos a detallarlo un poco m&aacute;s:</p>
+<ul>
+  <li> Al principio del programa, toda la inicializaci&oacute;n, que no se repite. </li>
+  <li> Mientras la partida est&eacute; en marcha, una de las cosas que haremos es comprobar si hay que atender a alguna orden del usuario, que haya pulsado alguna tecla o utilizado su rat&oacute;n o su joystick/gamepad para indicar alguna acci&oacute;n del juego. </li>
+  <li> Otra de las cosas que hay que hacer siempre es &quot;componer&quot; la imagen del juego (fondo + personajes), generalmente en pantalla oculta, para evitar parpadeos. </li>
+  <li> Normalmente, antes de dibujar (quiz&aacute; incluso antes del paso anterior) deberemos comprobar si ha habido alguna colisi&oacute;n o alguna otra situaci&oacute;n que atender. Por ejemplo, si un disparo enemigo ha chocado con nuestra nave, no deber&iacute;amos dibujar la nave, sino una explosi&oacute;n. O quiz&aacute; nuestro protagonista recoja un objeto y cambie su apariencia. </li>
+  <li> Cuando ya queda claro c&oacute;mo debe ser la pantalla, la dibujaremos. </li>
+  <li> Tambi&eacute;n hay situaciones especiales que se pueden dar durante la partida, y que pueden suponer interrupciones del bucle normal de juego, como cuando el usuario pulsa la tecla de pausa, o pide ayuda, o pierde una vida. </li>
+  <li> Finalmente, hay que recordar que cuando acaba la partida, en casi cualquier biblioteca de funciones que usemos deberemos liberar los recursos que hemos usado (en SDL, con SDL_Quit). </li>
+</ul>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Ampl&iacute;a el ejercicio de la nave, para que emplee tenga una funci&oacute;n “buclePrincipal”, que siga la apariencia de un bucle de juego cl&aacute;sico, llamando a funciones con los nombres “comprobarTeclas”, “dibujarElementos”, “moverEstrellas”, “mostrarPantallaOculta”. Existir&aacute;n algunas estrellas, cuya posici&oacute;n cambiar&aacute; cuando se llame a “moverEstrellas” y que se dibujar&aacute;n, junto con los dem&aacute;s componentes, al llamar a en “dibujarElementos”. Al final de cada “pasada” por el bucle principal habr&aacute; una pausa de 20 milisegundos, para que la velocidad del “juego” no dependa del ordenador en que se ejecute. </li>
+  <li> Ampliar el ejercicio anterior, para que tambi&eacute;n exista un “enemigo” que se mueva de lado a lado de la pantalla. </li>
+  <li> Ampliar el ejercicio anterior, para que haya 20 “enemigos” (un array) que se muevan de lado a lado de la pantalla. </li>
+  <li> Ampliar el ejercicio anterior, para a&ntilde;adir la posibilidad de que nuestro personaje “dispare”. </li>
+  <li> Ampliar el ejercicio anterior, para que si un “disparo” toca a un “enemigo”, &eacute;ste deje de dibujarse. </li>
+  <li> Ampliar el ejercicio anterior, para que la partida termine si un “enemigo” toca a nustro personaje. </li>
+</ul>
+<p>&nbsp; </p>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   12012 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc10d.html">Anterior</a></li>
+                    <li><a href="cc11.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:12 GMT -->
+</html>
+        

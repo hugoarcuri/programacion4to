@@ -1,0 +1,232 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema  5 - Arrays y estructuras</title>
+
+    
+    <meta name="description" content="Curso de C - Tema  5 - Arrays y estructuras - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="array,arreglo,struct,vector,matriz,estructura,registro" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema  5 - Arrays y estructuras          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc05f.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>5.7 Ordenaciones simples </h3>
+<p>Es muy frecuente querer ordenar datos que tenemos en un array. Para conseguirlo, existen varios algoritmos sencillos, que no son especialmente eficientes, pero son f&aacute;ciles de programar. La falta de eficiencia se refiere a que la mayor&iacute;a de ellos se basan en dos bucles “for” anidados, de modo que en cada pasada quede ordenado un dato, y se dan tantas pasadas como datos existen, de modo que para un array con 1.000 datos, podr&iacute;an llegar a tener que hacerse un mill&oacute;n de comparaciones. </p>
+<p>&nbsp; </p>
+<p>Existen ligeras mejoras (por ejemplo, cambiar uno de los “for” por un “while”, para no repasar todos los datos si ya estaban parcialmente ordenados), as&iacute; como m&eacute;todos claramente m&aacute;s efectivos, pero m&aacute;s dif&iacute;ciles de programar, alguno de los cuales veremos m&aacute;s adelante. </p>
+<p>&nbsp; </p>
+<p>Veremos tres de estos m&eacute;todos simples de ordenaci&oacute;n, primero mirando la apariencia que tiene el algoritmo, y luego juntando los tres en un ejemplo que los pruebe: </p>
+<p>&nbsp; </p>
+<p><strong>M&eacute;todo de burbuja </strong><strong></strong></p>
+<p>(Intercambiar cada pareja consecutiva que no est&eacute; ordenada) </p>
+
+<pre><code>
+Para i=1 hasta n-1
+    Para j=i+1 hasta n
+        Si A[i] &gt; A[j]
+          Intercambiar ( A[i], A[j])
+</code></pre>
+
+(Nota: algunos autores hacen el bucle exterior creciente y otros decreciente, as&iacute;:) 
+
+<pre><code>
+Para i=n descendiendo hasta 1
+    Para j=2 hasta i
+        Si A[j-1] &gt; A[j]
+          Intercambiar ( A[j-1], A[j])
+</code></pre>
+
+<p><strong>Selecci&oacute;n directa </strong><strong></strong></p>
+<p>(En cada pasada busca el menor, y lo intercambia al final de la pasada) </p>
+
+<pre><code>
+Para i=1 hasta n-1 
+    menor = i
+    Para j=i+1 hasta n 
+        Si A[j] &lt; A[menor]
+            menor = j
+    Si menor &lt;&gt; i
+        Intercambiar ( A[i], A[menor])
+</code></pre>
+
+
+<p><strong>Inserci&oacute;n directa </strong><strong></strong></p>
+<p>(Comparar cada elemento con los anteriores -que ya est&aacute;n ordenados- y desplazarlo hasta su posici&oacute;n correcta). </p>
+
+<pre><code>
+Para i=2 hasta n
+      j=i-1
+      mientras (j&gt;=1) y (A[j] &gt; A[j+1])
+          Intercambiar ( A[j], A[j+1])
+          j = j - 1
+</code></pre>
+
+<p>(Es mejorable, no intercambiando el dato que se mueve con cada elemento, sino s&oacute;lo al final de cada pasada, pero no entraremos en m&aacute;s detalles). </p>
+<p><strong>&nbsp; </strong></p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Un programa que cree un array de 7 n&uacute;meros enteros y lo ordene con cada uno de estos tres m&eacute;todos, mostrando el resultado de los pasos intermedios. </li>
+</ul>
+<p>&nbsp; </p>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   40790 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc05f.html">Anterior</a></li>
+                    <li><a href="cc06.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+</html>
+        

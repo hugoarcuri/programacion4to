@@ -1,0 +1,236 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 7 - Funciones</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 7 - Funciones - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="valor,referencia,recursividad,return" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 7 - Funciones          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc07e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc07g.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>7.6. Variables locales y variables globales</h3>
+<p>Hasta ahora, hemos declarado las variables antes de "main". Ahora nuestros programas tienen varios "bloques", as&iacute; que se comportar&aacute;n de forma distinta seg&uacute;n donde declaremos las variables.</p>
+<p>Las variables se pueden declarar dentro de un bloque (una funci&oacute;n), y entonces s&oacute;lo ese bloque las conocer&aacute;, no se podr&aacute;n usar desde ning&uacute;n otro bloque del programa. Es lo que llamaremos "variables <strong>locales</strong>".</p>
+<p>Por el contrario, si declaramos una variable al comienzo del programa, fuera de todos los "bloques" de programa, ser&aacute; una "<strong>variable global</strong>", a la que se podr&aacute; acceder desde cualquier parte.</p>
+<p>Vamos a verlo con un ejemplo. Crearemos una funci&oacute;n que calcule la potencia de un n&uacute;mero entero (un n&uacute;mero elevado a otro), y el cuerpo del programa que la use.</p>
+<p>La forma de conseguir elevar un n&uacute;mero a otro ser&aacute; a base de multiplicaciones, es decir:</p>
+<p> 3 elevado a 5 = 3 &middot; 3 &middot; 3 &middot; 3 &middot; 3</p>
+<p>(multiplicamos 5 veces el 3 por s&iacute; mismo). En general, como nos pueden pedir cosas como &quot;6 elevado a 100&quot; (o en general n&uacute;meros que pueden ser grandes), usaremos la orden &quot;for&quot; para multiplicar tantas veces como haga falta:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 63:      */
+/*  C063.C                   */
+/*                           */
+/*  Ejemplo de función con   */
+/*  variables locales        */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int potencia(int base, int exponente) {
+   int temporal = 1;        /* Valor que voy hallando */
+   int i;                   /* Para bucles */
+
+   for(i=1; i<=exponente; i++)    /* Multiplico "n" veces */
+     temporal *= base;            /* Y calculo el valor temporal */
+   return temporal;               /* Tras las multiplicaciones, */
+ }                                /*    obtengo el valor que buscaba */
+
+int main() {
+    int num1, num2;
+    
+    printf("Introduzca la base: ");
+    scanf("%d", &num1);
+    printf("Introduzca el exponente: ");
+    scanf("%d", &num2);
+    printf("%d elevado a %d vale %d", num1, num2, potencia(num1,num2));
+   
+    return 0;
+}
+</code></pre></p>
+
+<p>En este caso, las variables "temporal" e "i" son locales a la funci&oacute;n "potencia": para "main" no existen. Si en "main" intent&aacute;ramos hacer i=5; obtendr&iacute;amos un mensaje de error.</p>
+<p>De igual modo, "num1" y "num2" son locales para "main": desde la funci&oacute;n "potencia" no podemos acceder a su valor (ni para leerlo ni para modificarlo), s&oacute;lo desde "main".</p>
+<p>En general, <b>deberemos intentar que la mayor cantidad de variables posible sean locales</b> (lo ideal ser&iacute;a que todas lo fueran). As&iacute; hacemos que cada parte del programa trabaje con sus propios datos, y ayudamos a evitar que un error en un trozo de programa pueda afectar al resto. La forma correcta de pasar datos entre distintos trozos de programa es usando los par&aacute;metros de cada funci&oacute;n, como en el anterior ejemplo.</p>
+<p><strong>Ejercicios propuestos </strong>: </p>
+<ul>
+  <li> Crear una funci&oacute;n “pedirEntero”, que reciba como par&aacute;metros el texto que se debe mostrar en pantalla, el valor m&iacute;nimo aceptable y el valor m&aacute;ximo aceptable. Deber&aacute; pedir al usuario que introduzca el valor tantas veces como sea necesario, volv&eacute;rselo a pedir en caso de error, y devolver un valor correcto. Probarlo con un programa que pida al usuario un a&ntilde;o entre 1800 y 2100. </li>
+  <li> Crear una funci&oacute;n “escribirTablaMultiplicar”, que reciba como par&aacute;metro un n&uacute;mero entero, y escriba la tabla de multiplicar de ese n&uacute;mero (por ejemplo, para el 3 deber&aacute; llegar desde 3x0=0 hasta 3x10=30). </li>
+  <li> Crear una funci&oacute;n “esPrimo”, que reciba un n&uacute;mero y devuelva el valor 1 si es un n&uacute;mero primo o 0 en caso contrario. </li>
+  <li> Crear una funci&oacute;n que reciba una cadena y una letra, y devuelva la cantidad de veces que dicha letra aparece en la cadena. Por ejemplo, si la cadena es &quot;Barcelona&quot; y la letra es 'a', deber&iacute;a devolver 2 (aparece 2 veces). </li>
+  <li> Crear una funci&oacute;n que reciba un n&uacute;mero cualquiera y que devuelva como resultado la suma de sus d&iacute;gitos. Por ejemplo, si el n&uacute;mero fuera 123 la suma ser&iacute;a 6. </li>
+  <li> Crear una funci&oacute;n que reciba una letra y un n&uacute;mero, y escriba un “tri&aacute;ngulo” formado por esa letra, que tenga como anchura inicial la que se ha indicado. Por ejemplo, si la letra es * y la anchura es 4, deber&iacute;a escribir </li>
+  </ul>
+<p>**** <br />
+*** <br />
+** <br />
+* </p>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   13621 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc07e.html">Anterior</a></li>
+                    <li><a href="cc07g.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:26 GMT -->
+</html>
+        

@@ -1,0 +1,306 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc09b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 9 - Punteros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 9 - Punteros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="punteros,malloc,free,argc,argv,pointer,null" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 9 - Punteros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc09.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc09c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+
+<h3>9.2. &iquest;Qu&eacute; son los punteros?</h3>
+<p>Un puntero no es m&aacute;s que una direcci&oacute;n de memoria. Lo que tiene de especial es que normalmente un puntero tendr&aacute; un tipo de datos asociado: por ejemplo, un &ldquo;puntero a entero&rdquo; ser&aacute; una direcci&oacute;n de memoria en la que habr&aacute; almacenado (o podremos almacenar) un n&uacute;mero entero.</p>
+<p>Vamos a ver qu&eacute; <strong>s&iacute;mbolo</strong> usamos en C para designar los punteros:</p>
+
+<p><pre><code class='language-c'>int num; /* "num" es un nÃºmero entero */
+int *pos; /* "pos" es un "puntero a entero" (direcciÃ³n de
+   memoria en la que podremos guardar un entero) */</code></pre></p>
+
+<p>Es decir, pondremos un asterisco entre el tipo de datos y el nombre de la variable. Ese asterisco puede ir junto a cualquiera de ambos, tambi&eacute;n es correcto escribir</p>
+<p>int* pos;</p>
+<p>Esta nomenclatura ya la hab&iacute;amos utilizado aun sin saber que era eso de los punteros. Por ejemplo, cuando queremos acceder a un fichero, hacemos</p>
+<p>FILE* fichero;</p>
+<p>Antes de entrar en m&aacute;s detalles, y para ver la diferencia entre trabajar con &ldquo;arrays&rdquo; o con punteros, vamos a hacer dos programas que pidan varios n&uacute;meros enteros al usuario y muestren su suma. El primero emplear&aacute; un &ldquo;array&rdquo; (una tabla, de tama&ntilde;o predefinido) y el segundo emplear&aacute; memoria que reservaremos durante el funcionamiento del programa.</p>
+<p>El primero podr&iacute;a ser as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 71:      */
+/*  C071.C                   */
+/*                           */
+/*  Sumar varios datos       */
+/*  Version 1: con arrays    */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int datos[100];  /* Preparamos espacio para 100 numeros */      
+  int cuantos;     /* Preguntaremos cuantos desea introducir */
+  int i;           /* Para bucles */
+  long suma=0;     /* La suma, claro */
+
+  do {
+    printf("Cuantos numeros desea sumar? ");
+    scanf("%d", &cuantos);
+    if (cuantos>100)  /* Solo puede ser 100 o menos */
+      printf("Demasiados. Solo se puede hasta 100.");
+  } while (cuantos>100);  /* Si pide demasiado, no le dejamos */
+
+  /* Pedimos y almacenamos los datos */
+  for (i=0; i<cuantos; i++) {
+    printf("Introduzca el dato número %d: ", i+1);
+    scanf("%d", &datos[i]);
+  }
+
+  /* Calculamos la suma */
+  for (i=0; i<cuantos; i++) 
+    suma += datos[i];
+ 
+  printf("Su suma es: %ld\n", suma);
+  
+  return 0;
+}
+</code></pre></p>
+<p>Los m&aacute;s avispados se pueden dar cuenta de que si s&oacute;lo quiero calcular la suma, lo podr&iacute;a hacer a medida que leo cada dato, no necesitar&iacute;a almacenar todos. Vamos a suponer que s&iacute; necesitamos guardarlos (en muchos casos ser&aacute; verdad, si los c&aacute;lculos son m&aacute;s complicados). Entonces nos damos cuenta de que lo que hemos estado haciendo hasta ahora <strong>no es eficiente</strong>:</p>
+<ul>
+  <li> Si quiero sumar 1000 datos, o 500, o 101, no puedo. Nuestro l&iacute;mite previsto era de 100, as&iacute; que no podemos trabajar con m&aacute;s datos.</li>
+  <li>Si s&oacute;lo quiero sumar 3 n&uacute;meros, desperdicio el espacio de 97 datos que no uso.</li>
+  <li>Y el problema sigue: si en vez de 100 n&uacute;meros, reservamos espacio para 5000, es m&aacute;s dif&iacute;cil que nos quedemos cortos pero desperdiciamos much&iacute;sima m&aacute;s memoria.<br />
+  </li>
+</ul>
+<p>La soluci&oacute;n es reservar espacio estrictamente para lo que necesitemos, y eso es algo que podr&iacute;amos hacer as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 72:      */
+/*  C072.C                   */
+/*                           */
+/*  Sumar varios datos       */
+/*  Version 2: con punteros  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int* datos;      /* Necesitaremos espacio para varios numeros */      
+  int cuantos;     /* Preguntaremos cuantos desea introducir */
+  int i;           /* Para bucles */
+  long suma=0;     /* La suma, claro */
+  do {
+    printf("Cuantos numeros desea sumar? ");
+    scanf("%d", &cuantos);
+    datos = (int *) malloc (cuantos * sizeof(int));
+    if (datos == NULL)  /* Si no hay espacio, avisamos */
+      printf("No caben tantos datos en memoria.");
+  } while (datos == NULL);  /* Si pide demasiado, no le dejamos */
+  
+  /* Pedimos y almacenamos los datos */
+  for (i=0; i<cuantos; i++) {
+    printf("Introduzca el dato número %d: ", i+1);
+    scanf("%d", datos+i);
+  }
+  
+  /* Calculamos la suma */
+  for (i=0; i<cuantos; i++) 
+    suma += *(datos+i);
+ 
+  printf("Su suma es: %ld\n", suma);
+  free(datos);
+  
+  return 0;
+}
+</code></pre></p>
+
+<p>Este fuente es m&aacute;s dif&iacute;cil de leer, pero a cambio es mucho m&aacute;s eficiente: funciona perfectamente si s&oacute;lo queremos sumar 5 n&uacute;meros, pero tambi&eacute;n si necesitamos sumar 120.000 (y si caben tantos n&uacute;meros en la memoria disponible de nuestro equipo, claro).</p>
+<p>Vamos a ver las diferencias:</p>
+<p>En primer lugar, lo que antes era int datos[100] que quiere decir &ldquo;a partir de la posici&oacute;n de memoria que llamar&eacute; datos, querr&eacute; espacio para a guardar 100 n&uacute;meros enteros&rdquo;, se ha convertido en int* datos que quiere decir &ldquo;a partir de la posici&oacute;n de memoria que llamar&eacute; datos voy a guardar varios n&uacute;meros enteros (pero a&uacute;n no s&eacute; cuantos)&rdquo;.</p>
+
+<p>Luego reservamos el espacio exacto que necesitamos, haciendo datos = (int *) malloc (cuantos * sizeof(int)); Esta orden suena complicada, as&iacute; que vamos a verla por partes:</p>
+<ul>
+  <li>&ldquo;malloc&rdquo; es la orden que usaremos para reservar memoria cuando la necesitemos (es la abreviatura de las palabra &ldquo;memory&rdquo; y &ldquo;allocate&rdquo;).<br />
+      </li>
+  <li> Como par&aacute;metro, le indicamos cuanto espacio queremos reservar. Para 100 n&uacute;meros enteros, ser&iacute;a &ldquo;100*sizeof(int)&rdquo;, es decir, 100 veces el tama&ntilde;o de un entero. En nuestro caso, no son 100 n&uacute;meros, sino el valor de la variable &ldquo;cuantos&rdquo;. Por eso hacemos &ldquo;malloc (cuantos*sizeof(int))&rdquo;.<br />
+      </li>
+  <li> Para terminar, ese es el espacio que queremos reservar para nuestra variable &ldquo;datos&rdquo;. Y esa variable es de tipo &ldquo;int *&rdquo; (un puntero a datos que ser&aacute;n n&uacute;meros enteros). Para que todo vaya bien, debemos &ldquo;convertir&rdquo; el resultado de &ldquo;malloc&rdquo; al tipo de datos correcto, y lo hacemos forzando una conversi&oacute;n como vimos en el apartado 2.4 (operador &ldquo;molde&rdquo;), con lo que nuestra orden est&aacute; completa:<br />
+      datos = (int *) malloc (cuantos * sizeof(int));<br />
+      </li>
+  <li> Si &ldquo;malloc&rdquo; nos devuelve NULL como resultado (un &ldquo;puntero nulo&rdquo;), quiere decir que no ha encontrado ninguna posici&oacute;n de memoria en la que nos pudiera reservar todo el espacio que le hab&iacute;amos solicitado. <br />
+      </li>
+  <li> Para usar &ldquo;malloc&rdquo; deberemos incluir &ldquo;stdlib.h&rdquo; al principio de nuestro fuente.</li>
+</ul>
+<p>La forma de guardar los datos que teclea el usuario tambi&eacute;n es distinta. Cuando trabaj&aacute;bamos con un &ldquo;array&rdquo;, hac&iacute;amos scanf(&quot;%d&quot;, &amp;datos[i]) (&ldquo;el dato n&uacute;mero i&rdquo;), pero con punteros usaremos scanf(&quot;%d&quot;, datos+i) (en la posici&oacute;n datos + i). Ahora ya no necesitamos el s&iacute;mbolo<strong> &ldquo;ampersand&rdquo; (&amp;)</strong>. Este s&iacute;mbolo se usa para indicarle a C en qu&eacute; posici&oacute;n de memoria debe almacenar un dato. Por ejemplo, float x; es una variable que podremos usar para guardar un n&uacute;mero real. Si lo hacemos con la orden &ldquo;scanf&rdquo;, esta orden no espera que le digamos en qu&eacute; variable deber guardar el dato, sino en qu&eacute; posici&oacute;n de memoria. Por eso hacemos scanf(&quot;%f&quot;, &amp;x); En el caso que nos encontramos ahora, int* datos ya se refiere a una posici&oacute;n de memoria (un puntero), por lo que no necesitamos &amp; para usar &ldquo;scanf&rdquo;.<br />
+</p>
+<p>Finalmente, la forma de acceder a los datos tambi&eacute;n cambia. Antes le&iacute;amos el primer dato como datos[0], el segundo como datos[1], el tercero como datos[2] y as&iacute; sucesivamente. Ahora usaremos el asterisco (*) para indicar que queremos saber el valor que hay almacenado en una cierta posici&oacute;n: el primer dato ser&aacute; *datos, el segundo *(datos+1), el tercero ser&aacute; *(datos+2) y as&iacute; en adelante. Por eso, donde antes hac&iacute;amos suma += datos[i]; ahora usamos suma += *(datos+i); </p>
+<p>Tambi&eacute;n aparece otra orden nueva: <strong>free</strong>. Hasta ahora, ten&iacute;amos la memoria reservada est&aacute;ticamente, lo que supone que la us&aacute;bamos (o la desperdici&aacute;bamos) durante todo el tiempo que nuestro programa estuviera funcionando. Pero ahora, igual que reservamos memoria justo en el momento en que la necesitamos, y justo en la cantidad que necesitamos, tambi&eacute;n podemos volver a dejar disponible esa memoria cuando hayamos terminado de usarla. De eso se encarga la orden &ldquo;free&rdquo;, a la que le debemos indicar qu&eacute; puntero es el que queremos liberar.</p>
+
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   9746 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc09.html">Anterior</a></li>
+                    <li><a href="cc09c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc09b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:11 GMT -->
+</html>
+        

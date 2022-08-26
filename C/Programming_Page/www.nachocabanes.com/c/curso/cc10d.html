@@ -1,0 +1,314 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 10 - Bibliotecas frecuentes</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 10 - Bibliotecas frecuentes - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="curses,ncurses" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 10 - Bibliotecas frecuentes          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc10c.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc10e.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>10.4. Acceso a pantalla en Linux: curses.h</h3>
+<p>En Linux, hay una biblioteca llamada &quot;curses&quot;, que es la que deberemos incluir si queremos usar algo m&aacute;s que el simple &quot;printf&quot;: nos permitir&aacute; borrar la pantalla, escribir en unas ciertas coordenadas, cambiar colores o apariencias del texto, dibujar recuadros, etc.<br />
+    <br />
+    Eso s&iacute;, el manejo es m&aacute;s complicado que en el caso de Turbo C: hay que tener en cuenta que en Linux (y en los Linux en general) podemos encontrarnos con que nuestro programa se use desde un terminal antiguo, que no permita colores, sino s&oacute;lo negrita y subrayado, o que no actualice la pantalla continuamente, sino s&oacute;lo en ciertos momentos. Es algo cada vez menos frecuente, pero si queremos que nuestro programa funciones siempre, deberemos llevar ciertas precauciones.</p>
+<p>Por eso, el primer paso ser&aacute; activar el acceso a pantalla con &ldquo;<strong>initscr</strong>&rdquo; y terminar con &ldquo;<strong>endwin</strong>&rdquo;. Adem&aacute;s, cuando queramos asegurarnos de que la informaci&oacute;n aparezca en pantalla, deber&iacute;amos usar &ldquo;<strong>refresh</strong>&rdquo;.<br />
+</p>
+<p>Como primeras &oacute;rdenes, vamos a usar:</p>
+<ul>
+  <li>&ldquo;clear&rdquo; para borrar la pantalla.<br />
+    </li>
+  <li>&ldquo;move&rdquo; para desplazarnos a ciertas coordenadas.<br />
+    </li>
+  <li>&ldquo;printw&rdquo; para escribir en pantalla.<br />
+  </li>
+</ul>
+<p>Con todo esto, un primer ejemplo ser&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 90:      */
+/*  C090.C                   */
+/*                           */
+/*  Pantalla con Curses (1)  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <curses.h>
+ 
+int main() {
+  initscr();
+  clear();
+  move(10,10);
+  printw("hola");
+  refresh();
+  getch();
+  endwin();
+  return 0;  
+}
+</code></pre></p>
+
+<p>Un detalle importante: a la hora de <strong>compilar</strong> hay que a&ntilde;adir la opci&oacute;n de que enlace la librer&iacute;a &ldquo;ncurses&rdquo;, bien desde las opciones de nuestro entorno de desarrollo (si usamos Ajuta, KDevelop o alg&uacute;n otro), o bien desde la l&iacute;nea de comandos:<br />
+    <br />
+  cc ejemplo.c &ndash;lncurses &ndash;o ejemplo</p>
+<p>(hay que recordar que se distinguen las may&uacute;sculas de las min&uacute;sculas).</p>
+<p>Podemos mejorarlo nuestro ejemplo un poco:</p>
+<p>* En la inicializaci&oacute;n, es frecuente que nos interese comprobar el teclado cada vez que se pulse una tecla, sin esperar a que se complete con Intro, y de asegurarse de eso se encarga la orden &ldquo;cbreak&rdquo;.<br />
+  * Tambi&eacute;n es frecuente que queramos que cuando se pulse una tecla, &eacute;sta no aparezca en pantalla. Eso lo hacemos con &ldquo;noecho&rdquo;.</p>
+<p>Ya en el cuerpo del programa, tambi&eacute;n podemos seguir haciendo mejoras:</p>
+<p>* Podemos desplazarnos a una cierta posici&oacute;n y escribir un texto, todo ello con la misma orden, si usamos &ldquo;mvaddstr&rdquo;.<br />
+  * Podemos cambiar la apariencia del texto si le aplicamos ciertos atributos, usando la orden &ldquo;attron&rdquo;. Los atributos m&aacute;s habituales en un terminal Unix ser&iacute;an la negrita (A_BOLD) y el subrayado (A_UNDERLINE). Estos atributos se desactivar&iacute;an con &ldquo;attroff&rdquo;.<br />
+</p>
+<p>Con todo esto, ahora tendr&iacute;amos algo como</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 91:      */
+/*  C091.C                   */
+/*                           */
+/*  Pantalla con Curses (2)  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <curses.h>
+ 
+int main()
+{
+  initscr();              /* Inicialización */
+  cbreak();               /* Sin esperar a Intro en el teclado */
+  noecho();               /* Para que getch no escriba en pantalla */
+  clear();                /* Borramos la pantalla */
+  attron(A_BOLD);         /* Activamos la negrita (bold) */
+  mvaddstr(2,10,"hola");  /* Escribimos en cierto sitio */
+  attroff(A_BOLD);        /* Desactivamos la negrita */
+  refresh();              /* Actualizamos la info en pantalla */
+  getch();                /* Esperamos a que se pulse una tecla */
+  endwin();               /* Se acabó */  
+  return 0;
+}
+</code></pre></p>
+
+<p>Finalmente, si queremos escribir en pantalla usando colores, tendremos que decir que queremos comenzar el modo de color con start_color(); durante la inicializaci&oacute;n. Eso s&iacute;, antes deber&iacute;amos comprobar con  has_colors() si nuestro terminal puede manejar colores (tenemos definida una constante FALSE para poder comprobarlo).</p>
+<p>Entonces podr&iacute;amos definir nuestros pares de color de fondo y de primer plano, con &ldquo;init_pair&rdquo;, as&iacute;: init_pair(1, COLOR_CYAN, COLOR_BLACK); (nuestro par de colores 1 ser&aacute; texto azul claro sobre fondo negro). </p>
+<p>Para usar estos colores, ser&iacute;a muy parecido a lo que ya conocemos: attron(COLOR_PAIR(1));</p>
+<p>Y si queremos comprobar las teclas extendidas, har&iacute;amos keypad(stdscr, TRUE); durante la inicializaci&oacute;n y en cuerpo del programa ya podr&iacute;amos usar &oacute;rdenes como</p>
+<p>tecla = getch();<br />
+  if (tecla == KEY_LEFT) ...</p>
+<p>Vamos a ver un ejemplo que junte todo esto:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 92:      */
+/*  C092.C                   */
+/*                           */
+/*  Pantalla con Curses (3)  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <curses.h>
+ 
+int main()
+{
+  int tecla;
+          
+  initscr();
+  if(has_colors() == FALSE)
+  { 
+    endwin();
+    printf("Su terminal no permite usar colores!\n");
+    exit(1);
+  }
+  start_color();
+  cbreak();
+  noecho();
+  keypad(stdscr, TRUE);
+          
+  clear();
+  init_pair(1, COLOR_CYAN, COLOR_BLACK);
+  attron(COLOR_PAIR(1));
+  mvaddstr(2,10,"hola");
+  attroff(COLOR_PAIR(1));
+  refresh();
+  tecla = getch();
+  if (tecla == KEY_LEFT)
+     printw("Has pulsado izquierda");
+  getch();
+  endwin();
+  return 0;
+}
+</code></pre></p>
+<p>Al igual que ocurr&iacute;a con Turbo C, esto no es todo lo que hay. Tambi&eacute;n podemos crear ventanas, definir colores &ldquo;a medida&rdquo; a partir de su cantidad de rojo, verde y azul, podemos leer lo que hay en la pantalla, podemos manejar el rat&oacute;n, e incluso tenemos rutinas para manejo de paneles y de formularios, pero todo ello queda fuera del cometido de este apartado, que es puramente introductorio.<br />
+</p>
+<p><strong>Ejercicios propuestos</strong>: </p>
+<ul>
+  <li>Crea un men&uacute; para MsDos que muestre varias opciones en el centro de la pantalla, y el reloj en la parte superior derecha de la pantalla. Mientras el usuario no pulse una tecla, el reloj debe actualizarse continuamente.<br /></li>
+  <li> Crea, tanto para MsDos como para Linux, un &ldquo;protector de pantalla&rdquo; que muestre tu nombre rebotando en los laterales de la pantalla. Deber&aacute; avanzar de posici&oacute;n cada segundo.</li>
+</ul>
+<p></p>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   12235 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc10c.html">Anterior</a></li>
+                    <li><a href="cc10e.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+</html>
+        

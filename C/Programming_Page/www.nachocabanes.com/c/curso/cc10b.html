@@ -1,0 +1,288 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 10 - Bibliotecas frecuentes</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 10 - Bibliotecas frecuentes - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="delay,time" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 10 - Bibliotecas frecuentes          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc10.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc10c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h3>10.2. Temporizaci&oacute;n</h3>
+<p>Si lo que queremos es hacer una pausa en un programa, en ocasiones tendremos funciones que nos permitan hacer una pausa de ciertas mil&eacute;simas de segundo, como la funci&oacute;n &ldquo;delay&rdquo; de Turbo C.</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 86:      */
+/*  C086.C                   */
+/*                           */
+/*  Pausa con Turbo C        */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <dos.h>
+
+int main(){
+
+    printf("Vamos a esperar 2 segundos... ");
+    delay(2000);
+    printf("El tiempo ha pasado.\n");
+
+    return 0;
+}
+</code></pre></p>
+<p>Si queremos comprobar la fecha y hora del sistema, lo podemos hacer con las funciones disponibles en &ldquo;time.h&rdquo;, que s&iacute; son parte del estandar ANSI C, por lo que deber&iacute;an estar disponibles para casi cualquier compilador:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 87:      */
+/*  C087.C                   */
+/*                           */
+/*  Leer fecha y hora        */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <time.h>
+ 
+int main() {
+   time_t segundos;
+   struct tm *fecha;
+ 
+   segundos = time(NULL);
+ 
+   printf("Instante actual: %u s\n", segundos);
+
+   fecha = gmtime(&segundos);
+   printf("Como texto es: %s\n", asctime(fecha));
+
+   printf("En concreto, la hora Greenwich es: %2d:%02d:%02d\n", 
+     fecha->tm_hour, fecha->tm_min, fecha->tm_sec);
+ 
+   return 0;
+}
+</code></pre></p>
+
+<p>Dentro de &ldquo;time.h&rdquo;, tenemos definido un tipo llamado &ldquo;time_t&rdquo; que representar&aacute; a una cierta fecha (incluyendo hora). La mayor&iacute;a de los sistemas lo representan internamente como un entero largo (el n&uacute;mero de segundos desde cierta fecha), aunque es algo que a nosotros no nos deber&iacute;a hacer falta saber si usamos directamente ese tipo &ldquo;time_t&rdquo;.</p>
+<p>Tenemos tambi&eacute;n un tipo de registro (struct) predefinido, llamdo &ldquo;struct tm&rdquo;, que guarda la informaci&oacute;n desglosada del d&iacute;a, el mes, el a&ntilde;o, la hora, etc. Los principales campos que contiene son &eacute;stos:</p>
+<p> int tm_hour; /* hora (0 - 23) */<br />
+  int tm_mday; /* Dia del mes (1 - 31) */<br />
+  int tm_min; /* Minutos (0 - 59) */<br />
+  int tm_mon; /* Mes (0 - 11 : 0 = Enero) */<br />
+  int tm_sec; /* Segundos (0 - 59) */<br />
+  int tm_wday; /* Dia de la semana (0 - 6 : 0 = Domingo) */<br />
+  int tm_yday; /* Dia del a&ntilde;o (0 - 365) */<br />
+  int tm_year; /* A&ntilde;o menos 1900 */</p>
+<p>y el modo de usarlas se ve en el fuente anterior: </p>
+<p> printf(&quot;En concreto, la hora es: %2d:%02d:%02d\n&quot;, <br />
+  fecha-&gt;tm_hour, fecha-&gt;tm_min, fecha-&gt;tm_sec);<br />
+</p>
+<p>Como hemos visto en este ejemplo, tenemos varias funciones para manipular la fecha y la hora:</p>
+<p>* &ldquo;time&rdquo; devuelve el n&uacute;mero de segundos que han pasado desde el 1 de enero de 1970. Su uso habitual es hora = time(NULL); <br />
+  * &ldquo;gmtime&rdquo; convierte ese n&uacute;mero de segundos que nos indica &ldquo;time&rdquo; a una variable de tipo &ldquo;struct tm *&rdquo; para que podamos conocer detalles como la hora, el minuto o el mes. En la conversi&oacute;n, devuelve la hora universal (UTC o GMT, hora en Greenwich), que puede no coincidir con la hora local.<br />
+  * &ldquo;localtime&rdquo; es similar, pero devuelve la hora local, en vez de la hora universal (el sistema debe saber correctamente en qu&eacute; zona horaria nos encontramos).<br />
+  * &ldquo;asctime&rdquo; convierte un dato horario de tipo &ldquo;struct tm *&rdquo; a una cadena de texto que representa fecha, hora y d&iacute;a de la semana, siguiendo el formato Sat May 20 15:21:51 2000 (d&iacute;a de la semana en ingl&eacute;s abreviado a 3 letras, mes en ingl&eacute;s abreviado a 3 letras, n&uacute;mero de d&iacute;a, horas, minutos, segundos, a&ntilde;o). </p>
+<p>Pero a&uacute;n hay m&aacute;s:</p>
+<p>* &ldquo;difftime&rdquo; calcula la diferencia entre dos fechas.<br />
+  * &ldquo;mktime&rdquo; crea un dato de tipo &ldquo;struct tm *&rdquo; a partir de otro incompleto. Es &uacute;til por ejemplo para saber el d&iacute;a de la semana si conocemos el d&iacute;a, mes y a&ntilde;o.<br />
+  * &hellip;</p>
+<p>Si queremos imitar el funcionamiento de la orden &ldquo;delay&rdquo; de Turbo C, lo podemos hacer leyendo continuamente la fecha y la hora, o bien usar la funci&oacute;n &ldquo;clock()&rdquo;, que da una estimaci&oacute;n (lo m&aacute;s aproximada que el sistema permita) del tiempo que hace que nuestro programa comenz&oacute; a ponerse en marcha:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 88:      */
+/*  C088.C                   */
+/*                           */
+/*  Pausa usando clock     */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <time.h>
+
+void espera (int segundos) {
+  clock_t instanteFinal;
+  instanteFinal = clock () + segundos * CLOCKS_PER_SEC ;
+  while (clock() < instanteFinal) {}
+}
+
+int main () {
+  int n;
+  printf ("Comienza la cuenta atras...\n");
+  for (n=10; n>0; n--)  {
+    printf ("%d\n",n);
+    espera (1);
+  }
+  printf ("Terminado!\n");
+  return 0;
+}
+</code></pre></p>
+<p>Nota: en Turbo C no existe la constante CLOCKS_PER_SEC, sino una llamada CLK_TCK con el mismo significado (&ldquo;ticks&rdquo; del reloj en cada segundo, para poder convertir a segundos el valor que nos indica &ldquo;clock()&rdquo;).</p>
+<p>&nbsp;</p>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   13965 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc10.html">Anterior</a></li>
+                    <li><a href="cc10c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:03 GMT -->
+</html>
+        

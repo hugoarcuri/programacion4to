@@ -1,0 +1,251 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 10 - Bibliotecas frecuentes</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 10 - Bibliotecas frecuentes - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="conio.h,clrscr" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 10 - Bibliotecas frecuentes          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc10b.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc10d.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>10.3. Pantalla y teclado con Turbo C</h3>
+<p>La familia Turbo C / Turbo C++ / Borland C++ incluye una serie de compiladores creados por Borland para Dos y para Windows. Con ellos se pod&iacute;a utilizar ciertas &oacute;rdenes para escribir en cualquier posici&oacute;n de la pantalla, para usar colores, para comprobar qu&eacute; tecla se hab&iacute;a pulsado, etc. Eso s&iacute;, estas &oacute;rdenes no son C est&aacute;ndar, as&iacute; que lo m&aacute;s habitual es que no se encuentren disponibles para otros o para otros sistemas operativos.</p>
+<p>Aun as&iacute;, como primer acercamiento al control de estos dispositivos desde Linux, puede ser interesante conocer lo que ofrec&iacute;a la familia de Turbo C y posteriores, porque sientan muchas de las bases que despu&eacute;s utilizaremos, pero a la vez se trata de funciones muy sencillas.</p>
+<p>Comencemos por las m&aacute;s habituales en cuanto a manejo de pantalla:</p>
+<ul>
+  <li> clrscr - Borra la pantalla.<br />
+      </li>
+  <li> gotoxy - Desplaza el cursor a ciertas coordenadas (X, la primera, indicar&aacute; la columna; Y, la segunda, ser&aacute; la fila).<br />
+      </li>
+  <li> textcolor - Cambia el color del texto (el de primer plano).<br />
+      </li>
+  <li> textbackground - Cambia el color del texto (el de fondo).<br />
+      </li>
+  <li> textattr - Cambia el color (fondo y primer plano) del texto.<br />
+      </li>
+  <li> cprintf - Escribe un mensaje en color.<br />
+      </li>
+  <li> cputs - Escribe una cadena de texto en color.</li>
+  </ul>
+<p>Por lo que respecta al teclado, tenemos</p>
+<ul>
+  <li> getch - Espera hasta que se pulse una tecla, pero no la muestra en pantalla.<br />
+    </li>
+  <li> getche - Espera hasta que se pulse una tecla, y la muestra en pantalla.<br />
+      </li>
+  <li> kbhit - Comprueba si se ha pulsado alguna tecla (pero no espera).</li>
+</ul>
+<p>Todas ellas se encuentran definidas en el fichero de cabecera &ldquo;conio.h&rdquo;, que deberemos incluir en nuestro programa.</p>
+<p>Los colores de la pantalla se indican por n&uacute;meros. Por ejemplo: 0 es el negro, 1 es el azul oscuro, 2 el verde, 3 el azul claro, 4 el rojo, etc. Aun as&iacute;, para no tener que recordarlos, tenemos definidas constantes con su nombre en ingl&eacute;s:</p>
+<p> BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN, LIGHTGRAY, DARKGRAY, <br />
+  LIGHTBLUE, LIGHTGREEN, LIGHTCYAN, LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE.</p>
+<p>Pero hay que tener una precauci&oacute;n: en MsDos s&oacute;lo se pueden usar como colores de fondo los 7 primeros: desde BLACK hasta LIGHTGRAY. Se pod&iacute;a evitar en los ordenadores m&aacute;s modernos, a cambio de perder la posibilidad de que el texto parpadee, pero es un detalle en el que no entraremos. El caso es que &quot;normalmente&quot; si hacemos algo como</p>
+<p> textbackground(LIGHTBLUE);</p>
+<p>no obtendremos los resultados esperados, sino que ser&aacute; como si hubi&eacute;semos utilizado el color equivalente en el rango de 0 a 7:</p>
+<p> textbackground(BLUE);<br />
+</p>
+<p>Para usarlas, tenemos que incluir &ldquo;<strong>conio.h</strong>&rdquo;. Vamos a ver un ejemplo que emplee la mayor&iacute;a de ellas:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 89:      */
+/*  C089.C                   */
+/*                           */
+/*  Pantalla y teclado       */
+/*  con Turbo C              */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <conio.h>      /* Para funciones de pantalla */
+
+int main()
+{
+  int i,j;                /* Para los bucles "for" */      
+  textbackground(BLUE);           /* Fondo de la pantalla en azul */
+  clrscr();                       /* Borro la pantalla */
+  for(i=0; i<=1; i++)             /* Dos columnas */
+    for(j=0; j<=15; j++)          /* Los 16 colores */
+    {
+      gotoxy(10+ 40*i , 3+j);             /* Coloco el cursor */
+      textcolor(j);                       /* Elijo el color */
+      if (j == 0)                         /* Si el color es 0 (negro) */
+        textbackground(LIGHTGRAY);        /*   dejo fondo gris */
+      else                                /* Si es otro color */
+        textbackground(BLACK);            /*    dejo fondo negro */
+      cprintf(" Este es el color %d ",j); /* Escribo en color */
+    }
+  getch();    /* Final: espero que se pulse una tecla, sin mostrarla */
+  
+  return 0;
+}
+</code></pre></p>
+
+<p>El resultado ser&iacute;a &eacute;ste:</p>
+<p><img src="cc_conio.jpg" width="312" height="145" alt="Ejemplo de conio.h"> </p>
+
+<p>Tenemos m&aacute;s funciones definidas en &ldquo;conio.h&rdquo;, que nos permiten saber en qu&eacute; posici&oacute;n de la pantalla estamos, definir &ldquo;ventanas&rdquo; para trabajar s&oacute;lo con una zona de la pantalla, etc. Pero como el trabajo en modo texto se considera cada vez m&aacute;s anticuado, y especialmente dentro del entorno Windows, no profundizaremos m&aacute;s.<br />
+</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   12420 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc10b.html">Anterior</a></li>
+                    <li><a href="cc10d.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc10c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:12 GMT -->
+</html>
+        

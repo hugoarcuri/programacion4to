@@ -1,0 +1,398 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 11 - Caracteristicas avanzadas</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="or,and,not,desplazamiento,directiva,preprocesador,makefile,coma" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 11 - Caracteristicas avanzadas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc11.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc11c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>11.2 Directivas del preprocesador</h3>
+
+<p>Desde el principio hemos estado manejando cosas como</p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>Y aqu&iacute; hay que comentar bastante m&aacute;s de lo que parece. Ese &ldquo;include&rdquo; no es una orden del lenguaje C, sino una orden directa al compilador (una &ldquo;<strong>directiva</strong>&rdquo;). Realmente es una orden a una cierta parte del compilador que se llama &ldquo;preprocesador&rdquo;. Estas directivas indican una serie de pasos que se deben dar antes de empezar realmente a traducir nuestro programa fuente.</p>
+<p>Aunque &ldquo;include&rdquo; es la directiva que ya conocemos, vamos a comenzar por otra m&aacute;s sencilla, y que nos resultar&aacute; &uacute;til cuando lleguemos a &eacute;sta.</p>
+<h4>11.2.1. Constantes simb&oacute;licas: #define</h4>
+<p>La directiva &ldquo;define&rdquo; permite crear &ldquo;constantes simb&oacute;licas&rdquo;. Podemos crear una constante haciendo</p>
+<p>#define MAXINTENTOS 10</p>
+<p>y en nuestro programa lo usar&iacute;amos como si se tratara de cualquier variable o de cualquier valor num&eacute;rico:</p>
+<p>if (intentoActual &gt;= MAXINTENTOS) ...</p>
+<p>El primer paso que hace nuestro compilador es reemplazar esa &ldquo;falsa constante&rdquo; por su valor, de modo que la orden que realmente va a analizar es </p>
+<p>if (intentoActual &gt;= 10) ...</p>
+<p>pero a cambio nosotros tenemos el valor num&eacute;rico s&oacute;lo al principio del programa, por lo que es muy f&aacute;cil de modificar, mucho m&aacute;s que si tuvi&eacute;ramos que revisar el programa entero buscando d&oacute;nde aparece ese 10.</p>
+<p>Comparado con las constantes &ldquo;de verdad&rdquo;, que ya hab&iacute;amos manejado (const int MAXINTENTOS=10;), las constantes simb&oacute;licas tienen la ventaja de que no son variables, por lo que no se les reserva memoria adicional y las comparaciones y dem&aacute;s operaciones suelen ser m&aacute;s r&aacute;pidas que en el caso de un variable.</p>
+<p>Vamos a ver un ejemplo completo, que pida varios n&uacute;meros y muestre su suma y su media:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 94:      */
+/*  C094.C                   */
+/*                           */
+/*  Ejemplo de #define       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+#define CANTIDADNUMEROS 5
+
+int main() {
+   int numero[CANTIDADNUMEROS];
+   int suma=0;
+   int i;
+
+   for (i=0; i<CANTIDADNUMEROS; i++) {
+     printf("Introduzca el dato número %d: ", i+1);
+     scanf("%d", &numero[i]);
+   }
+   
+   for (i=0; i<CANTIDADNUMEROS; i++)
+     suma += numero[i];
+   printf("Su suma es %d\n", suma);
+   printf("Su media es %4.2f\n", (float) suma/CANTIDADNUMEROS);
+
+   return 0;
+}
+</code></pre></p>
+<p>Las constantes simb&oacute;licas se suelen escribir en may&uacute;sculas por convenio, para que sean m&aacute;s f&aacute;ciles de localizar. De hecho, hemos manejado hasta ahora muchas constantes simb&oacute;licas sin saberlo. La que m&aacute;s hemos empleado ha sido NULL, que es lo mismo que un 0, est&aacute; declarada as&iacute;:</p>
+<p>#define NULL 0</p>
+<p>Pero tambi&eacute;n en casos como la pantalla en modo texto con Turbo C aparec&iacute;an otras constantes simb&oacute;licas, como &eacute;stas</p>
+<p>#define BLUE 1<br />
+  #define YELLOW 14</p>
+<p>Y al acceder a ficheros ten&iacute;amos otras constantes simb&oacute;licas como SEEK_SET (0), SEEK_CUR (1), SEEK_END (2).</p>
+<p>&nbsp;</p>
+<p>A &ldquo;define&rdquo; tambi&eacute;n se le puede dar tambi&eacute;n un uso m&aacute;s avanzado: se puede crear &ldquo;macros&rdquo;, que en vez de limitarse a dar un valor a una variable pueden comportarse como peque&ntilde;as &oacute;rdenes, m&aacute;s r&aacute;pidas que una funci&oacute;n. Un ejemplo podr&iacute;a ser:</p>
+<p>#define SUMA(x,y) x+y</p>
+<p>Vamos a aplicarlo en un fuente completo:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 95:      */
+/*  C095.C                   */
+/*                           */
+/*  Ejemplo de #define (2)   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+#define SUMA(x,y) x+y
+
+int main() {
+   int n1, n2;
+
+   printf("Introduzca el primer dato: ");
+   scanf("%d", &n1);
+
+   printf("Introduzca el segundo dato: ");
+   scanf("%d", &n2);
+   
+   printf("Su suma es %d\n", SUMA(n1,n2));
+   return 0;
+}
+</code></pre></p>
+<h4>11.2.2 Inclusi&oacute;n de ficheros: #include</h4>
+<p>Ya nos hab&iacute;amos encontrado con esta directiva. Lo que hace es que cuando llega el momento de que nuestro compilador compruebe la sintaxis de nuestro fuente en C, ya no existe ese &ldquo;include&rdquo;, sino que en su lugar el compilador ya ha insertado los ficheros que le hemos indicado. </p>
+
+<p>&iquest;Y eso de por qu&eacute; se escribe &lt;stdio.h&gt;, entre &lt; y &gt;? No es la &uacute;nica forma de usar #include. Podemos encontrar l&iacute;neas como</p>
+<p> #include &lt;stdlib.h&gt;</p>
+<p> y como</p>
+<p> #include &quot;misdatos.h&quot;</p>
+<p>El primer caso es un fichero de cabecera <strong>est&aacute;ndar</strong> del compilador. Lo indicamos entre &lt; y &gt; y as&iacute; el compilador sabe que tiene que buscarlo en su directorio (carpeta) de &ldquo;includes&rdquo;. El segundo caso es un fichero de cabecera que hemos creado <strong>nosotros</strong>, por lo que lo indicamos entre comillas, y as&iacute; el compilador sabe que no debe buscarlo entre sus directorios, sino en el mismo directorio en el que est&aacute; nuestro programa.</p>
+<p>Vamos a ver un ejemplo: declararemos una funci&oacute;n &ldquo;suma&rdquo; dentro de un fichero &ldquo;.h&rdquo; y lo incluiremos en nuestro fuente para poder utilizar esa funci&oacute;n &ldquo;suma&rdquo; sin volver a definirla. Wl fichero de cabecera ser&iacute;a as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 96 (a):  */
+/*  C096.H                   */
+/*                           */
+/*  Ejemplo de #include      */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+int suma(int x,int y) {
+  return x+y;
+}
+</code></pre></p>
+<p>(Nota: si somos puristas, esto no es correcto del todo. Un fichero de cabecera no deber&iacute;a contener los detalles de las funciones, s&oacute;lo su &ldquo;cabecera&rdquo;, lo que hab&iacute;amos llamado el &ldquo;prototipo&rdquo;, y la implementaci&oacute;n de la funci&oacute;n deber&iacute;a estar en otro fichero, pero eso lo haremos dentro de poco).</p>
+<p>Un fuente que utilizara este fichero de cabecera podr&iacute;a ser</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 96 (b):  */
+/*  C096.C                   */
+/*                           */
+/*  Ejemplo de #include (2)  */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include "c096.h"
+
+int main() {
+   int n1, n2;
+
+   printf("Introduzca el primer dato: ");
+   scanf("%d", &n1);
+
+   printf("Introduzca el segundo dato: ");
+   scanf("%d", &n2);
+   
+   printf("Su suma es %d\n", suma(n1,n2));
+   return 0;
+}
+</code></pre></p>
+<h4>11.2.3. Compilaci&oacute;n condicional: #ifdef, #endif</h4>
+<p>Hemos utilizado #define para crear constantes simb&oacute;licas. Desde dentro de nuestro fuente, podemos comprobar si est&aacute; definida una constante, tanto si ha sido creada por nosotros como si la ha creado el sistema.
+  </p>
+
+<p>Cuando queramos que nuestro fuente funcione en varios sistemas distintos, podemos hacer que se ejecuten unas &oacute;rdenes u otras seg&uacute;n de qu&eacute; compilador se trate, empleando #ifdef (o #if) al principio del bloque y #endif al final. Por ejemplo, </p>
+<p>#ifdef _GCC_<br />
+  instanteFinal = clock () + segundos * CLOCKS_PER_SEC ;<br />
+  #endif<br />
+  #ifdef _TURBOC_<br />
+  instanteFinal = clock () + segundos * CLK_TCK ;<br />
+  #endif</p>
+<p>Los programas que utilicen esta idea podr&iacute;an compilar sin ning&uacute;n cambio en distintos sistemas operativos y/ distintos compiladores, y as&iacute; nosotros esquivar&iacute;amos las incompatibilidades que pudieran existir entre ellos (a cambio, necesitamos saber qu&eacute; constantes simb&oacute;licas define cada sistema).</p>
+<p>Esta misma idea se puede aplicar a nuestros programas. Uno de los usos m&aacute;s frecuentes es hacer que ciertas partes del programa se pongan en funcionamiento durante la fase de depuraci&oacute;n, pero no cuando el programa est&eacute; terminado.</p>
+<p>Vamos a mejorar el ejemplo 94, para que nos muestre el valor temporal de la suma y nos ayude a descubrir errores:</p>
+
+<p><pre><code class='language-c'></code></pre></p>
+
+<p>Este fuente tiene intencionadamente un error: no hemos dado un valor inicial a la suma, con lo que contendr&aacute; basura, y obtendremos un resultado incorrecto.</p>
+<p>El resultado de nuestro programa ser&iacute;a</p>
+<p>Introduzca el dato numero 1: 2<br />
+  Introduzca el dato numero 2: 3<br />
+  Introduzca el dato numero 3: 4<br />
+  Introduzca el dato numero 4: 5<br />
+  Introduzca el dato numero 5: 7<br />
+  Valor actual de la suma: 2009055971<br />
+  Valor actual de la suma: 2009055973<br />
+  Valor actual de la suma: 2009055976<br />
+  Valor actual de la suma: 2009055980<br />
+  Valor actual de la suma: 2009055985<br />
+  Su suma es 2009055992<br />
+  Su media es 401811198.40</p>
+<p>Vemos que ya en la primera pasada, el valor de la suma no es 2, sino algo que parece absurdo, as&iacute; que falta el valor inicial de la suma, que deber&iacute;a ser &ldquo;int suma=0;&rdquo;. Cuando acaba la fase de depuraci&oacute;n, basta con eliminar la frase #define DEPURANDO 1 (no es necesario borrarla, podemos dejarla comentada para que no haga efecto), de modo que el fuente corregido ser&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 97b:     */
+/*  C097b.C                  */
+/*                           */
+/*  Compilacion condicional  */
+/*  con #define (2)          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+#define CANTIDADNUMEROS 5
+/*#define DEPURANDO 1*/
+
+int main() {
+   int numero[CANTIDADNUMEROS];
+   int suma=0;   /* Error corregido */
+   int i;
+
+   for (i=0; i<CANTIDADNUMEROS; i++) {
+     printf("Introduzca el dato número %d: ", i+1);
+     scanf("%d", &numero[i]);
+   }
+   
+   for (i=0; i<CANTIDADNUMEROS; i++) {
+     #ifdef DEPURANDO
+       printf("Valor actual de la suma: %d\n", suma);
+     #endif       
+     suma += numero[i];
+   }
+   printf("Su suma es %d\n", suma);
+   printf("Su media es %4.2f\n", (float) suma/CANTIDADNUMEROS);
+
+   return 0;
+}
+</code></pre></p>
+<p>Tambi&eacute;n tenemos otra alternativa: en vez de comentar la l&iacute;nea de #define, podemos anular la definici&oacute;n con la directiva #undef:</p>
+<p>#undef DEPURANDO</p>
+<p>Por otra parte, tambi&eacute;n tenemos una directiva #ifndef para indicar qu&eacute; hacer si no est&aacute; definida una contante simb&oacute;lico, y un #else, al igual que en los &ldquo;if&rdquo; normales, para indicar qu&eacute; hacer si no se cumple la condici&oacute;n, y una directiva #elif (abreviatura de &ldquo;else if&rdquo;), por si queremos encadenar varias condiciones.</p>
+<h4>11.2.4. Otras directivas</h4>
+<p>Las que hemos comentado son las directivas m&aacute;s habituales, pero tambi&eacute;n existen otras. Una de las que son frecuentes (pero menos est&aacute;ndar que las anteriores) es #pragma, que permite indicar opciones avanzadas espec&iacute;ficas de cada compilador.</p>
+<p>No veremos detalles de su uso en ning&uacute;n compilador concreto, pero s&iacute; un ejemplo de las cosas que podemos encontrar su manejamos fuentes creados por otros programadores:</p>
+<p>#if __SC__ || __RCC__<br />
+  #pragma once<br />
+  #endif</p>
+<p>#ifndef RC_INVOKED<br />
+  #pragma pack(__DEFALIGN)<br />
+  #endif</p>
+
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   9039 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc11.html">Anterior</a></li>
+                    <li><a href="cc11c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+</html>
+        

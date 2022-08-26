@@ -1,0 +1,232 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 1 - Toma de contacto con C</title>
+
+    
+    <meta name="description" content="Tutorial de C - Tema 1 - Toma de contacto con C - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="C,main,compilar,enlazar,printf" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 1 - Toma de contacto con C          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc01f.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc02.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+
+<h3>1.7. Datos por el usuario: scanf</h3>
+
+
+
+
+
+<p style="margin-left:150px;margin-right:150px;text-align:center;"><i>(Nota: 
+En la <a href="https://www.nachocabanes.com/c/curso2016/">versión 2016 del curso</a>
+tienes <a href="https://www.nachocabanes.com/c/curso2016/cc001h.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
+
+
+
+
+<p>Si queremos que sea el usuario de nuestro programa quien teclee los valores, necesitamos una nueva orden, llamada &ldquo;scanf&rdquo;. Su manejo recuerda al de &ldquo;printf&rdquo;, con una peque&ntilde;a diferencia:</p>
+
+<p><pre><code class='language-c'>scanf("%d", &primerNumero);</code></pre></p>
+<p>Con ese &ldquo;%d&rdquo; indicamos que esperamos leer un n&uacute;mero entero (igual que para &ldquo;printf&rdquo;) y con &amp;primerNumero decimos que queremos que ese valor le&iacute;do se guarde en la variable llamada &ldquo;primerNumero&rdquo;. La diferencia est&aacute; en ese s&iacute;mbolo &amp; que nos obliga scanf a poner antes del nombre de la variable. M&aacute;s adelante veremos qu&eacute; quiere decir ese s&iacute;mbolo y en qu&eacute; otros casos se usa.</p>
+
+<p>Un ejemplo de programa que sume dos n&uacute;meros tecleados por el usuario ser&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*-------------------------*/
+/*  Ejemplo en C nº 5:     */
+/*  c005.c                 */
+/*                         */
+/*  Leer valores para      */
+/*  variables              */
+/*                         */
+/*  Curso de C,            */
+/*    Nacho Cabanes        */
+/*-------------------------*/
+
+#include <stdio.h>
+
+int main()    /* Cuerpo del programa */
+{
+  int primerNumero, segundoNumero, suma;    /* Nuestras variables */
+
+  printf("Introduce el primer numero ");
+  scanf("%d", &primerNumero);
+  printf("Introduce el segundo numero ");
+  scanf("%d", &segundoNumero);
+  suma = primerNumero + segundoNumero;
+  printf("Su suma es %d", suma);
+  
+  return 0;
+}
+</code></pre></p>
+<p><b>Ejercicios propuestos:</b></p>
+<ol>
+  <li>  Multiplicar dos n&uacute;meros tecleados por usuario</li>
+  <li>  El usuario teclear&aacute; dos n&uacute;meros (x e y), y el programa deber&aacute; calcular cual es el resultado de su divisi&oacute;n y el resto de esa divisi&oacute;n.</li>
+  <li> El usuario teclear&aacute; dos n&uacute;meros (a y b), y el programa mostrar el resultado de la operaci&oacute;n (a+b)*(a-b) y el resultado de la operaci&oacute;n a<sup>2</sup>-b<sup>2</sup>.</li>
+</ol>
+<p>&nbsp;</p>
+
+
+<p>(Cuando hayas hecho los ejercicios, puedes comprobar tus respuestas con las 
+<a href="c_soluciones.html#010701a">soluciones propuestas</a>).</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   23407 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc01f.html">Anterior</a></li>
+                    <li><a href="cc02.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:06 GMT -->
+</html>
+        

@@ -1,0 +1,250 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06h.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 6 - Ficheros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 6 - Ficheros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="aleatorio,fichero,texto,fopen,fclose,eof,feof,fgets,fprintf,fscanf,fread,fwrite" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 6 - Ficheros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc06g.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06i.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>6.8 Ejemplo: copiador de ficheros</h3>
+<p>Vamos a ver un ejemplo, que duplique un fichero de cualquier tipo (no necesariamente de texto), y despu&eacute;s veremos las novedades:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 58:      */
+/*  C058.C                   */
+/*                           */
+/*  Copiador de ficheros     */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+  
+FILE *fichOrg, *fichDest;        /* Los dos ficheros */
+char buffer[2048];               /* El buffer para guardar lo que leo */
+char nombreOrg[80],              /* Los nombres de los ficheros */
+nombreDest[80];
+int cantidad;                    /* El número de bytes leídos */
+
+int main()
+{
+    /* Accedo al fichero de origen */
+    printf("Introduzca el nombre del fichero Origen: ");
+    scanf("%s",nombreOrg);
+    if ((fichOrg = fopen(nombreOrg, "rb")) == NULL)
+    {
+      printf("No existe el fichero origen!\n");
+      exit(1);
+    
+    }
+    /* Y ahora al de destino */
+    printf("Introduzca el nombre del fichero Destino: ");
+    scanf("%s",nombreDest);
+    if ((fichDest = fopen(nombreDest, "wb")) == NULL)
+    {
+      printf("No se ha podido crear el fichero destino!\n");
+      exit(1);
+    }
+    /* Mientras quede algo que leer */
+    while (! feof(fichOrg) )
+    {
+      /* Leo datos: cada uno de 1 byte, todos los que me caben */
+      cantidad = fread( buffer, 1, sizeof(buffer), fichOrg);
+      /* Escribo tantos como haya leído */
+      fwrite(buffer, 1, cantidad, fichDest);
+    }
+    /* Cierro los ficheros */
+    fclose(fichOrg);
+    fclose(fichDest);
+    
+    return 0;
+}
+</code></pre></p>
+
+
+<p>Los cambios con relaci&oacute;n a lo que conoc&iacute;amos de ficheros de texto son los siguientes:</p>
+<p>* Los ficheros pueden no ser de texto, de modo que leemos uno como fichero binario (con &ldquo;rb&rdquo;) y escribimos el otro tambi&eacute;n como fichero binario (con &ldquo;wb&rdquo;).</p>
+<p>* Definimos un buffer de 2048 bytes (2 K), para ir leyendo la informaci&oacute;n por bloques (y guardando despu&eacute;s cada bloque en el otro fichero).</p>
+<p>* En la misma l&iacute;nea intento abrir el fichero y compruebo si todo ha sido correcto, con</p>
+<p>if ((fichOrg = fopen(nombreOrg, &quot;rb&quot;)) == NULL)</p>
+<p>Esto puede resultar menos legible que hacerlo en dos l&iacute;neas separadas, como hemos hecho hasta ahora, pero es m&aacute;s compacto, y, sobre todo, muy frecuente encontrarlo en &ldquo;fuentes ajenos&rdquo; m&aacute;s avanzados, como los que se puedan encontrar en Internet o cuando se programe en grupo con otras personas, de modo que he considerado adecuado incluirlo.</p>
+<p>* A &ldquo;fread&rdquo; le digo que queremos leer 2048 datos de 1 byte cada uno, y &eacute;l nos devuelve la cantidad de bytes que ha le&iacute;do realmente. Para que el fuente sea m&aacute;s f&aacute;cil de aplicar a otros casos en los que no sean bloques de 2048 bytes exactamente, suele ser preferible indicar que queremos leer el tama&ntilde;o del bloque, usando &ldquo;sizeof&rdquo;:</p>
+<p>cantidad = fread( buffer, 1, sizeof(buffer), fichOrg);</p>
+<p>Cuando la cantidad leida sea menos de 2048 bytes, es que el fichero se ha acabado (lo podemos comprobar mirando esta cantidad o con &ldquo;feof&rdquo;).</p>
+<p>* &ldquo;fwrite&rdquo; se maneja igual que fread: se le indica d&oacute;nde est&aacute;n los datos, el tama&ntilde;o de cada dato, cuantos datos hay que escribir y en qu&eacute; fichero almacenarlos. En nuestro ejemplo, el n&uacute;mero de bytes que debe escribir ser&aacute; el que haya leido:</p>
+<p>fwrite(buffer, 1, cantidad, fichDest);<br />
+</p>
+<p><strong>Ejercicios propuestos</strong>: </p>
+<ul>
+  
+  <li> Crear un “struct” que almacene los siguientes datos de una persona: nombre, edad, ciudad de residencia. Pedir al usuario esos datos de una persona y guardarlos en un fichero llamado “gente.dat”, usando “fwrite”. Cerrar el fichero, volverlo a abrir para lectura y mostrar los datos que se hab&iacute;an guardado, que se deben leer con “fread”.</li>
+  <li>Ampliar el programa anterior para que use un “array de structs”, de forma que se puedan tener datos de 10 personas. Se deber&aacute; pedir al usuario los datos de las 10 personas y guardarlos en el fichero, usando “fwrite”. Despu&eacute;s se pedir&aacute; al usuario un n&uacute;mero del 1 al 10 y se mostrar&aacute;n los datos de la persona indicada por ese n&uacute;mero, que se deber&aacute;n leer de fichero (1 ser&aacute; la primera ficha, y 10 ser&aacute; la &uacute;ltima). Por ejemplo, si el usuario indica que quiere ver los datos de la persona 3 (tercera), se deber&aacute; leer las dos primeras (con “fread”), ignorando su contenido, y despu&eacute;s leer la tercera, que s&iacute; se deber&aacute; mostrar.
+  </li>
+  <li>Mejorar la agenda anterior (del apartado 6.4), para guardar y leer cada &ldquo;ficha&rdquo; (struct) de una vez, usando fwrite/fread y sizeof, como en el &uacute;ltimo ejemplo. </li>
+</ul>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   22185 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc06g.html">Anterior</a></li>
+                    <li><a href="cc06i.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06h.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:27 GMT -->
+</html>
+        

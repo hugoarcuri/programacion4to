@@ -1,0 +1,680 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 2 - Tipos de datos</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 2 - Tipos de datos - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="int,float,double,char,void,cadena,ascii" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 2 - Tipos de datos          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc01g.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc02b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2>2. Tipos de datos b&aacute;sicos</h2>
+
+<h3>2.1. Tipo de datos entero</h3>
+
+<h4>2.1.1. Tipos de enteros: signed/unsigned, short/long</h4>
+<p>Hemos hablado de n&uacute;meros enteros, de c&oacute;mo realizar operaciones sencillas y de c&oacute;mo usar variables para reservar espacio y poder trabajar con datos cuyo valor no sabemos de antemano.</p>
+<p>Empieza a ser el momento de refinar, de dar m&aacute;s detalles. El primer &ldquo;matiz&rdquo; importante es el signo de los n&uacute;meros: hemos hablado de n&uacute;meros enteros (sin decimales), pero no hemos detallado si esos n&uacute;meros son positivos, negativos o si podemos elegirlo nosotros.</p>
+<p>Pues es sencillo: si no decimos nada, se da por sentado que el n&uacute;mero puede ser negativo o positivo. Si queremos dejarlo m&aacute;s claro, podemos a&ntilde;adir la palabra &ldquo;<strong>signed</strong>&rdquo; (con signo) antes de &ldquo;int&rdquo;. Este es uno de los &ldquo;<strong>modificadores</strong>&rdquo; que podemos emplear. Otro modificador es &ldquo;<strong>unsigned</strong>&rdquo; (sin signo), que nos sirve para indicar al compilador que no vamos a querer guardar n&uacute;meros negativos, s&oacute;lo <strong>positivos</strong>. Vamos a verlo con un ejemplo:</p>
+
+<p><pre><code class='language-c'>/*-------------------------*/
+/*  Ejemplo en C nº 6:     */
+/*  c006.c                 */
+/*                         */
+/*  Numeros enteros con y  */
+/*  sin signo              */
+/*                         */
+/*  Curso de C,            */
+/*    Nacho Cabanes        */
+/*-------------------------*/
+
+#include <stdio.h>
+
+int main()    /* Cuerpo del programa */
+{
+  int primerNumero;
+  signed int segundoNumero;
+  unsigned int tercerNumero;
+
+  primerNumero = -1;
+  segundoNumero = -2;
+  tercerNumero = 3;
+  printf("El primer numero es %d, ", primerNumero);
+  printf("el segundo es %d, ", segundoNumero);
+  printf("el tercer numero es %d.", tercerNumero);
+    
+  return 0;
+}
+</code></pre></p>
+<p>El resultado de este programa es el que pod&iacute;amos esperar:</p>
+<p class="nsource">El primer numero es -1, el segundo es -2, el tercer numero es 3</p>
+<p>&iquest;Y s&iacute; hubi&eacute;ramos escrito &ldquo;tercerNumero=-3&rdquo; despu&eacute;s de decir que va a ser un entero sin signo, pasar&iacute;a algo? No, el programa mostrar&iacute;a un &ndash;3 en la pantalla. El lenguaje C nos deja ser tan descuidados como queramos ser, as&iacute; que generalmente deberemos trabajar con un cierto cuidado.</p>
+<p>La pregunta que puede surgir ahora es: &iquest;resulta &uacute;til eso de no usar n&uacute;meros negativos? S&iacute;, porque entonces podremos usar n&uacute;meros positivos de mayor tama&ntilde;o (dentro de poco veremos por qu&eacute; ocurre esto).<br />
+</p>
+<p>De igual modo que detallamos si queremos que un n&uacute;mero pueda ser negativo o no, tenemos disponible otro modificador que nos permite decir que queremos m&aacute;s espacio, para poder almacenar n&uacute;meros m&aacute;s grandes. Un &ldquo;int&rdquo; normalmente nos permite guardar n&uacute;meros inferiores al 2.147.483.647, pero si usamos el modificador &ldquo;<strong>long</strong>&rdquo;, ciertos sistemas nos permitir&aacute;n usar n&uacute;meros mucho mayores, o bien con el modificador &ldquo;<strong>short</strong>&rdquo; podremos usar n&uacute;meros menores (s&oacute;lo hasta 32.767, en caso de que necesitemos optimizar la cantidad de memoria que utilizamos).</p>
+<p>Ejercicio propuesto: Multiplicar dos n&uacute;meros de 4 cifras que teclee el usuario, usando el modificador &ldquo;long&rdquo;.</p>
+<h4>2.1.2. Problem&aacute;tica: asignaciones y tama&ntilde;o de los n&uacute;meros; distintos espacios ocupados seg&uacute;n el sistema</h4>
+<p>El primer problema a tener en cuenta es que si asignamos a una variable &ldquo;demasiado peque&ntilde;a&rdquo; un valor m&aacute;s grande del que podr&iacute;a almacenar, podemos obtener valores incorrectos. Un caso t&iacute;pico es intentar asignar un valor &ldquo;long&rdquo; a una variable &ldquo;short&rdquo;:</p>
+
+<p><pre><code class='language-c'>/*-------------------------*/
+/*  Ejemplo en C nº 7:     */
+/*  c007.c                 */
+/*                         */
+/*  Numeros enteros        */
+/*  demasiado grandes      */
+/*                         */
+/*  Curso de C,            */
+/*    Nacho Cabanes        */
+/*-------------------------*/
+
+#include <stdio.h>
+
+int main()    /* Cuerpo del programa */
+{
+  int primerNumero;
+  signed int segundoNumero;
+  unsigned int tercerNumero;
+
+  primerNumero = -1;
+  segundoNumero = 33000;
+  tercerNumero = 123456;
+  printf("El primer numero es %d, ", primerNumero);
+  printf("el segundo es %d, ", segundoNumero);
+  printf("el tercer numero es %d.", tercerNumero);
+    
+  return 0;
+}
+</code></pre></p>
+<p>El resultado en pantalla de este programa, si usamos el compilador Turbo C 2.01 no ser&iacute;a lo que esperamos:</p>
+<p class="nsource">El primer numero es -1, el segundo es -32536, el tercer numero es -7616</p>
+<p>Y un problema similar lo podr&iacute;amos tener si asignamos valores de un n&uacute;mero sin signo a uno con signo (o viceversa).</p>
+<p>&nbsp;</p>
+<p>Pero el problema llega m&aacute;s all&aacute;: el espacio ocupado por un &ldquo;int&rdquo; <strong>depende del sistema operativo</strong> que usemos, a veces incluso del compilador. Por ejemplo, hemos comentado que con un &ldquo;int&rdquo; podemos almacenar n&uacute;meros cuyo valor sea inferior a 2.147.483.647, pero el ejemplo anterior usaba n&uacute;meros peque&ntilde;os y aun as&iacute; daba problemas.</p>
+<p>&iquest;Por qu&eacute;? Por que este &uacute;ltimo ejemplo lo hemos probado con un compilador <strong>para MsDos</strong>. Se trata de un sistema operativo m&aacute;s antiguo, de 16 bits, capaz de manejar n&uacute;meros de menor tama&ntilde;o. En estos sistemas, los &ldquo;int&rdquo; llegaban hasta 32.767 (lo que equivale a un short en los sistemas modernos de 32 bits) y los &ldquo;short&rdquo; llegaban s&oacute;lo hasta 127. En los sistemas de 64 bits existen &ldquo;int&rdquo; de mayor tama&ntilde;o.</p>
+<p>Para entender por qu&eacute; ocurre esto, vamos a hablar un poco sobre unidades de medida utilizadas en inform&aacute;tica y sobre sistemas de numeraci&oacute;n.</p>
+
+<h4>2.1.3. Unidades de medida empleadas en inform&aacute;tica (1): bytes, kilobytes, megabytes...</h4>
+<p>En inform&aacute;tica, la unidad b&aacute;sica de informaci&oacute;n es el byte. En la pr&aacute;ctica, podemos pensar que un <strong>byte</strong> es el equivalente a una <strong>letra</strong>. Si un cierto texto est&aacute; formado por 2000 letras, podemos esperar que ocupe unos 2000 bytes de espacio en nuestro disco.</p>
+<p>Eso s&iacute;, suele ocurrir que realmente un texto de 2000 letras que se guarde en el ordenador ocupe m&aacute;s de 2000 bytes, porque se suele incluir informaci&oacute;n adicional sobre los tipos de letra que se han utilizado, cursivas, negritas, m&aacute;rgenes y formato de p&aacute;gina, etc.</p>
+<p>Un byte se queda corto a la hora de manejar textos o datos algo m&aacute;s largos, con lo que se recurre a un m&uacute;ltiplo suyo, el <strong>kilobyte</strong>, que se suele abreviar <strong>Kb</strong> o K.</p>
+<p>En teor&iacute;a, el prefijo kilo querr&iacute;a decir &ldquo;mil&rdquo;, luego un kilobyte deber&iacute;a ser 1000 bytes, pero en los ordenadores conviene buscar por comodidad una potencia de 2 (pronto veremos por qu&eacute;), por lo que se usa 210 =1024. As&iacute;, la equivalencia exacta es 1 K = 1024 bytes.</p>
+<p>Los K eran unidades t&iacute;picas para medir la memoria de ordenadores: 640 K ha sido mucho tiempo la memoria habitual en los IBM PC y similares. Por otra parte, una p&aacute;gina mecanografiada suele ocupar entre 2 K (cerca de 2000 letras) y 4 K.</p>
+<p>Cuando se manejan datos realmente extensos, se pasa a otro m&uacute;ltiplo, el <strong>megabyte</strong> o Mb, que es 1000 K (en realidad 1024 K) o algo m&aacute;s de un mill&oacute;n de bytes. Por ejemplo, en un diskette &ldquo;normal&rdquo; caben 1.44 Mb, y en un Compact Disc para ordenador (Cd-Rom) se pueden almacenar hasta 700 Mb. La memoria principal (RAM) de un ordenador actual suele andar por encima de los 512 Mb, y un disco duro actual puede tener una capacidad superior a los 80.000 Mb.</p>
+<p>Para estas unidades de gran capacidad, su tama&ntilde;o no se suele medir en megabytes, sino en el m&uacute;ltiplo siguiente: en <strong>gigabytes</strong>, con la correspondencia 1 Gb = 1024 Mb. As&iacute;, son cada vez m&aacute;s frecuentes los discos duros con una capacidad de 120, 200 o m&aacute;s <strong>gigabytes</strong>.<br />
+  Y todav&iacute;a hay unidades mayores, pero que a&uacute;n se utilizan muy poco. Por ejemplo, un <strong>terabyte</strong> son 1024 gigabytes.</p>
+<p>Todo esto se puede resumir as&iacute;:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="125" valign="top"><p>Unidad </p></td>
+    <td width="96" valign="top"><p>Equivalencia </p></td>
+    <td width="240" valign="top"><p>Valores posibles </p></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><p>Byte </p></td>
+    <td width="96" valign="top"><p>- </p></td>
+    <td width="240" valign="top"><p>0 a 255 (para guardar 1 letra) </p></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><p>Kilobyte (K o Kb) </p></td>
+    <td width="96" valign="top"><p>1024 bytes </p></td>
+    <td width="240" valign="top"><p>Aprox. media p&aacute;gina mecanografiada </p></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><p>Megabyte (Mb) </p></td>
+    <td width="96" valign="top"><p>1024 Kb </p></td>
+    <td width="240" valign="top"><p>- </p></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><p>Gigabyte (Gb) </p></td>
+    <td width="96" valign="top"><p>1024 Mb </p></td>
+    <td width="240" valign="top"><p>- </p></td>
+  </tr>
+  <tr>
+    <td width="125" valign="top"><p>Terabyte (Tb) </p></td>
+    <td width="96" valign="top"><p>1024 Gb </p></td>
+    <td width="240" valign="top"><p>- </p></td>
+  </tr>
+</table>
+<p><br />
+  <br />
+  Pero por debajo de los bytes tambi&eacute;n hay unidades m&aacute;s peque&ntilde;as...</p>
+<p>Ejercicios propuestos: </p>
+<ul>
+  <li>Crea un programa que te diga cuántos bytes son 3 megabytes.</li>
+  <li>Cu&aacute;ntas letras se podr&iacute;an almacenar en una agenda electr&oacute;nica que tenga 32 Kb de capacidad?  (primero calcúlalo en papel y luego crea un programa en C que te dé la respuesta).</li>
+  <li> Si suponemos que una canci&oacute;n t&iacute;pica en formato MP3 ocupa cerca de 3.500 Kb, &iquest;cu&aacute;ntas se podr&iacute;an guardar en un reproductor MP3 que tenga 256 Mb de capacidad?</li>
+  <li> &iquest;Cu&aacute;ntos diskettes de 1,44 Mb har&iacute;an falta para hacer una copia de seguridad de un ordenador que tiene un disco duro de 6,4 Gb? &iquest;Y si usamos compact disc de 700 Mb, cu&aacute;ntos necesitar&iacute;amos?</li>
+  <li>&iquest;A cuantos CD de 700 Mb equivale la capacidad de almacenamiento de un DVD de 4,7 Gb? &iquest;Y la de uno de 8,5 Gb?<br />
+  </li>
+</ul>
+<h4>2.1.4. Unidades de medida empleadas en inform&aacute;tica (2): los bits</h4>
+<p>Dentro del ordenador, la informaci&oacute;n se debe almacenar realmente de alguna forma que a &eacute;l le resulte &quot;c&oacute;moda&quot; de manejar. Como la memoria del ordenador se basa en componentes electr&oacute;nicos, la unidad b&aacute;sica de informaci&oacute;n ser&aacute; que una posici&oacute;n de memoria est&eacute; usada o no (totalmente llena o totalmente vac&iacute;a), lo que se representa como un 1 o un 0. Esta unidad recibe el nombre de <strong>bit</strong>.<br />
+    <br />
+    Un bit es demasiado peque&ntilde;o para un uso normal (recordemos: s&oacute;lo puede tener dos valores: 0 &oacute; 1), por lo que se usa un conjunto de ellos, 8 bits, que forman un <strong>byte</strong>. Las matem&aacute;ticas elementales (combinatoria) nos dicen que si agrupamos los bits de 8 en 8, tenemos 256 posibilidades distintas (variaciones con repetici&oacute;n de 2 elementos tomados de 8 en 8: VR2,8):<br />
+</p>
+<p>00000000<br />
+  00000001<br />
+  00000010<br />
+  00000011<br />
+  00000100<br />
+  ...<br />
+  11111110<br />
+  11111111<br />
+  <br />
+  Por tanto, si en vez de tomar los bits de 1 en 1 (que resulta c&oacute;modo para el ordenador, pero no para nosotros) los utilizamos en grupos de 8 (lo que se conoce como un byte), nos encontramos con 256 posibilidades distintas, que ya son m&aacute;s que suficientes para almacenar una letra, o un signo de puntuaci&oacute;n, o una cifra num&eacute;rica o alg&uacute;n otro s&iacute;mbolo.</p>
+<p>Por ejemplo, se podr&iacute;a decir que cada vez que encontremos la secuencia 00000010 la interpretaremos como una letra A, y la combinaci&oacute;n 00000011 como una letra B, y as&iacute; sucesivamente.</p>
+<p>Tambi&eacute;n existe una correspondencia entre cada grupo de bits y un n&uacute;mero del 0 al 255: si usamos el sistema binario de numeraci&oacute;n (que aprenderemos dentro de muy poco), en vez del sistema decimal, tenemos que:</p>
+<p>0000 0000 (binario) = 0 (decimal)<br />
+  0000 0001 (binario) = 1 (decimal)<br />
+  0000 0010 (binario) = 2 (decimal)<br />
+  0000 0011 (binario) = 3 (decimal)<br />
+  ...<br />
+  1111 1110 (binario) = 254 (decimal)<br />
+  1111 1111 (binario) = 255 (decimal)</p>
+<p> <br />
+  En la pr&aacute;ctica, existe un c&oacute;digo est&aacute;ndar, el <strong>c&oacute;digo ASCII</strong> (American Standard Code for Information Interchange, c&oacute;digo est&aacute;ndar americano para intercambio de informaci&oacute;n), que relaciona cada letra, n&uacute;mero o s&iacute;mbolo con una cifra del 0 al 255 (realmente, con una secuencia de 8 bits): la &quot;a&quot; es el n&uacute;mero 97, la &quot;b&quot; el 98, la &quot;A&quot; el 65, la &quot;B&quot;, el 32, el &quot;0&quot; el 48, el &quot;1&quot; el 49, etc. As&iacute; se tiene una forma muy c&oacute;moda de almacenar la informaci&oacute;n en ordenadores, ya que cada letra ocupar&aacute; exactamente un byte (8 bits: 8 posiciones elementales de memoria).</p>
+<p>Aun as&iacute;, hay un inconveniente con el c&oacute;digo ASCII: s&oacute;lo los primeros 127 n&uacute;meros son est&aacute;ndar. Eso quiere decir que si escribimos un texto en un ordenador y lo llevamos a otro, las letras b&aacute;sicas (A a la Z, 0 al 9 y algunos s&iacute;mbolos) no cambiar&aacute;n, pero las letras internacionales (como la &Ntilde; o las vocales con acentos) puede que no aparezcan correctamente, porque se les asignan n&uacute;meros que no son est&aacute;ndar para todos los ordenadores. Esta limitación la evitan sistemas más modernos que el ASCII clásico, como es el caso de la codificación UTF-8, pero aún no la emplean todos los sistemas operativos.<br />
+</p>
+<p><strong>Nota</strong>: Eso de que realmente el ordenador trabaja con ceros y unos, por lo que le resulta m&aacute;s f&aacute;cil manejar los n&uacute;meros que son potencia de 2 que los n&uacute;meros que no lo son, es lo que explica que el prefijo kilo no quiera decir &ldquo;exactamente mil&rdquo;, sino que se usa la potencia de 2 m&aacute;s cercana: 210 =1024. Por eso, la equivalencia exacta es <strong>1 K = 1024 bytes</strong>.<br />
+</p>
+<h4>2.1.5. Sistemas de numeraci&oacute;n: 1- Sistema binario</h4>
+<p>Nosotros normalmente utilizamos el<strong> sistema decimal</strong> de numeraci&oacute;n: todos los n&uacute;meros se expresan a partir de potencias de 10, pero normalmente lo hacemos sin pensar.</p>
+<p>Por ejemplo, el n&uacute;mero 3.254 se podr&iacute;a desglosar como:</p>
+<p>3.254 = 3 &middot; 1000 + 2 &middot; 100 + 5 &middot; 10 + 4 &middot; 1</p>
+<p>o m&aacute;s detallado todav&iacute;a:</p>
+<p>254 = 3 &middot; 10<sup>3</sup> + 2 &middot; 10<sup>2</sup> + 5 &middot; 10<sup>1</sup> + 4 &middot; 10<sup>0</sup></p>
+<p>(aunque realmente nosotros lo hacemos autom&aacute;ticamente: no nos paramos a pensar este tipo de cosas cuando sumamos o multiplicamos dos n&uacute;meros).<br />
+    <br />
+    Para los ordenadores no es c&oacute;modo contar hasta 10. Como partimos de &ldquo;casillas de memoria&rdquo; que est&aacute;n completamente vac&iacute;as (0) o completamente llenas (1), s&oacute;lo les es realmente c&oacute;modo contar con 2 cifras: 0 y 1.</p>
+<p>Por eso, dentro del ordenador cualquier n&uacute;mero se deber&aacute; almacenar como ceros y unos, y entonces los n&uacute;meros se deber&aacute;n desglosar en potencias de 2 (el llamado &ldquo;<strong>sistema binario</strong>&rdquo;):</p>
+<p>13 = 1 &middot; 8 + 1 &middot; 4 + 0 &middot; 2 + 1 &middot; 1</p>
+<p>o m&aacute;s detallado todav&iacute;a:</p>
+<p>13 = 1 &middot; 2 <sup>3</sup> + 1 &middot; 2 <sup>2</sup> + 0 &middot; 2 <sup>1</sup> + 1 &middot; 2 <sup>0</sup></p>
+<p>de modo que el n&uacute;mero decimal 13 se escribir&aacute; en binario como 1101.<br />
+    <br />
+    <br />
+    En general, convertir un n&uacute;mero binario al sistema decimal es f&aacute;cil: lo expresamos como suma de potencias de 2 y sumamos:<br />
+    <br />
+    0110 1101 (binario) = 0 &middot; 2 <sup>7</sup> + 1 &middot; 2 <sup>6</sup> + 1 &middot; 2 <sup>5</sup> + 0 &middot; 2 <sup>4</sup> + 1 &middot; 2 <sup>3</sup> + 1 &middot; 2 <sup>2</sup> + 0 &middot; 2 <sup>1</sup> + 1 &middot; 2 <sup>0</sup> =<br />
+  = 0 &middot; 128 + 1 &middot; 64 + 1 &middot; 32 + 0 &middot; 16 + 1 &middot; 8 + 1&middot; 4 + 0 &middot; 2 + 1 &middot; 1 = 109 (decimal)<br />
+  <br />
+  Convertir un n&uacute;mero de decimal a binario resulta algo menos intuitivo. Una forma sencilla es ir dividiendo entre las potencias de 2, y coger todos los cocientes de las divisiones:</p>
+<p>109 / 128 = 0 (resto: 109)<br />
+  109 / 64 = 1 (resto: 45)<br />
+  45 / 32 = 1 (resto: 13)<br />
+  13 / 16 = 0 (resto: 13)<br />
+  13 / 8 = 1 (resto: 5)<br />
+  5 / 4 = 1 (resto: 1)<br />
+  1 / 2 = 0 (resto: 1)<br />
+  1 / 1 = 1 (se termin&oacute;).</p>
+<p>Si &ldquo;juntamos&rdquo; los cocientes que hemos obtenido, aparece el n&uacute;mero binario que busc&aacute;bamos:<br />
+  109 decimal = 0110 1101 binario<br />
+  <br />
+  (Nota: es frecuente separar los n&uacute;meros binarios en grupos de 4 cifras -medio byte- para mayor legibilidad, como yo he hecho en el ejemplo anterior; a un grupo de 4 bits se le llama <strong>nibble</strong>).</p>
+<p>Otra forma sencilla de convertir de decimal a binario es dividir consecutivamente entre 2 y coger los restos que hemos obtenido, pero en orden inverso:</p>
+<p>109 / 2 = 54, resto 1<br />
+  54 / 2 = 27, resto 0<br />
+  27 / 2 = 13, resto 1<br />
+  13 /2 = 6, resto 1<br />
+  6 / 2 = 3, resto 0<br />
+  3 / 2 = 1, resto 1<br />
+  1 / 2 = 0, resto 1<br />
+  (y ya hemos terminado)</p>
+<p>Si leemos esos restos de abajo a arriba, obtenemos el n&uacute;mero binario: 1101101 (7 cifras, si queremos completarlo a 8 cifras rellenamos con ceros por la izquierda: 01101101).<br />
+</p>
+<p>&iquest;Y se pueden hacer operaciones con n&uacute;meros binarios? S&iacute;, casi igual que en decimal:</p>
+<p>0&middot;0 = 0 0&middot;1 = 0 1&middot;0 = 0 1&middot;1 = 1<br />
+  0+0 = 0 0+1 = 1 1+0 = 1 1+1 = 10 (en decimal: 2)<br />
+</p>
+<p>Ejercicios propuestos:</p>
+<ol>
+  <li>  Expresar en sistema binario los n&uacute;meros decimales 17, 101, 83, 45.</li>
+  <li> Expresar en sistema decimal los n&uacute;meros binarios de 8 bits: 01100110, 10110010, 11111111, 00101101</li>
+  <li> Sumar los n&uacute;meros 01100110+10110010, 11111111+00101101. Comprobar el resultado sumando los n&uacute;meros decimales obtenidos en el ejercicio anterior.</li>
+  <li> Multiplicar los n&uacute;meros binarios de 4 bits 0100&middot;1011, 1001&middot;0011. Comprobar el resultado convirti&eacute;ndolos a decimal.</li>
+</ol>
+<h4>2.1.6. Sistemas de numeraci&oacute;n: 2- Sistema octal</h4>
+<p>Hemos visto que el sistema de numeraci&oacute;n m&aacute;s cercano a como se guarda la informaci&oacute;n dentro del ordenador es el sistema binario. Pero los n&uacute;meros expresados en este sistema de numeraci&oacute;n &quot;ocupan mucho&quot;. Por ejemplo, el n&uacute;mero 254 se expresa en binario como 11111110 (8 cifras en vez de 3).</p>
+<p>Por eso, se han buscado otros sistemas de numeraci&oacute;n que resulten m&aacute;s &quot;compactos&quot; que el sistema binario cuando haya que expresar cifras medianamente grandes, pero que a la vez mantengan con &eacute;ste una correspondencia algo m&aacute;s sencilla que el sistema decimal. Los m&aacute;s usados son el sistema octal y, sobre todo, el hexadecimal.</p>
+<p>El sistema octal de numeraci&oacute;n trabaja en base 8. La forma de convertir de decimal a binario ser&aacute;, como siempre dividir entre las potencias de la base. Por ejemplo:</p>
+<p>254 (decimal) -&gt;<br />
+  254 / 64 = 3 (resto: 62)<br />
+  62 / 8 = 7 (resto: 6)<br />
+  6 / 1 = 6 (se termin&oacute;)</p>
+<p>de modo que</p>
+<p>254 = 3 &middot; 8 <sup>2</sup> + 7 &middot; 8 <sup>1</sup> + 6 &middot; 8 <sup>0</sup></p>
+<p>o bien</p>
+<p>254 (decimal) = 376 (octal)</p>
+<p>Hemos conseguido otra correspondencia que, si bien nos resulta a nosotros m&aacute;s inc&oacute;moda que usar el sistema decimal, al menos es m&aacute;s compacta: el n&uacute;mero 254 ocupa 3 cifras en decimal, y tambi&eacute;n 3 cifras en octal, frente a las 8 cifras que necesitaba en sistema binario.</p>
+<p>Pero adem&aacute;s existe una correspondencia muy sencilla entre el sistema octal y el sistema binario: si agrupamos los bits de 3 en 3, el paso<strong> de binario a octal</strong> es rapid&iacute;simo</p>
+<p>254 (decimal) = 011 111 110 (binario)</p>
+<p>011 (binario ) = 3 (decimal y octal)<br />
+  111 (binario ) = 7 (decimal y octal)<br />
+  110 (binario ) = 6 (decimal y octal)</p>
+<p>de modo que</p>
+<p>254 (decimal) = 011 111 110 (binario) = 376 (octal)</p>
+<p>El paso desde el octal al binario y al decimal tambi&eacute;n es sencillo. Por ejemplo, el n&uacute;mero 423 (octal) ser&iacute;a 423 (octal) = 100 010 011 (binario)</p>
+<p>o bien</p>
+<p>423 (octal) = 4 &middot; 64 + 2 &middot; 8 + 3 &middot; 1 = 275 (decimal)</p>
+<p>De cualquier modo, el sistema octal no es el que m&aacute;s se utiliza en la pr&aacute;ctica, sino el hexadecimal...<br />
+</p>
+<p>Ejercicios propuestos:</p>
+<ol>
+  <li>  Expresar en sistema octal los n&uacute;meros decimales 17, 101, 83, 45.</li>
+  <li>Expresar en sistema octal los n&uacute;meros binarios de 8 bits: 01100110, 10110010, 11111111, 00101101</li>
+  <li>Expresar en el sistema binario los n&uacute;meros octales 171, 243, 105, 45.</li>
+  <li>Expresar en el sistema decimal los n&uacute;meros octales 162, 76, 241, 102.<br />
+  </li>
+</ol>
+<h4>2.1.7. Sistemas de numeraci&oacute;n: 3- Sistema hexadecimal</h4>
+<p>El sistema octal tiene un inconveniente: se agrupan los bits de 3 en 3, por lo que convertir de binario a octal y viceversa es muy sencillo, pero un byte est&aacute; formado por 8 bits, que no es m&uacute;ltiplo de 3.</p>
+<p>Ser&iacute;a m&aacute;s c&oacute;modo poder agrupar de 4 en 4 bits, de modo que cada byte se representar&iacute;a por 2 cifras. Este sistema de numeraci&oacute;n trabajar&aacute; en base 16 (2 4 =16), y es lo que se conoce como sistema hexadecimal.</p>
+<p>Pero hay una dificultad: estamos acostumbrados al sistema decimal, con n&uacute;meros del 0 al 9, de modo que no tenemos cifras de un solo d&iacute;gito para los n&uacute;meros 10, 11, 12, 13, 14 y 15, que utilizaremos en el sistema hexadecimal. Para representar estas cifras usaremos las letras de la A a la F, as&iacute;:</p>
+<p> 0 (decimal) = 0 (hexadecimal)<br />
+  1 (decimal) = 1 (hexadecimal)<br />
+  2 (decimal) = 2 (hexadecimal)<br />
+  3 (decimal) = 3 (hexadecimal)<br />
+  4 (decimal) = 4 (hexadecimal)<br />
+  5 (decimal) = 5 (hexadecimal)<br />
+  6 (decimal) = 6 (hexadecimal)<br />
+  7 (decimal) = 7 (hexadecimal)<br />
+  8 (decimal) = 8 (hexadecimal)<br />
+  9 (decimal) = 9 (hexadecimal)<br />
+  10 (decimal) = A (hexadecimal)<br />
+  11 (decimal) = B (hexadecimal)<br />
+  12 (decimal) = C (hexadecimal)<br />
+  13 (decimal) = D (hexadecimal)<br />
+  14 (decimal) = E (hexadecimal)<br />
+  15 (decimal) = F (hexadecimal)<br />
+</p>
+<p>Con estas consideraciones, expresar n&uacute;meros en el sistema hexadecimal ya no es dif&iacute;cil:</p>
+<p>254 (decimal) -&gt;<br />
+  254 / 16 = 15 (resto: 14)<br />
+  14 / 1 = 14 (se termin&oacute;)</p>
+<p>de modo que</p>
+<p>254 = 15 &middot; 16 <sup>1</sup> + 14 &middot; 16 <sup>0</sup></p>
+<p>o bien</p>
+<p> 254 (decimal) = FE (hexadecimal)<br />
+    <br />
+    Vamos a repetirlo para convertir de <strong>decimal a hexadecimal </strong>n&uacute;mero m&aacute;s grande:</p>
+<p>54331 (decimal) -&gt;<br />
+  54331 / 4096 = 13 (resto: 1083)<br />
+  1083 / 256 = 4 (resto: 59)<br />
+  59 / 16 = 3 (resto: 11)<br />
+  11 / 1 = 11 (se termin&oacute;)</p>
+<p>de modo que</p>
+<p>54331 = 13 &middot; 4096 + 4 &middot; 256 + 3 &middot; 16 + 11 &middot; 1</p>
+<p>o bien</p>
+<p>254 = 13 &middot; 16 <sup>3</sup> + 4 &middot; 16 <sup>2</sup> + 3 &middot; 16 <sup>1</sup> + 11 &middot; 16 <sup>0</sup></p>
+<p>es decir</p>
+<p>54331 (decimal) = D43B (hexadecimal)<br />
+</p>
+<p>Ahora vamos a dar el paso inverso: convertir de <strong>hexadecimal a decimal</strong>, por ejemplo el n&uacute;mero A2B5</p>
+<p>A2B5 (hexadecimal) = 10 &middot; 16 <sup>3</sup> + 2 &middot; 16 <sup>2</sup> + 11 &middot; 16 <sup>1</sup> + 5 &middot; 16 <sup>0</sup> = 41653<br />
+    <br />
+  El paso de<strong> hexadecimal a binario</strong> tambi&eacute;n es (relativamente) r&aacute;pido, porque cada d&iacute;gito hexadecimal equivale a una secuencia de 4 bits:</p>
+<p> <br />
+  0 (hexadecimal) = 0 (decimal) = 0000 (binario)<br />
+  1 (hexadecimal) = 1 (decimal) = 0001 (binario)<br />
+  2 (hexadecimal) = 2 (decimal) = 0010 (binario)<br />
+  3 (hexadecimal) = 3 (decimal) = 0011 (binario)<br />
+  4 (hexadecimal) = 4 (decimal) = 0100 (binario)<br />
+  5 (hexadecimal) = 5 (decimal) = 0101 (binario)<br />
+  6 (hexadecimal) = 6 (decimal) = 0110 (binario)<br />
+  7 (hexadecimal) = 7 (decimal) = 0111 (binario)<br />
+  8 (hexadecimal) = 8 (decimal) = 1000 (binario)<br />
+  9 (hexadecimal) = 9 (decimal) = 1001 (binario)<br />
+  A (hexadecimal) = 10 (decimal) = 1010 (binario)<br />
+  B (hexadecimal) = 11 (decimal) = 1011 (binario)<br />
+  C (hexadecimal) = 12 (decimal) = 1100 (binario)<br />
+  D (hexadecimal) = 13 (decimal) = 1101 (binario)<br />
+  E (hexadecimal) = 14 (decimal) = 1110 (binario)<br />
+  F (hexadecimal) = 15 (decimal) = 1111 (binario)<br />
+  <br />
+  de modo que A2B5 (hexadecimal) = 1010 0010 1011 0101 (binario)</p>
+<p>y de igual modo, de <strong>binario a hexadecimal </strong>es dividir en grupos de 4 bits y hallar el valor de cada uno de ellos:</p>
+<p>110010100100100101010100111 =&gt;<br />
+  0110 0101 0010 0100 1010 1010 0111 = 6524AA7<br />
+</p>
+<p>Ejercicios propuestos:</p>
+<ol>
+  <li> Expresar en sistema hexadecimal los n&uacute;meros decimales 18, 131, 83, 245.</li>
+  <li>Expresar en sistema hexadecimal los n&uacute;meros binarios de 8 bits: 01100110, 10110010, 11111111, 00101101</li>
+  <li>Expresar en el sistema binario los n&uacute;meros hexadecimales 2F, 37, A0, 1A2.</li>
+  <li>Expresar en el sistema decimal los n&uacute;meros hexadecimales 1B2, 76, E1, 2A.<br />
+  </li>
+</ol>
+<h3>2.1.8. Formato de constantes enteras: oct, hex</h3>
+<p>En C tenemos la posibilidad de dar un valor a una variable usando el sistema decimal, como hemos hecho hasta ahora, pero tambi&eacute;n podemos usar el sistema octal si ponemos un 0 a la izquierda del n&uacute;mero, o el sistema hexadecimal, si usamos 0x (pero no existe una forma directa de trabajar con n&uacute;meros en binario):</p>
+<p>&nbsp;</p>
+
+<p><pre><code class='language-c'>/*-------------------------*/
+/*  Ejemplo en C nº 8:     */
+/*  c008.c                 */
+/*                         */
+/*  Numeros enteros en     */
+/*  decimal, octal y       */
+/*  hexadecimal            */
+/*                         */
+/*  Curso de C,            */
+/*    Nacho Cabanes        */
+/*-------------------------*/
+
+#include <stdio.h>
+
+int main()    /* Cuerpo del programa */
+{
+  int primerNumero;
+  int segundoNumero;
+  int tercerNumero;
+
+  primerNumero = 15;    /* Decimal */
+  segundoNumero = 015;  /* Octal: 8+5=13 */
+  tercerNumero = 0x15;  /* Hexadecimal: 16+5=21 */
+  printf("El primer numero es %d, ", primerNumero);
+  printf("el segundo es %d, ", segundoNumero);
+  printf("el tercer numero es %d.", tercerNumero);
+    
+  return 0;
+}
+</code></pre></p>
+<p>El resultado de este programa ser&iacute;a</p>
+<p><span class="nsource">El primer numero es 15, el segundo es 13, el tercer numero es 21.</span><br />
+</p>
+
+<p><b>Ejercicios propuestos:</b></p>
+<ul>
+<li>Crea un programa en C que exprese en el sistema decimal los números octales 162, 76, 241, 102.</li>
+<li>Crea un programa en C que exprese en el sistema decimal los números hexadecimales 1B2, 76, E1, 2A.</li>
+</ul>
+
+
+<h4>2.1.9. Representaci&oacute;n interna de los enteros</h4>
+<p>Ahora que ya sabemos c&oacute;mo se representa un n&uacute;mero en sistema binario, podemos detallar un poco m&aacute;s c&oacute;mo se almacenan los n&uacute;meros enteros en la memoria del ordenador, lo que nos ayudar&aacute; a entender por qu&eacute; podemos tener problemas al asignar valores entre variables que no sean exactamente del mismo tipo.</p>
+<p>En principio, los n&uacute;meros positivos se almacenan como hemos visto cuando hemos hablado del sistema binario. El &uacute;nico matiz que falta es indicar cuantos bits hay disponibles para cada n&uacute;mero. Lo habitual es usar 16 bits para un &ldquo;int&rdquo; si el sistema operativo es de 16 bits (como MsDos) y 32 bits para los sistemas operativos de 32 bits (como la mayor&iacute;a de las versiones de Windows y de Linux &ndash;o sistemas Unix en general-).</p>
+<p>En cuanto a los &ldquo;short&rdquo; y los &ldquo;long&rdquo;, depende del sistema. Vamos a verlo con un ejemplo:<br />
+</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="127" valign="top"></td>
+    <td width="137" valign="top"><p align="right">Turbo C 2.01 (MsDos) </p></td>
+    <td width="152" valign="top"><p align="right">GCC 3.4.2 (Windows 32b) </p></td>
+    <td width="136" valign="top"><p align="right">GCC 3.4.2 (Linux 64b) </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>int: bits </p></td>
+    <td width="137" valign="top"><p align="right">16 </p></td>
+    <td width="152" valign="top"><p align="right">32 </p></td>
+    <td width="136" valign="top"><p align="right">32 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>int: valor m&aacute;ximo </p></td>
+    <td width="137" valign="top"><p align="right">32.767 </p></td>
+    <td width="152" valign="top"><p align="right">2.147.483.647 </p></td>
+    <td width="136" valign="top"><p align="right">2.147.483.647 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>short: bits </p></td>
+    <td width="137" valign="top"><p align="right">16 </p></td>
+    <td width="152" valign="top"><p align="right">16 </p></td>
+    <td width="136" valign="top"><p align="right">16 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>short: valor m&aacute;ximo </p></td>
+    <td width="137" valign="top"><p align="right">32.767 </p></td>
+    <td width="152" valign="top"><p align="right">32.767 </p></td>
+    <td width="136" valign="top"><p align="right">32.767 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>long: bits </p></td>
+    <td width="137" valign="top"><p align="right">32 </p></td>
+    <td width="152" valign="top"><p align="right">32 </p></td>
+    <td width="136" valign="top"><p align="right">64 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>long: valor m&aacute;ximo </p></td>
+    <td width="137" valign="top"><p align="right">2.147.483.647 </p></td>
+    <td width="152" valign="top"><p align="right">2.147.483.647 </p></td>
+    <td width="136" valign="top"><p align="right">9&middot;10 18 </p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>Para los n&uacute;meros enteros negativos, existen varias formas posibles de representarlos. Las m&aacute;s habituales son:</p>
+<p>&gt; Signo y magnitud: el primer bit (el de m&aacute;s a la izquierda) se pone a 1 si el n&uacute;mero es negativo y se deja a 0 si es positivo. Los dem&aacute;s bits se calculan como ya hemos visto.</p>
+<p>Por ejemplo, si usamos 4 bits, tendr&iacute;amos<br />
+  3 (decimal) = 0011 -3 = 1011<br />
+  6 (decimal) = 0110 -6 = 1110</p>
+<p>Es un m&eacute;todo muy sencillo, pero que tiene el inconveniente de que las operaciones en las que aparecen n&uacute;meros negativos no se comportan correctamente. Vamos a ver un ejemplo, con n&uacute;meros de 8 bits:</p>
+<p>13 (decimal) = 0000 1101 - 13 (decimal) = 1000 1101<br />
+  34 (decimal) = 0010 0010 - 34 (decimal) = 1010 0010<br />
+  13 + 34 = 0000 1101 + 0010 0010 = 0010 1111 = 47 (correcto)<br />
+  (-13) + (-34) = 1000 1101 + 1010 0010 = 0010 1111 = 47 (INCORRECTO)<br />
+  13 + (-34) = 0000 1101 + 1010 0010 = 1010 1111 = -47 (INCORRECTO)</p>
+<p>&gt; Complemento a 1: se cambian los ceros por unos para expresar los n&uacute;meros negativos.</p>
+<p>Por ejemplo, con 4 bits<br />
+  3 (decimal) = 0011 -3 = 1100<br />
+  6 (decimal) = 0110 -6 = 1001</p>
+<p>Tambi&eacute;n es un m&eacute;todo sencillo, en el que las operaciones con n&uacute;meros negativos salen bien, y que s&oacute;lo tiene como inconveniente que hay dos formas de expresar el n&uacute;mero 0 (0000 0000 o 1111 1111), lo que complica algunos trabajos internos del ordenador.</p>
+<p>Ejercicio propuesto: convertir los n&uacute;meros decimales 13, 34, -13, -34 a sistema binario, usando complemento a uno para expresar los n&uacute;meros negativos. Calcular (en binario) el resultado de las operaciones 13+34, (-13)+(-34), 13+(-34) y comprobar que los resultados que se obtienen son los correctos.</p>
+<p>&gt; Complemento a 2: para los negativos, se cambian los ceros por unos y se suma uno al resultado.</p>
+<p>Por ejemplo, con 4 bits<br />
+  3 (decimal) = 0011 -3 = 1101<br />
+  6 (decimal) = 0110 -6 = 1010</p>
+<p>Es un m&eacute;todo que parece algo m&aacute;s complicado, pero que no es dif&iacute;cil de seguir, con el que las operaciones con n&uacute;meros negativos salen bien, y no tiene problemas para expresar el n&uacute;mero 0 (00000000).</p>
+
+<p>Éste es el método que se suele usar para codificar los números negativos en un sistema informático “real”.</p>
+
+<p>Ejercicio propuesto: convertir los n&uacute;meros decimales 13, 34, -13, -34 a sistema binario, usando complemento a dos para expresar los n&uacute;meros negativos. Calcular (en binario) el resultado de las operaciones 13+34, (-13)+(-34), 13+(-34) y comprobar que los resultados que se obtienen son los correctos.<br />
+</p>
+<p>En general, todos los formatos que permiten guardar n&uacute;meros negativos usan el primer bit para el signo. Por eso, si declaramos una variable como &ldquo;unsigned&rdquo;, ese primer bit se puede utilizar como parte de los datos, y podemos almacenar n&uacute;meros m&aacute;s grandes. Por ejemplo, un &ldquo;unsigned int&rdquo; en MsDos podr&iacute;a tomar valores entre 0 y 65.535, mientras que un &ldquo;int&rdquo; (con signo) podr&iacute;a tomar valores entre +32.767 y &ndash;32.768.</p>
+<h4>2.1.10. Incremento y decremento</h4>
+<p>Hay una operaci&oacute;n que es muy frecuente cuando se crean programas, pero que no tiene un s&iacute;mbolo espec&iacute;fico para representarla en matem&aacute;ticas. Es incrementar el valor de una variable en una unidad:</p>
+<p> a = a+1;</p>
+<p>Pues bien, en C, existe una notaci&oacute;n m&aacute;s compacta para esta operaci&oacute;n, y para la opuesta (el decremento):</p>
+<p> a++; es lo mismo que a = a+1;<br />
+  a--; es lo mismo que a = a-1;</p>
+<p>Pero esto tiene m&aacute;s misterio todav&iacute;a del que puede parecer en un primer vistazo: podemos distinguir entre &quot;preincremento&quot; y &quot;postincremento&quot;. En C es posible hacer asignaciones como</p>
+<p> b = a++;</p>
+<p>As&iacute;, si &quot;a&quot; val&iacute;a 2, lo que esta instrucci&oacute;n hace es dar a &quot;b&quot; el valor de &quot;a&quot; y aumentar el valor de &quot;a&quot;. Por tanto, al final tenemos que b=2 y a=3 (postincremento: se incrementa &quot;a&quot; tras asignar su valor).</p>
+<p>En cambio, si escribimos</p>
+<p> b = ++a;</p>
+<p>y &quot;a&quot; val&iacute;a 2, primero aumentamos &quot;a&quot; y luego los asignamos a &quot;b&quot; (preincremento), de modo que a=3 y b=3.</p>
+<p>Por supuesto, tambi&eacute;n podemos distinguir postdecremento (a--) y predecremento (--a).<br />
+</p>
+<p>Ejercicios propuestos: </p>
+<ul>
+  <li> Crear un programa que use tres variables x,y,z. Sus valores iniciales ser&aacute;n 15, -10, 2.147.483.647. Se deber&aacute; incrementar el valor de estas variables. &iquest;Qu&eacute; valores esperas que se obtengan? Contr&aacute;stalo con el resultado obtenido por el programa.</li>
+  <li>&iquest;Cu&aacute;l ser&iacute;a el resultado de las siguientes operaciones? a=5; b=++a; c=a++; b=b*5; a=a*2;</li>
+</ul>
+<p>&nbsp;</p>
+<p>Y ya que estamos hablando de las asignaciones, hay que comentar que en C es posible hacer asignaciones m&uacute;ltiples:</p>
+<p> a = b = c = 1;</p>
+<h4>2.1.11. Operaciones abreviadas: +=</h4>
+<p>Pero a&uacute;n hay m&aacute;s. Tenemos incluso formas reducidas de escribir cosas como &quot;a = a+5&quot;. All&aacute; van<br />
+    a += b ; es lo mismo que a = a+b;<br />
+    a -= b ; es lo mismo que a = a-b;<br />
+    a *= b ; es lo mismo que a = a*b;<br />
+    a /= b ; es lo mismo que a = a/b;<br />
+    a %= b ; es lo mismo que a = a%b;<br />
+</p>
+<p><strong>Ejercicios propuestos</strong>:</p>
+<ul>
+  <li>Crear un programa que use tres variables x,y,z. Sus valores iniciales ser&aacute;n 15, -10, 214. Se deber&aacute; incrementar el valor de estas variables en 12, usando el formato abreviado. &iquest;Qu&eacute; valores esperas que se obtengan? Contr&aacute;stalo con el resultado obtenido por el programa.</li>
+  <li>&iquest;Cu&aacute;l ser&iacute;a el resultado de las siguientes operaciones? a=5; b=a+2; b-=3; c=-3; c*=2; ++c; a*=b;<br />
+  </li>
+</ul>
+<h4>2.1.12. Modificadores de acceso: const, volatile</h4>
+<p>Podemos encontrarnos con variables cuyo valor realmente no var&iacute;e durante el programa. Entonces podemos usar el modificador &ldquo;const&rdquo; para indic&aacute;rselo a nuestro compilador, y entonces ya no nos dejar&aacute; modificarlas por error.</p>
+<p>const int MAXIMO = 10;</p>
+<p>si luego intentamos</p>
+<p>MAXIMO = 100;</p>
+<p>obtendr&iacute;amos un mensaje de error que nos dir&iacute;a que no podemos modificar una constante.</p>
+<p>(Por convenio, se suele escribir las constantes con un nombre totalmente en may&uacute;sculas, para distinguirlas a simple vista en cualquier parte del programa de las variables convencionales, cuyo valor s&iacute; podemos modificar). <br />
+</p>
+
+<p>Por convenio, para ayudar a identificarlas dentro de un fuente, se suele escribir el nombre de una constante en <b>mayúsculas</b>, como en el ejemplo anterior.</p>
+
+<p>Tambi&eacute;n podemos encontrarnos (aunque es poco frecuente) con el caso contrario: una variable que pueda cambiar de valor sin que nosotros modifiquemos (porque accedamos a un valor que cambie &ldquo;solo&rdquo;, como el reloj interno del ordenador, o porque los datos sean compartidos con otro programa que tambi&eacute;n pueda modicarlos, por ejemplo). En ese caso, usaremos el modificador &ldquo;volatile&rdquo;, que hace que el compilador siempre compruebe el valor m&aacute;s reciente de la variable antes de usarlo, por si hubiera cambiado:</p>
+<p>volatile int numeroDeUsuarios = 1;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   44794 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc01g.html">Anterior</a></li>
+                    <li><a href="cc02b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
+</html>
+        

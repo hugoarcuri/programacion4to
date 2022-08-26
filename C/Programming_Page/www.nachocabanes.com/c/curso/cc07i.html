@@ -1,0 +1,417 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07i.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 7 - Funciones</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 7 - Funciones - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="valor,referencia,recursividad,return" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 7 - Funciones          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc07h.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc07j.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>7.9. Algunas funciones &uacute;tiles</h3>
+<h4>7.9.1. N&uacute;meros aleatorios</h4>
+<p>En un programa de gesti&oacute;n o una utilidad que nos ayuda a administrar un sistema, no es habitual que podamos permitir que las cosas ocurran al azar. Pero los juegos se encuentran muchas veces entre los ejercicios de programaci&oacute;n m&aacute;s completos, y para un juego s&iacute; suele ser conveniente que haya algo de azar, para que una partida no sea exactamente igual a la anterior.</p>
+<p>Generar <strong>n&uacute;meros al azar</strong> ("n&uacute;meros aleatorios") usando C no es dif&iacute;cil. Si nos ce&ntilde;imos al est&aacute;ndar ANSI C, tenemos una funci&oacute;n llamada "rand()", que nos devuelve un n&uacute;mero entero entre 0 y el valor m&aacute;s alto que pueda tener un n&uacute;mero entero en nuestro sistema. Generalmente, nos interesar&aacute;n n&uacute;meros mucho m&aacute;s peque&ntilde;os (por ejemplo, del 1 al 100), por lo que "recortaremos" usando la operaci&oacute;n m&oacute;dulo ("%", el resto de la divisi&oacute;n).</p>
+<p>Vamos a verlo con alg&uacute;n ejemplo:</p>
+<p>Para obtener un n&uacute;mero del 0 al 9 har&iacute;amos x = rand() % 10;<br />
+  Para obtener un n&uacute;mero del 0 al 29 har&iacute;amos x = rand() % 30;<br />
+  Para obtener un n&uacute;mero del 10 al 29 har&iacute;amos x = rand() % 20 + 10;<br />
+  Para obtener un n&uacute;mero del 1 al 100 har&iacute;amos x = rand() % 100 + 1;<br />
+  Para obtener un n&uacute;mero del 50 al 60 har&iacute;amos x = rand() % 11 + 50;<br />
+  Para obtener un n&uacute;mero del 101 al 199 har&iacute;amos x = rand() % 100 + 101;</p>
+<p>Pero todav&iacute;a nos queda un detalle para que los n&uacute;meros aleatorios que obtengamos sean "razonables": los n&uacute;meros que genera un ordenador no son realmente al azar, sino "pseudo-aleatorios", cada uno calculado a partir del siguiente. Podemos elegir cual queremos que sea el primer n&uacute;mero de esa serie (la "semilla"), pero si usamos uno prefijado, los n&uacute;meros que se generar&aacute;n ser&aacute;n siempre los mismos. Por eso, ser&aacute; conveniente que el primer n&uacute;mero se base en el reloj interno del ordenador: como es casi imposible que el programa se ponga en marcha dos d&iacute;as exactamente a la misma hora (incluyendo mil&eacute;simas de segundo), la serie de n&uacute;meros al azar que obtengamos ser&aacute; distinta cada vez.</p>
+<p>La "semilla" la indicamos con "srand", y si queremos basarnos en el reloj interno del ordenador, lo que haremos ser&aacute; srand(time(0)); antes de hacer ninguna llamada a "rand()".</p>
+<p>Para usar "rand()" y "srand()", deber&iacute;amos a&ntilde;adir otro fichero a nuestra lista de "includes", el llamado "stdlib":</p>
+
+<p><pre><code class='language-c'>#include <stdlib.h></code></pre></p>
+<p>Si adem&aacute;s queremos que la semilla se tome a partir del reloj interno del ordenador (que es lo m&aacute;s razonable), deberemos incluir tambi&eacute;n "time":</p>
+
+<p><pre><code class='language-c'>#include <time.h></code></pre></p>
+<p>Vamos a ver un ejemplo, que muestre en pantalla un n&uacute;mero al azar entre 1 y 10:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 69:      */
+/*  C069.C                   */
+/*                           */
+/*  Obtener un número al     */
+/*  azar                     */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int n;
+    srand(time(0));
+    n = rand() % 10 + 1;
+    printf("Un número entre 1 y 10: %d\n", n);
+   
+    return 0;
+}
+</code></pre></p>
+<p>Ejercicios propuestos: </p>
+
+<ul>
+    <li>Crea un programa que escriba varias veces "Hola" (entre 5 y 10 veces, al azar).</li>
+    <li>Crear un programa que genere un n&uacute;mero al azar entre 1 y 100. El usuario tendr&aacute; 6 oportunidades para acertarlo.<br />
+    </li>
+    <li>Crea un programa que muestre un "fondo estrellado" en pantalla: mostrará 24 líneas, cada una de las cuales contendrá entre 1 y 78 espacios (al azar) seguidos por un asterisco ("*").</li>
+</ul>
+
+<h4>7.9.2. Funciones matem&aacute;ticas</h4>
+<p>Dentro del fichero de cabecera <strong>"math.h"</strong> tenemos acceso a muchas funciones matem&aacute;ticas predefinidas en C, como:</p>
+<ul>
+  <li> acos(x): Arco coseno</li>
+  <li>asin(x): Arco seno$</li>
+  <li>atan(x): Arco tangente</li>
+  <li>atan2(y,x): Arco tangente de y/x (por si x o y son 0)</li>
+  <li>ceil(x): El valor entero superior a x y m&aacute;s cercano a &eacute;l</li>
+  <li>cos(x): Coseno</li>
+  <li>cosh(x): Coseno hiperb&oacute;lico</li>
+  <li>exp(x): Exponencial de x (e elevado a x)</li>
+  <li>fabs(x): Valor absoluto</li>
+  <li>floor(x): El mayor valor entero que es menor que x</li>
+  <li>fmod(x,y): Resto de la divisi&oacute;n x/y</li>
+  <li>log(x): Logaritmo natural (o neperiano, en base "e")</li>
+  <li>log10(x): Logaritmo en base 10</li>
+  <li>pow(x,y): x elevado a y</li>
+  <li>sin(x): Seno</li>
+  <li>sinh(x): Seno hiperb&oacute;lico</li>
+  <li>sqrt(x): Ra&iacute;z cuadrada</li>
+  <li>tan(x): Tangente</li>
+  <li>tanh(x): Tangente hiperb&oacute;lica<br />
+      <br />
+      (todos ellos usan par&aacute;metros X e Y de tipo "double")<br />
+      <br />
+      y una serie de constantes como<br />
+      <br />
+      M_E, el n&uacute;mero "e", con un valor de 2.71828...<br />
+      M_PI, el n&uacute;mero "Pi", 3.14159...<br />
+      <br />
+      La mayor&iacute;a de ellas son espec&iacute;ficas para ciertos problemas matem&aacute;ticos, especialmente si interviene la trigonometr&iacute;a o si hay que usar logaritmos o exponenciales. Pero vamos a destacar las que s&iacute; pueden resultar &uacute;tiles en situaciones m&aacute;s variadas:</li>
+</ul>
+<p>La raiz cuadrada de 4 se calcular&iacute;a haciendo x = sqrt(4);<br />
+  La potencia: para elevar 2 al cubo har&iacute;amos y = pow(2, 3);<br />
+  El valor absoluto: si queremos trabajar s&oacute;lo con n&uacute;meros positivos usar&iacute;amos n = fabs(x);</p>
+
+<p>Ejercicios propuestos: </p>
+<ul>
+  <li> Crear un programa que halle cualquier ra&iacute;z de un n&uacute;mero. El usuario deber&aacute; indicar el n&uacute;mero (por ejemplo, 2) y el &iacute;ndice de la raiz (por ejemplo, 3 para la ra&iacute;z c&uacute;bica). Pista: hallar la ra&iacute;z c&uacute;bica de 2 es lo mismo que elevar 2 a 1/3.</li>
+  <li>Crear un programa que resuelva ecuaciones de segundo grado, del tipo ax2 + bx + c = 0 El usuario deber&aacute; introducir los valores de a, b y c. Pista: la soluci&oacute;n se calcula con<br />
+      x = +- ra&iacute;z (b2 &ndash; 4&middot;a&middot;c) / 2&middot;a</li>
+  <li>Crear un programa que muestre el seno de los ángulos de 30 grados, 45 grados, 60 grados y 90 grados. Cuidado: la función "sin" espera que se le indique el ángulo en radianes, no en grados. Tendrás que recordar que 180 grados es lo mismo que Pi radianes (con Pi = 3,1415926535). Puedes crearte una función auxiliar que convierta de grados a radianes.</li>
+</ul>
+
+
+<h4>7.9.3. Pero casi todo son funciones&hellip;</h4>
+<p>Pero en C hay muchas m&aacute;s funciones de lo que parece. De hecho, casi todo lo que hasta ahora hemos llamado "&oacute;rdenes", son realmente "funciones", y la mayor&iacute;a de ellas incluso devuelven alg&uacute;n valor, que hasta ahora hab&iacute;amos despreciado en muchos casos.</p>
+<p>Vamos a hacer un repaso r&aacute;pido a las funciones que ya conocemos y el valor que devuelven:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="72" valign="top"><p>Funci&oacute;n </p></td>
+    <td width="108" valign="top"><p>Valor devuelto </p></td>
+    <td width="336" valign="top"><p>Significado </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>main </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>Programa terminado correctamente (0) o no (otro) </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>printf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de caracteres escritos </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>scanf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de datos le&iacute;dos, o EOF si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>putchar </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>El car&aacute;cter escrito, o EOF si hay alg&uacute;n error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>getchar </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>Siguiente car&aacute;cter de la entrada, o EOF en caso de error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>gets </p></td>
+    <td width="108" valign="top"><p>char* </p></td>
+    <td width="336" valign="top"><p>Cadena si todo va bien o NULL si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>puts </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>EOF si hay alg&uacute;n error, otro n&uacute;mero (un entero positivo) si no lo hay </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>strcpy, strncpy </p></td>
+    <td width="108" valign="top"><p>char* </p></td>
+    <td width="336" valign="top"><p>Cadena resultado de la asignaci&oacute;n </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>strcat </p></td>
+    <td width="108" valign="top"><p>char* </p></td>
+    <td width="336" valign="top"><p>Cadena resultado </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>strcmp </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>0 si las cadenas son iguales, &lt;0 si la primera “es menor” o &gt;0 si la primera “es mayor” </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>sprintf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de caracteres almacenados en la cadena (en alguna versi&oacute;n, como BSD, devuelve la cadena creada) </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>sscanf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de datos le&iacute;dos, o EOF si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fopen </p></td>
+    <td width="108" valign="top"><p>FILE* </p></td>
+    <td width="336" valign="top"><p>NULL si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fclose </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>0 si todo va bien o EOF si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fputs </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>EOF si hay alg&uacute;n error, otro n&uacute;mero (no especificado) si no lo hay </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fgets </p></td>
+    <td width="108" valign="top"><p>char* </p></td>
+    <td width="336" valign="top"><p>NULL si hay error o fin de fichero </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>feof </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>0 si no es final de fichero, otro valor si lo es </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fprintf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de bytes escritos (puede no ser fiable si se est&aacute; escribiendo a un buffer antes de mandar a disco). </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fscanf </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de datos le&iacute;dos, o EOF si hay error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fgetc </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>El car&aacute;cter leido, o EOF si hay alg&uacute;n error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fputc </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>El car&aacute;cter escrito, o EOF si hay alg&uacute;n error </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fread </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de bytes leidos (0 o menor de lo previsto si hay error) </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fwrite </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>N&uacute;mero de bytes escritos (0 o menor de lo previsto si hay error) </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>fseek </p></td>
+    <td width="108" valign="top"><p>int </p></td>
+    <td width="336" valign="top"><p>0 si se ha saltado correctamente; otro valor si el fichero no est&aacute; abierto o no se ha podido saltar </p></td>
+  </tr>
+  <tr>
+    <td width="72" valign="top"><p>ftell </p></td>
+    <td width="108" valign="top"><p>long (size_t) </p></td>
+    <td width="336" valign="top"><p>Posici&oacute;n actual en el fichero (en bytes) o -1L en caso de error </p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>(Nota: expresiones como "FILE*" ya las conocemos, aunque todav&iacute;a no entendemos bien a qu&eacute; se refieren: otras como "char*" son nuevas para nosotros, pero las veremos con detalle en el pr&oacute;ximo tema).</p>
+<p>Por el contrario, las siguientes "&oacute;rdenes" no son funciones, sino "palabras reservadas" del lenguaje C: if, else, do, while, for, switch, case, default, break, int, char, float, double, struct.</p>
+
+<p>Ejercicios propuestos: </p>
+<ul>
+  <li>Crea un programa que escriba la raíz cuadrada de 10 y muestre la cantidad de cifras que se han escrito en pantalla. (Pista: mira el valor devuelto por "printf").</li>
+</ul>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   14254 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc07h.html">Anterior</a></li>
+                    <li><a href="cc07j.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07i.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:21 GMT -->
+</html>
+        

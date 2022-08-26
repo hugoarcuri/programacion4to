@@ -1,0 +1,193 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 1 - Toma de contacto con C</title>
+
+    
+    <meta name="description" content="Tutorial de C - Tema 1 - Toma de contacto con C - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="C,main,compilar,enlazar,printf" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 1 - Toma de contacto con C          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc01a.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc01c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>1.2. Mostrar n&uacute;meros enteros en pantalla</h3>
+
+
+<p style="margin-left:150px;margin-right:150px;text-align:center;"><i>(Nota: 
+En la <a href="https://www.nachocabanes.com/c/curso2016/">versión 2016 del curso</a>
+tienes <a href="https://www.nachocabanes.com/c/curso2016/cc001e.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
+
+<p> Cuando queremos escribir un texto &ldquo;tal cual&rdquo;, como en el ejemplo anterior, lo encerramos entre comillas. Pero no siempre querremos escribir textos prefijados. En muchos casos, se tratar&aacute; de algo que habr&aacute; que calcular. El caso m&aacute;s sencillo es el de una operaci&oacute;n matem&aacute;tica. En principio, podr&iacute;amos pensar en intentar algo as&iacute;:</p>
+
+<p><pre><code class='language-c'>printf(3+4);</code></pre></p>
+<p>En muchos lenguajes de programaci&oacute;n esto es perfectamente v&aacute;lido, pero no en C. La funci&oacute;n &ldquo;printf&rdquo; nos obliga a que lo que escribamos en primer lugar sea un texto, indicado entre comillas. Eso que le indicamos entre comillas es realmente un <b>c&oacute;digo de formato</b>. Dentro de ese c&oacute;digo de formato podemos tener caracteres especiales, con los que le indicamos d&oacute;nde y c&oacute;mo queremos que aparezca un n&uacute;mero (u otras cosas). Esto lo veremos con detalle un poco m&aacute;s adelante, pero de momento podemos anticipar que &ldquo;<b>%d</b>&rdquo; sirve para decir &ldquo;quiero que aqu&iacute; aparezca un n&uacute;mero entero&rdquo;. &iquest;Qu&eacute; n&uacute;mero? El que le indicamos a continuaci&oacute;n, separado por una coma:</p>
+
+<p><pre><code class='language-c'>printf("El resultado es %d", 3+4);</code></pre></p>
+<p>Este ejemplo mostrar&iacute;a en pantalla un n&uacute;mero entero (%d) que sea el resultado de suma 3 y 4.</p>
+<p>Podemos escribir entre las comillas m&aacute;s detalles sobre lo que estamos haciendo:</p>
+
+<p><pre><code class='language-c'>printf("El resultado es %d", suma);</code></pre></p>
+<p><b>Ejercicio propuesto: </b> Crea un programa que diga el resultado de sumar 118 y 56.</p>
+<p>&nbsp;</p>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   23838 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc01a.html">Anterior</a></li>
+                    <li><a href="cc01c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+</html>
+        

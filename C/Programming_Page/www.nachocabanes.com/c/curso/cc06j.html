@@ -1,0 +1,356 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 6 - Ficheros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 6 - Ficheros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="aleatorio,fichero,texto,fopen,fclose,eof,feof,fgets,fprintf,fscanf,fread,fwrite" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 6 - Ficheros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc06i.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06k.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>6.10 Ejemplo: leer informaci&oacute;n de un fichero BMP</h3>
+<p>Ahora vamos a ver un ejemplo un poco m&aacute;s sofisticado: vamos a abrir un fichero que sea una imagen en formato BMP y a mostrar en pantalla si est&aacute; comprimido o no.</p>
+<p>Para eso necesitamos antes saber c&oacute;mo se guarda la informaci&oacute;n en un fichero BMP, pero esto es algo f&aacute;cil de localizar:</p>
+<p>FICHEROS .BMP <br />
+  Un fichero BMP est&aacute; compuesto por las siguientes partes: una cabecera de fichero, una cabecera del bitmap, una tabla de colores y los bytes que definir&aacute;n la imagen.</p>
+<p>En concreto, los datos que forman la cabecera de fiochero y la cabecera de bitmap son los siguientes:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="58%" valign="top"><p>TIPO DE INFORMACI&Oacute;N <a name="table02" id="table02"></a></p></td>
+    <td width="41%" valign="top"><p>POSICI&Oacute;N EN EL ARCHIVO </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tipo de fichero (letras BM) </p></td>
+    <td width="41%" valign="top"><p>0-1 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tama&ntilde;o del archivo </p></td>
+    <td width="41%" valign="top"><p>2-5 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Reservado </p></td>
+    <td width="41%" valign="top"><p>6-7 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Reservado </p></td>
+    <td width="41%" valign="top"><p>8-9 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Inicio de los datos de la imagen </p></td>
+    <td width="41%" valign="top"><p>10-13 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tama&ntilde;o de la cabecera de bitmap </p></td>
+    <td width="41%" valign="top"><p>14-17 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Anchura (p&iacute;xeles) </p></td>
+    <td width="41%" valign="top"><p>18-21 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Altura (p&iacute;xeles) </p></td>
+    <td width="41%" valign="top"><p>22-25 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>N&uacute;mero de planos </p></td>
+    <td width="41%" valign="top"><p>26-27 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tama&ntilde;o de cada punto </p></td>
+    <td width="41%" valign="top"><p>28-29 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Compresi&oacute;n (0=no comprimido) </p></td>
+    <td width="41%" valign="top"><p>30-33 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tama&ntilde;o de la imagen </p></td>
+    <td width="41%" valign="top"><p>34-37 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Resoluci&oacute;n horizontal </p></td>
+    <td width="41%" valign="top"><p>38-41 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Resoluci&oacute;n vertical </p></td>
+    <td width="41%" valign="top"><p>42-45 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Tama&ntilde;o de la tabla de color </p></td>
+    <td width="41%" valign="top"><p>46-49 </p></td>
+  </tr>
+  <tr>
+    <td width="58%" valign="top"><p>Contador de colores importantes </p></td>
+    <td width="41%" valign="top"><p>50-53 </p></td>
+  </tr>
+</table>
+<p><br />
+  Con esta informaci&oacute;n nos basta para nuestro prop&oacute;sito: la compresi&oacute;n se indica en la posici&oacute;n 30 del fichero, ocupa 4 bytes (lo mismo que un &ldquo;int&rdquo; en los sistemas operativos de 32 bits), y si es un 0 querr&aacute; decir que la imagen no est&aacute; comprimida.</p>
+<p>Entonces lo podr&iacute;amos comprobar as&iacute;:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 59:      */
+/*  C059.C                   */
+/*                           */
+/*  Información sobre un     */ 
+/*  fichero BMP (1)          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main(){
+    
+  char nombre[60];
+  FILE* fichero;
+  int compresion;
+
+  puts("Comprobador de imágenes BMP\n");
+  printf("Dime el nombre del fichero: ");
+  gets(nombre);
+  fichero = fopen(nombre, "rb");
+  if (fichero==NULL)
+    puts("No encontrado\n");
+  else {
+    fseek(fichero, 30, SEEK_SET);   
+    fread(&compresion, 1, 4, fichero);
+    fclose(fichero);
+    if (compression == 0) 
+      puts("Sin compresión");
+   else
+      puts ("BMP Comprimido ");
+  }
+  
+  return 0;
+}
+</code></pre></p>
+<p>Ya que estamos, podemos mejorarlo un poco para que adem&aacute;s nos muestre el ancho y el alto de la imagen, y que compruebe antes si realmente se trata de un fichero BMP:<br />
+</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 60:      */
+/*  C060.C                   */
+/*                           */
+/*  Información sobre un     */ 
+/*  fichero BMP (2)          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main(){
+  char nombre[60];
+  FILE* fichero;
+  int compresion, ancho, alto;
+  char marca1, marca2;
+
+  puts("Comprobador de imágenes BMP\n");
+  printf("Dime el nombre del fichero: ");
+  gets(nombre);
+  fichero = fopen(nombre, "rb");
+  if (fichero==NULL)
+    puts("No encontrado\n");
+  else {
+    marca1 = fgetc(fichero);  /* Leo los dos primeros bytes */
+    marca2 = fgetc(fichero);
+    if ((marca1 =='B') && (marca2 =='M')) { /* Si son BM */
+        printf("Marca del fichero: %c%c\n", 
+          marca1, marca2);
+        fseek(fichero, 18, SEEK_SET);    /* Posición 18: ancho */
+        fread(&ancho, 1, 4, fichero);
+        printf("Ancho: %d\n", ancho);    
+        fread(&alto, 1, 4, fichero);     /* Siguiente dato: alto */
+        printf("Alto: %d\n", alto);    
+        fseek(fichero, 4, SEEK_CUR);     /* 4 bytes después: compresión */
+        fread(&compresion, 1, 4, fichero);
+        fclose(fichero);
+        switch (compresion) {
+          case 0: puts("Sin compresión"); break;
+          case 1: puts("Compresión RLE 8 bits"); break;
+          case 2: puts("Compresión RLE 4 bits"); break;
+          }
+    } else
+      printf("No parece un fichero BMP\n");  /* Si la marca no es BM */
+  }
+  
+  return 0;
+}
+</code></pre></p>
+
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Mejorar la &uacute;ltima versi&oacute;n de la agenda anterior (la que usa fwrite, fread y sizeof) para que no lea todas las fichas a la vez, sino que lea una &uacute;nica ficha del disco cada vez que lo necesite, saltando a la posici&oacute;n en que se encuentra dicha ficha con &ldquo;fseek&rdquo;.</li>
+  <li>Hacer un programa que muestre informaci&oacute;n sobre una imagen en formato GIF (se deber&aacute; localizar en Internet los detalles sobre dicho formato): versi&oacute;n, ancho de la imagen (en p&iacute;xeles), alto de la imagen y cantidad de colores.</li>
+  <li> Hacer un programa que muestre informaci&oacute;n sobre una imagen en formato PCX: ancho de la imagen (en p&iacute;xeles), alto de la imagen y cantidad de colores. </li>
+  <li> Mejorar la base de datos de ficheros (ejemplo 53) para que los datos se guarden en disco al terminar la sesi&oacute;n de uso, y se lean de disco cuando comienza una nueva sesi&oacute;n.</li>
+  <li>Mejorar la base de datos de ficheros (ejemplo 53) para que cada dato introducido se guarde inmediatamente en disco, sin esperar a que termine la sesi&oacute;n de uso. En vez de emplear un “array de structs”, debe existir un solo “struct” en memoria cada vez, y para las b&uacute;squedas se recorra todo el contenido del fichero.</li>
+  <li>Mejorar el ejercicio anterior (ejemplo 53 ampliado con ficheros, que se manejan ficha a ficha) para que se pueda modificar un cierto dato a partir de su n&uacute;mero (por ejemplo, el dato n&uacute;mero 3). En esa modificaci&oacute;n, se deber&aacute; permitir al usuario pulsar Intro sin teclear nada, para indicar que no desea modificar un cierto dato, en vez de reemplazarlo por una cadena vac&iacute;a. </li>
+</ul>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   21780 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc06i.html">Anterior</a></li>
+                    <li><a href="cc06k.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:26 GMT -->
+</html>
+        

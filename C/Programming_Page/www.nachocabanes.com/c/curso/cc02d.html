@@ -1,0 +1,245 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 2 - Tipos de datos</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 2 - Tipos de datos - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="int,float,double,char,void,cadena,ascii" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 2 - Tipos de datos          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc02c.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc02e.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>2.4. Operador de molde: (tipo) operando</h3>
+<p>Si tenemos dos n&uacute;meros enteros y hacemos su divisi&oacute;n, el resultado que obtenemos es otro n&uacute;mero entero, sin decimales, aunque lo guardemos en una variable real
+
+:</p>
+<p>float f = 5/2; /* f valdr&aacute; 2.000000 */</p>
+<p>Esto se debe a que la operaci&oacute;n se realiza entre n&uacute;meros enteros, se obtiene un resultado que es un n&uacute;mero entero, y ese valor obtenido se asigna a la variable &ldquo;float&rdquo;... pero ya es demasiado tarde.</p>
+<p>Para evitar ese tipo de problemas, podemos indicar que queremos convertir esos valores a numeros reales. Cuando son n&uacute;meros, basta con que indiquemos alg&uacute;n decimal:</p>
+<p>float f = 5.0/2.0; /* ahora f valdr&aacute; 2.500000 */</p>
+<p>y si son variables, a&ntilde;adiremos antes de ellas &ldquo;(float)&rdquo; para que las considere como n&uacute;meros reales antes de trabajar con ellas:</p>
+<p>float f = (float) x / (float) y;</p>
+<p>Vamos a verlo mejor en un programa completo:</p>
+
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 11:      */
+/*  c011.c                   */
+/*                           */
+/*  Conversion de int a      */
+/*  float                    */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  int n1 = 5, n2 = 2;
+  float division1, division2;
+       
+  printf("Mis numeros son %d y %d", n1, n2); 
+  division1 = n1/n2;
+  printf(" y su division es %f", division1 );
+  division2 = (float)n1 / (float)n2;
+  printf(" pero si convierto antes a float: %f", division2 );
+    
+  return 0;
+}
+</code></pre></p>
+
+<p>que tendr&iacute;a como resultado</p>
+<p>Mis n&uacute;meros son 5 y 2 y su division es 2.000000 pero si convierto antes a float: 2.500000</p>
+<p>De igual modo, podemos convertir un &ldquo;float&rdquo; a &ldquo;int&rdquo; para despreciar sus decimales y quedarnos con la parte entera:</p>
+
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 12:      */
+/*  c012.c                   */
+/*                           */
+/*  Conversion de float a    */
+/*  int                      */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  float x = 5, y = 3.5;
+  float producto;
+       
+  printf("Mis numeros son %3.1f y %3.1f", x, y); 
+  producto = x*y;
+  printf(" y su producto es %3.1f", producto);
+  printf(", sin decimales seria %d", (int) producto);
+    
+  return 0;
+}
+</code></pre></p>
+<p>que dar&iacute;a</p>
+<p>Mis n&uacute;meros son 5.0 y 3.5 y su producto es 17.5, sin decimales ser&iacute;a 17</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   22192 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc02c.html">Anterior</a></li>
+                    <li><a href="cc02e.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:14 GMT -->
+</html>
+        

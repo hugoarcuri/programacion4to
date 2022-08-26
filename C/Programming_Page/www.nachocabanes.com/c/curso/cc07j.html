@@ -1,0 +1,232 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 7 - Funciones</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 7 - Funciones - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="valor,referencia,recursividad,return" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 7 - Funciones          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc07i.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc07k.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>7.10. Recursividad</h3>
+<p>Una funci&oacute;n recursiva es aquella que se define a partir de ella misma. Dentro de las matem&aacute;ticas tenemos varios ejemplos. Uno cl&aacute;sico es el &quot;factorial de un n&uacute;mero&quot;:</p>
+<p> n! = n &middot; (n-1) &middot; (n-2) &middot; ... &middot; 3 &middot; 2 &middot; 1</p>
+<p>(por ejemplo, el factorial de 4 es 4 &middot; 3 &middot; 2 &middot; 1 = 24)</p>
+<p>Si pensamos que el factorial de n-1 es</p>
+<p> (n-1)! = (n-1) &middot; (n-2) &middot; (n-3) &middot; ... &middot; 3 &middot; 2 &middot; 1</p>
+<p>Entonces podemos escribir el factorial de un n&uacute;mero a partir del factorial del siguiente n&uacute;mero:</p>
+<p> n! = n &middot; (n-1)!</p>
+<p>Esta es la definici&oacute;n recursiva del factorial, ni m&aacute;s ni menos. Esto, programando, se har&iacute;a:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 70:      */
+/*  C070.C                   */
+/*                           */
+/*  Funciones recursivas:    */
+/*  factorial                */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+long fact(int n) {
+  if (n==1)               /* Aseguramos que termine */
+    return 1;
+  return n * fact (n-1);  /* Si no es 1, sigue la recursión */
+}
+
+int main() {
+  int num;
+  printf("Introduzca un número entero: ");
+  scanf("%d", &num);
+  printf("Su factorial es: %ld\n", fact(num));
+  
+  return 0;
+}
+</code></pre></p>
+
+<p>Dos consideraciones importantes:</p>
+<ul>
+  <li>Atenci&oacute;n a la primera parte de la funci&oacute;n recursiva: es MUY IMPORTANTE <strong>comprobar que hay salida</strong> de la funci&oacute;n, para que nuestro programa no se quede dando vueltas todo el tiempo y deje el ordenador (o la tarea actual) "colgado".</li>
+  <li>Los factoriales <strong>crecen r&aacute;pidamente</strong>, as&iacute; que no conviene poner n&uacute;meros grandes: el factorial de 16 es 2.004.189.184, luego a partir de 17 podemos obtener resultados err&oacute;neos, seg&uacute;n sea el tama&ntilde;o de los n&uacute;meros enteros en nuestro sistema.</li>
+</ul>
+<p>&iquest;Qu&eacute; utilidad tiene esto? Pues m&aacute;s de la que parece: muchos problemas complicados se pueden expresar a partir de otro m&aacute;s sencillo. En muchos de esos casos, ese problema se podr&aacute; expresar de forma recursiva. M&aacute;s adelante veremos alg&uacute;n otro ejemplo.<br />
+</p>
+<p><strong>Ejercicios propuestos</strong>: </p>
+<ul>
+  <li>Crear una funci&oacute;n que calcule el valor de elevar un n&uacute;mero entero a otro n&uacute;mero entero (por ejemplo, 5 elevado a 3 = 5<sup>3</sup> = 5 &middot;5 &middot; 5 = 125). Esta funci&oacute;n se debe crear de forma recursiva.</li>
+  <li>Como alternativa, crear una funci&oacute;n que calcule el valor de elevar un n&uacute;mero entero a otro n&uacute;mero entero de forma NO recursiva (lo que llamaremos "de forma iterativa"), usando la orden "for".</li>
+  <li> Crear un programa que emplee recursividad para calcular un n&uacute;mero de la serie Fibonacci (en la que los dos primeros elementos valen 1, y para los restantes, cada elemento es la suma de los dos anteriores).</li>
+  <li>Crear un programa que emplee recursividad para calcular la suma de los elementos de un vector.</li>
+  <li>Crear un programa que emplee recursividad para calcular el mayor de los elementos de un vector.</li>
+  <li>Crear un programa que emplee recursividad para dar la vuelta a una cadena de caracteres (por ejemplo, a partir de &quot;Hola&quot; devolver&iacute;a &quot;aloH&quot;). </li>
+  <li>Crear, tanto de forma recursiva como de forma iterativa, una funci&oacute;n diga si una cadena de caracteres es sim&eacute;trica (un pal&iacute;ndromo). Por ejemplo, &quot;DABALEARROZALAZORRAELABAD&quot; es un pal&iacute;ndromo. </li>
+  <li> Crear un programa que encuentre el m&aacute;ximo com&uacute;n divisor de dos n&uacute;meros usando el algoritmo de Euclides : Dados dos n&uacute;meros enteros positivos m y n, tal que m &gt; n, para encontrar su m&aacute;ximo com&uacute;n divisor, es decir, el mayor entero positivo que divide a ambos: - Dividir m por n para obtener el resto r (0 = r &lt; n) ; - Si r = 0, el MCD es n.; - Si no, el m&aacute;ximo com&uacute;n divisor es MCD(n,r). <br />
+  </li>
+</ul>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   22851 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc07i.html">Anterior</a></li>
+                    <li><a href="cc07k.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc07j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:18 GMT -->
+</html>
+        

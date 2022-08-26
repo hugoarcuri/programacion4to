@@ -1,0 +1,296 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 1 - Toma de contacto con C</title>
+
+    
+    <meta name="description" content="Tutorial de C - Tema 1 - Toma de contacto con C - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="C,main,compilar,enlazar,printf" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 1 - Toma de contacto con C          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc01c.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc01e.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>1.4. Introducci&oacute;n a las variables: int</h3>
+<p>Las <b>variables</b> son algo que no contiene un valor predeterminado, un espacio de memoria al que nosotros asignamos un nombre y en el que podremos almacenar datos.</p>
+<p>El primer ejemplo nos permit&iacute;a escribir &ldquo;Hola&rdquo;. El segundo nos permit&iacute;a sumar dos n&uacute;meros que hab&iacute;amos prefijado en nuestro programa. Pero esto tampoco es &ldquo;lo habitual&rdquo;, sino que esos n&uacute;meros depender&aacute;n de valores que haya tecleado el usuario o de c&aacute;lculos anteriores.<br />
+    <br />
+    Por eso necesitaremos usar variables, en las que guardemos los datos con los que vamos a trabajar y tambi&eacute;n los resultados temporales. Vamos a ver como ejemplo lo que har&iacute;amos para sumar dos n&uacute;meros enteros que fij&aacute;semos en el programa.</p>
+    
+<h4>1.4.1. Definici&oacute;n de variables: n&uacute;meros enteros</h4>
+<p> Para usar una cierta variable primero hay que <b>declararla</b>: indicar su nombre y el tipo de datos que querremos guardar.</p>
+<p>El primer tipo de datos que usaremos ser&aacute;n n&uacute;meros enteros (sin decimales), que se indican con &ldquo;int&rdquo; (abreviatura del ingl&eacute;s &ldquo;integer&rdquo;). Despu&eacute;s de esta palabra se indica el nombre que tendr&aacute; la variable:</p>
+
+<p><pre><code class='language-c'>int primerNumero;</code></pre></p>
+<p>Esa orden reserva espacio para almacenar un n&uacute;mero entero, que podr&aacute; tomar distintos valores, y al que nos referiremos con el nombre &ldquo;primerNumero&rdquo;.</p>
+
+<p>Si vamos a usar dos o más números enteros, podemos declararlos en la misma línea:</p>
+
+<p><pre><code class='language-c'>int primerNumero, segundoNumero;</code></pre></p>
+
+<h4>1.4.2. Asignaci&oacute;n de valores</h4>
+<p> Podemos darle un valor a esa variable durante el programa haciendo</p>
+
+<p><pre><code class='language-c'>primerNumero=234;</code></pre></p>
+<p>O tambi&eacute;n podemos darles un valor inicial (&ldquo;inicializarlas&rdquo;) antes de que empiece el programa, en el mismo momento en que las definimos:</p>
+
+<p><pre><code class='language-c'>int primerNumero=234;</code></pre></p>
+<p>O incluso podemos definir e inicializar m&aacute;s de una variable a la vez</p>
+
+<p><pre><code class='language-c'>int primerNumero=234, segundoNumero=567;</code></pre></p>
+<p>(esta l&iacute;nea reserva espacio para dos variables, que usaremos para almacenar n&uacute;meros enteros; una de ellas se llama primerNumero y tiene como valor inicial 234 y la otra se llama segundoNumero y tiene como valor inicial 567). </p>
+
+<p>Despu&eacute;s ya podemos hacer operaciones con las variables, igual que las hac&iacute;amos con los n&uacute;meros:</p>
+
+<p><pre><code class='language-c'>suma = primerNumero + segundoNumero;</code></pre></p>
+<p>&nbsp;</p>
+
+<h4>1.4.3. Mostrar el valor de una variable en pantalla</h4>
+
+<p>Una vez que sabemos c&oacute;mo mostrar un n&uacute;mero en pantalla, es sencillo mostrar el valor de una variable. Para un n&uacute;mero hac&iacute;amos cosas como</p>
+
+<p><pre><code class='language-c'>printf("El resultado es %d", 3+4);</code></pre></p>
+<p>pero si se trata de una variable es id&eacute;ntico:</p>
+
+<p><pre><code class='language-c'>printf("El resultado es %d", suma);</code></pre></p>
+<p>Ya sabemos todo lo suficiente para crear nuestro programa que sume dos n&uacute;meros usando variables:</p>
+
+<p><pre><code class='language-c'>#include <stdio.h>
+
+int main()
+{
+  int primerNumero;
+  int segundoNumero;
+  int suma;
+
+  primerNumero = 234;
+  segundoNumero = 567;
+  suma = primerNumero + segundoNumero;
+  printf("Su suma es %d", suma);
+  
+  return 0;
+}
+</code></pre></p>
+<p>(Recuerda que en muchos compiladores para Windows, quizá necesites incluir "getchar();" antes del "return 0" para tener tiempo de leer lo que aparece en pantalla).</p>
+
+
+<p>Repasemos lo que hace:</p>
+<ul>
+  <li>#include &lt;stdio.h&gt; dice que queremos usar funciones de entrada/salida est&aacute;ndar.</li>
+  <li>int main() indica donde comienza en s&iacute; el cuerpo del programa.</li>
+  <li>{ se&ntilde;ala el principio del cuerpo (de &ldquo;main&rdquo;)</li>
+  <li>int primerNumero; reserva espacio para guardar un n&uacute;mero entero, al que llamaremos primerNumero.</li>
+  <li>int segundoNumero; reserva espacio para guardar otro n&uacute;mero entero, al que llamaremos segundoNumero.</li>
+  <li>int suma; reserva espacio para guardar un tercer n&uacute;mero entero, al que llamaremos suma.</li>
+  <li>primerNumero = 234; da el valor del primer n&uacute;mero que queremos sumar</li>
+  <li>segundoNumero = 567; da el valor del segundo n&uacute;mero que queremos sumar</li>
+  <li>suma = primerNumero + segundoNumero; halla la suma de esos dos n&uacute;meros y la guarda en otra variable, en vez de mostrarla directamente en pantalla.</li>
+  <li>printf(&quot;Su suma es %d&quot;, suma); muestra en pantalla el resultado de esa suma.</li>
+  <li>return 0;  debe ser la última orden, por detalles que veremos más adelante.</li>
+  <li>} se&ntilde;ala el principio del cuerpo (de &ldquo;main&rdquo;)<br />
+  </li>
+</ul>
+<p>Nota: las variables las podemos declarar <b>dentro del cuerpo</b> del programa (main) o fuera de &eacute;l. En programas tan sencillos no habr&aacute; diferencia. M&aacute;s adelante veremos que en ciertos casos s&iacute; se comportar&aacute;n de forma distinta seg&uacute;n donde las hayamos declarado.</p>
+<p>&nbsp;</p>
+
+<p>Lo que sí es importante es que muchos compiladores de C obligan a <p>declarar las variables antes de cualquier otra orden</p>, de modo que el siguiente programa</p>
+
+<p><pre><code class='language-c'>#include <stdio.h>
+
+int main()
+{
+  int primerNumero;
+  int segundoNumero;
+  int suma;
+
+  primerNumero = 234;
+  segundoNumero = 567;
+  suma = primerNumero + segundoNumero;
+  printf("Su suma es %d", suma);
+  
+  return 0;
+}
+</code></pre></p>
+<p>puede no parecerle correcto a compiladores de C previos al estándar C99 porque la variabe "suma" se declara muy tarde (a partir de este estándar sí se permite declarar variables en cualquier punto, cosa que también permitirán algunos compiladores más antiguos pero que sean compiladores de lenguaje C y también de C++).</p>
+
+<p>&nbsp;</p>
+
+
+<p>Podemos resumir un poco este fuente, si damos los valores a las variables al inicializarlas:</p>
+
+<p><pre><code class='language-c'>#include <stdio.h>
+
+int main()
+{
+  int primerNumero = 234;
+  int segundoNumero = 567;
+  int suma;
+
+  suma = primerNumero + segundoNumero;
+  printf("Su suma es %d", suma);
+  
+  return 0;
+}
+</code></pre></p>
+
+<p>Ejercicio propuesto: Hacer un programa que calcule el producto de los n&uacute;meros 121 y 132, usando variables.</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   23243 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc01c.html">Anterior</a></li>
+                    <li><a href="cc01e.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc01d.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:22 GMT -->
+</html>
+        

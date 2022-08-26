@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.nachocabanes.com	TRUE	/	FALSE	1999999999	PHPSESSID	fpjb7126s9r584r0sf788fu1m7
+

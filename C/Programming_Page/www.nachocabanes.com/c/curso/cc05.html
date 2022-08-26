@@ -1,0 +1,273 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema  5 - Arrays y estructuras</title>
+
+    
+    <meta name="description" content="Curso de C - Tema  5 - Arrays y estructuras - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="array,arreglo,struct,vector,matriz,estructura,registro" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema  5 - Arrays y estructuras          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc04.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc05b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2>5. Arrays y estructuras</h2>
+
+<h3>5.1. Conceptos b&aacute;sicos sobre tablas</h3>
+    
+<h4>5.1.1. Definici&oacute;n de una tabla y acceso a los datos</h4>
+
+<p>Una tabla, vector, matriz o <strong>array</strong> (que algunos autores traducen por &ldquo;arreglo&rdquo;) es un conjunto de elementos, todos los cuales son del mismo tipo. Estos elementos tendr&aacute;n todos el mismo nombre, y ocupar&aacute;n un espacio contiguo en la memoria.</p>
+<p>Por ejemplo, si queremos definir un grupo de 4 n&uacute;meros enteros, usar&iacute;amos</p>
+<p>int ejemplo[4];</p>
+<p>Podemos acceder a cada uno de los valores individuales indicando su nombre (ejemplo) y el n&uacute;mero de elemento que nos interesa, pero con una precauci&oacute;n: se empieza a numerar desde 0, as&iacute; que en el caso anterior tendr&iacute;amos 4 elementos, que ser&iacute;an ejemplo[0], ejemplo[1], ejemplo[2], ejemplo[3]. </p>
+<p>Como ejemplo, vamos a definir un grupo de 5 n&uacute;meros enteros y hallar su suma:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 38:      */
+/*  C038.C                   */
+/*                           */
+/*  Primer ejemplo de tablas */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    int numero[5];           /* Un array de 5 números enteros */
+    int suma;                /* Un entero que será la suma */
+
+    numero[0] = 200;      /* Les damos valores */
+    numero[1] = 150;
+    numero[2] = 100;
+    numero[3] = -50;
+    numero[4] = 300;
+    suma = numero[0] +    /* Y hallamos la suma */
+        numero[1] + numero[2] + numero[3] + numero[4];
+    printf("Su suma es %d", suma);
+    /* Nota: esta es la forma más ineficiente e incómoda */
+    /* Ya lo iremos mejorando */
+        
+    return 0;
+}
+</code></pre></p>
+
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Un programa que pida al usuario 4 n&uacute;meros, los memorice (utilizando una tabla), calcule su media aritm&eacute;tica y despu&eacute;s muestre en pantalla la media y los datos tecleados. </li>
+  <li> Un programa que pida al usuario 5 n&uacute;meros reales y luego los muestre en el orden contrario al que se introdujeron. </li>  
+</ul>
+<h4>5.1.2. Valor inicial de una tabla</h4>
+<p>Al igual que ocurr&iacute;a con las variables &ldquo;normales&rdquo;, podemos dar valor a los elementos de una tabla al principio del programa. Ser&aacute; m&aacute;s c&oacute;modo que dar los valores uno por uno, como hemos hecho antes. Esta vez los indicaremos todos entre llaves, separados por comas:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 39:      */
+/*  C039.C                   */
+/*                           */
+/*  Segundo ejemplo de       */
+/*  tablas                   */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    int numero[5] =            /* Un array de 5 números enteros */
+      {200, 150, 100, -50, 300};
+    int suma;                  /* Un entero que será la suma */
+
+    suma = numero[0] +    /* Y hallamos la suma */
+        numero[1] + numero[2] + numero[3] + numero[4];
+    printf("Su suma es %d", suma);
+    /* Nota: esta forma es algo menos engorrosa, pero todavía no */
+    /* está bien hecho.  Lo seguiremos mejorando */
+            
+    return 0;
+}
+</code></pre></p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<p>&#149;&nbsp; Un programa que almacene en una tabla el n&uacute;mero de d&iacute;as que tiene cada mes (su&shy;pon&shy;dremos que es un a&ntilde;o no bisiesto), pida al usuario que le indique un mes (1=enero, 12=diciembre) y muestre en pantalla el n&uacute;mero de d&iacute;as que tiene ese mes. </p>
+<p>&#149;&nbsp; Un programa que almacene en una tabla el n&uacute;mero de d&iacute;as que tiene cada mes (a&ntilde;o no bisiesto), pida al usuario que le indique un mes (ej. 2 para febrero) y un d&iacute;a (ej. el d&iacute;a 15) y diga qu&eacute; n&uacute;mero de d&iacute;a es dentro del a&ntilde;o (por ejemplo, el 15 de febrero ser&iacute;a el d&iacute;a n&uacute;mero 46, el 31 de diciembre ser&iacute;a el d&iacute;a 365). </p>
+<p>&nbsp;
+  </p>
+<h4>5.1.3. Recorriendo los elementos de una tabla</h4>
+<p>Es de esperar que exista una forma m&aacute;s c&oacute;moda de acceder a varios elementos de un array, sin tener siempre que repetirlos todos, como hemos hecho en</p>
+  <p> suma = numero[0] + numero[1] + numero[2] + numero[3] + numero[4];<br />
+    <br />
+    El &ldquo;truco&rdquo; consistir&aacute; en emplear cualquiera de las estructuras repetitivas que ya hemos visto (while, do..while, for), por ejemplo as&iacute;:</p>
+<p> suma = 0; /* Valor inicial */<br />
+  for (i=0; i&lt;=4; i++)<br />
+  suma += numero[i];</p>
+<p>En este caso, que s&oacute;lo sum&aacute;bamos 5 n&uacute;meros, no hemos escrito mucho menos, pero si trabaj&aacute;semos con 100, 500 o 1000 n&uacute;meros, la ganancia en comodidad s&iacute; que est&aacute; clara.</p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> A partir del programa propuesto en 5.1.2, que almacenaba en una tabla el n&uacute;mero de d&iacute;as que tiene cada mes, crear otro que pida al usuario que le indique la fecha, detallando el d&iacute;a (1 al 31) y el mes (1=enero, 12=diciembre), como respuesta muestre en pantalla el n&uacute;mero de d&iacute;as que quedan hasta final de a&ntilde;o. </li>
+  <li> Crear un programa que pida al usuario 10 n&uacute;meros y luego los muestre en orden inverso (del &uacute;ltimo al primero). </li>
+  <li> Crear un programa que pida al usuario 10 n&uacute;meros, calcule su media y luego muestre los que est&aacute;n por encima de la media. </li>
+  <li> Un programa que pida al usuario 10 n&uacute;meros enteros y calcule (y muestre) cu&aacute;l es el mayor de ellos. </li>
+</ul>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   61787 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc04.html">Anterior</a></li>
+                    <li><a href="cc05b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc05.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+</html>
+        

@@ -1,0 +1,214 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc08b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 8 - Depuracion</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 8 - Depuracion - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="gdb,step,watch,bug" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 8 - Depuracion          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc08.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc09.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>8.2. Ejemplos de algunos entornos</h3>
+<p><b>Turbo C</b> es un compilador antiguo, pero sencillo de manejar, y la depuraci&oacute;n tambi&eacute;n es sencilla con &eacute;l:</p>
+<p>El men&uacute; &ldquo;Run&rdquo; es el que nos permite poner nuestro programa en marcha normalmente (&ldquo;Run&rdquo;), pero tambi&eacute;n el que nos permite avanzar paso a paso por las &oacute;rdenes que lo forman.</p>
+<p>Hay dos maneras de hacerlo:</p>
+<ul>
+  <li>&ldquo;Trace into&rdquo; va paso a paso por todas las &oacute;rdenes del programa. Si hay una llamada a una funci&oacute;n, tambi&eacute;n sigue paso a paso por las &oacute;rdenes que forma esa funci&oacute;n.<br />
+</li>
+  <li>&ldquo;Step over&rdquo; es similar, salvo que cuando haya una llamada a una funci&oacute;n, &eacute;sta se tomar&aacute; como una &uacute;nica orden, sin ver los detalles de dicha funci&oacute;n.</li>
+</ul>
+<p>En cualquiera de ambos casos, se nos muestra con una l&iacute;nea azul por d&oacute;nde va avanzando la depuraci&oacute;n. </p>
+<p align="center"><img src="cc_depurTc1.jpg" width="384" height="195" /></p>
+<p>Si queremos observar c&oacute;mo evoluciona el valor de alguna variable, podemos a&ntilde;adir un &ldquo;vig&iacute;a&rdquo; (en ingl&eacute;s &ldquo;watch&rdquo;) desde el men&uacute; &ldquo;Break/Watch. Este vig&iacute;a quedar&aacute; en la parte inferior de la pantalla.</p>
+<p align="center"><img src="cc_depurTc2.jpg" width="388" height="197" /></p>
+<p>&nbsp; </p>
+<p>Si trabajamos con <b>DevC++</b> para Windows, la situaci&oacute;n no es muy diferente. Primero debemos indicar d&oacute;nde queremos que se interrumpa el programa (a&ntilde;adir un &ldquo;breakpoint&rdquo;), haciendo clic con el rat&oacute;n en el margen izquierdo de nuestro programa. Esa l&iacute;nea quedar&aacute; resaltada en color rojo.</p>
+<p>Ahora ponemos en marcha el programa desde el men&uacute; &ldquo;Depurar&rdquo;.</p>
+<p>En la parte inferior de la pantalla aparecer&aacute;n botones que nos permiten avanzar paso a paso, saltar las funciones o a&ntilde;adir un &ldquo;watch&rdquo; para comprobar el valor de una variables. La l&iacute;nea que estamos depurando se marcar&aacute; en azul (y destacada con una flecha). Los &ldquo;watches&rdquo; estar&aacute;n visibles en la parte izquierda de la pantalla.</p>
+<p align="center"><img src="cc_depurDevC1.jpg" width="312" height="218" /></p>
+<p>Bajo <b>Linux</b>, el entorno est&aacute;ndar (pero inc&oacute;modo) es el de la herramienta &ldquo;<b>gdb</b>&rdquo;. Para usarla primero debemos compilar nuestro fuente como siempre, pero a&ntilde;adiendo la opci&oacute;n &ldquo;-g&rdquo;, que se encarga de incluir en nuestro ejecutable toda la informaci&oacute;n adicional que el depurador necesita para poder mostrarnos cual es la l&iacute;nea que estamos procesando:</p>
+<p>gcc &ndash;g ejemplo.c &ndash;o ejemplo</p>
+<p>Despu&eacute;s ponemos en marcha el depurador, indic&aacute;ndole el nombre del programa a depurar:</p>
+<p>gdb ejemplo<br />
+    <br />
+    Deberemos indicar un punto de interrupci&oacute;n, con la orden &ldquo;break&rdquo;. La forma m&aacute;s sencilla de usarla es indicando una funci&oacute;n en la que queramos que se interrumpa nuestro programa. Si nuestro programa no tiene funciones auxiliares o bien si queremos depurar desde el principio, usar&iacute;amos la funci&oacute;n &ldquo;main&rdquo;, as&iacute;:</p>
+<p>break main</p>
+<p>Podemos en marcha el programa con la orden &ldquo;run&rdquo;:</p>
+<p>run</p>
+<p>Se parar&aacute; al llegar al punto de interrupci&oacute;n, y a partir de ah&iacute; podemos usar la orden &ldquo;step&rdquo; (que se puede abreviar con &ldquo;s&rdquo;) para avanzar paso a paso, o la orden &ldquo;print&rdquo; si queremos ver el valor de alguna variable:</p>
+<p>print x</p>
+<p align="center"><img src="cc_depurGdb1.jpg" width="348" height="260" /></p>
+<p>&nbsp; </p>
+<p>Si usamos otra herramienta de desarrollo, como <b>Anjuta</b>, la depuraci&oacute;n puede ser mucho m&aacute;s sencilla, similar al caso de Turbo C y al de DevC++.</p>
+<p>En este caso, podemos depurar f&aacute;cilmente desde el propio entorno de desarrollo. Aun as&iacute;, el primer paso es el mismo que si fueramos a usar gdb: debemos compilar con la opci&oacute;n &ndash;g. La forma m&aacute;s sencilla de hacerlo es indicar que queremos &ldquo;activar la depuraci&oacute;n&rdquo;, desde el men&uacute; &ldquo;Opciones&rdquo;.</p>
+<p align="center"><img src="cc_depurAnjuta1.jpg" width="392" height="275" /></p>
+<p>Entonces ya podemos construir nuestro ejecutable normalmente, e iniciar la depuraci&oacute;n desde el men&uacute; &ldquo;Depurador&rdquo;. </p>
+<p>Podremos avanzar paso a paso (desde el propio men&uacute; o pulsando la tecla F5), y a&ntilde;adir &ldquo;watches&rdquo; para observar c&oacute;mo evoluciona el valor de las variables. </p>
+<p>Estos &ldquo;watches&rdquo; no estar&aacute;n visibles hasta que no escojamos la pesta&ntilde;a correspondiente en la parte inferior de la pantalla.</p>
+<p>La l&iacute;nea que estamos depurando se indicar&aacute; mediante una flecha en su margen izquierdo.<br />
+</p>
+<p align="center"><img src="cc_depurAnjuta2.jpg" width="302" height="343" /> </p>
+<p>&nbsp; </p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   9184 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc08.html">Anterior</a></li>
+                    <li><a href="cc09.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc08b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:11 GMT -->
+</html>
+        

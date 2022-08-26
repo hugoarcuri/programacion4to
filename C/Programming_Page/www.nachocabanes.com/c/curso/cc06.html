@@ -1,0 +1,226 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 6 - Ficheros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 6 - Ficheros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="aleatorio,fichero,texto,fopen,fclose,eof,feof,fgets,fprintf,fscanf,fread,fwrite" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 6 - Ficheros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc05g.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc06b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2>6. Manejo de ficheros</h2>
+<h3>6.1. Escritura en un fichero de texto</h3>
+<p>Para manejar ficheros, siempre deberemos realizar tres operaciones b&aacute;sicas:</p>
+<ul>
+  <li> Abrir el fichero.</li>
+  <li>Leer datos de &eacute;l o escribir datos en &eacute;l.</li>
+  <li>Cerrar el fichero.</li>
+</ul>
+<p>Eso s&iacute;, no siempre podremos realizar esas operaciones, as&iacute; que adem&aacute;s tendremos que comprobar los posibles errores. Por ejemplo, puede ocurrir que intentemos abrir un fichero que realmente no exista, o que queramos escribir en un dispositivo que sea s&oacute;lo de lectura.</p>
+<p>Vamos a ver un ejemplo, que cree un fichero de texto y escriba algo en &eacute;l:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 55:      */
+/*  C055.C                   */
+/*                           */
+/*  Escritura en un fichero  */
+/*  de texto                 */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    FILE* fichero;
+
+    fichero = fopen("prueba.txt", "wt");
+    fputs("Esto es una línea\n", fichero);
+    fputs("Esto es otra", fichero);
+    fputs(" y esto es continuación de la anterior\n", fichero);
+    fclose(fichero);
+               
+    return 0;
+}
+</code></pre></p>
+
+<p>Hay varias cosas que comentar sobre este programa:</p>
+<ul>
+  <li><strong>FILE</strong> es el tipo de datos asociado a un fichero. Siempre aparecer&aacute; el asterisco a su derecha, por motivos que veremos m&aacute;s adelante (cuando hablemos de &ldquo;punteros&rdquo;).</li>
+  <li>Para abrir el fichero usamos &ldquo;<strong>fopen</strong>&rdquo;, que necesita dos datos: el nombre del fichero y el modo de lectura. El modo de lectura estar&aacute; formado por varias letras, de las cuales por ahora nos interesan dos: &ldquo;w&rdquo; indicar&iacute;a que queremos escribir (write) del fichero, y &ldquo;t&rdquo; avisa de que se trata de un fichero de texto (text). Como abrimos el fichero para escribir en &eacute;l, se crear&aacute; el fichero si no exist&iacute;a, y <strong>se borrar&aacute;</strong> su contenido si ya exist&iacute;a (m&aacute;s adelante veremos c&oacute;mo a&ntilde;adir a un fichero sin borrar su contenido).</li>
+  <li>Para <strong>escribir</strong> en el fichero y para leer de &eacute;l, tendremos &oacute;rdenes muy parecidas a las que us&aacute;bamos en pantalla. Por ejemplo, para escribir una cadena de texto usaremos &ldquo;fputs&rdquo;, que recuerda mucho a &ldquo;puts&rdquo; pero con la diferencia de que no avanza de l&iacute;nea despu&eacute;s de cada texto (por eso hemos a&ntilde;adido \n al final de cada frase).</li>
+  <li>Finalmente, <strong>cerramos</strong> el fichero con &quot;fclose&quot;.<br />
+  </li>
+</ul>
+<p><strong>&nbsp; </strong></p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Crea un programa que vaya leyendo las frases que el usuario teclea y las guarde en un fichero de 
+
+
+ texto llamado “registroDeUsuario.txt”.  Terminar&aacute; cuando la frase introducida sea &quot;fin&quot; (esa frase no deber&aacute; guardarse en el fichero). </li>
+</ul>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   35235 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc05g.html">Anterior</a></li>
+                    <li><a href="cc06b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc06.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:01 GMT -->
+</html>
+        

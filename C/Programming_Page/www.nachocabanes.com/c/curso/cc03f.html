@@ -1,0 +1,192 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc03f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:14 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 3 - Estructuras alternativas</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="bucle,alternativa,if,while,repeat,switch,case" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 3 - Estructuras alternativas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc03e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc03g.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>3.6. M&aacute;s sobre diagramas de flujo. Diagramas de Chapin.</h3>
+<p>Cuando comenzamos el tema, vimos c&oacute;mo ayudarnos de los diagramas de flujo para plantear lo que un programa debe hacer. Si entendemos esta herramienta, el paso a C (o a casi cualquier otro lenguaje de programaci&oacute;n es sencillo). Pero este tipo de diagramas es antiguo, no tiene en cuenta todas las posibilidades del lenguaje C (y de muchos otros lenguajes actuales). Por ejemplo, no existe una forma clara de representar una orden &ldquo;switch&rdquo;, que equivaldr&iacute;a a varias condiciones encadenadas.</p>
+<p>Por su parte, un bucle &ldquo;while&rdquo; se ver&iacute;a como una condici&oacute;n que hace que algo se repita (una flecha que vuelve hacia atr&aacute;s, al punto en el que se comprobaba la condici&oacute;n):</p>
+<p align="center"><img src="cc_dflujo3.jpg" width="310" height="325" alt="Diagrama de flujo 3" /></p>
+<p align="center">Y un &ldquo;do..while&rdquo; como una condici&oacute;n al final de un bloque que se repite:<br />
+  <img src="cc_dflujo4.jpg" width="309" height="358" alt="Diagrama de flujo 4" /></p>
+<p>&nbsp; </p>
+<p>Aun as&iacute;, existen otras notaciones m&aacute;s modernas y que pueden resultar m&aacute;s c&oacute;modas. S&oacute;lo comentaremos una: los <b>diagramas de Chapin</b>. En ellos se representa cada orden dentro de una caja:</p>
+<p align="center"><img src="cc_tema3_05.png" width="320" height="108" alt="Diagrama de Chapin 1" /></p>
+<p>&nbsp;</p>
+<p>Las condiciones se indican diviendo las cajas en dos:</p>
+<p align="center"><img src="cc_tema3_06.png" width="327" height="173" alt="Diagrama de Chapin 2" /></p>
+<p>&nbsp;</p>
+<p align="center">Y las condiciones repetitivas se indican dejando una barra a la izquierda, que marca qu&eacute; es lo que se repite, tanto si la condici&oacute;n se comprueba al final (do..while):<br />
+  <img src="cc_tema3_07.png" width="324" height="101" alt="Diagrama de Chapin 3" /></p>
+<p align="center">como si se comprueba al principio (while):<br />
+  <img src="cc_tema3_08.png" width="325" height="155" alt="Diagrama de Chapin 4" /></p>
+<p>&nbsp;</p>
+<p>En ambos casos, no existe una gr&aacute;fica &ldquo;clara&rdquo; para los &ldquo;for&rdquo;.</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   39740 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc03e.html">Anterior</a></li>
+                    <li><a href="cc03g.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc03f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:16 GMT -->
+</html>
+        

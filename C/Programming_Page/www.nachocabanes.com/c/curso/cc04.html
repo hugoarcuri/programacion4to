@@ -1,0 +1,465 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 4 - Entrada/salida</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 4 - Entrada/salida - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="printf,scanf,gets,puts" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 4 - Entrada/salida          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc03g.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc05.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h2> 4. Entrada/salida b&aacute;sica</h2>
+
+<p>Vamos a ver con algo m&aacute;s de detalle las &oacute;rdenes habituales de entrada y salida est&aacute;ndar: printf y scanf, que ya conocemos, putchar y getchar, que aun no hab&iacute;amos visto. Todas ellas se encuentran definidas en &lt;stdio.h&gt;</p>
+<h3>4.1. printf</h3>
+<p>Ya conocemos el manejo b&aacute;sico de la orden &ldquo;printf&rdquo;:</p>
+<p>printf( formato [, dato1, dato2, ...])</p>
+<p>(el corchete indica que la cadena de texto de formato debe existir siempre, pero los datos adicionales son opcionales, pueden no aparecer).</p>
+<p>Esta orden muestra un texto formateado en pantalla. Para usarla es necesario incluir &lt;stdio.h&gt; al principio de nuestro programa. Hemos visto c&oacute;mo emplearla para mostrar n&uacute;mero enteros, n&uacute;meros reales y caracteres. Ahora vamos a ver m&aacute;s detalles sobre qu&eacute; podemos mostrar y c&oacute;mo hacerlo:</p>
+<p>Los &ldquo;especificadores de formato&rdquo; que podemos usar son:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="53" valign="top"><p>c </p></td>
+    <td width="444" valign="top"><p>Un &uacute;nico car&aacute;cter </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>d </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal (en base 10) con signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>f </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero real (coma flotante) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>e </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero real en notaci&oacute;n exponencial, usando la “e” min&uacute;scula </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>E </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero real en notaci&oacute;n exponencial, usando la “E” may&uacute;scula </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>g </p></td>
+    <td width="444" valign="top"><p>Usa “e” o “f” (el m&aacute;s corto), con “e” min&uacute;scula </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>G </p></td>
+    <td width="444" valign="top"><p>Usa “e” o “f” (el m&aacute;s corto), con “E” may&uacute;scula </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>i </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal con signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>u </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal sin signo (unsigned) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>h </p></td>
+    <td width="444" valign="top"><p>Corto (modificador para un entero) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>l </p></td>
+    <td width="444" valign="top"><p>Largo (modificador para un entero) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>x </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal sin signo en hexadecimal (base 16) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>X </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal sin signo en hexadecimal en may&uacute;sculas </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>o </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal sin signo en octal (base 8) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>s </p></td>
+    <td width="444" valign="top"><p>Una cadena de texto (que veremos en el pr&oacute;ximo tema) </p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>Si usamos %% se mostrar&aacute; el s&iacute;mbolo de porcentaje en pantalla.</p>
+<p>Queda alguna otra posibilidad que todav&iacute;a es demasiado avanzada para nosotros, y que comentaremos mucho m&aacute;s adelante, cuando hablemos de &ldquo;punteros&rdquo;.</p>
+<p>Adem&aacute;s, las &oacute;rdenes de formato pueden tener <strong>modificadores</strong>, que se sit&uacute;an entre el % y la letra identificativa del c&oacute;digo.</p>
+<p>&gt; Si el modificador es un n&uacute;mero, especifica la anchura m&iacute;nima en la que se escribe ese argumento (por ejemplo: %5d).<br />
+&gt; Si ese n&uacute;mero empieza por 0, los espacios sobrantes (si los hay) de la anchura m&iacute;nima se rellenan con 0 (por ejemplo: %07d).<br />
+&gt; Si ese n&uacute;mero tiene decimales, indica el n&uacute;mero de d&iacute;gitos totales y decimales si los que se va a escribir es un n&uacute;mero (por ejemplo %5.2f), o la anchura m&iacute;nima y m&aacute;xima si se trata de una cadena de caracteres (como %10.10s).<br />
+&gt; Si el n&uacute;mero es negativo, la salida se justificar&aacute; a la izquierda, dejando espacios en blanco al final (en caso contrario, si no se dice nada, se justifica a la derecha, dejando los espacios al principio).</p>
+<p>Vamos a ver un ejemplo de todo esto:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 36:      */
+/*  C036.C                   */
+/*                           */
+/*  Detalles de "printf"     */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    int   entero = 1234;
+    int   enteroNeg = -1234;
+    float real = 234.567;
+    char  letra = 'E';
+    int   contador;
+
+    printf("El número entero vale %d en notación decimal,\n", entero);
+    printf("  y %o en notación octal,\n", entero);
+    printf("  y %x en notación hexadecimal,\n", entero);
+    printf("  y %X en notación hexadecimal en mayúsculas,\n", entero);
+    printf("  y %ld si le hacemos que crea que es entero largo,\n", entero);
+    printf("  y %10d si obligamos a una cierta anchura,\n", entero);
+    printf("  y %-10d si ajustamos a la izquierda.\n", entero);
+    printf("El entero negativo vale %d\n", enteroNeg);
+    printf("  y podemos hacer que crea que es positivo: %u (incorrecto).\n",
+        enteroNeg);
+    printf("El número real vale %f en notación normal\n", real);
+    printf("  y %5.2f si limitamos a dos decimales,\n", real);    
+    printf("  y %e en notación científica (exponencial).\n", real);
+    printf("La letra es %c y un texto es %s.\n", letra, "Hola");
+    printf("  Podemos poner \"tanto por ciento\": 50%%.\n");
+        
+    return 0;
+}
+</code></pre></p>
+
+<p>El resultado de este programa ser&iacute;a:</p>
+<p><pre><code>El n&uacute;mero entero vale 1234 en notaci&oacute;n decimal,<br />
+  y 2322 en notaci&oacute;n octal,<br />
+  y 4d2 en notaci&oacute;n hexadecimal,<br />
+  y 4D2 en notaci&oacute;n hexadecimal en may&uacute;sculas,<br />
+  y 1234 si le hacemos que crea que es entero largo,<br />
+  y 1234 si obligamos a una cierta anchura,<br />
+  y 1234 si ajustamos a la izquierda.<br />
+  El entero negativo vale -1234<br />
+  y podemos hacer que crea que es positivo: 4294966062 (incorrecto).<br />
+  El n&uacute;mero real vale 234.567001 en notaci&oacute;n normal<br />
+  y 234.57 si limitamos a dos decimales,<br />
+  y 2.345670e+002 en notaci&oacute;n cient&iacute;fica (exponencial).<br />
+  La letra es E y el texto Hola.<br />
+  Podemos poner &quot;tanto por ciento&quot;: 50%.<br /></code></pre>
+
+<p>Casi todo es f&aacute;cil de seguir, pero a&uacute;n as&iacute; vemos alguna cosa desconcertante... </p>
+<p>Por ejemplo, &iquest;por qu&eacute; el n&uacute;mero real aparece como 234.567001, si nosotros lo hemos definido como 234.567? Hay que recordar que los n&uacute;meros reales se almacenan con una cierta p&eacute;rdida de precisi&oacute;n. En un &ldquo;float&rdquo; s&oacute;lo se nos garantiza que unas 6 cifras sean correctas. Si mostramos el n&uacute;mero con m&aacute;s de 6 cifras (estamos usando 9), puede que el resultado no sea totalmente correcto. Si esta p&eacute;rdida de precisi&oacute;n es demasiado grande para el uso que queramos darle, deberemos usar otro tipo de datos, como double.</p>
+<p>Lo de que el n&uacute;mero negativo quede mal cuando lo intentamos escribir como positivo, tambi&eacute;n nos suena conocido: si el primer bit de un n&uacute;mero con signo es uno, indica que es un n&uacute;mero negativo, mientras que en un n&uacute;mero positivo el primer bit es la cifra binaria m&aacute;s grande (lo que se conoce como &ldquo;el bit m&aacute;s significativo&rdquo;). Por eso, tanto el n&uacute;mero -1234 como el 4294966062 se traducen en la misma secuencia de ceros y unos, que la sentencia &ldquo;printf&rdquo; interpreta de una forma u otra seg&uacute;n le digamos que el n&uacute;mero el positivo o negativo.<br />
+    <br />
+    Como curiosidad, ese n&uacute;mero 4294966062 ser&iacute;a un valor distinto (64302) si us&aacute;ramos un compilador de 16 bits en vez de uno de 32, porque ser&iacute;a una secuencia de 16 ceros y unos, en vez de una secuencia de 32 ceros y unos. <br />
+</p>
+<p>Otra opci&oacute;n m&aacute;s avanzada es que si usamos un asterisco (*) para indicar la anchura o la precisi&oacute;n, los primeros datos de la lista ser&aacute;n los valores que se tomen para indicar la anchura y la precisi&oacute;n real que se usar&aacute;n:</p>
+<p>int minimo = 5;<br />
+  int m&aacute;ximo = 10;<br />
+  printf(&quot;%*.*s&quot;, minimo, maximo, &quot;mensaje&quot;);<br />
+</p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Un programa que pida al usuario un n&uacute;mero entero y muestre sus equivalentes en formato hexadecimal y en octal. Deber&aacute; seguir pidiendo (y convirtiendo) n&uacute;meros hasta que se introduzca 0. </li>
+  <li> Un programa que pida al usuario 2 n&uacute;meros reales y muestre su divisi&oacute;n con 2 decimales (excepto si el segundo es 0; en ese caso, deber&aacute; decir “no se puede dividir”). </li>
+</ul>
+<p>&nbsp; </p>
+<h3>4.2. scanf</h3>
+<p>Como ya sabemos, el uso de &ldquo;scanf&rdquo; recuerda mucho al de &ldquo;printf&rdquo;, salvo porque hay que a&ntilde;adir el s&iacute;mbolo &amp; antes de los nombres de las variables en las que queremos almacenar los datos. Aun as&iacute;, los c&oacute;digos de formato no son exactamente los mismos. Vamos a ver los m&aacute;s importantes:</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="53" valign="top"><p>c </p></td>
+    <td width="444" valign="top"><p>Un &uacute;nico car&aacute;cter </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>d</p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal (base 10) con signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>D </p></td>
+    <td width="444" valign="top"><p>Un entero largo en base 10 sin signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>f </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero real (coma flotante) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>e,E </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero real en notaci&oacute;n exponencial </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>g,G </p></td>
+    <td width="444" valign="top"><p>Permite “e” o “f” </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>i </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero con signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>I </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero largo con signo </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>u </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal sin signo (unsigned) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>U </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero decimal largo sin signo (unsigned) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>h </p></td>
+    <td width="444" valign="top"><p>Corto (modificador, para un entero) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>l </p></td>
+    <td width="444" valign="top"><p>Largo (modificador, para un entero) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>x </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero sin signo en hexadecimal (base 16) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>X </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero largo sin signo en hexadecimal </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>o </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero sin signo en octal (base 8) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>O </p></td>
+    <td width="444" valign="top"><p>Un n&uacute;mero entero largo sin signo en octal (base 8) </p></td>
+  </tr>
+  <tr>
+    <td width="53" valign="top"><p>s </p></td>
+    <td width="444" valign="top"><p>Una cadena de texto (que veremos en el pr&oacute;ximo tema) </p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>Como vemos, la diferencia m&aacute;s importante es que si en vez de un entero queremos un entero largo, se suele usar el mismo car&aacute;cter escrito en may&uacute;sculas.</p>
+<p>Al igual que en &ldquo;printf&rdquo;, se puede indicar un n&uacute;mero antes del identificador, que nos servir&iacute;a para indicar la cantidad m&aacute;xima de caracteres a leer. Por ejemplo, &ldquo;scanf(&quot;%10s&quot;, &amp;texto)&rdquo; nos permitir&iacute;a leer un texto de un tama&ntilde;o m&aacute;ximo de 10 letras.</p>
+<p>Aun as&iacute;, &ldquo;scanf&rdquo; a veces da resultados desconcertantes, por lo que no es la orden m&aacute;s adecuada cuando se pretende crear un entorno amigable. M&aacute;s adelante veremos formas alternativas de leer del teclado.</p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<ul>
+  <li> Un programa que pida al usuario un n&uacute;mero hexadecimal y muestre su equivalente en base 10. </li>
+  <li> Un programa que pida al usuario un n&uacute;mero octal y muestre su equivalente en base 10. </li>
+  <li> Un programa que pida al usuario una letra, despu&eacute;s le pida una segunda letra, y las muestre en el orden contrario al que se introdujeron. </li>
+</ul>
+<h3>4.3. putchar</h3>
+<p>Es una forma sencilla de escribir un &uacute;nico car&aacute;cter en la pantalla:</p>
+<p>putchar('A');</p>
+<p>o si usamos una variable:</p>
+<p>putchar(x);</p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<p>&#149;&nbsp; Un programa que escriba las letras de la A (a may&uacute;scula) a la Z (z may&uacute;scula), usando “for” y “putchar”. </p>
+<h3>4.4. getchar</h3>
+<p>Lo habíamos usado desde un principio en algunos entornos de programación para Windows, como forma de detener momentáneamente la ejecución. Realmente es más que eso: lee el siguiente car&aacute;cter que est&eacute; disponible en el buffer del teclado (una memoria intermedia que almacena todas las pulsaciones de teclas que hagamos):</p>
+<p>letra = getchar();</p>
+<p>Si no quedaran m&aacute;s letras por leer, el valor que nos dar&iacute;a es EOF, una constante predefinida que nos indicar&aacute; el final de un fichero (End Of File) o, en este caso, de la entrada disponible por teclado. Se usar&iacute;a as&iacute;:</p>
+<p>letra = getchar();<br />
+  if (letra==EOF) printf(&quot;No hay m&aacute;s letras&quot;);</p>
+<p>&nbsp;</p>
+<p>Vamos a ver un ejemplo del uso de getchar y de putchar:<br />
+</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 37:      */
+/*  C037.C                   */
+/*                           */
+/*  getchar y putchar        */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main()
+{
+    char letra1, letra2;
+
+    printf("Introduce dos letras y pulsa Intro: ");
+    letra1 = getchar();
+    letra2 = getchar();
+    printf("Has tecleado: ");
+    putchar(letra1);
+    printf(" y también %c", letra2);
+        
+    return 0;
+}
+</code></pre></p>
+<p>Vemos que aunque &ldquo;getchar&rdquo; lea tecla a tecla, no se analiza lo que hemos tecleado hasta que se pulsa Intro. Si tecleamos varias letras, la primera vez que usemos getchar nos dir&aacute; cual era la primera, la siguiente vez que usemos getchar nos dir&aacute; la segunda letra y as&iacute; sucesivamente. </p>
+<p>En este ejemplo s&oacute;lo leemos dos letras. Si se teclean tres o m&aacute;s, las &uacute;ltimas se pierden. Si se teclea una letra y se pulsa Intro, &ldquo;letra1&rdquo; ser&aacute; la letra tecleada... &iexcl;y &ldquo;letra2&rdquo; ser&aacute; el Intro (el car&aacute;cter &lsquo;\n&rsquo; de avance de l&iacute;nea)! </p>
+<p>Estos problemas tambi&eacute;n los tenemos si intentamos leer letra a letra con &ldquo;scanf(&quot;%c&quot;, ...&rdquo; as&iacute; que para hacer esto de forma fiable necesitaremos otras &oacute;rdenes, que no son est&aacute;ndar en C sino que depender&aacute;n de nuestro compilador y nuestro sistema operativo, y que veremos m&aacute;s adelante.</p>
+<p>Una alternativa ser&iacute;a una segunda orden “getchar” para absorber la pulsaci&oacute;n de la tecla Intro:</p>
+<p>tecla = getchar(); getchar(); </p>
+<p>&nbsp; </p>
+<p>O bien leer dos caracteres con “scanf” (la letra esperada y el Intro que queremos absorber):</p>
+<p>scanf(&quot;%c%c&quot;, &amp;tecla); </p>
+<p>&nbsp; </p>
+<p><strong>Ejercicios propuestos: </strong></p>
+<p>&#149;&nbsp; Un programa que pida al usuario 4 letras (usando “getchar”) y las muestre en orden inverso (por ejemplo, si las letras son “h o l a”, escribir&iacute;a “aloh”). </p>
+<p></p>
+</div>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   26705 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc03g.html">Anterior</a></li>
+                    <li><a href="cc05.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+</html>
+        

@@ -1,0 +1,464 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 11 - Caracteristicas avanzadas</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="or,and,not,desplazamiento,directiva,preprocesador,makefile,coma" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 11 - Caracteristicas avanzadas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc11b.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc11d.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>11.3. Programas a partir de varios fuentes</h3>
+<h4>11.3.1. Creaci&oacute;n desde la l&iacute;nea de comandos</h4>
+<p>Es bastante frecuente que un programa no est&eacute; formado por un &uacute;nico fuente, sino por varios. Puede ser por hacer el programa m&aacute;s modular debido a su complejidad, por reparto de trabajo entre varias personas, etc.</p>
+<p>En cualquier caso, la gran mayor&iacute;a de los compiladores de C ser&aacute;n capaces de juntar varios fuentes independientes y crear un &uacute;nico ejecutable a partir de todos ellos. Vamos a ver c&oacute;mo conseguirlo.</p>
+<p>Empezaremos por el caso m&aacute;s sencillo: supondremos que tenemos un programa principal, y otros dos m&oacute;dulos auxiliares en los que hay algunas funciones que se usar&aacute;n desde el programa principal.<br />
+    <br />
+  Por ejemplo, el primer m&oacute;dulo (uno.c) podr&iacute;a ser simplemente:<br />
+  <br />
+  
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 98a:     */
+/*  uno.c                    */
+/*                           */
+/*  Programa a partir de     */
+/*  varios fuentes (1)       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+void uno()
+{
+     printf("Función uno\n");
+}
+</code></pre></p>
+y el segundo m&oacute;dulo (dos.c):<br />
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 98b:     */
+/*  dos.c                    */
+/*                           */
+/*  Programa a partir de     */
+/*  varios fuentes (2)       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+void dos(int numero)
+{
+   printf("Función dos, con el parámetro %d\n", numero);
+}
+</code></pre></p>
+
+Un programa principal simple, que los utilizase, ser&iacute;a (TRES.C):<br />
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 98c:     */
+/*  tres.c                   */
+/*                           */
+/*  Programa a partir de     */
+/*  varios fuentes (3)       */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+ 
+int main()
+{
+   printf("Estamos en el cuerpo del programa.\n");
+   uno();
+   dos(3);
+   return 0;
+}
+</code></pre></p>
+<p>Para compilar los tres fuentes y crear un &uacute;nico ejecutable, desde la mayor&iacute;a de los compiladores de Dos o Windows bastar&iacute;a con acceder a la l&iacute;nea de comandos, y teclear el nombre del compilador seguido por los de los tres fuentes:<br />
+    <br />
+  TCC UNO DOS TRES<br />
+  <br />
+  (TCC es el nombre del compilador, en el caso de Turbo C y de Turbo C++; ser&iacute;a BCC para el caso de Borland C++, SCC para Symantec C++, etc.).</p>
+<p>Entonces el compilador convierte los tres ficheros fuente (.C) a ficheros objeto (.OBJ), los enlaza y crea un &uacute;nico ejecutable, que se llamar&iacute;a UNO.EXE (porque UNO es el nombre del primer fuente que hemos indicado al compilador), y cuya salida en pantalla ser&iacute;a:<br />
+    <br />
+  Estamos en el cuerpo del programa.<br />
+  Funci&oacute;n uno<br />
+  Funci&oacute;n dos, con el par&aacute;metro 3<br />
+  <br />
+  En el caso de GCC para Linux (o de alguna de sus versiones para Windows, como MinGW, o DevC++, que se basa en &eacute;l), tendremos que indicarle el nombre de los ficheros de entrada (con extensi&oacute;n) y el nombre del fichero de salida, con la opci&oacute;n &ldquo;-o&rdquo;:<br />
+  <br />
+  gcc uno.c dos.c tres.c -o resultado<br />
+</p>
+<p>Pero puede haber compiladores en los que la situaci&oacute;n no sea tan sencilla. Puede ocurrir que al compilar el programa principal, que era:</p>
+<p> int main()<br />
+  {<br />
+  printf(&quot;Estamos en el cuerpo del programa.\n&quot;);<br />
+  uno();<br />
+  dos(3);<br />
+  return 0;<br />
+  }</p>
+<p>el compilador nos d&eacute; un mensaje de error, diciendo que no conoce las funciones &quot;uno()&quot; y &quot;dos()&quot;. No deber&iacute;a ser nuestro caso, si al compilar le hemos indicado los fuentes en el orden correcto (TCC UNO DOS TRES), pero puede ocurrir si se los indicamos en otro orden, o bien si tenemos muchos fuentes, que dependan los unos de los otros. <br />
+</p>
+<p>La forma de evitarlo ser&iacute;a indic&aacute;ndole que esas funciones existen, y que ya le llegar&aacute;n m&aacute;s tarde los detalles en concreto sobre c&oacute;mo funcionan.<br />
+    <br />
+    Para decirle que existen, lo que har&iacute;amos ser&iacute;a incluir en el programa principal los prototipos de las funciones (las cabeceras, sin el desarrollo) que se encuentran en otros m&oacute;dulos, as&iacute;:</p>
+    
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 98d:     */
+/*  tres.c                   */
+/*                           */
+/*  Programa a partir de     */
+/*  varios fuentes (3b)      */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+ 
+void uno();              /* Prototipos de las funciones externas */
+void dos(int numero);
+ 
+int main()               /* Cuerpo del programa */
+{
+   printf("Estamos en el cuerpo del programa.\n");
+   uno();
+   dos(3);
+   return 0;
+}
+</code></pre></p>
+Esta misma soluci&oacute;n de poner los prototipos al principio del programa nos puede servir para casos en los que, teniendo un &uacute;nico fuente, queramos declarar el cuerpo del programa antes que las funciones auxiliares:<br />
+    <br />
+    
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 99:      */
+/*  c099.c                   */
+/*                           */
+/*  Funciones después de     */
+/*  "main",usando prototipos */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+ 
+#include <stdio.h>
+ 
+void uno();              /* Prototipos de las funciones */
+void dos(int numero);
+ 
+int main()               /* Cuerpo del programa */
+{
+   printf("Estamos en el cuerpo del programa.\n");
+   uno();
+   dos(3);
+   return 0;
+}
+ 
+void uno()
+{
+   printf("Función uno\n");
+}
+ 
+void dos(int numero)
+{
+   printf("Función dos, con el parámetro %d\n", numero);
+}
+</code></pre></p>    
+
+<p>En ciertos compiladores puede que tengamos problemas con este programa si no incluimos los prototipos al principio, porque en &quot;main()&quot; se encuentra la llamada a &quot;uno()&quot;, que no hemos declarado. Al poner los prototipos antes, el compilador ya sabe qu&eacute; tipo de funci&oacute;n es &quot;uno()&quot; (sin par&aacute;metros, no devuelve ning&uacute;n valor, etc.), y que los datos concretos los encontrar&aacute; m&aacute;s adelante.<br />
+    <br />
+    De hecho, si quitamos esas dos l&iacute;neas, este programa no compila en Turbo C++ 1.01 ni en Symantec C++ 6.0, porque cuando se encuentra en &quot;main()&quot; la llamada a &quot;uno()&quot;, da por supuesto que va a ser una funci&oacute;n de tipo &quot;int&quot;. Como despu&eacute;s le decimos que es &quot;void&quot;, protesta. (En cambio, GCC, que suele ser m&aacute;s exigente, en este caso se limita a avisarnos, pero compila el programa sin problemas).<br />
+</p>
+<p>La soluci&oacute;n habitual en estos casos en que hay que declarar prototipos de funciones (especialmente cuando se trata de funciones compartidas por varios fuentes) suele ser agrupar estos fuentes en &quot;ficheros de cabecera&quot;. Por ejemplo, podr&iacute;amos crear un fichero llamado EJEMPLO.H que contuviese:</p>
+<p> <span class="nsource">/* EJEMPLO.H */<br />
+    <br />
+  void uno(); /* Prototipos de las funciones */<br />
+  void dos(int numero);</span></p>
+<p>y en el fuente principal escribir&iacute;amos:</p>
+<p> <span class="nsource">#include &lt;stdio.h&gt;<br />
+  #include &quot;ejemplo.h&quot;<br />
+  <br />
+  int main()<br />
+  {<br />
+  printf(&quot;Estamos en el cuerpo del programa.\n&quot;);<br />
+  uno();<br />
+  dos(3);<br />
+  return 0;<br />
+  }</span></p>
+<p>Aqu&iacute; es importante recordar la diferencia en la forma de indicar los dos ficheros de cabecera:<br />
+    <br />
+  &lt;stdio.h&gt; Se indica entre corchetes angulares porque el fichero de cabecera es propio del compilador (el ordenador lo buscar&aacute; en los directorios del compilador).<br />
+    <br />
+  &quot;ejemplo.h&quot; Se indica entre comillas porque el fichero H es nuestro (el ordenador lo buscar&aacute; en el mismo directorio que est&aacute;n nuestros fuentes).<br />
+</p>
+<p>Finalmente, conviene hacer una consideraci&oacute;n: si varios fuentes distintos necesitaran acceder a EJEMPLO.H, deber&iacute;amos evitar que este fichero se incluyese varias veces. Esto se suele conseguir definiendo una variable simb&oacute;lica la primera vez que se enlaza, de modo que podamos comprobar a partir de entonces si dicha variable est&aacute; definida, con #ifdef, as&iacute;:</p>
+<p class="nsource"> /* EJEMPLO.H mejorado */<br />
+    <br />
+  #ifndef _EJEMPLO_H<br />
+  #define _EJEMPLO_H<br />
+  <br />
+  void uno(); /* Prototipos de las funciones */<br />
+  void dos(int numero);<br />
+  <br />
+  #endif</p>
+<h4>11.3.2. Introducci&oacute;n al uso de la herramienta Make</h4>
+<p>Make es una herramienta que muchos compiladores incorporan y que nos puede ser de utilidad cuando se trata de proyectos de un cierto tama&ntilde;o, o al menos creados a partir de bastantes fuentes.<br />
+    <br />
+    Su uso normal consiste simplemente en teclear MAKE. Entonces esta herramienta buscar&aacute; su fichero de configuraci&oacute;n, un fichero de texto que deber&aacute; llamarse &quot;makefile&quot; (podemos darle otro nombre; ya veremos c&oacute;mo). Este fichero de configuraci&oacute;n le indica las dependencias entre ficheros, es decir, qu&eacute; ficheros es necesario utilizar para crear un determinado &quot;objetivo&quot;. Esto permite que no se recompile todos y cada uno de los fuentes si no es estrictamente necesario, sino s&oacute;lo aquellos que se han modificado desde la &uacute;ltima compilaci&oacute;n.<br />
+</p>
+<p>En general, el contenido del fichero &quot;makefile&quot; ser&aacute; algo parecido a esto:</p>
+<p class="nsource">objetivo: dependencias<br />
+&nbsp;&nbsp;&nbsp; &oacute;rdenes</p>
+<p>(En la primera l&iacute;nea se escribe el objetivo, seguido por dos puntos y por la lista de dependencias; en la segunda l&iacute;nea se escribe la orden que hay que dar en caso de que sea necesario recompilar, precedida por un tabulador). Si queremos a&ntilde;adir alg&uacute;n comentario, basta con precederlos con el s&iacute;mbolo #.</p>
+<p>Vamos a crear un ejecutable llamado PRUEBA.EXE a partir de cuatro ficheros fuente llamados UNO.C, DOS.C, TRES.C, CUATRO.C, usando Turbo C++.</p>
+<p>As&iacute;, nuestro primer &ldquo;makefile&rdquo; podr&iacute;a ser un fichero que contuviese el siguiente texto:</p>
+<p class="nsource">PRUEBA.EXE: UNO.C DOS.C TRES.C CUATRO.C<br />
+ &nbsp;&nbsp;&nbsp; TCC -ePRUEBA.EXE UNO.C DOS.C TRES.C CUATRO.C</p>
+<p>Es decir: nuestro objetivo es conseguir un fichero llamado PRUEBA.EXE, que queremos crear a partir de varios ficheros llamados UNO.C, DOS.C, TRES.C y CUATRO.C. La orden que queremos dar es la que aparece en la segunda l&iacute;nea, y que permite, mediante el compilador TCC, crear un ejecutable llamado PRUEBA.EXE a partir de cuatro fuentes con los nombres anteriores. (La opci&oacute;n &quot;-e&quot; de Turbo C++ permite indicar el nombre que queremos que tenga el ejecutable; si no, se llamar&iacute;a UNO.EXE, porque tomar&iacute;a su nombre del primero de los fuentes).</p>
+<p>&iquest;Para qu&eacute; nos sirve esto? De momento, nos permite ahorrar tiempo: cada vez que tecleamos MAKE, se lee el fichero MAKEFILE y se compara la fecha (y hora) del objetivo con la de las dependencias; si el fichero objetivo no existe o si es m&aacute;s antiguo que alguna de las dependencias, se realiza la orden que aparece en la segunda l&iacute;nea (de modo que evitamos escribirla completa cada vez).</p>
+<p>En nuestro caso, cada vez que tecleemos MAKE, ocurrir&aacute; una de estas tres posibilidades</p>
+<ul>
+  <li> Si no existe el fichero PRUEBA.EXE, se crea uno nuevo utilizando la orden de la segunda l&iacute;nea.<br />
+ </li>
+  <li>Si ya existe y es m&aacute;s reciente que los cuatro fuentes, no se recompila ni se hace nada, todo queda como est&aacute;.<br />
+  </li>
+  <li> Si ya existe, pero se ha modificado alguno de los fuentes, se recompilar&aacute; de nuevo para obtener un fichero PRUEBA.EXE actualizado.<br />
+  </li>
+</ul>
+<p>Eso s&iacute;, estamos dando por supuesto varias cosas &ldquo;casi evidentes&rdquo;:</p>
+<ul>
+  <li> Que tenemos la herramienta MAKE y est&aacute; accesible (en el directorio actual o en el PATH).<br />
+</li>
+  <li> Que hemos creado el fichero MAKEFILE.<br />
+</li>
+  <li> Que existen los cuatro ficheros fuente UNO.C, DOS.C, TRES.C y CUATRO.C.<br />
+</li>
+  <li> Que existe el compilador TCC y est&aacute; accesible (en el directorio actual o en el PATH).<br />
+  </li>
+</ul>
+<p>Vayamos mejorando este MAKEFILE rudimentario. La primera mejora es que si la lista de dependencias no cabe en una &uacute;nica linea, podemos partirla en dos, empleando la barra invertida \</p>
+<p>PRUEBA.EXE: UNO.C DOS.C \ #Objetivo y dependencias<br />
+  TRES.C CUATRO.C # Mas dependencias<br />
+  TCC -ePRUEBA.EXE UNO.C DOS.C TRES.C CUATRO.C #Orden a dar<br />
+</p>
+<p>Al crear el MAKEFILE hab&iacute;amos ganado en &ldquo;velocidad de tecleo&rdquo; y en que no se recompilase todo nuevamente si no se ha modificado nada. Pero en cuanto un fuente se modifica, nuestro MAKEFILE recompila todos otra vez, aunque los dem&aacute;s no hayan cambiado. Esto podemos mejorarlo a&ntilde;adiendo un paso intermedio (la creaci&oacute;n cada fichero objeto OBJ) y m&aacute;s objetivos (cada fichero OBJ, a partir de cada fichero fuente), as&iacute;:</p>
+<p># Creacion del fichero ejecutable</p>
+<p>prueba.exe: uno.obj dos.obj tres.obj<br />
+  tcc -eprueba.exe uno.obj dos.obj tres.obj</p>
+<p># Creacion de los ficheros objeto</p>
+<p>uno.obj: uno.c<br />
+  tcc -c uno.c</p>
+<p>dos.obj: dos.c<br />
+  tcc -c dos.c</p>
+<p>tres.obj: tres.c<br />
+  tcc -c tres.c<br />
+</p>
+<p>Estamos detallando los pasos que normalmente se dan al compilar, y que muchos compiladores realizan en una &uacute;nica etapa, sin que nosotros nos demos cuenta: primero se convierten los ficheros fuente (ficheros con extensi&oacute;n C) a c&oacute;digo m&aacute;quina (c&oacute;digo objeto, ficheros con extensi&oacute;n OBJ) y finalmente los ficheros objeto se enlazan entre s&iacute; (y con las bibliotecas propias del lenguaje) para dar lugar al programa ejecutable (en MsDos y Windows normalmente ser&aacute;n ficheros con extensi&oacute;n EXE).</p>
+<p>As&iacute; conseguimos que cuando modifiquemos un &uacute;nico fuente, se recompile s&oacute;lo este (y no todos los dem&aacute;s, que pueden ser muchos) y despu&eacute;s se pase directamente al proceso de enlazado, con lo que se puede ganar mucho en velocidad si los cambios que hemos hecho al fuente son peque&ntilde;os.</p>
+<p>(Nota: la opci&oacute;n &quot;-c&quot; de Turbo C++ es la que le indica que s&oacute;lo compile los ficheros de C a OBJ, pero sin enlazarlos despu&eacute;s).<br />
+</p>
+<p>Si tenemos varios MAKEFILE distintos (por ejemplo, cada uno para un compilador diferente, o para versiones ligeramente distintas de nuestro programa), nos interesar&aacute; poder utilizar nombres distintos.</p>
+<p>Esto se consigue con la opci&oacute;n &quot;-f&quot; de la orden MAKE, por ejemplo si tecleamos</p>
+<p>MAKE -fPRUEBA</p>
+<p>la herramienta MAKE buscar&iacute;a un fichero de configuraci&oacute;n llamado PRUEBA o bien PRUEBA.MAK.<br />
+</p>
+<p>Podemos mejorar m&aacute;s a&uacute;n estos ficheros de configuraci&oacute;n. Por ejemplo, si precedemos la orden por @, dicha orden no aparecer&aacute; escrita en pantalla</p>
+<p>PRUEBA.EXE: UNO.C DOS.C TRES.C CUATRO.C<br />
+  @TCC -ePRUEBA.EXE UNO.C DOS.C TRES.C CUATRO.C<br />
+</p>
+<p>Y si precedemos la orden por &amp; , se repetir&aacute; para los ficheros indicados como &quot;dependencias&quot;. Hay que usarlo en conjunci&oacute;n con la macro $**, que hace referencia a todos los ficheros dependientes, o $?, que se refiere a los ficheros que se hayan modificado despu&eacute;s que el objetivo.</p>
+<p>copiaSeguridad: uno.c dos.c tres.c<br />
+&amp;copy $** a:\fuentes<br />
+</p>
+<p>Una &uacute;ltima consideraci&oacute;n: podemos crear nuestras propias macros, con la intenci&oacute;n de que nuestro MAKEFILE resulte m&aacute;s f&aacute;cil de leer y de mantener, de modo que una versi&oacute;n m&aacute;s legible de nuestro primer fichero ser&iacute;a:</p>
+<p>FUENTES = uno.c dos.c tres.c<br />
+  COMPIL = tcc</p>
+<p>prueba.exe: $(FUENTES)<br />
+  $(COMPIL) -eprueba.exe $(FUENTES)</p>
+<p>Es decir, las macros se definen poniendo su nombre, el signo igual y su definici&oacute;n, y se emplean precedi&eacute;ndolas de $ y encerr&aacute;ndolas entre par&eacute;ntesis.<br />
+</p>
+<p>Pero todav&iacute;a hay m&aacute;s que no hemos visto. Las herramientas MAKE suelen permitir otras posibilidades, como la comprobaci&oacute;n de condiciones (con las directivas &quot;!if&quot;, &quot;!else&quot; y similares) o la realizaci&oacute;n de operaciones (con los operadores est&aacute;ndar de C: +, *, %, &gt;&gt;, etc). Quien quiera profundizar en estos y otros detalles, puede recurrir al manual de la herramienta MAKE que incorpore su compilador.<br />
+</p>
+<p>&iquest;Alguna diferencia en Linux? Pocas. S&oacute;lo hay que recordar que en los sistemas Unix se distingue entra may&uacute;sculas y min&uacute;sculas, por lo que la herramienta se llama &ldquo;make&rdquo;, y el fichero de datos &ldquo;Makefile&rdquo; o &ldquo;makefile&rdquo; (preferible la primera nomenclatura, con la primera letra en may&uacute;sculas). De igual modo, el nombre del compilador y los de los fuentes se deben escribir dentro del &ldquo;Makefile&rdquo; exactamente como se hayan creado (habitualmente en min&uacute;sculas).</p>
+<h4> <br />
+
+  11.3.3. Introducci&oacute;n a los &ldquo;proyectos&rdquo;</h4>
+<p>En la gran mayor&iacute;a de los compiladores que incorporan un &ldquo;entorno de desarrollo&rdquo;, existe la posibilidad de conseguir algo parecido a lo que hace la herramienta MAKE, pero desde el propio entorno. Es lo que se conoce como &ldquo;crear un proyecto&rdquo;.</p>
+<p>Se suele poder hacer desde desde un men&uacute; llamado &ldquo;Proyecto&rdquo;, donde existir&aacute; una opci&oacute;n &ldquo;Nuevo proyecto&rdquo; (en ingl&eacute;s Project / New Project), o a veces desde el men&uacute; Archivo.</p>
+<p>En muchas ocasiones, tendremos varios tipos de proyectos disponibles, gracias a que alg&uacute;n asistente deje el esqueleto del programa preparado para nosotros.</p>
+<p>Desde esta primera ventana tambi&eacute;n le daremos ya un nombre al proyecto (ser&aacute; el nombre que tendr&aacute; el fichero ejecutable), y tambi&eacute;n desde aqu&iacute; podemos a&ntilde;adir los fuentes que formar&aacute;n parte del proyecto, si los tuvi&eacute;ramos creados desde antes (suele ser algo como &ldquo;A&ntilde;adir fichero&rdquo;, o en ingl&eacute;s &ldquo;Add Item&rdquo;).</p>
+<p>En una cierta ventana de la pantalla tendremos informaci&oacute;n sobre los fuentes que componen nuestro proyecto (en el ejemplo, tomado de Turbo C++ Second Edition&acute;, esta ventana aparece en la parte inferior de la pantalla). </p>
+<p>En otros entornos, como Anjuta o KDevelop, esta informaci&oacute;n aparece en la parte izquierda de la pantalla:</p>
+<p>&nbsp;</p>
+<p>Las ventajas que obtenemos al usar &ldquo;proyectos&rdquo; son:</p>
+<ul>
+  <li> La posibilidad de manipular varios fuentes a la vez y de recompilar un programa que est&eacute; formado por todos ellos, sin necesidad de salir del entorno de desarrollo.<br />
+      </li>
+  <li> La ventaja a&ntilde;adida de que el gestor de proyectos s&oacute;lo recompilar&aacute; aquellos fuentes que realmente se han modificado, como coment&aacute;bamos que hac&iacute;a la herramienta MAKE.</li>
+</ul>
+
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   8784 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc11b.html">Anterior</a></li>
+                    <li><a href="cc11d.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+</html>
+        

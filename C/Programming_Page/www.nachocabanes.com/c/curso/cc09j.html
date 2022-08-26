@@ -1,0 +1,405 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc09j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 9 - Punteros</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 9 - Punteros - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="punteros,malloc,free,argc,argv,pointer,null" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 9 - Punteros          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc09i.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc09k.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>9.10. Estructuras din&aacute;micas habituales 1: las listas enlazadas</h3>
+<p>Ahora vamos a ver dos tipos de estructuras totalmente din&aacute;micas (que puedan aumentar o disminuir realmente de tama&ntilde;o durante la ejecuci&oacute;n del programa). Primero veremos las <strong>listas</strong>, y m&aacute;s adelante los &aacute;rboles binarios. Hay otras muchas estructuras, pero no son dif&iacute;ciles de desarrollar si se entienden bien estas dos.<br />
+    <br />
+    Ahora &ldquo;el truco&rdquo; consistir&aacute; en que dentro de cada dato almacenaremos todo lo que nos interesa, pero tambi&eacute;n una referencia que nos dir&aacute; d&oacute;nde tenemos que ir a buscar el siguiente.</p>
+<p>Ser&iacute;a algo como:</p>
+<p> (Posici&oacute;n: 1023).<br />
+  Nombre : 'Nacho Cabanes'<br />
+  Web : 'www.nachocabanes.com'<br />
+  SiguienteDato : 1430</p>
+<p>Este dato est&aacute; almacenado en la posici&oacute;n de memoria n&uacute;mero 1023. En esa posici&oacute;n guardamos el nombre y la direcci&oacute;n (o lo que nos interese) de esta persona, pero tambi&eacute;n una informaci&oacute;n extra: la siguiente ficha se encuentra en la posici&oacute;n 1430.</p>
+<p>As&iacute;, es muy c&oacute;modo recorrer la lista de forma <strong>secuencial</strong>, porque en todo momento sabemos d&oacute;nde est&aacute; almacenado el siguiente dato. Cuando lleguemos a uno para el que no est&eacute; definido cual es el siguiente dato, quiere decir que se ha acabado la lista.<br />
+    <br />
+    Por tanto, en cada dato tenemos un enlace con el dato siguiente. Por eso este tipo de estructuras recibe el nombre de &ldquo;listas simplemente enlazadas&rdquo; o <strong>listas simples</strong>. Si tuvieramos enlaces hacia el dato siguiente y el posterior, se tratar&iacute;a de una &ldquo;lista doblemente enlazada&rdquo; o<strong> lista doble</strong>, que pretende hacer m&aacute;s sencillo el recorrido hacia delante o hacia atr&aacute;s.</p>
+<p>Con este tipo de estructuras de informaci&oacute;n, hemos perdido la ventaja del acceso directo: ya no podemos saltar directamente a la ficha n&uacute;mero 500. Pero, por contra, podemos tener tantas fichas como la memoria nos permita, y eliminar una (o varias) de ellas cuando queramos, recuperando inmediatamente el espacio que ocupaba.</p>
+<p>Para a&ntilde;adir una ficha, no tendr&iacute;amos m&aacute;s que reservar la memoria para ella, y el compilador de C nos dir&iacute;a &ldquo;le he encontrado sitio en la posici&oacute;n 4079&rdquo;. Entonces nosotros ir&iacute;amos a la &uacute;ltima ficha y le dir&iacute;amos &ldquo;tu siguiente dato va a estar en la posici&oacute;n 4079&rdquo;.</p>
+<p>Esa es la &ldquo;idea intuitiva&rdquo;. Ahora vamos a concretar cosas en forma de programa en C.</p>
+<p>Primero veamos c&oacute;mo ser&iacute;a ahora cada una de nuestras fichas:<br />
+</p>
+<p class="nsource">struct f { /* Estos son los datos que guardamos: */<br />
+ &nbsp;&nbsp; char nombre[30]; /* Nombre, hasta 30 letras */<br />
+ &nbsp;&nbsp; char direccion[50]; /* Direccion, hasta 50 */<br />
+ &nbsp;&nbsp; int edad; /* Edad, un numero &lt; 255 */<br />
+ &nbsp;&nbsp; struct f* siguiente; /* Y direcci&oacute;n de la siguiente */<br />
+  };<br />
+</p>
+<p>La diferencia con un &ldquo;struct&rdquo; normal est&aacute; en el campo &ldquo;siguiente&rdquo; de nuestro registro, que es el que indica donde se encuentra la ficha que va despu&eacute;s de la actual, y por tanto ser&aacute; otro puntero a un registro del mismo tipo, un &ldquo;struct f *&rdquo;.</p>
+<p>Un puntero que &ldquo;no apunta a ning&uacute;n sitio&rdquo; tiene el valor <strong>NULL</strong> (realmente este identificador es una constante de valor 0), que nos servir&aacute; despu&eacute;s para comprobar si se trata del final de la lista: todas las fichas &ldquo;apuntar&aacute;n&rdquo; a la siguiente, menos la &uacute;ltima, que &ldquo;no tiene siguiente&rdquo;, y apuntar&aacute; a NULL.</p>
+<p>Entonces la primera ficha definir&iacute;amos con</p>
+<p class="nsource"> struct f *dato1; /* Va a ser un puntero a ficha */</p>
+<p>y la comenzar&iacute;amos a usar con</p>
+<p> <span class="nsource">dato1 = (struct f*) malloc (sizeof(struct f)); /* Reservamos memoria */<br />
+  strcpy(dato1-&gt;nombre, &quot;Pepe&quot;); /* Guardamos el nombre, */<br />
+  strcpy(dato1-&gt;direccion, &quot;Su casa&quot;); /* la direcci&oacute;n */<br />
+  dato1-&gt;edad = 40; /* la edad */<br />
+  dato1-&gt;siguiente = NULL; /* y no hay ninguna m&aacute;s */</span></p>
+<p>(No deber&iacute;a haber anada nuevo: ya sabemos c&oacute;mo reservar memoria usando &ldquo;malloc&rdquo; y como acceder a los campos de una estructura din&aacute;mica usando -&gt;).</p>
+<p>Ahora que ya tenemos una ficha, podr&iacute;amos <strong>a&ntilde;adir</strong> otra ficha detr&aacute;s de ella. Primero guardamos espacio para la nueva ficha, como antes:</p>
+<p class="nsource"> struct f *dato2;<br />
+    <br />
+  dato2 = (struct f*) malloc (sizeof(struct f)); /* Reservamos memoria */<br />
+  strcpy(dato2-&gt;nombre, &quot;Juan&quot;); /* Guardamos el nombre, */<br />
+  strcpy(dato2-&gt;direccion, &quot;No lo s&eacute;&quot;); /* la direcci&oacute;n */<br />
+  dato2-&gt;edad = 35; /* la edad */<br />
+  dato2-&gt;siguiente = NULL; /* y no hay ninguna m&aacute;s */<br />
+</p>
+<p>y ahora enlazamos la anterior con ella:</p>
+<p class="nsource"> dato1-&gt;siguiente = dato2; </p>
+<p>Si quisieramos introducir los datos <strong>ordenados alfab&eacute;ticamente</strong>, basta con ir comparando cada nuevo dato con los de la lista, e insertarlo donde corresponda. Por ejemplo, para insertar un nuevo dato entre los dos anteriores, har&iacute;amos:</p>
+<p> <span class="nsource">struct f *dato3;</span></p>
+<p class="nsource"> dato3 = (struct f*) malloc (sizeof(struct f)); /* La tercera */<br />
+  strcpy(dato3-&gt;nombre, &quot;Carlos&quot;);<br />
+  strcpy(dato3-&gt;direccion, &quot;Por ah&iacute;&quot;);<br />
+  dato3-&gt;edad = 14;<br />
+  dato3-&gt;siguiente = dato2; /* enlazamos con la siguiente */<br />
+  dato1-&gt;siguiente = dato3; /* y la anterior con ella */<br />
+  printf(&quot;La lista inicialmente es:\n&quot;);<br />
+</p>
+<p>La estructura que hemos obtenido es la siguiente</p>
+<p> Dato1 - Dato3 - Dato2 - NULL<br />
+    <br />
+    Gr&aacute;ficamente:</p>
+<p><img src="cc_lista.gif" width="282" height="41" /></p>
+<p>Es decir: cada ficha est&aacute; enlazada con la siguiente, salvo la &uacute;ltima, que no est&aacute; enlazada con ninguna (apunta a NULL).</p>
+<p> Si ahora quisi&eacute;ramos <strong>borrar</strong> Dato3, tendr&iacute;amos que seguir dos pasos:</p>
+<p> 1.- Enlazar Dato1 con Dato2, para no perder informaci&oacute;n.<br />
+  2.- Liberar la memoria ocupada por Dato3.</p>
+<p> Esto, escrito en &quot;C&quot; ser&iacute;a:</p>
+<p> <span class="nsource">dato1-&gt;siguiente = dato2; /* Borrar dato3: Enlaza Dato1 y Dato2 */<br />
+  free(dato3); /* Libera lo que ocup&oacute; Dato3 */</span></p>
+<p>Hemos empleado tres variables para guardar tres datos. Si tenemos 20 datos, &iquest;necesitaremos 20 variables? &iquest;Y 3000 variables para 3000 datos?</p>
+<p>Ser&iacute;a tremendamente ineficiente, y no tendr&iacute;a mucho sentido. Es de suponer que no sea as&iacute;. En la pr&aacute;ctica, basta con dos variables, que nos indicar&aacute;n el principio de la lista y la posici&oacute;n actual, o incluso s&oacute;lo una para el principio de la lista.</p>
+<p>Por ejemplo, una rutina que <strong>muestre en pantalla</strong> toda la lista se podr&iacute;a hacer de forma recursiva as&iacute;:</p>
+<p class="nsource">void MuestraLista ( struct f *inicial ) {<br />
+ &nbsp;&nbsp; if (inicial!=NULL) { /* Si realmente hay lista */ <br />
+ &nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;Nombre: %s\n&quot;, inicial-&gt;nombre);<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; printf(&quot;Direcci&oacute;n: %s\n&quot;, inicial-&gt;direccion);<br />
+ &nbsp;&nbsp; &nbsp; printf(&quot;Edad: %d\n\n&quot;, inicial-&gt;edad);<br />
+ &nbsp;&nbsp;&nbsp;&nbsp; MuestraLista ( inicial-&gt;siguiente ); /* Y mira el siguiente */<br />
+ &nbsp;&nbsp; }<br />
+  }</p>
+<p>Lo llamar&iacute;amos con &quot;MuestraLista(Dato1)&quot;, y a partir de ah&iacute; el propio procedimiento se encarga de ir mirando y mostrando los siguientes elementos hasta llegar a NULL, que indica el final.</p>
+<p>Antes de seguir, vamos a juntar todo esto en un programa, para comprobar que realmente funciona: a&ntilde;adimos los 3 datos y decimos que los muestre desde el primero; luego borramos el del medio y los volvemos a mostrar:</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 81:      */
+/*  C081.C                   */
+/*                           */
+/*  Primer ejemplo de lista  */
+/*  enlazada simple          */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct f {           /* Estos son los datos que guardamos: */
+  char nombre[30];          /*   Nombre, hasta 30 letras */
+  char direccion[50];       /*   Direccion, hasta 50 */
+  int edad;                 /*   Edad, un numero < 255 */
+  struct f* siguiente;      /*   Y dirección de la siguiente */
+};
+
+struct f *dato1;            /* Va a ser un puntero a ficha */
+struct f *dato2;            /* Otro puntero a ficha */
+struct f *dato3;            /* Y otro más */
+
+void MuestraLista ( struct f *inicial ) {
+  if (inicial!=NULL) {                      /* Si realmente hay lista */ 
+    printf("Nombre: %s\n", inicial->nombre);
+    printf("Dirección: %s\n", inicial->direccion);
+    printf("Edad: %d\n\n", inicial->edad);
+    MuestraLista ( inicial->siguiente );    /* Y mira el siguiente */
+  }
+}
+
+int main() {
+  dato1 = (struct f*) malloc (sizeof(struct f)); /* Reservamos memoria */
+  strcpy(dato1->nombre, "Pepe");           /* Guardamos el nombre, */
+  strcpy(dato1->direccion, "Su casa");     /*   la dirección */
+  dato1->edad = 40;                        /*   la edad */
+  dato1->siguiente = NULL;                 /* y no hay ninguna más */
+ 
+  dato2 = (struct f*) malloc (sizeof(struct f)); /* Reservamos memoria */
+  strcpy(dato2->nombre, "Juan");           /* Guardamos el nombre, */
+  strcpy(dato2->direccion, "No lo sé");    /*   la dirección */
+  dato2->edad = 35;                        /*   la edad */
+  dato2->siguiente = NULL;                 /* y no hay ninguna más */
+  dato1->siguiente = dato2;                /* Enlazamos anterior con ella */
+ 
+  dato3 = (struct f*) malloc (sizeof(struct f)); /* La tercera */
+  strcpy(dato3->nombre, "Carlos");
+  strcpy(dato3->direccion, "Por ahí");
+  dato3->edad = 14;
+  dato3->siguiente = dato2;                /* enlazamos con la siguiente */
+  dato1->siguiente = dato3;                /* y la anterior con ella */
+  printf("La lista inicialmente es:\n");
+
+  MuestraLista (dato1);
+  dato1->siguiente = dato2;        /* Borrar dato3: Enlaza Dato1 y Dato2 */
+  free(dato3);                     /* Libera lo que ocupó Dato3 */
+  printf("Y tras borrar dato3:\n\n");
+  MuestraLista (dato1);
+  return 0;
+}
+</code></pre></p>
+
+<p>Vamos a ver otro ejemplo, que cree una lista de n&uacute;meros, y vaya insertando en ella varios valores <strong>ordenados</strong>. Ahora tendremos una funci&oacute;n para mostrar datos, otra para crear la lista insertando el primer dato, y otra que inserte un dato ordenado</p>
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 82:      */
+/*  C082.C                   */
+/*                           */
+/*  Segundo ejemplo de lista */
+/*  enlazada (ordenada)      */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct lista {           /* Nuestra lista */
+  int numero;            /* Solo guarda un numero */
+  struct lista* sig;     /* Y el puntero al siguiente dato */
+};
+
+struct lista* CrearLista(int valor) {  /* Crea la lista, claro */
+  struct lista* r;        /* Variable auxiliar */
+  r = (struct lista*) 
+    malloc (sizeof(struct lista)); /* Reserva memoria */                           
+  r->numero = valor;      /* Guarda el valor */
+  r->sig = NULL;          /* No hay siguiente */
+  return r;               /* Crea el struct lista* */
+}
+
+void MuestraLista ( struct lista *lista ) {
+  if (lista) {                          /* Si realmente hay lista */
+      printf("%d\n", lista->numero);    /* Escribe el valor */
+      MuestraLista (lista->sig );       /* Y mira el siguiente */
+  }
+}
+
+void InsertaLista( struct lista **lista, int valor) {
+  struct lista* r;        /* Variable auxiliar, para reservar */
+  struct lista* actual;   /* Otra auxiliar, para recorrer */
+
+  actual = *lista;        
+  if (actual)                           /*  Si hay lista */
+    if (actual->numero < valor)         /*    y todavía no es su sitio */
+      InsertaLista(&actual->sig,valor); /*   mira la siguiente posición */
+    else {                     /* Si hay lista pero ya es su sitio */
+      r = CrearLista(valor);   /* guarda el dato */
+      r->sig = actual;         /* pone la lista a continuac. */
+      *lista = r;              /* Y hace que comience en el nuevo dato */
+    } 
+  else {              /* Si no hay lista, hay que crearla */
+    r = CrearLista(valor); 
+    *lista = r;       /* y hay que indicar donde debe comenzar */
+   }
+}
+
+int main() {
+  struct lista* l;               /* La lista que crearemos */
+  l = CrearLista(5);             /* Crea una lista e introduce un 5 */
+  InsertaLista(&l, 3);           /* Inserta un 3 */
+  InsertaLista(&l, 2);           /* Inserta un 2 */
+  InsertaLista(&l, 6);           /* Inserta un 6 */
+  MuestraLista(l);               /* Muestra la lista resultante */
+  return 0;                      /* Se acabó */
+}
+
+</code></pre></p>
+<p>No es un fuente f&aacute;cil de leer (en general, no lo ser&aacute;n los que manejen punteros), pero aun as&iacute; los cambios no son grandes:</p>
+<ul>
+  <li> Hemos automatizado la inserci&oacute;n de un nuevo dato con la funci&oacute;n CrearLista.</li>
+  <li>Cuando despu&eacute;s de ese dato debemos enlazar datos existentes, lo hacemos en dos pasos: r = CrearLista(valor); r-&gt;sig = actual;</li>
+  <li>Si adem&aacute;s el dato que modificamos es el primero de toda la lista, deberemos modificar la direcci&oacute;n de comienzo para que lo refleje: r = CrearLista(valor); *lista = r;</li>
+  <li>Como ya vimos, cuando queremos modificar un dato de tipo &ldquo;int&rdquo;, pasamos un par&aacute;metro que es de tipo &ldquo;int *&rdquo;. En este caso, la funci&oacute;n InsertaLista puede tener que modificar un dato que es de tipo &ldquo;struct lista *&rdquo;, por lo que el par&aacute;metro a modificar deber&aacute; ser de tipo &ldquo;struct lista **&rdquo;. Al final del tema comentaremos algo m&aacute;s sobre este tipo de expresiones.</li>
+  <li>Por otra parte, tambi&eacute;n hemos abreviado un poco alguna expresi&oacute;n: if (lista) es lo mismo que if (lista!=NULL) (recordemos que NULL es una constante que vale 0).<br />
+  </li>
+</ul>
+<p>Finalmente, hay varios casos particulares que resultan m&aacute;s sencillos que una lista &ldquo;normal&rdquo;. Vamos a comentar los m&aacute;s habituales:</p>
+<ul>
+  <li>  Una pila es un caso particular de lista, en la que los elementos siempre se introducen y se sacan por el mismo extremo (se apilan o se desapilan). Es como una pila de libros, en la que para coger el tercero deberemos apartar los dos primeros (excluyendo malabaristas, que los hay). Este tipo de estructura se llama LIFO (Last In, First Out: el &uacute;ltimo en entrar es el primero en salir).</li>
+  <li>Una cola es otro caso particular, en el que los elementos se introducen por un extremo y se sacan por el otro. Es como se supone que deber&iacute;a ser la cola del cine: los que llegan, se ponen al final, y se atiende primero a los que est&aacute;n al principio. Esta es una estructura FIFO (First In, First Out).</li>
+</ul>
+<p><strong>Ejercicio propuesto</strong>: Las listas simples, tal y como las hemos tratado, tienen la ventaja de que no hay limitaciones tan r&iacute;gidas en cuanto a tama&ntilde;o como en las variables est&aacute;ticas, ni hay por qu&eacute; saber el n&uacute;mero de elementos desde el principio. Pero siempre hay que recorrerlas desde DELANTE hacia ATRAS, lo que puede resultar lento. Una mejora relativamente evidente es lo que se llama una <strong>lista doble</strong> o lista doblemente enlazada: si guardamos punteros al dato anterior y al siguiente, en vez de s&oacute;lo al siguiente, podremos avanzar y retroceder con comodidad. Implementa una lista doble enlazada que almacene n&uacute;meros enteros.<br />
+</p>
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   8358 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc09i.html">Anterior</a></li>
+                    <li><a href="cc09k.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc09j.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:25 GMT -->
+</html>
+        

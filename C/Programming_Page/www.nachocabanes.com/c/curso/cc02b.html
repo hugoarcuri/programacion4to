@@ -1,0 +1,273 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de C - Tema 2 - Tipos de datos</title>
+
+    
+    <meta name="description" content="Curso de C - Tema 2 - Tipos de datos - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="int,float,double,char,void,cadena,ascii" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de C - Tema 2 - Tipos de datos          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cc02.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cc02c.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #000080;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #000080;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h3>2.2. Tipo de datos real</h3>
+<p>Cuando queremos almacenar datos con decimales, no nos sirve el tipo de datos &ldquo;int&rdquo;. Necesitamos otro tipo de datos que s&iacute; est&eacute; preparado para guardar n&uacute;meros &ldquo;reales&rdquo; (con decimales). En el mundo de la inform&aacute;tica hay dos formas de trabajar con n&uacute;meros reales:</p>
+<p>&gt; Coma fija: el n&uacute;mero m&aacute;ximo de cifras decimales est&aacute; fijado de antemano, y el n&uacute;mero de cifras enteras tambi&eacute;n. Por ejemplo, con un formato de 3 cifras enteras y 4 cifras decimales, el n&uacute;mero 3,75 se almacenar&iacute;a correctamente, el n&uacute;mero 970,4361 tambi&eacute;n, pero el 5,678642 se guardar&iacute;a como 5,6786 (se perder&iacute;a a partir de la cuarta cifra decimal) y el 1010 no se podr&iacute;a guardar (tiene m&aacute;s de 3 cifras enteras).</p>
+<p>&gt; Coma flotante: el n&uacute;mero de decimales y de cifras enteras permitido es variable, lo que importa es el n&uacute;mero de cifras significativas (a partir del &uacute;ltimo 0). Por ejemplo, con 5 cifras significativas se podr&iacute;an almacenar n&uacute;meros como el 13405000000 o como el 0,0000007349 pero no se guardar&iacute;a correctamente el 12,0000034, que se redondear&iacute;a a un n&uacute;mero cercano.</p>
+<h4>2.2.1. Simple y doble precisi&oacute;n</h4>
+<p>Tenemos dos tama&ntilde;os para elegir, seg&uacute;n si queremos guardar n&uacute;meros con mayor cantidad de cifras o con menos. Para n&uacute;meros con pocas cifras significativas (un m&aacute;ximo de 6) existe el tipo &ldquo;float&rdquo; y para n&uacute;meros que necesiten m&aacute;s precisi&oacute;n (unas 10) tenemos el tipo &ldquo;double&rdquo;:<br />
+</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="127" valign="top"></td>
+    <td width="97" valign="top"><p align="right">float </p></td>
+    <td width="108" valign="top"><p align="right">double </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>Tama&ntilde;o en bits </p></td>
+    <td width="97" valign="top"><p align="right">32 </p></td>
+    <td width="108" valign="top"><p align="right">64 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>Valor m&aacute;ximo </p></td>
+    <td width="97" valign="top"><p align="right">-3,4&middot;10 -38 </p></td>
+    <td width="108" valign="top"><p align="right">-1,7&middot;10 -308 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>Valor m&iacute;nimo </p></td>
+    <td width="97" valign="top"><p align="right">3,4&middot;10 38 </p></td>
+    <td width="108" valign="top"><p align="right">1,7&middot;10 308 </p></td>
+  </tr>
+  <tr>
+    <td width="127" valign="top"><p>Cifras significativas </p></td>
+    <td width="97" valign="top"><p align="right">6 o m&aacute;s </p></td>
+    <td width="108" valign="top"><p align="right">10 o m&aacute;s </p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>En algunos sistemas existe un tipo &ldquo;long double&rdquo;, con mayor precisi&oacute;n todav&iacute;a (40 bits o incluso 128 bits).</p>
+<p>Para definirlos, se hace igual que en el caso de los n&uacute;meros enteros:</p>
+<p>float x;</p>
+<p>o bien, si queremos dar un valor inicial en el momento de definirlos (recordando que para las <strong>cifras decimales</strong> no debemos usar una coma, sino <strong>un punto</strong>):</p>
+<p>float x = 12.56;</p>
+<h4>2.2.2. Mostrar en pantalla n&uacute;meros reales</h4>
+<p>En principio es sencillo: usaremos &ldquo;printf&rdquo;, al que le indicaremos &ldquo;%f&rdquo; como c&oacute;digo de formato:</p>
+<p>printf(&quot;El valor de x es %f&quot;, x); /* Escribir&iacute;a 12.5600 */</p>
+<p>Pero tambi&eacute;n podemos detallar la anchura, indicando el n&uacute;mero de cifras totales y el n&uacute;mero de cifras decimales, separadas por un punto:</p>
+<p>printf(&quot;El valor de x es %5.2f&quot;, x); /* Escribir&iacute;a 12.56 */</p>
+<p>Si indicamos una anchura mayor que la necesaria, se rellena con espacios al principio (queda alineado a la derecha)</p>
+<p>printf(&quot;El valor de x es %7.2f&quot;, x); /* Escribir&iacute;a &ldquo; 12.56&rdquo; */</p>
+<p>Si quisi&eacute;ramos que quede alineado a la izquierda (con los espacios de sobra al final), debemos escribir la anchura como un n&uacute;mero negativo</p>
+<p>printf(&quot;El valor de x es %-7.2f&quot;, x); /* Escribir&iacute;a &ldquo;12.56 &rdquo; */</p>
+<p>Si indicamos menos decimales que los necesarios, se <strong>redondear&aacute;</strong> el n&uacute;mero</p>
+<p>printf(&quot;El valor de x es %4.1f&quot;, x); /* Escribir&iacute;a 12.6 */</p>
+<p>Y si indicamos menos cifras enteras que las necesarias, no se nos har&aacute; caso y el n&uacute;mero se escribir&aacute; con la cantidad de cifras que sea necesario usar</p>
+<p>printf(&quot;El valor de x es %1.0f&quot;, x); /* Escribir&iacute;a 13 */<br />
+</p>
+<p>Vamos a juntar todo esto en un ejemplo:</p>
+
+
+<p><pre><code class='language-c'>/*---------------------------*/
+/*  Ejemplo en C nº 9:       */
+/*  c009.c                   */
+/*                           */
+/*  Numeros en coma flotante */
+/*                           */
+/*  Curso de C,              */
+/*    Nacho Cabanes          */
+/*---------------------------*/
+
+#include <stdio.h>
+
+int main() {
+  float x = 12.56;
+
+  printf("El valor de x es %f", x);
+  printf(" pero lo podemos escribir con 2 decimales %5.2f", x);
+  printf(" o solo con uno %5.1f", x);
+  printf(" o con 7 cifras %7.1f", x);
+  printf(" o alineado a la izquierda %-7.1f", x);
+  printf(" o sin decimales %2.0f", x);
+  printf(" o solo con una cifra %1.0f", x);
+
+  return 0;
+}
+</code></pre></p>
+<p>El resultado ser&iacute;a</p>
+<p class="nsource">El valor de f es 12.560000 pero lo podemos escribir con 2 decimales 12.56 o solo<br />
+  con uno 12.6 o con 7 cifras 12.6 o alineado a la izquierda 12.6 o sin<br />
+  decimales 13 o solo con una cifra 13</p>
+
+<p>Si queremos que sea el usuario el que introduzca los valores, usaremos "%f" como código de formato en "scanf":</p>
+
+<p><pre><code class='language-c'>scanf("%f", &x);</code></pre></p>  
+
+  
+  
+<p>Ejercicios propuestos:</p>
+<ul>
+  <li> El usuario de nuestro programa podr&aacute; teclear dos n&uacute;meros de hasta 8 cifras significativas. El programa deber&aacute; mostrar el resultado de dividir el primer n&uacute;mero entre el segundo, utilizando tres cifras decimales.</li>
+  <li>Crear un programa que use tres variables x,y,z. Las tres ser&aacute;n n&uacute;meros reales, y nos bastar&aacute; con dos cifras decimales. Deber&aacute; pedir al usuario los valores para las tres variables y mostrar en pantalla cual es el mayor de los tres n&uacute;meros tecleados.<br />
+    </li>
+</ul>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   28663 visitas desde el 29-01-2007</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cc02.html">Anterior</a></li>
+                    <li><a href="cc02c.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/c/curso/cc02b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:07 GMT -->
+</html>
+        
