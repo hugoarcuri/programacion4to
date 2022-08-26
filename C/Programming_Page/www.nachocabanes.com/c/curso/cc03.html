@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:59 GMT -->
+<!-- Mirrored from #/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 3 - Estructuras alternativas</title>
 
     
-    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="bucle,alternativa,if,while,repeat,switch,case" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc03b.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,32 +69,20 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
       </script>
       </p>
-        <h2>3. Estructuras de control</h2>
+        <h2 class="h2">3. Estructuras de control</h2>
 
 <h3>3.1. Estructuras alternativas</h3>
 
 
 <p style="margin-left:150px;margin-right:150px;text-align:center;"><i>(Nota: 
-En la <a href="https://www.nachocabanes.com/c/curso2016/">versión 2016 del curso</a>
-tienes <a href="https://www.nachocabanes.com/c/curso2016/cc002a.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
+En la <a href="https://#/c/curso2016/">versión 2016 del curso</a>
+tienes <a href="https://#/c/curso2016/cc002a.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
 
 
 <h4>3.1.1. if</h4>
@@ -118,14 +90,14 @@ tienes <a href="https://www.nachocabanes.com/c/curso2016/cc002a.php">una variant
 <p> if (condici&oacute;n) sentencia;</p>
 <p>Vamos a verlo con un ejemplo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 14:      */
 /*  C014.C                   */
 /*                           */
 /*  Condiciones con if       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -153,7 +125,7 @@ int main() {
 <h4>3.1.2. if y sentencias compuestas</h4>
 <p>La &quot;sentencia&quot; que se ejecuta si se cumple la condici&oacute;n puede ser una sentencia simple o una compuesta. Las sentencias compuestas se forman agrupando varias sentencias simples entre llaves ( { y } ):</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 15:      */
 /*  C015.C                   */
 /*                           */
@@ -161,7 +133,7 @@ int main() {
 /*  Sentencias compuestas    */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -185,7 +157,7 @@ int main() {
 
 <p>Se pueden incluir siempre las llaves después de un "if", como medida de seguridad: un <b>fallo frecuente</b> es escribir una única sentencia tras "if", sin llaves, luego añadir una segunda sentencia y olvidar las llaves... de modo que la segunda orden no se ejecutará si se cumple la condición, sino siempre, como en este ejemplo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 15:      */
 /*  c015b.c                  */
 /*                           */
@@ -194,7 +166,7 @@ int main() {
 /*  incorrectas!!!           */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -248,14 +220,14 @@ int main() {
 </table>
 <p>Y un ejemplo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 16:      */
 /*  C016.C                   */
 /*                           */
 /*  Condiciones con if (3)   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -283,7 +255,7 @@ int main() {
 
 <p>Podemos indicar lo que queremos que ocurra en caso de que no se cumpla la condici&oacute;n, usando la orden &ldquo;else&rdquo; (en caso contrario), as&iacute;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 17:      */
 /*  C017.C                   */
 /*                           */
@@ -291,7 +263,7 @@ int main() {
 /*  Uso de else              */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -309,7 +281,7 @@ int main() {
 </code></pre></p>
 <p>Podr&iacute;amos intentar evitar el uso de &ldquo;else&rdquo; si utilizamos un &ldquo;if&rdquo; a continuaci&oacute;n de otro, as&iacute;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 18:      */
 /*  C018.C                   */
 /*                           */
@@ -317,7 +289,7 @@ int main() {
 /*  Esquivando else          */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -336,7 +308,7 @@ int main() {
 <p>Pero el comportamiento no es el mismo: en el primer caso (ejemplo 17) se mira si el valor es positivo; si no lo es, se pasa a la segunda orden, pero si lo es, el programa ya ha terminado. En el segundo caso (ejemplo 18), aunque el n&uacute;mero sea positivo, se vuelve a realizar la segunda comprobaci&oacute;n para ver si es negativo o cero, por lo que el programa es algo m&aacute;s lento.</p>
 <p>Podemos enlazar los &ldquo;if&rdquo; usando &ldquo;else&rdquo;, para decir &ldquo;si no se cumple esta condici&oacute;n, mira a ver si se cumple esta otra&rdquo;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 19:      */
 /*  C019.C                   */
 /*                           */
@@ -344,7 +316,7 @@ int main() {
 /*  if encadenados           */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -413,7 +385,7 @@ int main()
 <p>Como suele ocurrir en C, lo que hemos visto tiene m&aacute;s miga de la que parece: una condici&oacute;n cuyo resultado sea &ldquo;falso&rdquo; nos devolver&aacute; un 0, y otra cuyo resultado sea &ldquo;verdadero&rdquo; devolver&aacute; el valor 1:<br />
   </p>
 
-    <p><pre><code class='language-c'>/*---------------------------*/
+    <p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 20:      */
 /*  C020.C                   */
 /*                           */
@@ -421,7 +393,7 @@ int main()
 /*  Valor de verdad          */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -438,14 +410,14 @@ int main() {
 
 <p>En general, si la &ldquo;condici&oacute;n&rdquo; de un if es algo que valga 0, se considerar&aacute; que la condici&oacute;n es falsa (no se cumple), y si es algo distinto de cero, se considerar&aacute; que la condici&oacute;n es verdadera (s&iacute; se cumple). Eso nos permite hacer cosas como &eacute;sta:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 21:      */
 /*  C021.C                   */
 /*                           */
 /*  Condiciones con if (8)   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -470,7 +442,7 @@ int main() {
 <p>Cuidado con el operador de igualdad: hay que recordar que el formato es if (a==b) ... Si no nos damos cuenta y escribimos if (a=b) estamos asignando a &ldquo;a&rdquo; el valor de &ldquo;b&rdquo;.</p>
 <p>Afortunadamente, la mayor&iacute;a de los compiladores nos avisan con un mensaje parecido a &ldquo;Possibly incorrect assignment&rdquo; (que podr&iacute;amos traducir por &ldquo;posiblemente esta asignaci&oacute;n es incorrecta&rdquo;) o &ldquo;Possibly unintended assignment&rdquo; (algo as&iacute; como &ldquo;es posible que no se pretendiese hacer esta asignaci&oacute;n&rdquo;). Aun as&iacute;, s&oacute;lo es un aviso, la compilaci&oacute;n prosigue, y se genera un ejecutable, que puede que se comporte incorrectamente. Vamos a verlo con un ejemplo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 22:      */
 /*  C022.C                   */
 /*                           */
@@ -479,7 +451,7 @@ int main() {
 /*    incorrecto             */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -556,14 +528,14 @@ int main()
 <p class="nsource"> numeroMayor = (a&gt;b) ? a : b;</p>
 <p>que, aplicado a un programa sencillo, podr&iacute;a ser</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 23:      */
 /*  C023.C                   */
 /*                           */
 /*  El operador condicional  */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -585,14 +557,14 @@ int main()
 
 <p>Un segundo ejemplo, que sume o reste dos n&uacute;meros seg&uacute;n la opci&oacute;n que se escoja, ser&iacute;a:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 24:      */
 /*  C024.C                   */
 /*                           */
 /*  Operador condicional - 2 */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -644,14 +616,14 @@ int main()
   Es decir, se escribe tras &ldquo;<strong>switch</strong>&rdquo; la expresi&oacute;n a analizar, entre par&eacute;ntesis. Despu&eacute;s, tras varias &oacute;rdenes &ldquo;<strong>case</strong>&rdquo; se indica cada uno de los valores posibles. Los pasos (porque pueden ser varios) que se deben dar si se trata de ese valor se indican a continuaci&oacute;n, terminando con &ldquo;<strong>break</strong>&rdquo;. Si hay que hacer algo en caso de que no se cumpla ninguna de las condiciones, se detalla tras &ldquo;<strong>default</strong>&rdquo;.</p>
 <p>Vamos con un ejemplo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 25:      */
 /*  C025.C                   */
 /*                           */
 /*  La orden switch        */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -693,19 +665,7 @@ int main()
 
 
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -722,7 +682,7 @@ int main()
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    66172 visitas desde el 29-01-2007</p>
               </div>
  
@@ -731,7 +691,7 @@ int main()
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc02e.html">Anterior</a></li>
                     <li><a href="cc03b.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -744,18 +704,11 @@ int main()
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
+<!-- Mirrored from #/c/curso/cc03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:00 GMT -->
 </html>
         

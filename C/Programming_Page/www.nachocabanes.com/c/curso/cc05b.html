@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+<!-- Mirrored from #/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema  5 - Arrays y estructuras</title>
 
     
-    <meta name="description" content="Curso de C - Tema  5 - Arrays y estructuras - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema  5 - Arrays y estructuras - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="array,arreglo,struct,vector,matriz,estructura,registro" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc05c.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,19 +69,7 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -110,7 +82,7 @@
 <p>Este car&aacute;cter nulo lo utilizar&aacute;n todas las &oacute;rdenes est&aacute;ndar que tienen que ver con manejo de cadenas: las que las muestran en pantalla, las que comparan cadenas, las que dan a una cadena un cierto valor, etc. Por tanto, si no queremos usar esas funciones y s&oacute;lo vamos a acceder letra a letra (como hemos hecho con los n&uacute;meros en los &uacute;ltimos ejemplos) nos bastar&iacute;a con &ldquo;char saludo[4]&rdquo;, pero si queremos usar cualquiera de esta posibilidades (ser&aacute; lo habitual), deberemos tener la prudencia de reservar una letra m&aacute;s de las &ldquo;necesarias&rdquo;, para ese car&aacute;cter nulo, que indica el final de la cadena, y que todas esas &oacute;rdenes utilizan para saber cuando deben terminar de manipular la cadena.</p>
 <p>Un primer ejemplo que nos pidiese nuestro nombre y nos saludase ser&iacute;a:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 40:      */
 /*  C040.C                   */
 /*                           */
@@ -118,7 +90,7 @@
 /*  cadenas de texto         */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -140,7 +112,7 @@ int main()
   <li> Siendo estrictos,<strong> no hace falta el &ldquo;&amp;&rdquo;</strong> en &ldquo;scanf&rdquo; cuando estamos leyendo cadenas de texto (s&iacute; para los dem&aacute;s tipos de datos). Los motivos exactos los veremos m&aacute;s adelante, cuando hablemos de direcciones de memoria y de punteros. Pero este programa se podr&iacute;a haber escrito as&iacute;:<br />
   </li>
 </ul>
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 41:      */
 /*  C041.C                   */
 /*                           */
@@ -149,7 +121,7 @@ int main()
 /*  sin &                    */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -177,7 +149,7 @@ int main()
 <h4>5.2.2. C&oacute;mo acceder a las letras que forman una cadena</h4>
 <p>Podemos leer (o modificar) una de las letras de una cadena de igual forma que leemos o modificamos los elementos de cualquier tabla: el primer elemento ser&aacute; texto[0], el segundo ser&aacute; texto[1] y as&iacute; sucesivamente:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 42:      */
 /*  C042.C                   */
 /*                           */
@@ -186,7 +158,7 @@ int main()
 /*  acceder letra a letra    */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -214,14 +186,14 @@ int main()
 <p>&gt; Podemos leer la cadena car&aacute;cter por car&aacute;cter desde el principio hasta que encontremos el car&aacute;cter nulo (\0) que marca el final.</p>
 <p>&gt; Hay una orden predefinida que lo hace por nosotros, y que nos dice cuantas letras hemos usado realmente en nuestra cadena. Es &ldquo;<strong>strlen</strong>&rdquo;, que se usa as&iacute;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 43:      */
 /*  C043.C                   */
 /*                           */
 /*  Longitud de una cadena   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -291,7 +263,7 @@ gets(texto);</p>
 <p> strncpy (destino, origen, n);</p>
 <p>Vamos a ver un ejemplo, que nos pida que tecleemos una frase y guarde en otra variable s&oacute;lo las 4 primeras letras:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 44:      */
 /*  C044.C                   */
 /*                           */
@@ -299,7 +271,7 @@ gets(texto);</p>
 /*  cadena                   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -325,14 +297,14 @@ int main()
 <p> strcat (destino, origen);</p>
 <p>Vamos a ver un ejemplo de su uso, que nos pida nuestro nombre, nuestro apellido y cree una nueva cadena de texto que contenga los dos, separados por un espacio:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 45:      */
 /*  C045.C                   */
 /*                           */
 /*  Concatenar dos cadenas   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -378,14 +350,14 @@ int main()
 </ul>
 <p>Vamos a ver un primer ejemplo que nos pida dos palabras y diga si hemos tecleado la misma las dos veces:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 46:      */
 /*  C046.C                   */
 /*                           */
 /*  Comparar dos cadenas     */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -412,14 +384,14 @@ int main()
 </code></pre></p>
 <p>Podemos mejorarlo ligeramente para que nos diga qu&eacute; palabra es &ldquo;menor&rdquo; de las dos:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 47:      */
 /*  C047.C                   */
 /*                           */
 /*  Comparar dos cadenas (2) */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -490,25 +462,13 @@ int main()
 <p>Podemos dar un valor inicial a una cadena de texto, usando dos formatos distintos:</p>
 <p>El formato &ldquo;cl&aacute;sico&rdquo; para dar valores a tablas:</p>
 
-<p><pre><code class='language-c'>char nombre[50]= {'J','u','a','n'};</code></pre></p>
+<p><pre class="pre"><code class='language-c'>char nombre[50]= {'J','u','a','n'};</code></pre></p>
 <p>O bien un formato m&aacute;s compacto:</p>
 
-<p><pre><code class='language-c'>char nombre[50]="Juan";</code></pre></p>
+<p><pre class="pre"><code class='language-c'>char nombre[50]="Juan";</code></pre></p>
 <p>Pero cuidado con este &uacute;ltimo formato: hay que recordar que <strong>s&oacute;lo se puede usar cuando se declara la variable</strong>, al principio del programa. Si ya estamos dentro del programa, deberemos usar necesariamente la orden &ldquo;strcpy&rdquo; para dar un valor a una cadena de texto.</p>
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -525,7 +485,7 @@ int main()
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    44830 visitas desde el 29-01-2007</p>
               </div>
  
@@ -534,7 +494,7 @@ int main()
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc05.html">Anterior</a></li>
                     <li><a href="cc05c.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -547,18 +507,11 @@ int main()
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
+<!-- Mirrored from #/c/curso/cc05b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:08 GMT -->
 </html>
         

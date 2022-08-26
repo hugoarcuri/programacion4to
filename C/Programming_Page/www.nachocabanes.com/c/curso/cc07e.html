@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc07e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:23 GMT -->
+<!-- Mirrored from #/c/curso/cc07e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:23 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 7 - Funciones</title>
 
     
-    <meta name="description" content="Curso de C - Tema 7 - Funciones - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 7 - Funciones - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="valor,referencia,recursividad,return" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc07f.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,19 +69,7 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -109,7 +81,7 @@
 <p>Cuando queremos dejar claro que una funci&oacute;n no tiene que devolver ning&uacute;n valor, podemos hacerlo indicando al principio que el tipo de datos va a ser "void" (nulo). Por ejemplo, nuestra funci&oacute;n "saludar", que se limitaba a escribir varios textos en pantalla, quedar&iacute;a m&aacute;s correcta si fuera as&iacute;:</p>
 
 
-<p><pre><code class='language-c'>void saludar() {
+<p><pre class="pre"><code class='language-c'>void saludar() {
   printf("Bienvenido al programa\n");
   printf(" de ejemplo\n");
   printf("Bienvenido al programa\n");
@@ -118,27 +90,27 @@
 
 <p>Muchos compiladores antiguos (previos al estándar C99) permiten que una función se indique sin tipo devuelto, como hicimos en el primer ejemplo, y en ese caso, el lenguaje C no supondrá que no vaya a devolver ningún valor, sino que <b>devolverá un valor entero</b> (int):</p>
 
-<p><pre><code class='language-c'>main() {
+<p><pre class="pre"><code class='language-c'>main() {
   ...
 }
 </code></pre></p>
 <p>A partir del estándar C99, es obligatorio indicar el tipo devuelto, así que deberemos usar explícitamente "void", si la función no va a devolver ningún dato.  Por eso, la forma habitual de declarar el cuerpo de un programa es:</p>
 
-<p><pre><code class='language-c'>int main() {
+<p><pre class="pre"><code class='language-c'>int main() {
   ...
 }
 </code></pre></p>
 
 <p>Eso quiere decir que "main" también devuelve un valor, que se leerá desde fuera de nuestro programa. Lo habitual es devolver 0 si todo ha funcionado correctamente</p>
 
-<p><pre><code class='language-c'>int main() {
+<p><pre class="pre"><code class='language-c'>int main() {
   ...
   return 0;
 }
 </code></pre></p>
 <p>Y devolver&iacute;amos otro valor si hubiera habido alg&uacute;n problema durante el funcionamiento de nuestro programa (por ejemplo, si no hemos podido abrir alg&uacute;n fichero):</p>
 
-<p><pre><code class='language-c'>int main() {
+<p><pre class="pre"><code class='language-c'>int main() {
   FILE* fichero;
   fichero = fopen("nombre.txt", "rt");
   if (fichero == NULL) return 1;
@@ -147,7 +119,7 @@
 }
 </code></pre></p>
 <p>Este valor se podr&iacute;a comprobar desde el sistema operativo. Por ejemplo, en MsDos y Windows se lee con "IF ERRORLEVEL", as&iacute;:</p>
-<p><pre>IF ERRORLEVEL 1 ECHO Ha habido un error en el programa</pre><br />
+<p><pre class="pre">IF ERRORLEVEL 1 ECHO Ha habido un error en el programa</pre><br />
 </p>
 
 <p>Nota 1: En la mayoría de compiladores, el cuerpo del programa ("main") debe ser devolver un entero (int). Algunos compiladores permiten declarar "main" como "void", pero la mayoría no lo consideran aceptable.</p>
@@ -169,19 +141,7 @@
 <p>&nbsp;</p>
 
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -198,7 +158,7 @@
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    13393 visitas desde el 29-01-2007</p>
               </div>
  
@@ -207,7 +167,7 @@
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc07d.html">Anterior</a></li>
                     <li><a href="cc07f.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -220,18 +180,11 @@
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc07e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:23 GMT -->
+<!-- Mirrored from #/c/curso/cc07e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:23 GMT -->
 </html>
         

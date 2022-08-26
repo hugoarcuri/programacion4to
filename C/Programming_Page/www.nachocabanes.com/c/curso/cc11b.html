@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+<!-- Mirrored from #/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 11 - Caracteristicas avanzadas</title>
 
     
-    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="or,and,not,desplazamiento,directiva,preprocesador,makefile,coma" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc11c.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,19 +69,7 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -121,14 +93,14 @@
 <p>Comparado con las constantes &ldquo;de verdad&rdquo;, que ya hab&iacute;amos manejado (const int MAXINTENTOS=10;), las constantes simb&oacute;licas tienen la ventaja de que no son variables, por lo que no se les reserva memoria adicional y las comparaciones y dem&aacute;s operaciones suelen ser m&aacute;s r&aacute;pidas que en el caso de un variable.</p>
 <p>Vamos a ver un ejemplo completo, que pida varios n&uacute;meros y muestre su suma y su media:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 94:      */
 /*  C094.C                   */
 /*                           */
 /*  Ejemplo de #define       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -164,14 +136,14 @@ int main() {
 <p>#define SUMA(x,y) x+y</p>
 <p>Vamos a aplicarlo en un fuente completo:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 95:      */
 /*  C095.C                   */
 /*                           */
 /*  Ejemplo de #define (2)   */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -201,14 +173,14 @@ int main() {
 <p>El primer caso es un fichero de cabecera <strong>est&aacute;ndar</strong> del compilador. Lo indicamos entre &lt; y &gt; y as&iacute; el compilador sabe que tiene que buscarlo en su directorio (carpeta) de &ldquo;includes&rdquo;. El segundo caso es un fichero de cabecera que hemos creado <strong>nosotros</strong>, por lo que lo indicamos entre comillas, y as&iacute; el compilador sabe que no debe buscarlo entre sus directorios, sino en el mismo directorio en el que est&aacute; nuestro programa.</p>
 <p>Vamos a ver un ejemplo: declararemos una funci&oacute;n &ldquo;suma&rdquo; dentro de un fichero &ldquo;.h&rdquo; y lo incluiremos en nuestro fuente para poder utilizar esa funci&oacute;n &ldquo;suma&rdquo; sin volver a definirla. Wl fichero de cabecera ser&iacute;a as&iacute;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 96 (a):  */
 /*  C096.H                   */
 /*                           */
 /*  Ejemplo de #include      */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 int suma(int x,int y) {
@@ -218,14 +190,14 @@ int suma(int x,int y) {
 <p>(Nota: si somos puristas, esto no es correcto del todo. Un fichero de cabecera no deber&iacute;a contener los detalles de las funciones, s&oacute;lo su &ldquo;cabecera&rdquo;, lo que hab&iacute;amos llamado el &ldquo;prototipo&rdquo;, y la implementaci&oacute;n de la funci&oacute;n deber&iacute;a estar en otro fichero, pero eso lo haremos dentro de poco).</p>
 <p>Un fuente que utilizara este fichero de cabecera podr&iacute;a ser</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 96 (b):  */
 /*  C096.C                   */
 /*                           */
 /*  Ejemplo de #include (2)  */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -259,7 +231,7 @@ int main() {
 <p>Esta misma idea se puede aplicar a nuestros programas. Uno de los usos m&aacute;s frecuentes es hacer que ciertas partes del programa se pongan en funcionamiento durante la fase de depuraci&oacute;n, pero no cuando el programa est&eacute; terminado.</p>
 <p>Vamos a mejorar el ejemplo 94, para que nos muestre el valor temporal de la suma y nos ayude a descubrir errores:</p>
 
-<p><pre><code class='language-c'></code></pre></p>
+<p><pre class="pre"><code class='language-c'></code></pre></p>
 
 <p>Este fuente tiene intencionadamente un error: no hemos dado un valor inicial a la suma, con lo que contendr&aacute; basura, y obtendremos un resultado incorrecto.</p>
 <p>El resultado de nuestro programa ser&iacute;a</p>
@@ -277,7 +249,7 @@ int main() {
   Su media es 401811198.40</p>
 <p>Vemos que ya en la primera pasada, el valor de la suma no es 2, sino algo que parece absurdo, as&iacute; que falta el valor inicial de la suma, que deber&iacute;a ser &ldquo;int suma=0;&rdquo;. Cuando acaba la fase de depuraci&oacute;n, basta con eliminar la frase #define DEPURANDO 1 (no es necesario borrarla, podemos dejarla comentada para que no haga efecto), de modo que el fuente corregido ser&iacute;a:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 97b:     */
 /*  C097b.C                  */
 /*                           */
@@ -285,7 +257,7 @@ int main() {
 /*  con #define (2)          */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -330,19 +302,7 @@ int main() {
 
 
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -359,7 +319,7 @@ int main() {
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    9039 visitas desde el 29-01-2007</p>
               </div>
  
@@ -368,7 +328,7 @@ int main() {
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc11.html">Anterior</a></li>
                     <li><a href="cc11c.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -381,18 +341,11 @@ int main() {
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
+<!-- Mirrored from #/c/curso/cc11b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:13 GMT -->
 </html>
         

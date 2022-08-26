@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
+<!-- Mirrored from #/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 2 - Tipos de datos</title>
 
     
-    <meta name="description" content="Curso de C - Tema 2 - Tipos de datos - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 2 - Tipos de datos - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="int,float,double,char,void,cadena,ascii" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc02b.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,25 +69,13 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
       </script>
       </p>
-        <h2>2. Tipos de datos b&aacute;sicos</h2>
+        <h2 class="h2">2. Tipos de datos b&aacute;sicos</h2>
 
 <h3>2.1. Tipo de datos entero</h3>
 
@@ -112,7 +84,7 @@
 <p>Empieza a ser el momento de refinar, de dar m&aacute;s detalles. El primer &ldquo;matiz&rdquo; importante es el signo de los n&uacute;meros: hemos hablado de n&uacute;meros enteros (sin decimales), pero no hemos detallado si esos n&uacute;meros son positivos, negativos o si podemos elegirlo nosotros.</p>
 <p>Pues es sencillo: si no decimos nada, se da por sentado que el n&uacute;mero puede ser negativo o positivo. Si queremos dejarlo m&aacute;s claro, podemos a&ntilde;adir la palabra &ldquo;<strong>signed</strong>&rdquo; (con signo) antes de &ldquo;int&rdquo;. Este es uno de los &ldquo;<strong>modificadores</strong>&rdquo; que podemos emplear. Otro modificador es &ldquo;<strong>unsigned</strong>&rdquo; (sin signo), que nos sirve para indicar al compilador que no vamos a querer guardar n&uacute;meros negativos, s&oacute;lo <strong>positivos</strong>. Vamos a verlo con un ejemplo:</p>
 
-<p><pre><code class='language-c'>/*-------------------------*/
+<p><pre class="pre"><code class='language-c'>/*-------------------------*/
 /*  Ejemplo en C nº 6:     */
 /*  c006.c                 */
 /*                         */
@@ -120,7 +92,7 @@
 /*  sin signo              */
 /*                         */
 /*  Curso de C,            */
-/*    Nacho Cabanes        */
+/*    Profesor -- Hugo Arcuri --        */
 /*-------------------------*/
 
 #include <stdio.h>
@@ -151,7 +123,7 @@ int main()    /* Cuerpo del programa */
 <h4>2.1.2. Problem&aacute;tica: asignaciones y tama&ntilde;o de los n&uacute;meros; distintos espacios ocupados seg&uacute;n el sistema</h4>
 <p>El primer problema a tener en cuenta es que si asignamos a una variable &ldquo;demasiado peque&ntilde;a&rdquo; un valor m&aacute;s grande del que podr&iacute;a almacenar, podemos obtener valores incorrectos. Un caso t&iacute;pico es intentar asignar un valor &ldquo;long&rdquo; a una variable &ldquo;short&rdquo;:</p>
 
-<p><pre><code class='language-c'>/*-------------------------*/
+<p><pre class="pre"><code class='language-c'>/*-------------------------*/
 /*  Ejemplo en C nº 7:     */
 /*  c007.c                 */
 /*                         */
@@ -159,7 +131,7 @@ int main()    /* Cuerpo del programa */
 /*  demasiado grandes      */
 /*                         */
 /*  Curso de C,            */
-/*    Nacho Cabanes        */
+/*    Profesor -- Hugo Arcuri --        */
 /*-------------------------*/
 
 #include <stdio.h>
@@ -443,7 +415,7 @@ int main()    /* Cuerpo del programa */
 <p>En C tenemos la posibilidad de dar un valor a una variable usando el sistema decimal, como hemos hecho hasta ahora, pero tambi&eacute;n podemos usar el sistema octal si ponemos un 0 a la izquierda del n&uacute;mero, o el sistema hexadecimal, si usamos 0x (pero no existe una forma directa de trabajar con n&uacute;meros en binario):</p>
 <p>&nbsp;</p>
 
-<p><pre><code class='language-c'>/*-------------------------*/
+<p><pre class="pre"><code class='language-c'>/*-------------------------*/
 /*  Ejemplo en C nº 8:     */
 /*  c008.c                 */
 /*                         */
@@ -452,7 +424,7 @@ int main()    /* Cuerpo del programa */
 /*  hexadecimal            */
 /*                         */
 /*  Curso de C,            */
-/*    Nacho Cabanes        */
+/*    Profesor -- Hugo Arcuri --        */
 /*-------------------------*/
 
 #include <stdio.h>
@@ -612,19 +584,7 @@ int main()    /* Cuerpo del programa */
 <p>Tambi&eacute;n podemos encontrarnos (aunque es poco frecuente) con el caso contrario: una variable que pueda cambiar de valor sin que nosotros modifiquemos (porque accedamos a un valor que cambie &ldquo;solo&rdquo;, como el reloj interno del ordenador, o porque los datos sean compartidos con otro programa que tambi&eacute;n pueda modicarlos, por ejemplo). En ese caso, usaremos el modificador &ldquo;volatile&rdquo;, que hace que el compilador siempre compruebe el valor m&aacute;s reciente de la variable antes de usarlo, por si hubiera cambiado:</p>
 <p>volatile int numeroDeUsuarios = 1;</p>
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -641,7 +601,7 @@ int main()    /* Cuerpo del programa */
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    44794 visitas desde el 29-01-2007</p>
               </div>
  
@@ -650,7 +610,7 @@ int main()    /* Cuerpo del programa */
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc01g.html">Anterior</a></li>
                     <li><a href="cc02b.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -663,18 +623,11 @@ int main()    /* Cuerpo del programa */
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
+<!-- Mirrored from #/c/curso/cc02.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:29:58 GMT -->
 </html>
         

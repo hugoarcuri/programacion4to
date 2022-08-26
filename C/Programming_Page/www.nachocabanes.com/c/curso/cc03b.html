@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:07 GMT -->
+<!-- Mirrored from #/c/curso/cc03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:07 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 3 - Estructuras alternativas</title>
 
     
-    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 3 - Estructuras alternativas - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="bucle,alternativa,if,while,repeat,switch,case" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc03c.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,19 +69,7 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -109,8 +81,8 @@
 
 
 <p style="margin-left:150px;margin-right:150px;text-align:center;"><i>(Nota: 
-En la <a href="https://www.nachocabanes.com/c/curso2016/">versión 2016 del curso</a>
-tienes <a href="https://www.nachocabanes.com/c/curso2016/cc003b.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
+En la <a href="https://#/c/curso2016/">versión 2016 del curso</a>
+tienes <a href="https://#/c/curso2016/cc003b.php">una variante más reciente y más detallada de este apartado</a>)</i></p>
 
 
 <p>Hemos visto c&oacute;mo comprobar condiciones, pero no c&oacute;mo hacer que una cierta parte de un programa se repita un cierto n&uacute;mero de veces o mientras se cumpla una condici&oacute;n (lo que llamaremos un &ldquo;<strong>bucle</strong>&rdquo;). En C tenemos varias formas de conseguirlo.</p>
@@ -123,14 +95,14 @@ tienes <a href="https://www.nachocabanes.com/c/curso2016/cc003b.php">una variant
 
 <p>Un ejemplo que nos diga si cada n&uacute;mero que tecleemos es positivo o negativo, y que pare cuando tecleemos el n&uacute;mero 0, podr&iacute;a ser:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 26:      */
 /*  C026.C                   */
 /*                           */
 /*  La orden "while"         */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -171,14 +143,14 @@ int main()
 <p>Al igual que en el caso anterior, si queremos que se repitan varias &oacute;rdenes (es lo habitual), deberemos encerrarlas entre llaves. Nuevamente, puede ser recomendable incluir siempre las llaves, como costumbre.</p>
 <p>Como ejemplo, vamos a ver c&oacute;mo ser&iacute;a el t&iacute;pico programa que nos pide una clave de acceso y nos nos deja entrar hasta que tecleemos la clave correcta. Eso s&iacute;, como todav&iacute;a no sabemos manejar cadenas de texto, la clave ser&aacute; un n&uacute;mero:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 27:      */
 /*  C027.C                   */
 /*                           */
 /*  La orden "do..while"     */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -217,14 +189,14 @@ int main()
  &nbsp; Sentencia;</span></p>
 <p>As&iacute;, para <strong>contar del 1 al 10</strong>, tendr&iacute;amos 1 como valor inicial, &lt;=10 como condici&oacute;n de repetici&oacute;n, y el incremento ser&iacute;a de 1 en 1. Por tanto, el programa quedar&iacute;a:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 28:      */
 /*  C028.C                   */
 /*                           */
 /*  Uso básico de "for"      */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -258,14 +230,14 @@ int main()
     <br />
     Los bucles &ldquo;for&rdquo; se pueden <strong>anidar</strong> (incluir uno dentro de otro), de modo que podr&iacute;amos escribir las tablas de multiplicar del 1 al 5 con:</p>
     
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 29:      */
 /*  C029.C                   */
 /*                           */
 /*  "for" anidados           */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -285,14 +257,14 @@ int main()
 
 <p>En estos ejemplos que hemos visto, despu&eacute;s de &ldquo;for&rdquo; hab&iacute;a una &uacute;nica sentencia. Si queremos que se hagan varias cosas, basta definirlas como un <strong>bloque</strong> (una sentencia compuesta) encerr&aacute;ndolas entre llaves. Por ejemplo, si queremos mejorar el ejemplo anterior haciendo que deje una l&iacute;nea en blanco entre tabla y tabla, ser&iacute;a:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 30:      */
 /*  C030.C                   */
 /*                           */
 /*  "for" anidados (2)       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -318,14 +290,14 @@ int main()
 
 <p>Para &ldquo;contar&rdquo; no necesariamente hay que usar n&uacute;meros. Por ejemplo, podemos<strong> contar con letras</strong> as&iacute;:</p>
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 31:      */
 /*  C031.C                   */
 /*                           */
 /*  "for" que usa "char"     */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -347,14 +319,14 @@ int main()
 <p> <br />
   Si queremos contar de forma <strong>decreciente</strong>, o de dos en dos, o como nos interese, basta indicarlo en la condici&oacute;n de finalizaci&oacute;n del &ldquo;for&rdquo; y en la parte que lo incrementa:</p>
   
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 32:      */
 /*  C032.C                   */
 /*                           */
 /*  "for" que descuenta      */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -378,19 +350,7 @@ int main()
   <li>Crear un programa que escriba en pantalla los n&uacute;meros del 1 al 50 que sean m&uacute;ltiplos de 3 (pista: habr&aacute; que recorrer todos esos n&uacute;meros y ver si el resto de la divisi&oacute;n entre 3 resulta 0).</li>
 </ul>
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -407,7 +367,7 @@ int main()
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    44618 visitas desde el 29-01-2007</p>
               </div>
  
@@ -416,7 +376,7 @@ int main()
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc03.html">Anterior</a></li>
                     <li><a href="cc03c.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -429,18 +389,11 @@ int main()
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:07 GMT -->
+<!-- Mirrored from #/c/curso/cc03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:07 GMT -->
 </html>
         

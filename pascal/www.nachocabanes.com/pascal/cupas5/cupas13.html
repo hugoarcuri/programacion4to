@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from #/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:09 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,16 +9,32 @@
     <title>13. Servicios del sistema</title>
 
     
-    <meta name="description" content="13. Servicios del sistema - Por Profesor -- Hugo Arcuri --" />
+    <meta name="description" content="13. Servicios del sistema - Por Nacho Cabanes" />
     
-    <meta name="author" content="Profesor -- Hugo Arcuri --" />
+    <meta name="author" content="Nacho Cabanes" />
     <meta name="keywords" content="path,fecha,hora,ficheros,comspec,command" />
 
-<!--    <link rel="stylesheet" href="../../css/foundation.css" />
- -->
+    <link rel="stylesheet" href="../../css/foundation.css" />
     <link rel="stylesheet" href="../../css/prism.css" />
-    <!-- -->
-    <!-- -->
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
   </head>
   <body>
     
@@ -46,7 +62,7 @@
             <li class="divider"></li>
             <li><a href="index-2.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
       </ul>
     </section>
   </nav>
@@ -107,7 +123,7 @@ sistema, incluyendo el nombre del día, ser&iacute;a:</p>
 <br><a NAME="progFecha"></a>
 
 <p><pre><code class='language-pascal'>(* FECHA.PAS, Conocer la fecha actual   *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --   *) 
+(* Parte de CUPAS5, por Nacho Cabanes   *) 
 
 program Fecha;
 
@@ -152,7 +168,7 @@ referir&iacute;a a la A, un 2 a la B, un 3 a la C, y as&iacute; sucesivamente.
 Si una unidad no existe, DiskSize y DiskFree devuelven -1. </p>
 
 <p><pre><code class='language-pascal'>(* ESPACIO.PAS, Espacio libre en la unid. de disco actual   *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                       *) 
+(* Parte de CUPAS5, por Nacho Cabanes                       *) 
 
 program Espacio;  { Mira el espacio libre en la unidad de disco actual }
 
@@ -206,7 +222,7 @@ datos del siguiente fichero. </p>
 <a NAME="progListadir"></a>
 
 <p><pre><code class='language-pascal'>(* LISTADIR.PAS, Lista de ficheros en un directorio *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --               *) 
+(* Parte de CUPAS5, por Nacho Cabanes               *) 
 
 program ListaDir;
 
@@ -240,7 +256,7 @@ usar la orden "UnpackTime" para extraerla y volcarla a un dato de tipo "DateTime
 como en este ejemplo:</p>
 
 <p><pre><code class='language-pascal'>(* FTIME.PAS, Ver fecha y hora de un fichero *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --       *) 
+(* Parte de CUPAS5, por Nacho Cabanes       *) 
 
 uses Dos;
 
@@ -288,7 +304,7 @@ ejecutables) con:</p>
 
 
 <p><pre><code class='language-pascal'>(* PATH.PAS, Descubrir el Path del sistema *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --      *) 
+(* Parte de CUPAS5, por Nacho Cabanes      *) 
 
 program Path;
 
@@ -330,7 +346,7 @@ nuestro programa y restaurarlos con la misma orden tras la ejecución. <p>
 
 
 <p><pre><code class='language-pascal'>(* EJECUTA.PAS, Ejecuta otro prog. desde el nuestro *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --               *) 
+(* Parte de CUPAS5, por Nacho Cabanes               *) 
 
 {$M 2000,0,0 }   { 2000 bytes pila, sin heap }
 { Habrá que suprimir la línea anterior si se usa Tmt Pascal }
@@ -363,7 +379,7 @@ conozcamos, pero para eso hemos de llamar a COMMAND.COM con la opci&oacute;n
 
 <p><pre><code class='language-pascal'>(* EJECUTA2.PAS, Ejecuta una orden interna de MsDos    *)
 (* No funcionará en la mayoría de versiones de Windows *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                  *) 
+(* Parte de CUPAS5, por Nacho Cabanes                  *) 
 
 {$M 2000,0,0 }   { 2000 bytes pila, sin heap }
 { Habrá que suprimir la línea anterior si se usa Tmt Pascal }
@@ -391,7 +407,7 @@ As&iacute;, nuestra orden Exec quedar&iacute;a:</p>
 <p>Y el fuente completo sería:</p>
 
 <p><pre><code class='language-pascal'>(* EJECUTA3.PAS, Ejecuta una orden interna de MsDos/Win *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                   *) 
+(* Parte de CUPAS5, por Nacho Cabanes                   *) 
 
 {$M 2000,0,0 }   { 2000 bytes pila, sin heap }
 { Habrá que suprimir la línea anterior si se usa Tmt Pascal }
@@ -438,8 +454,8 @@ end.
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
-                   761 visitas desde el 07-08-2014</p>
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   762 visitas desde el 07-08-2014</p>
               </div>
  
               <div class="large-6 small-12 columns">
@@ -447,7 +463,7 @@ end.
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cupas12.html">Anterior</a></li>
                     <li><a href="index-2.html">Posterior</a></li>
-                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
                   </ul>
               </div>
  
@@ -472,6 +488,6 @@ end.
     
   </body>
 
-<!-- Mirrored from #/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:09 GMT -->
 </html>
         

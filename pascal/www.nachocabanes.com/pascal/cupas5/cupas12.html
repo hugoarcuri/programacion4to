@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from #/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:22 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:06 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,16 +9,32 @@
     <title>12. Creación de gráficos</title>
 
     
-    <meta name="description" content="12. Creación de gráficos - Por Profesor -- Hugo Arcuri --" />
+    <meta name="description" content="12. Creación de gráficos - Por Nacho Cabanes" />
     
-    <meta name="author" content="Profesor -- Hugo Arcuri --" />
+    <meta name="author" content="Nacho Cabanes" />
     <meta name="keywords" content="generalidades,freepascal" />
 
-<!--    <link rel="stylesheet" href="../../css/foundation.css" />
- -->
+    <link rel="stylesheet" href="../../css/foundation.css" />
     <link rel="stylesheet" href="../../css/prism.css" />
-    <!-- -->
-    <!-- -->
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
   </head>
   <body>
     
@@ -46,7 +62,7 @@
             <li class="divider"></li>
             <li><a href="index-2.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
       </ul>
     </section>
   </nav>
@@ -149,7 +165,7 @@ podría ser así: </p>
 
 
 <p><pre><code class='language-pascal'>(* GRAPH01.PAS, Linea en modo gráfico  *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --  *) 
+(* Parte de CUPAS5, por Nacho Cabanes  *) 
  
 program Graph01;
 
@@ -236,7 +252,7 @@ pantalla, ni la cantidad de colores, pero lo podemos descubrir mirando los
 valores de GetMaxX, GetMaxX y GetMaxColor. </p> 
  
 <p><pre><code class='language-pascal'>(* GRAPH02.PAS, Autodetección de modo gráfico *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --         *) 
+(* Parte de CUPAS5, por Nacho Cabanes         *) 
  
 program Graph02;
 
@@ -288,7 +304,7 @@ Las <b>órdenes gráficas</b> más habituales son:
 <br /> 
  
 <p><pre><code class='language-pascal'>(* GRAPH03.PAS, Funciones gráficas más frecuentes *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --             *) 
+(* Parte de CUPAS5, por Nacho Cabanes             *) 
 
 program Graph03;
 
@@ -375,7 +391,7 @@ de <b>dibujo</b>:
 <br><a NAME="progDib"></a>
 
 <p><pre><code class='language-pascal'>(* GRAPH04.PAS, Programa sencillo de dibujo *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --       *) 
+(* Parte de CUPAS5, por Nacho Cabanes       *) 
 
 program Graph04;
 
@@ -474,7 +490,7 @@ varios c&iacute;rculos. Buscamos un resultado similar a &eacute;ste:</p>
 <p>Y lo podemos conseguir as&iacute;:</p>
 
 <p><pre><code class='language-pascal'>(* GRAPH05.PAS, Cono formado por varios círculos *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --            *)
+(* Parte de CUPAS5, por Nacho Cabanes            *)
 
 program Graph05;
 
@@ -526,7 +542,7 @@ R,G,B) donde
 <br>As&iacute;, nuestro "cono" retocado quedar&iacute;a:
 
 <p><pre><code class='language-pascal'>(* GRAPH05B.PAS, Cono de círculos con los colores cambiados *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                       *)
+(* Parte de CUPAS5, por Nacho Cabanes                       *)
 
 program Graph05b;
 
@@ -563,7 +579,7 @@ el origen (0,0) a cada uno de los puntos de la l&iacute;nea inferior.</p>
 <a NAME="progGraf3"></a>
 
 <p><pre><code class='language-pascal'>(* GRAPH06.PAS, Líneas desde el punto (0,0) *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                       *)
+(* Parte de CUPAS5, por Nacho Cabanes                       *)
 
 program Graph06;
 
@@ -596,7 +612,7 @@ llamativo:</p>
 <p><center><img src="img/graph06b.png"></center></p>
 
 <p><pre><code class='language-pascal'>(* GRAPH06B.PAS, Líneas dibujadas con XOR *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --     *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
 
 program Graph06b;
 
@@ -640,7 +656,7 @@ volver a dibujar (usando XOR en ambos casos como método de dibujado):</p>
 
 
 <p><pre><code class='language-pascal'>(* GRAPH06C.PAS, Animación básica con XOR *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --     *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
 
 program Graph06c;
 
@@ -711,8 +727,8 @@ end.
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
-                   16005 visitas desde el 23-02-2014</p>
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   16012 visitas desde el 23-02-2014</p>
               </div>
  
               <div class="large-6 small-12 columns">
@@ -720,7 +736,7 @@ end.
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="index-2.html">Anterior</a></li>
                     <li><a href="index-2.html">Posterior</a></li>
-                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
                   </ul>
               </div>
  
@@ -745,6 +761,6 @@ end.
     
   </body>
 
-<!-- Mirrored from #/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:09 GMT -->
 </html>
         

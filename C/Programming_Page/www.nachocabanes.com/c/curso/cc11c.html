@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+<!-- Mirrored from #/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de C - Tema 11 - Caracteristicas avanzadas</title>
 
     
-    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Nacho Cabanes" />
+    <meta name="description" content="Curso de C - Tema 11 - Caracteristicas avanzadas - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="or,and,not,desplazamiento,directiva,preprocesador,makefile,coma" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cc11d.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -85,19 +69,7 @@
   background: #000080;
 }
 
-</style>        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+</style>       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -113,7 +85,7 @@
   Por ejemplo, el primer m&oacute;dulo (uno.c) podr&iacute;a ser simplemente:<br />
   <br />
   
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 98a:     */
 /*  uno.c                    */
 /*                           */
@@ -121,7 +93,7 @@
 /*  varios fuentes (1)       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 void uno()
@@ -131,7 +103,7 @@ void uno()
 </code></pre></p>
 y el segundo m&oacute;dulo (dos.c):<br />
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 98b:     */
 /*  dos.c                    */
 /*                           */
@@ -139,7 +111,7 @@ y el segundo m&oacute;dulo (dos.c):<br />
 /*  varios fuentes (2)       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 void dos(int numero)
@@ -150,7 +122,7 @@ void dos(int numero)
 
 Un programa principal simple, que los utilizase, ser&iacute;a (TRES.C):<br />
 
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 98c:     */
 /*  tres.c                   */
 /*                           */
@@ -158,7 +130,7 @@ Un programa principal simple, que los utilizase, ser&iacute;a (TRES.C):<br />
 /*  varios fuentes (3)       */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -200,7 +172,7 @@ int main()
     <br />
     Para decirle que existen, lo que har&iacute;amos ser&iacute;a incluir en el programa principal los prototipos de las funciones (las cabeceras, sin el desarrollo) que se encuentran en otros m&oacute;dulos, as&iacute;:</p>
     
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 98d:     */
 /*  tres.c                   */
 /*                           */
@@ -208,7 +180,7 @@ int main()
 /*  varios fuentes (3b)      */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
 
 #include <stdio.h>
@@ -227,7 +199,7 @@ int main()               /* Cuerpo del programa */
 Esta misma soluci&oacute;n de poner los prototipos al principio del programa nos puede servir para casos en los que, teniendo un &uacute;nico fuente, queramos declarar el cuerpo del programa antes que las funciones auxiliares:<br />
     <br />
     
-<p><pre><code class='language-c'>/*---------------------------*/
+<p><pre class="pre"><code class='language-c'>/*---------------------------*/
 /*  Ejemplo en C nº 99:      */
 /*  c099.c                   */
 /*                           */
@@ -235,7 +207,7 @@ Esta misma soluci&oacute;n de poner los prototipos al principio del programa nos
 /*  "main",usando prototipos */
 /*                           */
 /*  Curso de C,              */
-/*    Nacho Cabanes          */
+/*    Profesor -- Hugo Arcuri --          */
 /*---------------------------*/
  
 #include <stdio.h>
@@ -396,19 +368,7 @@ void dos(int numero)
 
 
 
-        <p style="text-align: center"><br />
-      <script type="text/javascript"><!--
-        google_ad_client = "pub-4298821349414973";
-        google_ad_width = 320;
-        google_ad_height = 50;
-        google_ad_format = "320x50_as";
-        google_ad_type = "text_image";
-        google_ad_channel ="";
-        google_color_border = "D1D1D1";
-        google_color_bg = "FFFFFF";
-        google_color_link = "516695";
-        google_color_url = "516695.html";
-        google_color_text = "000000";
+       <!-- -->
 //--></script>
       <script type="text/javascript"
  src="../../../pagead2.googlesyndication.com/pagead/f.txt">
@@ -425,7 +385,7 @@ void dos(int numero)
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    8784 visitas desde el 29-01-2007</p>
               </div>
  
@@ -434,7 +394,7 @@ void dos(int numero)
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cc11b.html">Anterior</a></li>
                     <li><a href="cc11d.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -447,18 +407,11 @@ void dos(int numero)
     </div>
   </div>
  
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-
-      var doc = document.documentElement;
-      doc.setAttribute('data-useragent', navigator.userAgent);
-    </script>
+ <!-- -->
     
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
+<!-- Mirrored from #/c/curso/cc11c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Aug 2022 19:30:19 GMT -->
 </html>
         

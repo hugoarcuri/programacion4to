@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from #/pascal/cupas5/cupas04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:03 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,16 +9,32 @@
     <title>Curso de Pascal - 4. Arrays, cadenas, registros y conjuntos.</title>
 
     
-    <meta name="description" content="4. Arrays, cadenas, registros y conjuntos. - Por Profesor -- Hugo Arcuri --" />
+    <meta name="description" content="4. Arrays, cadenas, registros y conjuntos. - Por Nacho Cabanes" />
     
-    <meta name="author" content="Profesor -- Hugo Arcuri --" />
+    <meta name="author" content="Nacho Cabanes" />
     <meta name="keywords" content="array,sort,ordenar,burbuja,borrar,insertar" />
 
-<!--    <link rel="stylesheet" href="../../css/foundation.css" />
- -->
+    <link rel="stylesheet" href="../../css/foundation.css" />
     <link rel="stylesheet" href="../../css/prism.css" />
-    <!-- -->
-    <!-- -->
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
   </head>
   <body>
     
@@ -46,7 +62,7 @@
             <li class="divider"></li>
             <li><a href="cupas04b.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
       </ul>
     </section>
   </nav>
@@ -115,7 +131,7 @@ vector) se usaría</p>
 
 <p><pre><code class='language-pascal'>(* ARRAY00.PAS, Contacto con arrays    *)
 (* Datos en posiciones prefijadas      *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --  *)
+(* Parte de CUPAS5, por Nacho Cabanes  *)
 
 Program Array00;
 
@@ -136,7 +152,7 @@ Por ejemplo, podríamos pedir al usuario 5 números y luego mostrarlos en orden 
 
 <p><pre><code class='language-pascal'>(* ARRAY01.PAS, Ejemplo de uso de arrays (01): *)
 (* Pedir datos y mostrarlos al revés           *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --          *)
+(* Parte de CUPAS5, por Nacho Cabanes          *)
 
 Program Array01;
 
@@ -168,7 +184,7 @@ los elementos. Por eso, lo habitual es usar un "boolean" para memorizar si
 lo hemos encontrado o no:</p>
 
 <p><pre><code class='language-pascal'>(* ARRAYB.PAS, Buscar en un array     *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri -- *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
 
 program ArrayB;
 
@@ -206,7 +222,7 @@ uno a uno con todos los demás datos. Si el dato actual es mayor que el máximo
 deberemos memorizar.<p>
 
 <p><pre><code class='language-pascal'>(* ARRAYMAX.PAS, Maximo valor en un array *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --     *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
  
 program ArrayMax;
  
@@ -250,7 +266,7 @@ reales sería:<p>
 <p>Un ejemplo más completo, que pidiera 2x3 datos y mostrar uno de ellos sería:</p>
 
 <p><pre><code class='language-pascal'>(* ARRAYBI.PAS, Array bidimensional   *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri -- *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
 
 program ArrayBi;
 
@@ -290,7 +306,7 @@ solución es sobredimensionar: crear un array más grande de lo que esperemos
 necesitar y llevar un contador de cuántos datos ya hemos almacenado:<p>
 
 <p><pre><code class='language-pascal'>(* ARRAYSD.PAS, Array sobredimensionado *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --  *)
+(* Parte de CUPAS5, por Nacho Cabanes  *)
 
 program ArraySD;
 
@@ -343,7 +359,7 @@ Para borrar, deberemos desplazar hacia "la izquierda" (hacia el principio del ar
 los datos que hay desde esa posición, y luego disminuir el contador de datos:<p>
 
 <p><pre><code class='language-pascal'>(* ARRAYBor.PAS, Borrar en un array sobredimensionado *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --                 *)
+(* Parte de CUPAS5, por Nacho Cabanes                 *)
 
 Program ArrayBor;
 
@@ -412,7 +428,7 @@ hacia el final del array (como si "subiera hacia la superficie"). Tras cada
 pasada, el número más pequeño quedará colocado en su sitio:<p>
 
 <p><pre><code class='language-pascal'>(* ARRAYORD.PAS, Ordenar un array (burbuja) *)
-(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --       *)
+(* Parte de CUPAS5, por Nacho Cabanes       *)
 
 Program ArrayOrd;
 
@@ -491,7 +507,7 @@ Los datos tras ordenar son:
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
                    </p>
               </div>
  
@@ -500,7 +516,7 @@ Los datos tras ordenar son:
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cupas03.html">Anterior</a></li>
                     <li><a href="cupas04b.html">Posterior</a></li>
-                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
                   </ul>
               </div>
  
@@ -525,6 +541,6 @@ Los datos tras ordenar son:
     
   </body>
 
-<!-- Mirrored from #/pascal/cupas5/cupas04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 18:52:03 GMT -->
 </html>
         
