@@ -1,7 +1,7 @@
 <!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
     data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
   
-<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Mirrored from #/pascal/cupas5/cupas04b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
@@ -9,32 +9,16 @@
     <title>Curso de Pascal - 4 - Arrays, cadenas, registros y conjuntos (2).</title>
 
     
-    <meta name="description" content="4 - Arrays, cadenas, registros y conjuntos (2). - Por Nacho Cabanes" />
+    <meta name="description" content="4 - Arrays, cadenas, registros y conjuntos (2). - Por Profesor -- Hugo Arcuri --" />
     
-    <meta name="author" content="Nacho Cabanes" />
+    <meta name="author" content="Profesor -- Hugo Arcuri --" />
     <meta name="keywords" content="array,record,set,string" />
 
-    <link rel="stylesheet" href="../../css/foundation.css" />
+<!--    <link rel="stylesheet" href="../../css/foundation.css" />
+ -->
     <link rel="stylesheet" href="../../css/prism.css" />
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../css/prism.js"></script>
-    <style type="text/css">
-    pre {
-      background: #F2F2F2;
-      padding: 15px;
-      line-height: 1.5em;
-      font-size: 1.1em;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-    p {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    </style>
+    <!-- -->
+    <!-- -->
   </head>
   <body>
     
@@ -62,7 +46,7 @@
             <li class="divider"></li>
             <li><a href="cupas04c.html">Posterior</a></li>
             <li class="divider"></li>
-            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+            <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
       </ul>
     </section>
   </nav>
@@ -120,7 +104,7 @@ en ese caso ocupará n+1 bytes en memoria.</p>
 <p>Vamos a ver un primer ejemplo que pida al usuario su nombre y le salude:</p>
 
 <p><pre><code class='language-pascal'>(* SALUDO.PAS, Pedir nombre al usuario y saludarle  *)
-(* Parte de CUPAS5, por Nacho Cabanes               *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --               *) 
 
 program Saludo;
 
@@ -146,7 +130,7 @@ Hola Nacho
 prefijado, si indicamos el texto entre comillas simples, así:</p>
 
 <p><pre><code class='language-pascal'>(* STRING1.PAS, Dar valor prefijado a un string  *)
-(* Parte de CUPAS5, por Nacho Cabanes            *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --            *) 
 
 program String1;
 
@@ -175,7 +159,7 @@ como si se tratara de un array de caracteres, en el que el primer elemento
 está en la posición 1 y la cantidad de letras se sabe con "length":</p>
 
 <p><pre><code class='language-pascal'>(* STRING2.PAS, Acceder a las letras de un string  *)
-(* Parte de CUPAS5, por Nacho Cabanes              *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --              *) 
 
 program String2;
 
@@ -202,7 +186,7 @@ La primera es H
 <p>Podemos crear una cadena a partir de varias (<b>concatenar</b>), usando el símbolo de la suma o la orden <b>concat</b>, que a la que indicaremos varias subcadenas entre paréntesis:</p>
 
 <p><pre><code class='language-pascal'>(* STRING3.PAS, Concatenar cadenas     *)
-(* Parte de CUPAS5, por Nacho Cabanes  *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --  *) 
 
 program String3;
 
@@ -234,7 +218,7 @@ Hola-Pascal
 <p>Si necesitamos partir de una cadena <b>vacía</b> (por ejemplo, para irle añadiendo letras) o bien queremos vaciar una cadena ya existente, lo podemos hacer usando dos comillas simples que no contengan nada entre medias (ni siquiera un espacio):</p>
 
 <p><pre><code class='language-pascal'>(* STRING4.PAS, Vaciar una cadena     *)
-(* Parte de CUPAS5, por Nacho Cabanes *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri -- *) 
 
 program String4;
 
@@ -264,7 +248,7 @@ orden <b>copy</b>, que debe recibir tres parámetros: la cadena, la posición de
 y la cantidad de caracteres a extraer:</p>
 
 <p><pre><code class='language-pascal'>(* STRING5.PAS, Extraer una subcadena *)
-(* Parte de CUPAS5, por Nacho Cabanes *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri -- *) 
 
 program String5;
 
@@ -289,7 +273,7 @@ la subcadena a buscar y la cadena que la contiene, y devolverá 0 si no aparece,
 que cero (la posición) en caso de que sí esté contenida:</p>
 
 <p><pre><code class='language-pascal'>(* STRING6.PAS, Posicion de una subcadena *)
-(* Parte de CUPAS5, por Nacho Cabanes     *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --     *) 
 
 program String6;
 
@@ -311,7 +295,7 @@ La palabra "esto" aparece en la posicion 7
 <p>Finalmente, también tenemos la posibilidad de <b>insertar una subcadena</b>, usando <b>insert</b>, o de <b>borrar una subcadena</b>, con <b>delete</b>. A "insert" se le indican 3 datos: el texto a insertar, la cadena dentro de la que queremos incluirlo, y la posición en la que debe aparecer; a "delete" se le detalla la cadena, la posición en la que empezar a borrar y la cantidad de letras a eliminar:</p>
 
 <p><pre><code class='language-pascal'>(* STRING7.PAS, Insertar y borrar en una cadena *)
-(* Parte de CUPAS5, por Nacho Cabanes           *) 
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --           *) 
 
 program String7;
 
@@ -348,7 +332,7 @@ Y tras borrar queda Hola, amigo, es un ejemplo
 <p>Podemos crear un array formado por varias cadenas de texto, igual que los creábamos a partir de datos numéricos. El manejo será idéntico. La única peculiaridad que merece la pena comentar es que si queremos acceder a una letra concreta de una de esas cadenas deberemos usar dos pares de corchetes: la primera pareja indicará la posición en que está la frase dentro del array, y la segunda pareja de corchetes detallará qué letra dentro de esa cadena:</p>
 
 <p><pre><code class='language-pascal'>(* ARRAYST.PAS, Contacto con array de strings *)
-(* Parte de CUPAS5, por Nacho Cabanes         *)
+(* Parte de CUPAS5, por Profesor -- Hugo Arcuri --         *)
  
 Program ArraySt;
  
@@ -398,7 +382,7 @@ La tercera letra de la segunda cadena es i
             <div class="row">
  
               <div class="large-6 columns">
-                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                  <p>&copy; 2015 <a href="http://#/">Profesor -- Hugo Arcuri --</a>
                    10547 visitas desde el 19-03-2014</p>
               </div>
  
@@ -407,7 +391,7 @@ La tercera letra de la segunda cadena es i
                     <li><a href="index-2.html">Índice</a></li>
                     <li><a href="cupas04.html">Anterior</a></li>
                     <li><a href="cupas04c.html">Posterior</a></li>
-                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                    <li><a href="https://#/">Profesor -- Hugo Arcuri --</a></li>
                   </ul>
               </div>
  
@@ -432,6 +416,6 @@ La tercera letra de la segunda cadena es i
     
   </body>
 
-<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Mirrored from #/pascal/cupas5/cupas04b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
 </html>
         
