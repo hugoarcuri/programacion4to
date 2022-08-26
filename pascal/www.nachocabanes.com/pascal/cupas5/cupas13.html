@@ -1,0 +1,493 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13. Servicios del sistema</title>
+
+    
+    <meta name="description" content="13. Servicios del sistema - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="path,fecha,hora,ficheros,comspec,command" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            13. Servicios del sistema          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas12.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="index-2.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h1>13. Servicios del sistema</h1>
+
+<p>En Turbo Pascal (y,  por compatibilidad con él, también en Free Pascal y 
+otros compiladores minoritarios como TMT Pascal),  la unidad DOS nos permite 
+acceder a muchod servicios del sistema operativo,  como la fecha y hora,  la 
+lista de ficheros y también nos permite ejecutar otros programas.  Vamos a ver 
+ejemplos de esas posibilidades.</p>
+
+<h2>13.1. Fecha del sistema</h2>
+
+<p>Para saber la fecha actual, usaremos "GetDate", que nos devolverá el año, 
+mes, día y número de día de la semana, en ese orden.  Todos ellos son números 
+enteros, y el día de la semana será 0 para el domingo, 1 para el lunes, 2 para 
+el martes y así sucesivamente. Por tanto,  un ejemplo que muestre la fecha del 
+sistema, incluyendo el nombre del día, ser&iacute;a:</p>
+
+<br><a NAME="progFecha"></a>
+
+<p><pre><code class='language-pascal'>(* FECHA.PAS, Conocer la fecha actual   *)
+(* Parte de CUPAS5, por Nacho Cabanes   *) 
+
+program Fecha;
+
+uses Dos;
+
+const
+    nombre : array [0..6] of String[15] =
+        ('Domingo','Lunes','Martes','Miércoles',
+         'Jueves','Viernes','Sábado');
+var
+    anyo, mes, dia, diaSem : Word;
+
+begin
+    GetDate( anyo, mes, dia, diaSem );
+    writeln('Hoy es ', nombre[diaSem], ' ',
+        dia, '/', mes, '/', anyo);
+end.
+</code></pre></p> 
+
+<p>De igual modo, tenemos "GetTime", que nos dice la hora, minutos, segundos
+y centésimas de segundo.</p>
+
+<blockquote><i><b>Ejercicio propuesto 13.1.1:</b> Crea un programa que muestra la hora actual en la esquina superior
+    izquierda de la pantalla, en formato HH:MM:SS. Debe actualizarse continuamente,
+    hasta que se pulse una tecla.</i></blockquote>
+ 
+<h3>13.2. Acceso al sistema de ficheros</h3>
+
+<p>Hemos visto la forma leer datos desde un fichero, pero no sabemos como ver qué 
+ficheros hay en una carpeta, ni que unidades de disco hay en un equipo, ni el 
+espacio libre. Todo ello puede resultar útil en programas un poco más 
+avanzados. </p>
+
+<h4>13.2.1. Espacio libre en una unidad de disco</h4>
+<a NAME="progEspacio"></a>
+
+<p>DiskFree nos devolverá el espacio libre en una unidad de disco y DiskSize 
+nos dirá el tamaño total. En ambos casos, el dato que recibimos será la 
+cantidad de bytes.  Como parámetro debemos indicar que unidad queremos revisar 
+: un 0 indicará que queremos saberlo para la unidad actual, un 1 se 
+referir&iacute;a a la A, un 2 a la B, un 3 a la C, y as&iacute; sucesivamente. 
+Si una unidad no existe, DiskSize y DiskFree devuelven -1. </p>
+
+<p><pre><code class='language-pascal'>(* ESPACIO.PAS, Espacio libre en la unid. de disco actual   *)
+(* Parte de CUPAS5, por Nacho Cabanes                       *) 
+
+program Espacio;  { Mira el espacio libre en la unidad de disco actual }
+
+uses Dos;
+begin
+    write('Hay disponibles: ');
+    write( DiskFree(0) div 1024 );        { Muestra el espacio libre }
+    write(' K de ');
+    write( DiskSize(0) div 1024 );        { y el espacio total }
+    writeln(' K totales.');
+end. 
+</code></pre></p>
+
+<blockquote><i><b>Ejercicio propuesto 13.2.1.1:</b> Muestra el espacio libre en todas las unidades de disco de tu
+    sistema (sólo las que realmente existan, es decir, aquellas para las que
+    DiskFree no valga -1).</i></blockquote>
+
+<h3>13.2.2. Lista de ficheros</h3>
+
+<p>Podemos ver la <b>lista de los ficheros</b> que hay en un directorio mediante
+FindFirst y FindNext. Con   FindFirst obtenemos el primer fichero que cumple una cierta condición, y con FindNext el siguiente (si existe). Podemos saber si hay "siguientes" mirando el valor de la variable DosError, que valdrá 0 mientras queden ficheros por analizar.</p>
+
+<p>FindFirst recibe tres parámetros:</p>
+
+<ul>
+    
+    <li>El nombre del fichero que buscamos, que normalmente tendrá "comodines", 
+    como el asterisco para indicar "cualquier nombre": "*.PAS" querría decir
+    "fichero en Pascal con cualquier nombre". </li>
+
+    <li>Los atributos que debe tener ese fichero. En general será AnyFile, para 
+    indicar que nos importan todos los ficheros encontrados. Otros valores 
+    posibles son ReadOnly (sólo lectura), Hidden (oculto), SysFile (de sistema),
+    Directory (directorio), VolumeID (etiqueta de volumen) y Archive (pendiente 
+    de archivar en una copia de seguridad).</li>
+
+    <li>La variable en la que se nos devolverán los datos del primer fichero 
+    encontrado. Es un record de un tipo llamado SearchRec,  con campos como 
+    "Name" para el nombre del fichero, "Size" para su tamaño, "Time" para su 
+    fecha y hora y "Attr" para sus atributos (con los valores que acabamos de 
+    comentar). </li>
+    
+</ul>
+
+<p>FindNext recibe sólo un parámetro, la variable en la que se devolverán los 
+datos del siguiente fichero. </p>
+
+<p>Por ejemplo, para ver los ficheros que tienen extensi&oacute;n
+.PAS en la carpeta actual, podemos hacer:</p>
+
+<a NAME="progListadir"></a>
+
+<p><pre><code class='language-pascal'>(* LISTADIR.PAS, Lista de ficheros en un directorio *)
+(* Parte de CUPAS5, por Nacho Cabanes               *) 
+
+program ListaDir;
+
+uses Dos;
+
+var 
+    Hallado: SearchRec;            { Información sobre el directorio }
+                  { El tipo SearchRec está definido en la unidad Dos }
+
+begin
+    FindFirst( '*.PAS', AnyFile, Hallado );       { Los busca }
+    while DosError = 0 do                        { Mientras existan }
+        begin
+        Writeln( Hallado.Name );      { Escribe el nombre hallado }
+        FindNext( Hallado );          { y busca el siguiente }
+        end;
+end.
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 13.2.2.1:</b> Haz un programa que muestre la lista de ejecutables de la
+    carpeta actual.</i></blockquote><blockquote><i><b>Ejercicio propuesto 13.2.2.2:</b> Crea un programa que muestre la lista de subdirectorios de la
+    carpeta actual.</i></blockquote>
+<h3>13.2.3. Fecha y hora de ficheros</h3>
+
+
+<p>También podemos conocer la fecha y hora de creación de un fichero.
+Por una parte, hemos visto que es uno de los datos que podemos obtener con
+FindFirst y FindNext. Por otra parte, también podemos usar GetFtime para obtener
+directamente la información sobre un único fichero concreto. En ambos casos,
+la información de fecha y hora está "compactada" en un único byte, y debermos
+usar la orden "UnpackTime" para extraerla y volcarla a un dato de tipo "DateTime",
+como en este ejemplo:</p>
+
+<p><pre><code class='language-pascal'>(* FTIME.PAS, Ver fecha y hora de un fichero *)
+(* Parte de CUPAS5, por Nacho Cabanes       *) 
+
+uses Dos;
+
+var
+    fichero: text;
+    h, m, s, cent: Word;
+    fechaYhora: Longint;
+    datos: DateTime;
+
+begin
+    Assign(fichero, 'FECHA.PAS');
+    reset(fichero);
+    GetFTime(fichero, fechaYhora);
+    UnpackTime(fechaYhora, datos);
+    WriteLn('Fecha del fichero: ',
+        datos.day, '/',
+        datos.month, '/',
+        datos.year);    
+    WriteLn('Hora del fichero: ',
+        datos.hour, ':',
+        datos.min, ':',
+        datos.sec);
+    close(fichero);
+end.
+
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 13.2.3.1:</b> Crea un programa que pida al usuario el nombre de un fichero,
+    y le diga la fecha y hora de ese fichero o un aviso de "El fichero no existe",
+    según corresponda.</i></blockquote>
+<p>De forma alternativa, existe "SetFTime(fichero, fechaYhora)", que cambia la fecha
+y hora de un fichero, a partir de unos datos que se habrán compactado previamente
+con "PackTime(datos, fechaYhora)". Se puede ver que el formato de SetFTime es el
+mismo que el de GetFTime, pero el de "PackTime" es el contrario que el de "UnpackTime"
+(el dato en formato "DateTime" aparece en primer lugar, y la fecha y hora compactada
+en segundo lugar).</p>
+
+<blockquote><i><b>Ejercicio propuesto 13.2.3.2:</b> Crea un programa que pida al usuario el nombre de un fichero
+    y cambie su fecha y hora por la del instante actual.</i></blockquote>
+
+<h3>13.3. Variables de entorno</h3>
+
+<p>Con GetEnv podemos saber el valor de una "variable de entorno" del sistema 
+operativo.  Por ejemplo, podemos saber el Path (ruta de búsqueda para 
+ejecutables) con:</p>
+
+
+<p><pre><code class='language-pascal'>(* PATH.PAS, Descubrir el Path del sistema *)
+(* Parte de CUPAS5, por Nacho Cabanes      *) 
+
+program Path;
+
+uses dos;
+
+begin
+    Write('El PATH es: ');
+    WriteLn( GetEnv('PATH') );
+end. 
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 13.3.1:</b> Crea un programa que muestre el nombre de la carpeta temporal del sistema,
+    que suele estar guardada en la variable de entorno llamada "TMP".</i></blockquote>
+
+
+<h3>13.4. Ejecutar otros programas</h3>
+
+<h4>13.4.1. Ejecutar programas externos</h3>
+
+<p><a NAME="progEjecuta"></a>También podemos lanzar otros programas desde uno 
+nuestro. La forma básica es emplear la orden EXEC, a la que se le indica la
+ruta completa del fichero y los parámetros adicionales que queramos para ese fichero.
+Por ejemplo, bajo Windows podríamos lanzar el bloc de notas con C:\WINDOWS\NOTEPAD.EXE
+(suponiendo que Windows se ha instalado en la ruta habitual). Si además queremos que
+se abra directamente mostrando el contenido de un documento llamado "MITEXTO.TXT",
+lo indicaríamos como segundo parámetro de la orden EXEC).</p>
+
+<p>Además, en el caso de Turbo Pascal para DOS, es necesario reservar memoria
+para ese programa que vamos a lanzar, porque si no lo pedimos de forma explícita,
+nuestro programa reservará para el mismo toda la memoria del sistema, al ser
+MsDos un sistema operativo monotarea. La forma de conseguirlo es con la directiva
+$M, a la que hay que indicar cuánta pila reservar (2000 puede ser suficiente
+para un programa sencillo y que no use recursividad) y cuanto "heap" mínimo y 
+máximo queremos para variables dinámicas (ambos datos podrían ser 0 si nuestro
+programa no usa "punteros").</p>
+
+<p>También (y, nuevamente, sólo en el caso de MsDos), debemos guardar los 
+<b>vectores de interrupci&oacute;n</b> con <b>SwapVectors</b> antes de ejecutar 
+nuestro programa y restaurarlos con la misma orden tras la ejecución. <p>
+
+
+<p><pre><code class='language-pascal'>(* EJECUTA.PAS, Ejecuta otro prog. desde el nuestro *)
+(* Parte de CUPAS5, por Nacho Cabanes               *) 
+
+{$M 2000,0,0 }   { 2000 bytes pila, sin heap }
+{ Habrá que suprimir la línea anterior si se usa Tmt Pascal }
+
+program EjecutaOrden;
+
+uses dos;
+
+begin
+    SwapVectors;
+    Exec('C:\WINDOWS\NOTEPAD.EXE', 'MITEXTO.TXT');
+    
+    (* En MsDOS puro, podría ser:
+    Exec('C:\WP51\WP.EXE', 'MITEXTO.TXT');
+    *)
+    SwapVectors;
+end. 
+</code></pre></p>
+<p>En el caso de FreePascal, podemos dejar la directiva $M, pero no se le hará
+caso; para TMT Pascal habría que eliminarla por completo.</p>
+
+
+
+<h4>13.4.2. Ejecutar &oacute;rdenes del sistema operativo</h4>
+
+<p><a NAME="progEjecuta2"></a>Podemos <b>ejecutar ordenes</b> del DOS como
+DIR y otros programas cuyo nombre completo (incluyendo directorios) no
+conozcamos, pero para eso hemos de llamar a COMMAND.COM con la opci&oacute;n
+/C:</p>
+
+<p><pre><code class='language-pascal'>(* EJECUTA2.PAS, Ejecuta una orden interna de MsDos    *)
+(* No funcionará en la mayoría de versiones de Windows *)
+(* Parte de CUPAS5, por Nacho Cabanes                  *) 
+
+{$M 2000,0,0 }   { 2000 bytes pila, sin heap }
+{ Habrá que suprimir la línea anterior si se usa Tmt Pascal }
+
+program EjecutaOrden2;
+
+uses dos;
+
+begin
+    SwapVectors;
+    Exec('C:\COMMAND.COM', '/C DIR *.PAS');
+    SwapVectors;
+end. 
+</code></pre></p>
+
+<p>Pero puede ocurrir si nuestro int&eacute;rprete de comandos
+no sea COMMAND.COM. Esto pasará en versiones recientes de Windos, que usen CMD.EXE,
+y también en ciertos casos bajo MsDos, si se emplean intérpretes de comandos alternativos, como 4DOS
+o NDOS. 
+Entonces podemos recurrir a la variable de entorno COMSPEC,
+que nos dice cual es el int&eacute;rprete de comandos que estamos usando. 
+As&iacute;, nuestra orden Exec quedar&iacute;a:</p>
+
+<p><pre><code class='language-pascal'>Exec( GetEnv('COMSPEC'), '/C DIR *.PAS');</code></pre></p>
+<p>Y el fuente completo sería:</p>
+
+<p><pre><code class='language-pascal'>(* EJECUTA3.PAS, Ejecuta una orden interna de MsDos/Win *)
+(* Parte de CUPAS5, por Nacho Cabanes                   *) 
+
+{$M 2000,0,0 }   { 2000 bytes pila, sin heap }
+{ Habrá que suprimir la línea anterior si se usa Tmt Pascal }
+
+program EjecutaOrden3;
+
+uses dos;
+
+begin
+    SwapVectors;
+    Exec( GetEnv('COMSPEC'), '/C DIR *.PAS');
+    SwapVectors;
+end. 
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 13.4.1:</b> Crea un programa que permita acceder pulsando una sola tecla a algunas
+    aplicaciones que tengas en tu sistema (por ejemplo, en Windows tendrás el
+    bloc de notas como NOTEPAD.EXE, la calculadora como CALC.EXE y WordPad como
+    WRITE.EXE, todos ellos en la carpeta de Windows).</i></blockquote>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   761 visitas desde el 07-08-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas12.html">Anterior</a></li>
+                    <li><a href="index-2.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas13.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+</html>
+        

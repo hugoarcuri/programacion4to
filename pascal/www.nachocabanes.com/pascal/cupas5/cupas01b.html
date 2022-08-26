@@ -1,0 +1,443 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas01b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 1 - Pedir datos al usuario. Variables (2)</title>
+
+    
+    <meta name="description" content="1 - Pedir datos al usuario. Variables (2) - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="generalidades,freepascal" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 1 - Pedir datos al usuario. Variables (2)          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas01.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas02.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+
+<h2>1.6. Tipos de datos básicos</h2>
+
+<p>Como hemos visto, se puede emplear la palabra "integer" para indicar que una variable se usará para almacenar un número entero. Pero además podemos afinar si queremos que este número entero permita almacenar números muy grandes o podemos optimizar para que ocupe poco espacio. También podemos utilizar números "reales" (con cifras decimales). Vamos a verlo...</p>
+
+<h3>1.6.1. Números enteros</h3>
+
+<p>Ciertas versiones de Pascal, como Turbo Pascal y FreePascal, permiten escoger entre varios tipos de números enteros, de modo que podemos elegir el más adecuado en caso de que queramos no desperdiciar espacio o de que prefiramos almacenar datos de gran tamaño. Estos son los tipos más habituales:</p>
+
+<table>
+    <tr><td><b>Tipo</b></td><td><b>Rango de valores</b></td><td><b>Ocupa</b></td></tr>
+   <tr><td>Shortint</td><td>-128..127</td><td>8 bits (1 byte)</td></tr>
+   <tr><td>Integer</td><td>-32768..32767</td><td>16 bits (2 bytes)</td></tr>
+   <tr><td>Longint</td><td>-2147483648..2147483647</td><td>32 bits (4 bytes)</td></tr>
+   <tr><td>Comp</td><td>-9.2·10<sup>18</sup>..9.2·<sup>18</sup></td><td>64 bits (8 bytes)</td></tr>
+   <tr><td>Byte</td><td>0..255</td><td>8 bits (1 byte)</td></tr>
+   <tr><td>Word</td><td>0..65535</td><td>16 bits (2 bytes)</td></tr>
+</table>
+
+<p>Así, un "byte" sería un tipo de datos adecuado para la edad de una persona (que no puede ser negativa, ni podemos esperar que necesite valores por encima de 255), y un "integer" no sería adecuado para la población de un país (porque no necesitaríamos datos negativos, y claramente puede ser un número por encima de 32.767). No todos los tipos de datos estarán disponibles en todos los sistemas. Por ejemplo el tipo "comp" puede no estar en sistemas antiguos, cuyo procesador no tenga un coprocesador matemático (Intel 386 y anteriores, por ejemplo).</p>
+
+<p>Un ejemplo, que pidiese a una persona su edad en años (para lo que bastaría un "byte") y que calculase una aproximación de su edad en meses, multiplicando por 12 (para lo que parece adecuado un "word") podría ser:</p>
+
+<p><pre><code class='language-pascal'>(* Enteros sin signo: byte y word *)
+
+program Enteros1;
+
+var
+  edad: byte;
+  meses: word;
+
+begin 
+  write('Dime tu edad: ');
+  readLn(edad);
+  meses := edad * 12;
+  writeLn('Aproximadamente tienes ', meses, ' meses');
+end.
+
+(* Ejemplo de ejecucion:
+Dime tu edad: 20
+Aproximadamente tienes 240 meses
+*)
+
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 1.6.1.1:</b> Crea un programa que te pregunte dos números del 1 al 10 y escriba su suma. Escoge un tipo de datos que no desperdicie mucho espacio.</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.1.2:</b> Crea un programa que pida al usuario dos números enteros entre el -1000 y el 1000, calcule su producto su producto y lo guarde en una nueva variable, para finalmente mostrar dicho producto.</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.1.3:</b> Crea un programa que pida al usuario la cantidad de habitantes de su país y cantidad de provincias o estados. A partir de esos datos calculará una estimación de la cantidad media de habitantes en cada provincia o estado. Finalmente mostrará ese resultado en pantalla. Debe usar los tipos de datos más adecuados. Recuerda emplear "div" para calcular una división entera.</i></blockquote>
+
+<h3>1.6.2. Números reales</h3>
+
+<p>En general, en la mayoría de cálculos necesitaremos tener en cuenta las cifras decimales, no siempre podremos trabajar con números enteros. Para esos casos, el lenguaje Pascal nos permite usar un tipo llamado "real".</p>
+
+<p>Por ejemplo, si queremos convertir de centímetros a metros, tendremos que dividir entre 100, de modo que obtendremos cifras decimales (a no ser que deseemos perder precisión y usemos "div"), y necesitaremos emplear números reales:</p>
+
+<p><pre><code class='language-pascal'>(* Numeros reales, primer contacto *)
+
+program Reales1;
+
+var
+  centimetros, metros: real;
+
+begin 
+  write('Dime la longitud, en centimetros: ');
+  readLn(centimetros);
+  metros := centimetros / 100;
+  writeLn('Equivalen a ', metros, ' metros');
+end.
+
+(* Ejemplo de ejecucion:
+Dime la longitud, en centimetros: 32.8
+Equivalen a  3.28000000000000E-001 metros
+*)
+
+</code></pre></p>
+<p>A la hora de introducir datos, debemos usar un <b>punto</b> para separar la parte entera de la parte fraccionaria, no una coma. De igual modo, los resultados se mostrarán también con punto. Pero además el resultado es poco legible, porque en Pascal, los números reales se muestran en <b>notación científica</b> a no ser que indiquemos lo contrario. Un número como 3e2 o 3E+2 equivaldría a 3·10<sup>2</sup>, es decir, 3·100 = 300, mientras que 3e-2 o 3.0E-002 indicaría que el resultado es 3·10<sup>-2</sup>, es decir, 3x0.01 = 0.03</p>
+
+<p>Podemos hacer que resulte más legible si indicamos cuantas cifras totales y cuantas cifras decimales queremos que se muestren, haciendo:</p>
+
+<p><pre><code class='language-pascal'>write(numero:cifrasTotales:cifrasDecimales);</code></pre></p>
+<p>De modo que el ejemplo anterior se podría reescribir de la siguiente forma, para que mostrase 4 cifras decimales y 5 (o más) cifras en total:</p>
+
+<p><pre><code class='language-pascal'>(* Numeros reales y formato en pantalla *)
+
+program Reales2;
+
+var
+  centimetros, metros: real;
+
+begin 
+  write('Dime la longitud, en centimetros: ');
+  readLn(centimetros);
+  metros := centimetros / 100;
+  writeLn('Equivalen a ', metros:5:4, ' metros');
+end.
+
+(* Ejemplo de ejecucion:
+Dime la longitud, en centimetros: 32.8
+Equivalen a 0.3280 metros
+*)
+
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 1.6.2.1:</b> Crea un programa que te pida dos números reales y muestre en pantalla el resultado de multiplicarlos.</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.2.2:</b> Pide al usuario dos números reales y muestra en pantalla el resultado de su división, con dos cifras decimales.</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.2.3:</b> Crea un programa que convierta de kilómetros a millas, usando la equivalencia 1 milla = 1619 metros. Debe mostrar el resultado con 3 cifras decimales.</i></blockquote>
+
+<p>Pero Turbo Pascal y FreePascal nos permiten emplear varios tipos de datos reales, con mayor o menor precisión y que ocupan más o menos espacio, para adecuarlos a nuestras necesidades:</p>
+
+<table>
+    <tr><td><b>Tipo</b></td><td><b>Rango de valores</b></td><td><b>Cifras</b></td><td><b>Ocupa</b></td></tr>
+   <tr><td>real</td><td>2.9e-39..1.7e38</td><td>11-12</td><td>6 bytes</td></tr>
+   <tr><td>single</td><td>1.5e-45..3.4e38</td><td>7-8</td><td>4 bytes</td></tr>
+   <tr><td>double</td><td>5.0e-324..1.7e308</td><td>15-16</td><td>8 bytes</td></tr>
+   <tr><td>extended</td><td>3.4e-4932..1.1e4932</td><td>19-20</td><td>10 bytes</td></tr>
+</table>
+
+<p>En todos estos datos, la precisión se mide en <b>"cifras significativas"</b>, que son las cifras distintas de cero que hay al principio o al final del número: un número como 0.0002 tiene una cifra significativa, 33 tiene 2 cifras significativas, al igual que 33000, mientras que 33001 tiene 6 cifras significativas.</p>
+
+<blockquote><i><b>Ejercicio propuesto 1.6.2.4:</b> Crea un programa que pida al usuario dos números reales con al menos 13 cifras de precisión y muestre el resultado de su división, con 8 cifras decimales.</i></blockquote>
+
+<h3>1.6.3. Algunas funciones matemáticas</h3>
+
+<p>En el lenguaje Pascal podemos encontrar ciertas funciones matemáticas incorporadas. Por ejemplo, "<b>sqrt</b>" nos sirve para calcular una raíz cuadrada:</p>
+
+<p><pre><code class='language-pascal'>(* Raiz cuadrada *)
+
+program Raiz;
+
+var
+  n: real;
+
+begin 
+  write('Dime un numero: ');
+  readLn(n);
+  writeLn('Su raiz es ', sqrt(n):2:1);
+end.
+
+(* Ejemplo de ejecucion:
+Dime un numero: 4
+Su raiz es 2.0
+*)
+
+</code></pre></p>
+<p>De igual modo, existe otra función llamada "sqr", que calcula el cuadrado de un número.</p>
+
+<blockquote><i><b>Ejercicio propuesto 1.6.3.1:</b> Crea un programa que te pida un número y calcule su raíz cuarta (la raíz cuadrada de su raíz cuadrada).</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.3.2:</b> Pide un número y calcula su cuarta potencia (el cuadrado de su cuadrado).</i></blockquote> 
+
+
+<p>También puedes obtener <b>números al azar:</b> random(x) nos da un número entre 0 (incluido) y x (no incluido). Antes deberás usar "randomize", para dar una valor a la secuencia de números al azar a partir del valor actual del reloj interno del ordenador::</p>
+
+<p><pre><code class='language-pascal'>(* Numero al azar entre 0 y 9 *)
+
+program Azar;
+
+begin 
+  Randomize;
+  writeLn('Numero al azar: ', random(10) );
+end.
+
+(* Ejemplo de ejecucion:
+Numero al azar: 6
+*)
+
+</code></pre></p>
+<p>Si debemos buscar un número entre dos valores cualesquiera, deberemos sumar
+una cantidad al valor de random. Por ejemplo, para obtener un número entre 10 y 30
+usaríamos 10+random(21).</p>
+
+<blockquote><i><b>Ejercicio propuesto 1.6.3.3:</b> Crea un programa que genere un número al azar entre 1 y 20 (ambos incluidos).</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.3.4:</b> Crea un programa que genere un número al azar entre 100 y 500 (ambos incluidos).</i></blockquote> 
+
+
+<p>Si has estudiado <b>trigonometría</b>, quizá te alegre saber que puedes calcular senos (con la función "sin") y cosenos (con "cos"). Ambos datos esperan que entre paréntesis se les indique el ángulo, pero medido en radianes, no en grados (tampoco es un grave problema, la equivalencia es que 180 grados son PI radianes):</p>
+
+<p><pre><code class='language-pascal'>(* Coseno de 45 grados *)
+
+program Coseno;
+
+var
+  pi, angulo, resultado: real;
+
+begin 
+  pi := 3.1416;
+  angulo := pi / 4; (* 45 grados = PI / 4 radianes *)
+  resultado := cos(angulo);
+  writeLn('El coseno de 45 grados es ', resultado:4:3);
+end.
+
+(* Ejemplo de ejecucion:
+El coseno de 45 grados es 0.707
+*)
+
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 1.6.3.5:</b> Crea un programa que pida al usuario un ángulo en grados y muestre su seno y su coseno.</i></blockquote><blockquote><i><b>Ejercicio propuesto 1.6.3.6:</b> Crea un programa que pida al usuario un ángulo en grados y muestre su tangente (seno /  coseno).</i></blockquote> 
+
+<p>Y si has trabajado con <b>logaritmos y exponenciales</b>, tendrás a tu disposición ln(x) para calcular logaritmos neperianos y exp(x) para calcular el valor de "e elevado a x".</p>
+
+<p><pre><code class='language-pascal'>(* Potencia: un numero elevado a otro *)
+
+program Potencia;
+
+var
+  base, exponente: real;
+
+begin 
+  write('Dime la base: ');
+  readLn(base);
+  write('Dime el exponente: ');
+  readLn(exponente);
+  writeLn('Su potencia es: ', 
+     Exp(exponente * Ln(base)) );
+end.
+
+(* Ejemplo de ejecucion:
+Dime la base: 2
+Dime el exponente: 3
+Su potencia es: 8.0
+*)
+
+</code></pre></p>
+
+<h3>1.6.4. Caracteres</h3>
+
+<p>Con la palabra "char" podemos indicar que una variable se usará para guardar un carácter 
+(letra, número o símbolo). Cada carácter ocupa 1 byte:</p>
+
+<p><pre><code class='language-pascal'>(* Caracteres, toma de contacto *)
+
+program Caracteres;
+
+var
+  letra1, letra2: char;
+
+begin 
+  write('Dime una letra: ');
+  readLn(letra1);
+  write('Dime otra letra: ');
+  readLn(letra2);
+  writeLn('Las letras eran ', letra1, ' y ', letra2);
+end.
+
+(* Ejemplo de ejecucion:
+Dime una letra: a
+Dime otra letra: s
+Las letras eran a y s
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 1.6.4.1:</b> Crea un programa que te pregunte tres letras y luego las escriba en orden inverso.</i></blockquote> 
+
+<p>Si queremos dar un valor a una variable de tipo "char" (lo usaremos dentro de poco, cuando empecemos a comprobar condiciones), deberemos usar comillas simples:</p>
+
+<p><pre><code class='language-pascal'>(* Caracteres y valores prefijados *)
+
+program Caracteres2;
+
+var
+  letra1, letra2: char;
+
+begin 
+  write('Dime una letra: ');
+  readLn(letra1);
+  letra2 := 'Z';
+  writeLn('Tu letra era ', letra1, ' y la mia ', letra2);
+end.
+
+(* Ejemplo de ejecucion:
+Dime una letra: a
+Tu letra era a y la mia Z
+*)
+</code></pre></p>
+
+<h3>1.6.5. Pero hay más...</h3>
+
+<p>Esos no son los únicos tipos de datos. Dentro de poco veremos que también podemos almacenar valores verdadero/falso, cadenas de texto, conjuntos...  Pero esos datos de mayor complejidad los iremos viendo poco a poco, a medida que los vayamos necesitando.</p>
+
+
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   11145 visitas desde el 28-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas01.html">Anterior</a></li>
+                    <li><a href="cupas02.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas01b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+</html>
+        

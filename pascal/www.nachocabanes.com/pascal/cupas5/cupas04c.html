@@ -1,0 +1,568 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 4 - Arrays, cadenas, registros y conjuntos (3: records).</title>
+
+    
+    <meta name="description" content="4 - Arrays, cadenas, registros y conjuntos (3: records). - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="array,record,set,string" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 4 - Arrays, cadenas, registros y conjuntos (3: records).          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas04b.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas04d.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h2>4.3. Registros (records)</h2>
+
+<h3>4.3.1. ¿Qué es un registro?</h3>
+
+<p><a name="record"></a>La principal limitación
+de un array es que todos los datos que contiene deben ser del mismo tipo. 
+Pero a veces nos interesa agrupar datos de distinta naturaleza, como pueden
+ser el nombre y la edad de una persona, que serían del tipo string
+y byte, respectivamente. En ese caso, podemos emplear los records o <b>registros</b>,
+que se definen indicando el nombre y el tipo de cada dato individual (cada <b>campo</b>), y se accede a estos campos indicando el nombre
+de la variable y el nombre del campo, separados por un punto:</p>
+
+<p><pre><code class='language-pascal'>(* RECORD1.PAS, Contacto con los "record" *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
+ 
+program Record1;
+
+var
+    dato: record
+        nombre: string[30];
+        edad: byte;
+    end;
+
+begin
+      dato.nombre := 'Ignacio';
+      dato.edad := 23;
+      write('El nombre es ', dato.nombre );
+      write(' y la edad ', dato.edad);
+end.
+ 
+(* Resultado:
+El nombre es Ignacio y la edad 23
+*)
+</code></pre></p> 
+<p>La peculiaridad en la definición de un "record" es la
+aparición de una palabra <b>end</b> después de los nombres
+de los campos, lo que indica que hemos terminado de enumerar éstos.</p>
+
+<blockquote><i><b>Ejercicio propuesto 4.3.1.1:</b> Crea un programa que defina una variable que sea un registro con dos campos: X e Y, ambos números enteros. El campo X debe valer 20, e Y debe valer 30. Después deberá mostrar en pantalla la suma de X e Y.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.1.2:</b> Crea un programa que use un "record" para almacenar el nombre de una ciudad y su cantidad de habitantes. Ambos datos se deben pedir al usuario y deben ser mostrados a continuación.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.1.3:</b> Crea un programa que use un "record" para almacenar las coordenadas X, Y, Z de un punto 3D, números reales. Debe pedir los tres datos al usuario, almacenarlos y luego mostrar la distancia desde ese punto al origen (que será la raíz cuadrada de x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>).</i></blockquote>          
+
+<h3>4.3.2. Abreviando con "with"</h3>
+ 
+<p>Puede parecer engorroso el hecho de escribir
+"dato." antes de cada campo.  También hay una forma de solucionarlo:
+cuando vamos a realizar varias operaciones sobre los campos de un mismo registro
+(record), empleamos la orden <b>with</b>, con la que el programa anterior
+quedaría   </p>
+
+<p><pre><code class='language-pascal'>(* RECORD2.PAS, "record" y "with"     *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
+ 
+program Record2;
+var
+    dato: record
+        nombre: string[30];
+        edad: byte;
+    end;
+
+begin
+    with dato do
+    begin
+        nombre := 'Ignacio';
+        edad := 23;
+        write('El nombre es ', nombre );
+        write(' y la edad ', edad);
+    end;
+end.
+
+(* Resultado:
+El nombre es Ignacio y la edad 23
+*)
+</code></pre></p> 
+ 
+<p>En este caso tenemos un nuevo bloque en el cuerpo del programa, delimitado
+por el "begin" y el "end" situados más a la derecha, y equivale a
+decir "en toda esta parte del programa me estoy refiriendo a la variable
+dato".  Así, podemos nombrar los campos que queremos modificar
+o escribir, sin necesidad de repetir a qué variable pertenecen.</p>
+
+<p><i>Nota</i>: aquí vuelve a aparecer la <b>escritura indentada</b>:
+para conseguir una mayor legibilidad, escribimos un poco más a la
+derecha todo lo que depende de la orden "with". No es algo obligatorio, pero
+sí recomendable. </p>
+
+<blockquote><i><b>Ejercicio propuesto 4.3.2.1:</b> Empleando "with", crea una nueva versión del programa que define un registro con dos campos X e Y, enteros, con valores X=20, e Y=30 y muestra la suma de X e Y.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.2.2:</b> Empleando "with", crea una nueva versión del programa que usa un "record" para almacenar el nombre de una ciudad y su cantidad de habitantes, pide ambos datos al usuario y luego los muestra.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.2.3:</b> Empleando "with", crea una nueva versión del programa  que emplea un "record" para almacenar las coordenadas X, Y, Z de un punto 3D, pide los tres datos al usuario y muestra la distancia desde ese punto al origen.</i></blockquote>          
+
+
+
+
+<h3>4.3.3. Arrays de registros</h3>
+
+<p>Es habitual no usar un único registro, sino un conjunto de ellos, de modo 
+que tendríamos un array de registros. Por ejemplo, podríamos guardar los 
+datos de 5 personas con una estructura como ésta:</p>
+
+<p><pre><code class='language-pascal'>(* ARR_REC.PAS, "array" de varios "record" *)
+(* Parte de CUPAS5, por Nacho Cabanes      *)
+ 
+program RecordArray;
+
+var
+    datos: array [1..10] of 
+        record
+            nombre: string[30];
+            edad: byte;
+        end;
+
+begin
+    datos[1].nombre := 'Ignacio';
+    datos[1].edad := 23;
+    write('El primer nombre es ', datos[1].nombre );
+    write(' y la primera edad ', datos[1].edad);
+end.
+ 
+(* Resultado:
+El primer nombre es Ignacio y la primera edad 23
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 4.3.3.1:</b> Crea un array de 4 "puntos3D", pide al usuario los valores correspondientes y luego muestra la media de X, la media de Y y la media de Z.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.3.2:</b> Crea un array de hasta 20 "puntos3D", y permite al usuario añadir los datos de un nuevo punto, mostrar todos los valores introducidos, o mostrar la media de X, Y y Z.</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.3.3:</b> Crea un programa que sirva al usuario para guardar datos de hasta 30 ciudades
+    (nombre y cantidad de habitantes).
+    Debe mostrar un menú que permita: añadir los datos de una nueva ciudad, mostrar los datos de
+    todas las ciudades existentes, o mostrar los dato de una ciudad concreta cuyo nombre introduzca el usuario.</i></blockquote>          
+
+<p>Podemos usar un array de registros para crear una pequeña agenda, que
+nos permita guardar datos de personas y ver los datos almacenados,
+empleando un menú básico:</p>
+
+<p><pre><code class='language-pascal'>(* AGENDA0.PAS, Ejemplo de "Agenda":  *)
+(* Permite añadir datos y mostrarlos  *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
+
+program Agenda0;
+
+var
+    gente: array [1..1000] of              { Los datos }
+        record
+            nombre: string;
+            email: string;
+            anyoNacimiento: integer;
+        end;
+    cantidad: integer;       { Cantidad de datos existentes }
+    opcion: integer;                      { Opción escogida }
+    i: integer;                         { Para bucles "for" }
+
+{Cuerpo del programa principal}
+begin
+    cantidad := 0;
+    repeat
+        WriteLn('Agenda');
+        WriteLn;
+        WriteLn('1- Añadir una nueva persona');
+        WriteLn('2- Ver nombres de todos');
+        WriteLn('0- Salir');
+        Write('Escoja una opción: ');
+        ReadLn(opcion);
+        WriteLn;
+
+        case opcion of
+            1: { Añadir datos de una persona }
+                if cantidad < 1000 then
+                begin
+                    cantidad := cantidad + 1;
+                    WriteLn('Introduciendo la persona ', cantidad);
+
+                    Write('Introduzca el nombre: ');
+                    ReadLn(gente[cantidad].nombre);
+
+                    Write('Introduzca el correo electrónico: ');
+                    ReadLn(gente[cantidad].email);
+
+                    Write('Introduzca el año de nacimiento: ');
+                    ReadLn(gente[cantidad].anyoNacimiento);
+
+                    WriteLn;
+                 end
+                 else
+                    WriteLn('Base de datos llena');
+
+            2: { Ver nombres de todos }
+                begin
+                if cantidad = 0 then
+                    WriteLn('No hay datos')
+                else
+                    for i := 1 to cantidad do
+                        WriteLn(i, ' ', gente[i].nombre);
+                WriteLn;
+                end;
+
+            0: { Salir de la aplicación }
+                begin
+                WriteLn;
+                WriteLn('Saliendo...');
+                WriteLn;
+                end;
+
+             else
+                begin
+                WriteLn;
+                WriteLn('Opción incorrecta!');
+                WriteLn;
+                end;
+        end;  { Fin de "case" }
+
+    until opcion = 0;
+end.
+</code></pre></p>
+<p>Este esqueleto es fácil de ampliar. Por ejemplo, podemos añadir la
+opción de buscar cualquier ficha que contenga un cierto texto, usando
+"pos" para ver si aparece en cualquier posición y un "boolean" para llevar
+la cuenta de si hemos encontrado alguna ficha correcta o no:</p>
+
+<p><pre><code class='language-pascal'>(* AGENDA0B.PAS, Ejemplo de "Agenda"         *)
+(* Permite añadir datos, mostrarlos y buscar *)
+(* Parte de CUPAS5, por Nacho Cabanes        *)
+
+program Agenda0b;
+
+var
+    gente: array [1..1000] of              { Los datos }
+        record
+            nombre: string;
+            email: string;
+            anyoNacimiento: integer;
+        end;
+    cantidad: integer;       { Cantidad de datos existentes }
+    opcion: integer;                      { Opción escogida }
+    i: integer;                         { Para bucles "for" }
+    textoBuscar: string;                   { Para búsquedas }
+    encontrado: boolean;                              { Idem }
+
+{Cuerpo del programa principal}
+begin
+    cantidad := 0;
+    repeat
+        WriteLn('Agenda');
+        WriteLn;
+        WriteLn('1- Añadir una nueva persona');
+        WriteLn('2- Ver nombres de todos');
+        WriteLn('3- Buscar una persona');
+        WriteLn('0- Salir');
+        Write('Escoja una opción: ');
+        ReadLn(opcion);
+        WriteLn;
+
+        case opcion of
+            1: { Añadir datos de una persona }
+                if cantidad < 1000 then
+                begin
+                    cantidad := cantidad + 1;
+                    WriteLn('Introduciendo la persona ', cantidad);
+
+                    Write('Introduzca el nombre: ');
+                    ReadLn(gente[cantidad].nombre);
+
+                    Write('Introduzca el correo electrónico: ');
+                    ReadLn(gente[cantidad].email);
+
+                    Write('Introduzca el año de nacimiento: ');
+                    ReadLn(gente[cantidad].anyoNacimiento);
+
+                    WriteLn;
+                 end
+                 else
+                    WriteLn('Base de datos llena');
+
+            2: { Ver nombres de todos }
+                begin
+                if cantidad = 0 then
+                    WriteLn('No hay datos')
+                else
+                    for i := 1 to cantidad do
+                        WriteLn(i, ' ', gente[i].nombre);
+                WriteLn;
+                end;
+
+            3: { Buscar una persona }
+                begin
+                Write('¿Qué texto busca? ');
+                ReadLn( textoBuscar );
+                encontrado := false;
+                for i := 1 to cantidad do
+                    if pos (textoBuscar, gente[i].nombre) > 0 then
+                    begin
+                        encontrado := true;
+                        WriteLn( i,' - Nombre: ', gente[i].nombre,
+                          ', Email: ', gente[i].email,
+                          ', Nacido en: ', gente[i].anyoNacimiento);
+                    end;
+                if not encontrado then
+                    WriteLn('No se ha encontrado.');
+                WriteLn;
+                end;
+
+            0: { Salir de la aplicación }
+                begin
+                WriteLn;
+                WriteLn('Saliendo...');
+                WriteLn;
+                end;
+
+             else
+                begin
+                WriteLn;
+                WriteLn('Opción incorrecta!');
+                WriteLn;
+                end;
+        end;  { Fin de "case" }
+
+    until opcion = 0;
+end.
+</code></pre></p>
+
+<h3>4.3.4. Registros variantes</h3>
+
+<p><a name="regVariantes"></a>Hasta ahora hemos visto los
+registros (records), utilizando campos fijos, pero no tiene por qué
+ser necesariamente así.  Tenemos a nuestra disposición
+los <b>registros variantes</b>, en los que con un "<b>case</b>" podemos
+elegir unos campos u otros.  La mejor forma de entenderlos es con
+un ejemplo.</p>
+
+<p><pre><code class='language-pascal'>(* REGVAR.PAS, registros variantes    *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
+
+program RegistrosVariantes;
+
+var
+    punto: record  
+          case cartesiano: boolean of  
+              true : (X,Y,Z : real);  
+              false : (R,theta,phi : real);
+          end;  
+          
+begin
+    punto.cartesiano := true;
+    punto.x := 5;
+    punto.y := -1;
+    punto.z := 2.3;
+    writeLn('Con coordenadas cartesianas, x vale ',punto.x:2:1);
+    
+    punto.cartesiano := false;
+    punto.r := 12.3;
+    punto.theta := -15;
+    punto.phi := 45;
+    writeLn('Con coordenadas esfericas, phi vale ',punto.phi:2:1);
+end. 
+
+ 
+(* Resultado:
+Con coordenadas cartesianas, x vale 5.0
+Con coordenadas esfericas, phi vale 45.0
+*)
+</code></pre></p>
+<p>Realmente, no es necesario usar un campo para cambiar entre un juego
+de valores y otro, porque realmente se trata de varios conjuntos de capas
+que "se solapan", ocupando el mismo espacio en memoria:</p>
+
+<p><pre><code class='language-pascal'>(* REGVAR2.PAS, registros variantes (2) *)
+(* Parte de CUPAS5, por Nacho Cabanes   *)
+
+program RegistrosVariantes2;
+
+var
+    punto: record  
+          case boolean of  
+              true : (X,Y,Z : real);  
+              false : (R,theta,phi : real);
+          end;  
+          
+begin
+    punto.x := 5;
+    punto.y := -1;
+    punto.z := 2.3;
+    writeLn('Con coordenadas cartesianas, x vale ',punto.x:2:1);
+    
+    punto.r := 12.3;
+    punto.theta := -15;
+    punto.phi := 45;
+    writeLn('Con coordenadas esfe ricas, phi vale ',punto.phi:2:1);
+    
+    writeLn('Como curiosidad, x vale ',punto.x:2:1);
+end. 
+
+ 
+(* Resultado:
+Con coordenadas cartesianas, x vale 5.0
+Con coordenadas esfericas, phi vale 45.0
+Como curiosidad, x vale 12.3
+*)
+</code></pre></p>
+<p>El riesgo, como se ve en este último ejemplo, es que al modificar un
+juego de valores, el otro se altera a la vez, ya que están solapados en
+memoria, pero los datos posiblemente no tendrán sentido si accedemos a
+ellos usando campos distintos de los que habíamos empleado para 
+guardar la información.</p>
+
+<blockquote><i><b>Ejercicio propuesto 4.3.4.1:</b> Crea un registro variante "puntos2D", que permita anotar los datos de un punto usando coordenadas cartesianas (x,y) o coordenadas polares (radio, ángulo).</i></blockquote><blockquote><i><b>Ejercicio propuesto 4.3.4.2:</b> Crea un registro variante "fecha", que permita guardar una fecha como string o como bloque de 3 números enteros (día, mes, año).</i></blockquote>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   10542 visitas desde el 23-03-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas04b.html">Anterior</a></li>
+                    <li><a href="cupas04d.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas04c.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+</html>
+        

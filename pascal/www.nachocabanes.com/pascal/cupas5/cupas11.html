@@ -1,0 +1,326 @@
+
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas11.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Pantalla en modo texto</title>
+
+    
+    <meta name="description" content="11. Pantalla en modo texto - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="crt,gotoxy,textcolor,textbackground,scrlscr" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            11. Pantalla en modo texto          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas10.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas12.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h1>11. Pantalla en modo texto</h1>
+
+<h2>11.1. La unidad CRT</h2>
+
+<p>Vamos a ver cómo acceder a la pantalla de texto, al teclado y cómo emitir 
+sonidos simples. Algunas de estas posibilidades las habíamos anticipado ya 
+cuando hablamos de cómo emplear y crear "unidades". Ahora las veremos con
+algo más de detalle.</p>
+
+<p>Este tema es específico de <b>Turbo Pascal para DOS</b>, aunque algunas de 
+las órdenes que veremos se pueden usar en otras versiones de Turbo Pascal (la 
+3.0 para CP/M, por ejemplo) y en en otros compiladores que buscan 
+compatibilidad con él, como Free Pascal, Tmt Pascal y Virtual Pascal.</p>
+
+<p>Como ya vimos en el tema 8, nuestro programa deberá incluir la <b>unidad 
+CRT</b>.</p>
+
+<p>Algunos de los procedimientos y funciones más importantes que incluye esta 
+unidad son: </p>
+
+<ul>
+    
+    <li><b>ClrScr</b> : Borra la pantalla.</li>
+    
+    <li><b>GotoXY (x, y)</b> : Coloca el cursor en unas coordenadas de la 
+    pantalla (en una pantalla típica de modo texto, "x" es la columna, que irá 
+    de 1 a 80, e "y" es la fila, de 1 a 25).</li>
+    
+    <li><b>TextColor (Color)</b> : Cambia el color de primer plano. Los colores 
+    son códigos numéricos del 0 al 15, aunque también tenemos definidas 
+    constantes con nombres en inglés, como Black, White, Yellow, Blue, Green, 
+    Red, Cyan o Magenta. Para la mayoría de ellas existe una variante con mayor 
+    brillo, como LightGreen. Para otras, como Yellow y White la variante oscura 
+    tiene un nombre distinto: Brown y DarkGray, respectivamente.</li>
+    
+    <li><b>TextBackground (Color)</b> : Cambia el color de fondo.</li>
+    
+    <li><b>WhereX</b> : Función que informa de la coordenada x actual del
+    cursor.</li>
+
+    <li><b>WhereY</b> : Nos dice la coordenada y del cursor.</li>
+    
+    <li><b>Window (x1, y1, x2, y2)</b> : Define una ventana de texto.</li>
+    
+</ul> 
+ 
+<p>Algunos "extras" no relacionados con la pantalla son: </p>
+
+<ul>
+    
+    <li><b>Delay(ms)</b> : Detiene la ejercución durante un cierto número de 
+    milisegundos.</li>
+    
+    <li><b>ReadKey</b> : Función, que detiene la ejecución hasta que se pulsa 
+    una tecla y devuelve el carácter que se haya pulsado. Algunas teclas 
+    especiales, como las teclas F1 a F10 y las flechas del cursor, devuelven 
+    primero un carácter 0 y luego un segundo carácter que indica el código de 
+    la tecla pulsada. Otras teclas devuelven un único código "no imprimible". 
+    Por ejemplo, la tecla Intro devuelve el carácter 13, la tecla de retroceso 
+    devuelve el 8 y Esc devuelve el 27.</li>
+    
+    <li><b>KeyPressed</b> : Función que devuelve TRUE si se ha pulsado alguna 
+    tecla o FALSE en caso contrario. Permite hacer otras cosas mientras que el 
+    usuario no pulse una tecla, en vez de dejar el programa bloqueado como 
+    Readkey. Cuando KeyPressed sea verdadero, podremos usar ReadKey para 
+    descubrir cual era la tecla que se había pulsado.</li>
+
+    <li><b>Sound (Hz)</b> : Empieza a generar un sonido de una cierta 
+    frecuencia. Deberemos usar "delay" para que el sonido se mantenga durante 
+    un cierto tiempo y "NoSound" cuando se deba terminar de emitir 
+    sonidos.</li>
+    
+</ul> 
+ 
+<p>Un programa de ejemplo que maneje la mayor parte de esto podría ser así:</p>
+<a name="progEjcrt"></a> 
+
+<p><pre><code class='language-pascal'>(* CRT1.PAS, Acceso mejorada a pantalla en modo texto *)
+(* Parte de CUPAS5, por Nacho Cabanes                 *) 
+
+program Crt1;
+
+uses crt;
+
+var
+    bucle : byte;
+    tecla : char;
+
+begin
+    ClrScr;                        { Borramos la pantalla }
+    TextColor( Yellow );           { Escribiremos con color amarillo }
+    TextBackground( Red );         { y fondo rojo }
+    GotoXY( 40, 13 );              { Vamos al centro de la pantalla }
+    Write(' Hola ');               { Saludamos con esos colores }
+    Delay( 1000 );                 { Esperamos un segundo }
+    Window ( 1, 15, 80, 23 );      { Ventana entre las filas 15 y 23 }
+    TextBackground ( Blue );       { Con fondo azul }
+    ClrScr;                        { La borramos para que se vea  el fondo }
+    for bucle := 1 to 100 do
+        WriteLn( bucle );          { Escribimos del 1 al 100 }
+    WriteLn( 'Pulse una tecla..');
+    tecla := ReadKey;              { Esperamos que se pulse una tecla }
+    Window( 1, 1, 80, 25 );        { Restauramos ventana original }
+    GotoXY( 1, 24 );               { Vamos a la penúltima línea }
+    Write( 'Ha pulsado ', tecla ); { Decimos qué letra se ha pulsado }
+    Sound( 220 );                  { Emitimos sonido de frecuencia 220 Hz }
+    Delay( 500 );                  { Durante medio segundo }
+    NoSound;                       { Y dejamos de emitir sonido }
+    Delay( 2000 );                 { Hacemos pausa de 2 segundos }
+    TextColor( LightGray );        { Cambiamos a los colores normales del DOS }
+    TextBackground( Black );       
+    ClrScr;                        { Y borramos la pantalla }
+ end. 
+</code></pre></p>
+<p>Que mostraría algo parecido a:</p>
+
+<img src="img/crt1a.png" alt="Ejemplo de CRT" />
+
+<p>Existe alguna otra orden más avanzada, como InsLine para insertar una línea 
+en pantalla (desplazando hacia abajo las siguientes), DelLine para borrar la 
+línea actual (desplazando hacia arriba las siguientes) y ClrEol para borrar 
+hasta final de línea (usando el color de fondo actual).</p>
+
+<p>Vamos a practicar con algunos ejercicios...</p>
+
+<blockquote><i><b>Ejercicio propuesto 11.1.1:</b> Crea un programa que escriba la palabra Hola en pantalla 15 veces,
+    con fondo negro (0) y colores que variarán desde el 1 hasta el 15.</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.2:</b> Crea un procedimiento "Escribir" que reciba un texto y unas coordenadas
+    X e Y como parámetros. Deberá escribir el texto en esas coordenadas.</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.3:</b> Crea un procedimiento "EscribirTeletipo" que reciba un texto y unas coordenadas
+    X e Y como parámetros. Deberá escribir el texto en esas coordenadas, letra
+    a letra, haciendo una pausa de 100 milisegundos entre cada letra y la siguiente.</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.4:</b> Crea un programa que te permita descubrir los códigos asociados
+    a cada letra: esperará hasta que se pulse una tecla y mostrará su código numérico en
+    pantalla. Se repetirá hasta que se pulse ESC (que tiene código 27).</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.5:</b> Crea un procedimiento "Play" que reproduzca música a partir de
+    su descripción en notación anglosajona (C=Do, D=Re, E=Mi, etc). Todas las
+    notas se reproducirán durante medio segundo. Usa las siguientes frecuencias
+    para cada nota: C=261.63, D=293.66, E=329.63, F=349.23, G=392.00,
+    A=440.00, B=493.88. Un ejemplo de uso sería "Play('CDECDE');"</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.6:</b> Crea un "juego del ahorcado": Un primer jugador deberá
+    introducir una frase y un límite de intentos (por ejemplo, 8).
+    La pantalla se borrará, y en lugar de cada letra
+    aparecerá un guión. El segundo jugador deberá ir tecleando letras.  Si
+    falla, ha gastado uno de sus intentos.  Si acierta, la letra acertada
+    deberá aparecer en las posiciones en que se encuentre. El juego acaba
+    cuando se aciertan todas las letras o se acaban los intentos.</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.7:</b> Crea una versión mejorada del "juego del ahorcado", para
+    un único jugador:  El n&uacute;mero de intentos estará
+    prefijado en el programa, y existirá una serie de palabras
+    (en un array de strings) de las que el
+    ordenador escoja una al azar (usando "random" y "randomize",
+    como se vio en el apartado 1.6.3).</i></blockquote><blockquote><i><b>Ejercicio propuesto 11.1.8:</b> Crea un una función "EntradaMejorada", que reciba una
+    coordenada X, una Y y una longitud máxima. Mostrará una serie de puntos
+    para indicar esa longitud máxima, delimitados por corchetes, así: [.....].
+    Deberá leer letra a letra (hasta que se pulse Intro), permitir borrar
+    con la tecla de Retroceso, limitar la longitud a la que se ha indicado
+    como parámetro y permitir moverse hacia detrás y hacia delante con las flechas del
+    teclado y con las teclas Inicio y Fin.</i></blockquote>
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   2662 visitas desde el 14-08-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas10.html">Anterior</a></li>
+                    <li><a href="cupas12.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas11.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:22 GMT -->
+</html>
+        

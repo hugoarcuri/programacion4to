@@ -1,0 +1,413 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas07.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 7. Manejo de ficheros (1: ficheros de texto)</title>
+
+    
+    <meta name="description" content="7. Manejo de ficheros (1: ficheros de texto) - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="fichero,text,reset,rewrite,append,eof" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 7. Manejo de ficheros (1: ficheros de texto)          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas06e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas07b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h1>7. Manejo de ficheros</h1> 
+
+<h2>7.1. Ficheros de texto</h2> 
+
+<h2>7.1.1. Escribir en un fichero de texto</h2> 
+
+<p>Cuando necesitamos guardar datos para seguir trabajando con ellos en una
+sesión posterior, la opción más habitual es volcarlos a un fichero. El lenguaje
+Pascal permite manejar ficheros de varios tipos, y los de texto son los más
+sencillos.</p>
+
+<p>Para escribir en un fichero de texto usaremos "writeLn", de forma muy similar
+a como lo haríamos para mostrar datos en pantalla de texto, y más adelante podremos
+leer esos datos usando "readLn", de una manera parecida a como leeríamos desde
+teclado.</p>
+
+<p>Para acceder a un fichero, siempre seguiremos los mismos <b>pasos</b>:</p>
+
+<p>1- Declarar el fichero junto con las demás variables.
+<br />2- Asignarle un nombre físico.
+<br />3- Abrirlo, con la intención de leer, escribir o añadir.
+<br />4- Trabajar con él (leer los datos o guardarlos).
+<br />5- Cerrarlo.
+</p>
+
+<p>Las órdenes que usaremos para crear un fichero y guardar datos en él serán:</p>
+
+<ul>
+    <li>El tipo de datos correspondiente a un fichero de texto es "text".</li>
+    <li>Asignaremos un nombre físico a ese fichero con la orden "assign".</li>
+    <li>Crearemos el fichero con "rewrite" (cuidado: si ya existe un fichero con ese nombre,
+    se destruirá; más adelante veremos cómo mejorar ese comportamiento).</li>
+    <li>Escribiremos datos con "writeLn", indicando tanto el fichero como el dato a guardar.</li>
+    <li>Finalmente, cerraremos el fichero con "close". Si olvidamos cerrarlo, es probable
+    que los datos no lleguen a guardarse físicamente y que perdamos toda la información.</li>
+</ul>
+
+<p>Vamos a ver un ejemplo real, que utilice estas órdenes para escribir dos frases en 
+un fichero de texto:</p>
+
+<p><pre><code class='language-pascal'>(* FICHT01.PAS, Ficheros de texto 1, escribir *)
+(* Parte de CUPAS5, por Nacho Cabanes         *)
+
+program FichT01; 
+
+var 
+    fichero: text;       (* Un fichero de texto *) 
+
+begin 
+    assign( fichero, 'DATOS.TXT' );  (* Le asignamos nombre *) 
+    rewrite( fichero );              (* Lo creamos *) 
+    writeLn( fichero, 'Hola' );      (* Y escribimos *) 
+    writeLn( fichero, 'Segunda linea' );
+    close( fichero );                (* Finalmente cerramos *) 
+end. 
+</code></pre></p>
+
+<blockquote><i><b>Ejercicio propuesto 7.1.1.1:</b> Crea un programa que pida frases al usuario, hasta que teclee "fin". Todas esas frases se almacenarán en un fichero llamado "registro.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.1.2:</b> Crea un programa que genere las tablas de multiplicar del 1 al 10, separadas por un espacio en blanco. Estas tablas de multiplicar no se deben mostrar en pantalla, sino guardar en un fichero llamado "multipli.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.1.3:</b> Crea un programa que pida al usuario una anchura y una altura, y muestre un rectángulo hueco formado por asteriscos. Este rectángulo se debe volcar también a un fichero llamado "rectang.txt". Para facilitar la lectura, en una primera línea del fichero se anotará la cantidad de filas del rectángulo, y luego se guardarán dichas filas.</i></blockquote>
+
+<h2>7.1.2. Leer un fichero de texto</h2> 
+
+<p>Hemos volcado dos frases a un fichero de texto. Ahora es el momento de
+leer esa información.</p>
+
+<p>Los pasos que daremos serán los mismos 5 que antes, con apenas un
+par de diferencias:</p>
+
+<ul>
+    <li>Esta vez no crearemos el fichero, sino que lo abriremos para lectura,
+    con "reset" (cuidado: el programa fallará si el fichero no existe; 
+    más adelante veremos cómo evitarlo).</li>
+    <li>Leeremos datos con "readLn".</li>
+    <li>Los otros 3 pasos serán igual que antes: declarar variable, asignar
+    nombre físico y cerrar fichero.</li>
+</ul>
+
+<p>Así, un programa real, que leyera el fichero que hemos creando anteriormente,
+podría ser:</p>
+
+<p><pre><code class='language-pascal'>(* FICHT01.PAS, Ficheros de texto 1, escribir *)
+(* Parte de CUPAS5, por Nacho Cabanes         *)
+
+program FichT01; 
+
+var 
+    fichero: text;       (* Un fichero de texto *) 
+
+begin 
+    assign( fichero, 'DATOS.TXT' );  (* Le asignamos nombre *) 
+    rewrite( fichero );              (* Lo creamos *) 
+    writeLn( fichero, 'Hola' );      (* Y escribimos *) 
+    writeLn( fichero, 'Segunda linea' );
+    close( fichero );                (* Finalmente cerramos *) 
+end. 
+</code></pre></p>
+
+
+<blockquote><i><b>Ejercicio propuesto 7.1.2.1:</b> Crea un programa que lea y muestre en pantalla la primera frase del fichero "registro.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.2.2:</b> Crea un programa que lea y muestre en pantalla las 10 primeras líneas del fichero "multipli.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.2.3:</b> Crea un programa que lea y muestre en pantalla el contenido del fichero "rectang.txt". Recuerda que la primera línea contiene la cantidad de filas del rectángulo.</i></blockquote>
+
+<h2>7.1.3. Leer hasta final de fichero</h2> 
+
+<p>Normalmente no sabremos de antemano cuantas líneas de información hay
+en el fichero de texto. Por eso, necesitamos una estructura que nos
+permita analizar todo el fichero, de principio a fin. Esa estructura
+será "<b>while not eof</b>". EOF es la abreviatura de End Of File, final
+de fichero, de modo que la orden anterior se podría traducir como
+"mientras no se acabe el fichero".</p>
+
+<p>Así, un programa similar al anterior pero que mostrara todo el contenido
+del fichero, tanto si contiene 2 líneas como si son 20 o sólo una, podría ser:</p>
+
+<p><pre><code class='language-pascal'>(* FICHT03.PAS, Ficheros de texto 3, leer hasta fin *)
+(* Parte de CUPAS5, por Nacho Cabanes               *)
+
+program FichT03; 
+
+var 
+    fichero: text;       (* Un fichero de texto *) 
+    linea: string;      (* La linea que leeremos *)
+
+begin 
+    assign( fichero, 'DATOS.TXT' );  (* Le asignamos nombre *) 
+    reset( fichero );                (* Lo abrimos para leer datos *) 
+    while not eof( fichero) do
+    begin
+        readLn( fichero, linea );    (* Leemos una linea *)
+        writeLn( linea );            (* Y la mostramos *) 
+    end;
+    close( fichero );                (* Finalmente cerramos *) 
+end. 
+
+(* 
+Ejemplo de ejecucion:
+Hola
+Segunda linea
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 7.1.3.1:</b> Crea un programa que muestre en pantalla todo el contenido del fichero "registro.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.3.2:</b> Crea un programa que muestre en pantalla todo el contenido del fichero "multipli.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.3.3:</b> Crea un programa que muestre en pantalla todo el contenido del fichero "rectang.txt", excepto la primera línea.</i></blockquote>
+
+<h2>7.1.4. Comprobar si un fichero existe .</h2> 
+
+<p>La forma más elegante de comprobar si un fichero existe es usar la orden "FileExists",
+que no todas las versiones de Pascal incluyen, y que nos devuelve un "boolean", que será
+"true" en caso de que el fichero exista, y "false" si no es así. Como no es una característica
+estándar de Pascal, sino algo existente en algunas versiones de Free Pascal y Delphi,
+nuestro programa deberá incluir la línea "uses sysutils;" (dentro de poco veremos qué 
+significa esa línea):</p>
+
+<p><pre><code class='language-pascal'>(* EXISTS.PAS, Ver si existe un fichero, FreePascal *)
+(* Parte de CUPAS5, por Nacho Cabanes               *)
+
+program Exists; 
+
+uses sysutils;
+
+begin 
+    if FileExists( 'DATOS.TXT' ) then
+        writeLn('El fichero DATOS.TXT existe.')
+    else
+        writeLn('El fichero DATOS.TXT no existe!');
+end. 
+</code></pre></p> 
+<p>En la mayoría de versiones de Turbo Pascal no existe esa posibilidad, pero se puede
+imitar: deberemos comenzar por deshabilitar la comprobación de errores usando la directiva "{$I-}",
+después intentaremos abrir el fichero, volveremos a habilitar la comprobación de errores
+con "{$I+}" y miraremos el valor de la variable IOResult. Si esta variable contiene el valor 0,
+es que la última operación de entrada y salida ha tenido éxito, lo que, en este caso,
+quiere decir que el fichero existía (y en ese caso, deberemos cerrar el fichero que 
+hemos abierto). Si tiene un valor distinto de cero, es que el fichero no existía.</p> 
+
+<p>Como son pasos repetitivos, será preferible que nos creemos una función, que podremos
+utilizar en cualquier punto en que la necesitemos:</p>
+
+<p><pre><code class='language-pascal'>(* EXISTS2.PAS, Ver si existe un fichero, Turbo Pascal *)
+(* Parte de CUPAS5, por Nacho Cabanes                  *)
+
+program Exists2;
+
+function FileExists(nombre: String): boolean;
+var
+    f: text;
+begin
+    assign(f,nombre);
+    {$I-}
+    reset(f);
+    {$I+}
+    if (IOResult = 0) then
+    begin
+        close(f);
+        FileExists:=true;
+    end
+    else
+        FileExists:=false;
+end;
+
+begin
+    if FileExists( 'DATOS.TXT' ) then
+        writeLn('El fichero DATOS.TXT existe.')
+    else
+        writeLn('El fichero DATOS.TXT no existe!');
+end.
+</code></pre></p> 
+ 
+<blockquote><i><b>Ejercicio propuesto 7.1.4.1:</b> Crea un programa que muestre en pantalla todo el contenido del fichero "registro.txt", si es que dicho fichero existe; si el fichero no existe, mostrará un mensaje de aviso.</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.4.2:</b> Crea un programa que pida al usuario el nombre de un fichero, y muestre en pantalla todo el contenido de ese fichero (o un mensaje de error si el fichero no existe).</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.4.3:</b> Crea un programa que pida al usuario el nombre de un fichero, y muestre en pantalla todo el contenido de ese fichero, convertido a mayúsculas (o un mensaje de error si el fichero no existe).</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.4.4:</b> Crea un programa que pida al usuario el nombre de un fichero, le pida también una letra, y muestre en pantalla todas las líneas de ese fichero que comienzan por esa letra (o un mensaje de error si el fichero no existe).</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.4.5:</b> Crea un programa que pida al usuario el nombre de un fichero, le pida también una palabra, y muestre en pantalla todas las líneas de ese fichero que contienen esa palabra (o un mensaje de error si el fichero no existe). Si no se encuentra esa palabra en ninguna línea, se deberá mostrar un mensaje de aviso.</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.4.6:</b> Crea un programa que pida al usuario el nombre de un fichero y escriba "Hola" en él. Si el fichero ya existe, deberá pedir confirmación al usuario antes de reemplazarlo.</i></blockquote> 
+ 
+<h2>7.1.5. Añadir al final de un fichero.</h2> 
+
+<p>Hemos comentado que "rewrite" crea un fichero y destruye el fichero que existiera
+anteriormente, si ese es el caso. Ya sabemos cómo comprobar si el fichero existe,
+para poder mostrar un aviso amigable al usuario y pedirle confirmación antes
+de reemplazarlo. Pero no sabemos cómo añadir datos a un fichero ya existente.
+Afortunadamente, es fácil: usaremos la orden "append" en vez de "rewrite".
+La única limitación es que el fichero debe existir, o el programa se
+interrumpirá con un mensaje de error (pero, nuevamente, sabemos cómo
+comprobar si existe o no). Un ejemplo básico sería:</p>
+
+<p><pre><code class='language-pascal'>(* FICHT04.PAS, Ficheros de texto 4, anadir al final *)
+(* Parte de CUPAS5, por Nacho Cabanes                *)
+
+program FichT04; 
+
+var 
+    fichero: text;       (* Un fichero de texto *) 
+
+begin 
+    assign( fichero, 'DATOS.TXT' );  (* Le asignamos nombre *) 
+    rewrite( fichero );              (* Lo creamos *) 
+    writeLn( fichero, 'Hola' );      (* Y escribimos *) 
+    close( fichero );                (* Finalmente cerramos *) 
+    
+    append( fichero );               (* Abrimos para anadir *) 
+    writeLn( fichero, 'Segunda linea' );  (* Escribimos *)
+    close( fichero );                (* Finalmente cerramos *) 
+end. 
+</code></pre></p>  
+
+<blockquote><i><b>Ejercicio propuesto 7.1.5.1:</b> Crea un programa que cree un fichero "numeros.txt", que contenga una línea con el número 1. Luego usa un "for" y la orden "append" para añadir nuevas líneas, cada una de las cuales contendrá uno de los números del 2 al 10.</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.5.2:</b> Crea un programa que pida al usuario una frase y la añada al final del fichero "registro.txt" (recuerda usar "rewrite" si el fichero no existe, o "append" si el fichero existe).
+    dos números y muestre su suma en pantalla. Esa suma se debe añadir también al fichero "sumas.txt".</i></blockquote><blockquote><i><b>Ejercicio propuesto 7.1.5.3:</b> Crea un programa que pida al usuario dos números y muestre su suma en pantalla. Esa suma se debe añadir también al fichero "sumas.txt".</i></blockquote>
+
+ 
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   30557 visitas desde el 20-04-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas06e.html">Anterior</a></li>
+                    <li><a href="cupas07b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas07.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+</html>
+        

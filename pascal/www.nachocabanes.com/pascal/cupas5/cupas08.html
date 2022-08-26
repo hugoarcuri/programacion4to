@@ -1,0 +1,525 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas08.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 8. Uso y creación de unidades</title>
+
+    
+    <meta name="description" content="8. Uso y creación de unidades - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="unit,uses,interface,implementation" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 8. Uso y creación de unidades          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas07c.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas09.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        <h1>8. Uso y creación de unidades</h1>
+
+<h2>8.1. Uso de unidades existentes</h2>
+
+<p>La mayoría de lenguajes de programación modernos
+nos permiten incluir una serie de <b>bibliotecas</b> externas (en ingles, <b>library</b>)
+de funciones y procedimientos, que amplían las posibilidades del lenguaje
+base.</p>
+
+<p>En Turbo Pascal, estas bibliotecas reciben el nombre de "<b>unidades</b>" 
+(<b>unit</b>), y existen a partir de Turbo Pascal 5. También existen en otras 
+versiones de Pascal recientes, como Free Pascal.<br /> </p>
+
+<p>Por ejemplo, una de las "unidades" básicas que incluyen Turbo Pascal y
+Free Pascal es la <b>unidad CRT</b>, que nos da una serie
+de facilidades para manejar la pantalla en modo texto, el teclado y la
+generación de sonidos sencillos. Vamos a ver un primer ejemplo de su uso,
+y más adelante profundizaremos en las posibilidades adicionales que nos aporta:
+</p>
+
+
+<p><pre><code class='language-pascal'>(* CRT1.PAS, Ejemplo simple de la unidad CRT *)
+(* Parte de CUPAS5, por Nacho Cabanes        *)
+
+program Crt1;
+
+uses crt;
+
+var
+    tecla : char;
+
+begin
+    ClrScr;                        { Borra la pantalla }
+    TextColor( Yellow );           { Color amarillo }
+    TextBackground( Red );         { Fondo azul }
+    GotoXY( 40, 12 );              { Vamos al centro de la pantalla }
+    Write('Hola... ');             { Saludamos }
+    Delay( 2000 );                  { Esperamos dos segundos }
+    WriteLn( 'Pulse una tecla... ');
+    tecla := ReadKey;              { Esperamos que se pulse una tecla }
+    GotoXY( 1, 24 );               { Vamos a la penúltima línea }
+    Write( 'Ha pulsado ', tecla ); { E informamos de la tecla pulsada }
+end. 
+</code></pre></p>
+<p>Como se puede ver en este ejemplo, esta "unidad CRT" nos añade algunas órdenes
+adicionales, que no tendríamos si no incluyéramos esa biblioteca adicional (y
+que pueden no estar disponibles en otros compiladores de Pascal, que no incluyan dicha
+biblioteca).
+Entre esas órdenes están:</p>
+
+<ul>
+    <li>ClrScr, para borrar la pantalla.</li>
+    <li>TextColor, para cambiar el color en que se escribirá el texto.</li>
+    <li>TextBackground, para cambiar el color de fondo.</li>
+    <li>GotoXY, para mover el cursor a ciertas coordenadas.</li>
+    <li>Delay, para detener el programa una cierta cantidad de milisegundos.</li>
+    <li>ReadKey, para detener el programa hasta que se pulse cualquier tecla (y saber qué tecla se había pulsado).</li>
+</ul>
+
+<blockquote><i><b>Ejercicio propuesto 8.1.1:</b> Crea un programa emplee la biblioteca CRT y un bucle "for" para mostrar el texto "Hola"
+    usando todos los colores (desde el 1 hasta el 15).</i></blockquote><blockquote><i><b>Ejercicio propuesto 8.1.2:</b> Crea un programa emplee la biblioteca CRT para crear un procedimiento "EscribirTeletipo",
+    que recibirá como parámetros una coordenada X, una coordenada Y, un texto, y escribirá el texto en
+    esas coordenadas, letra a letra, haciendo una pausa de 100 milisegundos entre cada letra y la
+    siguiente.</i></blockquote><blockquote><i><b>Ejercicio propuesto 8.1.3:</b> Crea un programa emplee la biblioteca CRT y la orden GotoXY para dibujar un rectángulo
+    hueco, cuyo borde sean letras X, cuya anchura sea 10 y cuya altura sea 5. Debe estar a 4 líneas
+    del borde superior de la pantalla y a 12 columnas del borde izquierdo.</i></blockquote>
+<h2>8.2. Creación de unidades</h2>
+
+
+<p>Ahora vamos
+a ver cómo podemos <b>crear</b> nuestras propias bibliotecas.
+</p>
+
+<p>¿Para qué?  Nos podría bastar con teclear
+en un programa todas las funciones que nos interesen.  Si creamos
+otro programa que las necesite, pues las copiamos también en ese
+y ya está... ¿no?
+</p>
+
+<p>No es la forma ideal de trabajar. El hecho de emplear unidades nos ayuda a conseguir dos cosas:</p>
+
+<ul>
+
+    <li>La primera es que los programas serán más <b>modulares</b>. 
+    Podremos dejar aparte las funciones que se encargan de controlar el 
+    teclado, por ejemplo, y en nuestro programa principal sólo estará lo que 
+    realmente tenga este programa que lo diferencie de los otros, la "lógica 
+    de negocio". Esto facilita la legibilidad del programa y también las posibles 
+    correcciones o ampliaciones.</li>
+ 
+    <li>La segunda ventaja es que no tendremos <b>distintas versiones</b> de los
+    mismos procedimientos o funciones.  Esto ayuda a ganar espacio en
+    el disco duro, pero eso es lo menos importante.  Lo realmente interesante
+    es que si se nos ocurre una mejora para un procedimiento, todos los programas
+    que lo usen se van a beneficiar de él automáticamente sólo con recompilar.</li>
+
+</ul> 
+ 
+<p>Por ejemplo, imaginemos que estamos haciendo un programa de rotación de 
+objetos en tres dimensiones.  Creamos nuestra biblioteca de funciones, y la 
+aprovechamos para todos los proyectos que vayamos a hacer en tres 
+dimensiones.  No solo evitamos reescribir en cada programa el procedimiento 
+RotaPunto (y otros muchos) que ahora se tomará de nuestra unidad 
+"MiGraf3D",  sino que, además, si descubrimos una forma más rápida de rotar 
+puntos, todos los programas que utilicen el procedimiento RotaPunto se verán 
+beneficiados en cuanto los recompilemos.</p>
+
+<p>Vamos a lo práctico... </p>
+
+<a name="interface"></a> 
+
+<p>Una "<b>unit</b>" tiene <b>dos partes</b>: una pública, que es aquella a 
+la que podremos acceder, y una privada, que es el desarrollo detallado de 
+los procedimientos y funciones, y a esta parte no se puede acceder desde 
+otros programas. </p>
+
+<p>La parte <b>pública</b> se denota con la palabra "<b>interface</b>", y 
+la <b>privada</b> con "<b>implementation</b>". </p>
+
+<p>Debajo de <i>interface</i> basta indicar los nombres de los 
+procedimientos que queremos "exportar", así como las variables públicas, si 
+nos interesase crear alguna.  Debajo de <i>implementation</i> escribimos 
+realmente estos procedimientos o funciones, con todas sus órdenes, tal como 
+haríamos en un programa normal. </p>
+
+<p>Vamos a ver un ejemplo:</p>
+
+
+<a name="progNCrt1"></a> 
+
+<p><pre><code class='language-pascal'>(* NCRT1.PAS, Ejemplo de unidad        *)
+(* Parte de CUPAS5, por Nacho Cabanes  *) 
+
+unit nCrt1;
+
+interface                 { Parte "pública", que se exporta }
+
+{ Escribir un texto en ciertas coordenadas }
+procedure EscribeXY( X, Y: byte ; texto: string );
+                   
+
+{ ----------------------------------}
+
+implementation           { Parte "privada", detallada }
+
+uses crt;                 { Usa a su vez la unidad CRT }
+
+procedure EscribeXY( X, Y: byte ; texto: string );
+begin
+    GotoXY( X, Y );
+    Write( texto );
+end;
+
+end.                       { Final de la unidad } 
+</code></pre></p>
+<p>Cuidado: este ejemplo <b>no se puede ejecutar</b>.  Hay que recordar que 
+una Unit es algo auxiliar, una biblioteca de funciones y procedimientos que 
+nosotros utilizaremos <b>desde otros programas</b>, como el que veremos en 
+un instante. </p>
+
+<p>Esta "unit" declara un procedimiento "EscribeXY", que escribe en unas 
+ciertas coordenadas de pantalla (usando primero un GotoXY y luego un Write). 
+</p>
+
+<p>Un programa que cargase esta "unit" y utilizase este procedimiento podría 
+ser:</p>
+
+<a name="progUsoNCrt1"></a> 
+
+<p><pre><code class='language-pascal'>(* USONCRT1.PAS, Ejemplo de uso de la unidad nCrt1 *)
+(* Parte de CUPAS5, por Nacho Cabanes              *) 
+
+program UsoNCrt1;
+
+uses nCrt1;
+
+begin
+    EscribeXY( 7, 5, 'Texto en la posición 7,5.' );
+end. 
+</code></pre></p>
+
+<p>Este programa no necesita llamar a la unidad CRT original, sino que
+nuestra unidad ya lo hace por él.
+</p>
+
+<p> 
+Ahora vamos a mejorar ligeramente nuestra unidad, añadiéndole un
+procedimiento "Pausa". Aprovecharemos (aunque no será necesario)
+para crear una variable dentro de la parte privada:</p>
+
+<a name="progNCrt2"></a> 
+
+<p><pre><code class='language-pascal'>(* NCRT2.PAS, Segundo ejemplo de unidad  *)
+(* Parte de CUPAS5, por Nacho Cabanes    *) 
+
+unit nCrt2;
+
+{-------------------}
+
+interface
+
+procedure EscribeXY( X, Y: byte ; texto: string );
+procedure Pausa;
+
+{-------------------}
+
+implementation
+
+uses crt;                  { Usa a su vez la unidad CRT }
+
+var 
+    tecla: char;           { variable privada: el usuario no
+                              puede utilizarla }
+
+procedure EscribeXY( X, Y: byte ; texto: string );
+begin
+    GotoXY( X, Y );
+    Write( texto );
+end;
+
+procedure Pausa;           { Pausa, llamando a ReadKey }
+begin
+    tecla := ReadKey;       { El valor de "tecla" se pierde }
+end;
+
+{-------------------}
+
+end.                       { Final de la unidad }
+  
+</code></pre></p>
+<p>Un programa que usase esta unidad, junto con la CRT original podría ser:</p>
+
+<a name="progUsoNCrt2"></a> 
+
+<p><pre><code class='language-pascal'>(* USONCRT2.PAS, Ejemplo de uso de la unidad nCrt2 *)
+(* Parte de CUPAS5, por Nacho Cabanes              *) 
+
+program UsoNCrt2;
+
+uses crt, nCrt2;  { Usamos la nuestra y también la original }
+
+begin
+   ClrScr;                                           { De Crt }
+   EscribeXY( 7, 5, 'Texto en la posición 7,5.' );   { De nCrt2 }
+   pausa;                                            { De nCrt2 }
+end.
+</code></pre></p>
+
+<p>Finalmente, hay que destacar que las unidades pueden contener más cosas además
+de funciones y procedimientos: pueden tener un "trozo de programa", su
+código de <b>inicialización</b>, como por ejemplo:</p>
+
+<a name="progNCrt3"></a> 
+
+<p><pre><code class='language-pascal'>(* NCRT3.PAS, Tercer ejemplo de unidad   *)
+(* Parte de CUPAS5, por Nacho Cabanes    *) 
+
+unit miCrt3;
+
+{-------------------}
+
+interface
+
+var
+    EraMonocromo: boolean;      { Variable pública, el usuario puede
+                                  acceder a ella }
+
+procedure EscribeXY( X, Y: byte ; texto: string );
+procedure Pausa;
+
+{-------------------}
+
+implementation
+
+uses crt;
+
+var
+    tecla: char;                { Variable privada: el usuario no
+                                   puede utilizarla }
+
+procedure EscribeXY( X, Y: byte ; texto: string );
+begin
+    GotoXY( X, Y );
+    Write( texto );
+end;
+
+procedure Pausa;
+begin
+    tecla := ReadKey;
+end;
+
+{-------------------}      { Inicialización }
+begin
+    if lastmode = 7 then        { Si el modo de pantalla era monocromo }
+        EraMonocromo := true     { EraMonocromo será verdadero }
+    else EraMonocromo := false;  { si no => falso }
+end.                             { Final de la unidad }
+  
+</code></pre></p>
+<p> 
+y el programa podría usar la variable EraMonocromo, sin necesidad de haberla declarado:</p>
+
+
+<a name="progUsoNCrt1"></a> 
+
+<p><pre><code class='language-pascal'>(* USONCRT3.PAS, Ejemplo de uso de la unidad nCrt3 *)
+(* Parte de CUPAS5, por Nacho Cabanes              *) 
+
+program UsoNCrt3;
+
+uses crt, nCrt3;
+
+begin
+    ClrScr;
+    EscribeXY( 7, 5, 'Texto en la posición 7,5.' );
+    if not EraMonocromo then
+        EscribetXY ( 10, 10, 'Modo de color ' );
+    pausa;
+end.
+</code></pre></p>
+
+<p>Para terminar, veamos otros dos detalles más sobre unidades, más avanzados pero que pueden resultar útiles en ocasiones puntuales:</p>
+
+<ul>
+    
+    <li> Al compilar una unidad se crea un fichero con <b>extensión .TPU</b>
+    (.PPU para Free Pascal). Ese fichero se podría usar desde nuestros 
+    programas, aunque no tengamos todo el código fuente la "unit", pero sólo 
+    en caso de que se cumplan dos condiciones: que empleemos la misma versión de 
+    compilador (porque el formato de estos ficheros puede ser distinto si se ha creado
+    con versiones distintas del compilador, por ejemplo con Turbo Pascal 7 en vez
+    de Turbo Pascal 5.5)), y que 
+    sepamos cómo era la parte pública (interface) de esa unidad.</li>
+
+
+    <li>En Turbo Pascal 7 para MsDos, cada unidad tiene su propio <b>
+    segmento de código</b>, así que cada unidad puede almacenar hasta 64k de 
+    procedimientos o funciones, lo que permite crear programas más grandes
+    (para MsDos) que cuando no usamos unidades.  
+    
+    Por el contrario, los datos son comunes a todas las unidades, con la 
+    limitación 64k en total (un segmento de memoria) para todos los datos 
+    (estáticos) de todo el programa. Si queremos almacenar datos de más de 
+    64k en un programa de Turbo Pascal para MsDos, tenga una o más unidades, 
+    deberemos emplear variables dinámicas, que veremos más adelante. </li>
+
+</ul> 
+
+<blockquote><i><b>Ejercicio propuesto 8.2.1:</b> Crea una biblioteca llamada "TEXTOS", que incluya una función "IZQUIERDA(texto, n)", que devolverá
+    la subcadena formada por las primeras N letras de una cadena de texto, y otra función "DERECHA(texto, n)", que devolverá
+    la subcadena formada por las últimas N letras de la cadena de texto que se le indique como parámetro,</i></blockquote><blockquote><i><b>Ejercicio propuesto 8.2.2:</b> Amplía la biblioteca TEXTOS con una función INVERTIR(texto), que devuelva
+    invertida (de la última letra a la primera) la cadena de texto que se le pase
+    como parámetro.</i></blockquote> 
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   5227 visitas desde el 14-06-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas07c.html">Anterior</a></li>
+                    <li><a href="cupas09.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas08.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+</html>
+        

@@ -1,0 +1,429 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 3. Estructuras repetitivas</title>
+
+    
+    <meta name="description" content="3. Estructuras repetitivas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="for,while,repeat" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 3. Estructuras repetitivas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas02b.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas03b.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h1>3. Estructuras repetitivas</h1>
+
+<h2>3.1. ¿Qué es un bucle?</h2>
+
+<p>Vamos a ver cómo podemos crear <b>bucles</b> o <b>lazos</b>, es decir, partes del programa
+que se repitan un cierto número de veces.</p>
+
+<p>Según cómo queramos que se controle ese bucle, tenemos <b>tres posibilidades</b>, que vamos a comentar en primer lugar:<br /> </p>
+
+<ul>
+    <li><b>for..to</b>: Repite una orden (o un bloque de órdenes) desde que 
+    una variable tiene un valor inicial hasta que alcanza otro valor final (un cierto NÚMERO de veces).</li>
+
+    <li><b>while..do</b>: Repite una sentencia MIENTRAS se cumpla una condición.</li>
+
+    <li><b>repeat..until</b>: Repite un grupo de sentencias HASTA que se dé 
+    una condición.</li>
+
+</ul>
+
+<p>La <b>diferencia</b> entre estos dos últimos es que "while" comprueba la 
+condición antes de repetir las demás sentencias, por lo que puede que estas 
+sentencias ni siquiera se lleguen a ejecutar, en caso de que la condición de 
+entrada fuera falsa.  Por el contrario, en un "repeat", la condición se 
+comprueba al final, de modo que las sentencias intermedias se ejecutarán al 
+menos una vez.</p>
+
+<p>Vamos a verlos con más detalle...</p>
+
+
+<h2>3.2. Desde... hasta... (for)</h2>
+
+<h3>3.2.1 Avanzar de uno en uno</h3>
+
+<p>El formato de la orden <b>"for"</b> es</p>
+
+<p><pre><code class='language-pascal'>for variable := ValorInicial to ValorFinal do
+    Sentencia;</code></pre></p>
+<p>Se podría traducir "desde que la variable valga ValorInicial hasta que 
+valga ValorFinal" (y en cada pasada, su valor aumentará en una unidad).</p>
+
+<p>Como primer ejemplo, vamos a ver un  pequeño programa que escriba los 
+números del uno al cinco: </p> 
+
+<p><pre><code class='language-pascal'>(* FOR1.PAS, Primer ejemplo de "for": contador *)
+(* Parte de CUPAS5, por Nacho Cabanes          *)
+
+Program For1;
+
+var
+    contador: integer;
+
+begin
+    for contador := 1 to 5 do
+        writeLn( contador );
+end. 
+ 
+(* Resultado:
+1
+2
+3
+4
+5
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.1.1:</b> Crea un programa que muestre los números del 10 al 15, cada uno en una línea.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.1.2:</b> Crea un programa que muestre los números del 5 al 20, todos ellos en la misma línea, separados por espacios en blanco.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.1.3:</b> Crea un programa que escriba 10 veces "Hola" (en la misma línea).</i></blockquote>
+<h3>3.2.2. "For" encadenados</h3> 
+
+<p>Los bucles "for" se pueden <b>enlazar</b> uno dentro de
+otro, de modo que podríamos escribir las tablas de
+multiplicar del 1 al 5, dando 5 pasos, cada uno de los cuales incluye otros 10,
+así:</p>
+
+<p><pre><code class='language-pascal'>(* FOR2.PAS, bucles enlazados: tabla de multiplicar *)
+(* Parte de CUPAS5, por Nacho Cabanes               *)
+
+Program For2;
+
+var
+    tabla, numero: integer;
+
+begin
+    for tabla := 1 to 5 do
+        for numero := 1 to 10 do
+            writeLn( tabla, ' por ', numero ,' es ', tabla * numero );
+end. 
+
+(* Resultado:
+1 por 1 es 1
+1 por 2 es 2
+1 por 3 es 3
+...
+1 por 10 es 10
+2 por 1 es 2
+...
+5 por 10 es 50
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.2.1:</b> Crea un programa que escriba tres veces seguidas los números del 1 al 3, ocupando 9 líneas distintas en pantalla.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.2.2:</b> Crea un programa que escriba 3 líneas, cada una de las cuales contendrá 4 veces la palabra "Hola" seguida por un espacio.</i></blockquote>
+
+<h3>3.2.3. "For" y sentencias compuestas</h3> 
+
+<p>Hasta ahora hemos visto sólo casos en los que después de "for" había un 
+única sentencia. Si queremos repetir <b>más de una orden</b>, basta 
+encerrarlas entre "begin" y "end" para convertirlas en una <b>sentencia 
+compuesta</b>, como hemos hecho hasta ahora.</p>
+
+<p>Así, vamos a mejorar el ejemplo anterior haciendo que deje una línea en 
+blanco entre tabla y tabla:</p>
+
+<p><pre><code class='language-pascal'>(* FOR3.PAS, bucles con sentencias compuestas *)
+(* Parte de CUPAS5, por Nacho Cabanes         *)
+
+Program For3;
+
+var
+    tabla, numero: integer;
+
+begin
+    for tabla := 1 to 5 do
+    begin
+        for numero := 1 to 10 do
+            writeLn( tabla, ' por ', numero ,' es ', tabla * numero );
+        writeLn;        (* Línea en blanco *)
+    end;
+end. 
+
+(* Resultado:
+1 por 1 es 1
+1 por 2 es 2
+1 por 3 es 3
+...
+1 por 10 es 10
+
+2 por 1 es 2
+...
+5 por 10 es 50
+*)
+</code></pre></p>
+<p>Como vimos, es muy conveniente usar la <b>escritura indentada</b>,
+que en este caso ayuda a ver mejor dónde empieza y termina lo que hace
+cada "for".</p>
+
+<blockquote><i><b>Ejercicio propuesto 3.2.3.1:</b> Crea un programa que escriba 10 veces "Hola" (en una línea) y luego la palabra "Adios" (en otra línea).</i></blockquote>
+
+
+<p>Esta misma estructura se puede usar para resolver muchos problemas de computación.
+La emplearemos dentro de poco para recorrer "matrices", y la podemos utilizar 
+también para dibujar algunas figuras geométricas en pantalla, como 
+por ejemplo rectángulos:</p>
+
+<p><pre><code class='language-pascal'>(* FOR3BRECT.PAS, bucles con sentencias compuestas *)
+(* 2: Dibuja un rectangulo formado por asteriscos  *)
+(* Parte de CUPAS5, por Nacho Cabanes              *)
+ 
+Program For3bRect;
+ 
+var
+    fila, columna: integer;
+    maxFilas, maxColumnas: integer;
+ 
+begin
+    maxFilas := 3;
+    maxColumnas := 7;
+    
+    for fila := 1 to maxFilas do
+    begin
+        for columna := 1 to maxColumnas do
+            write('*');
+        writeLn;        (* Avance de linea *)
+    end;
+end. 
+ 
+(* Resultado:
+*******
+*******
+*******
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.3.2:</b> Crea un programa que escriba un rectángulo de asteriscos, con la anchura y altura que escoja el usuario.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.3.3:</b> Crea un programa que escriba un cuadrado de asteriscos, con la anchura que escoja el usuario.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.3.4:</b> Crea un programa que escriba un triángulo de asteriscos, que en la primera línea tendrá la anchura que escoja el usuario (por ejemplo, 4), en la siguiente línea tendrá uno menos (3), y así sucesivamente hasta que la última línea tenga anchura 1.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.3.5:</b> Crea un programa que escriba un rectángulo hueco, con la anchura y altura que escoja el usuario, que tendrá asteriscos en el borde (primera y última fila, primera y última columna) y espacios en blanco en el interior.</i></blockquote>
+
+<h3>3.2.4. Contar con letras</h3> 
+
+<p>Una observación: para "contar" no necesariamente hay que usar <b>números</b>,
+también podemos contar con letras:</p>
+
+<p><pre><code class='language-pascal'>(* FOR4.PAS, letras como índices en un bucle *)
+(* Parte de CUPAS5, por Nacho Cabanes        *)
+
+Program For4;
+
+var
+    letra: char;
+
+begin
+    for letra := 'a' to 'z' do
+        write( letra );
+ end. 
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.4.1:</b> Crea un programa que escriba las letras de la B a la M (B mayúscula hasta M mayúscula).</i></blockquote>
+<h3>3.2.5. Contar de forma decreciente (downto)</h3> 
+
+<p>Con el bucle "for", tal y como lo hemos
+visto, sólo se puede contar en forma creciente y de uno en uno.
+Para contar de forma <b>decreciente</b>, se usa "downto" en vez de "to".
+</p>
+
+<p><pre><code class='language-pascal'>(* FOR5.PAS, "for" que desciende      *)
+(* Parte de CUPAS5, por Nacho Cabanes *)
+
+Program For5;
+
+var
+    i: integer;
+
+begin
+    for i := 5 downto 1 do
+        write( i );
+end. 
+ 
+(* Resultado:
+54321
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.5.1:</b> Crea un programa que escriba los números del 10 al 1 (de forma descendente).</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.5.2:</b> Crea un programa que escriba las letras de la Z a la A (de forma descendente).</i></blockquote>
+
+
+<h3>3.2.6. Contar de 2 en 2 o usando otros incrementos</h3> 
+
+<p>Para contar de dos en dos (por ejemplo), hay que buscarse la vida: 
+multiplicar por dos o sumar uno dentro del cuerpo del bucle, etc...  Eso sí, 
+<b>sin modificar la variable que controla el bucle</b> (deberemos usar cosas como 
+"write(x*2)" en vez de "x := x*2", que pueden dar problemas en algunos 
+compiladores).
+</p>
+
+<p><pre><code class='language-pascal'>(* FOR6.PAS, "for" y numeros no correlativos  *)
+(* Parte de CUPAS5, por Nacho Cabanes         *)
+
+program For6;
+
+var
+    contador: integer;
+
+begin
+    for contador := 1 to 5 do
+        writeLn( 10 * contador );
+end. 
+ 
+(* Resultado:
+10
+20
+30
+40
+50
+*)
+</code></pre></p>
+<blockquote><i><b>Ejercicio propuesto 3.2.6.1:</b> Un programa que escriba la secuencia de números 2, 4, 6, 8 ... 16.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.6.2:</b> Un programa que escriba la secuencia de números 6, 5, 4,..., 1.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.6.3:</b> Un programa que escriba la secuencia de números 3, 5, 7,..., 21.</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.2.6.4:</b> Un programa que escriba la secuencia de números 12, 10, 8,..., 0..</i></blockquote>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   10317 visitas desde el 08-03-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas02b.html">Anterior</a></li>
+                    <li><a href="cupas03b.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas03.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+</html>
+        

@@ -1,0 +1,313 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas06g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - (Pronto)</title>
+
+    
+    <meta name="description" content="Curso de Pascal - (Pronto) - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="sqr,sqrt,sin,odd" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - (Pronto)          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas06f.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas07.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>
+<a NAME="funcsMatem"></a>
+<h2>6.7. Algunas funciones incorporadas del lenguajes Pascal.</h2>
+
+<h3>6.7.1. Funciones matem&aacute;ticas: abs, sin, cos, arctan, round, trunc,
+sqr, sqrt, exp, ln, odd, potencias.</h3>
+
+<p>En el apartado 1.6.3 vimos algunas de las funciones matemáticas que incluye 
+Pascal. Es hora de ver una lista un poco más detallada:</p>
+
+<ul>
+    
+    <li><b>Abs</b>: valor absoluto de un n&uacute;mero.</li>
+
+    <li><b>Sin</b>: seno de un cierto &aacute;ngulo dado en radianes.</li>
+
+    <li><b>Cos</b>: coseno, an&aacute;logo.</li>
+
+    <li><b>ArcTan</b>: arco tangente.&nbsp; No existe funci&oacute;n para la tangente, que podemos calcular como sin(x)/cos(x).</li>
+
+    <li><b>Round</b>: redondea un n&uacute;mero real al entero m&aacute;s cercano.</li>
+
+    <li><b>Trunc</b>: trunca los decimales de un n&uacute;mero real para convertirlo en entero.</li>
+
+    <li><b>Int</b>: igual que trunc, pero el resultado sigue siendo un n&uacute;mero real.</li>
+
+    <li><b>Sqr</b>: eleva un n&uacute;mero al cuadrado.</li>
+
+    <li><b>Sqrt</b>: halla la ra&iacute;z cuadrada de un n&uacute;mero.</li>
+
+    <li><b>Exp</b>: exponencial en base e, es decir, eleva un n&uacute;mero a e.</li>
+
+    <li><b>Ln</b>: calcula el logaritmo neperiano (base e) de un n&uacute;mero.</li>
+
+    <li><b>Odd</b>: devuelve TRUE si un n&uacute;mero es impar.</li>
+
+    <li><b>Potencias</b>: no hay forma directa de elevar un n&uacute;mero 
+    cualquiera a otro en pascal, pero podemos imitarlo con "exp" y "ln", as&iacute;:</li>
+
+</ul>
+<a NAME="progElevar"></a>
+
+<p><pre><code class='language-pascal'>(* ELEVAR.PAS, Elevar un número real a otro *)
+(* Parte de CUPAS5, por Nacho Cabanes       *)
+
+program elevar;
+
+function elevado(a,b: real): real; 
+begin 
+  elevado := exp(b *ln(a) ); 
+end;
+
+begin 
+  writeln(elevado(2,3)); 
+end. 
+</code></pre></p>
+<p>La deducci&oacute;n de esta f&oacute;rmula es f&aacute;cil, conociendo
+las propiedades de los logaritmos y las exponenciales</p>
+
+<p><pre><code class='language-txt'>a^b = exp ( ln ( a^b )) = exp ( b * ln ( a ))</code></pre></p>
+
+<h4>6.7.2. Funciones para manipular cadenas de texto.</h4>
+
+<p>En el apartado 4.2.3 vimos también algunas de las funciones de manipulación 
+de cadenas de texto. Vamos a resumirlas ahora y a ver un ejemplo conjunto:</p>
+
+<p>Las funciones <b>incorporadas</b> para el manejo de cadenas son:</p>
+
+<ul>
+
+<li><b>copy</b>.&nbsp; Devuelve una subcadena.&nbsp; Su formato es&nbsp; function
+copy(cad: string; posic: integer; cuantos: integer): string;&nbsp; Es decir,
+le indicamos en qu&eacute; cadena nos queremos basar, desde qu&eacute;
+posici&oacute;n queremos empezar a tomar las letras y cu&aacute;ntas queremos
+leer.&nbsp; As&iacute;, copy('JUAN PEREZ', 1, 4)&nbsp; dar&iacute;a 'JUAN'</li>
+
+<li>
+<b>concat</b>.&nbsp; Concatena varias cadenas.&nbsp; Su formato es function
+concat(cad1 [, cad2,..., cadN]: string): string; (lo que hay entre corchetes
+es opcional). Lo que hace es crear una cadena de texto a partir de varias
+que va concatenando.&nbsp;&nbsp;&nbsp; <tt>cadena := concat(cad1, cad2,
+cad3)</tt>&nbsp; es lo mismo que si tecle&aacute;semos:&nbsp; <tt>cadena
+:= cad1 + cad2 + cad3</tt></li>
+
+<li><b>delete</b>.&nbsp; Borra parte de una cadena.&nbsp; El formato es procedure
+delete(var cad: string; posic: integer; cuantos: integer): string;&nbsp;
+y lo que hace es eliminar "cuantos" letras a partir de la posici&oacute;n
+"posic":&nbsp; si TEXTO es 'JUAN PEREZ', delete(texto, 2, 5) har&iacute;a
+que TEXTO pasase a ser 'JEREZ'.</li>
+
+<li><b>insert</b>.&nbsp; Inserta una subcadena dentro&nbsp; de una cadena.
+Su formato es&nbsp; procedure Insert(texto: string; var donde: string;
+posic: integer);&nbsp; donde "texto" es la cadena que queremos insertar,
+"donde" es la cadena inicial en la que queremos que se inserte, y "posic"
+es la posici&oacute;n de "donde" en la que se insertar&aacute; "texto".</li>
+
+<li>&nbsp;<b>length</b>.&nbsp; Dice la longitud de una cadena de texto:&nbsp;
+function length(cad: string): integer;</li>
+
+<li><b>pos</b>.&nbsp; Indica la posici&oacute;n de una subcadena dentro de
+una cadena: function pos(subcadena: string; cadena: string): byte; Por
+ejemplo, pos('P&eacute;rez', 'Juan P&eacute;rez') devolver&iacute;a un
+6.&nbsp; Si la subcadena no es parte de la cadena, devuelve 0.</li>
+
+<li><b>val</b>.&nbsp; Obtiene el valor numérico de una cadena de texto. Por 
+ejemplo, en VAL('250', valor, codigoDeError), "valor" obtendría el valor 250, 
+mientras que en VAL('250 es un numero', valor, codigoDeError), "valor" 
+obtendría el valor 0, y "codigoDeError" sería 4, que es la posición en la que 
+se ha encontrado un símbolo no numérico.</li>
+
+
+</ul>
+
+
+<p>Vamos a ver un ejemplo que las use:
+
+<p><pre><code class='language-pascal'>(* CADENAS.PAS, Ejemplo de funciones de cadenas *)
+(* Parte de CUPAS5, por Nacho Cabanes           *)
+
+program cadenas;
+
+var
+    frase: string;
+    numero: integer;
+    codigoError: integer;
+
+begin
+    frase := 'Esta es una frase de ejemplo';
+    writeln('La primera palabra (letras 1 a 4) es: ', copy(frase, 1, 4) );
+    writeln('Si anadimos mas texto: ', concat(frase, ' facilito') );
+
+    delete(frase, 6, 2);
+    writeln('Si borramos la segunda palabra (letras 5 a 7) es: ', frase );
+
+    insert('si es', frase, 6);
+    writeln('Y si insertamos una nueva segunda (y tercera) palabra: ',  frase);
+    writeln('La longitud de la frase es: ', length(frase) );
+    writeln('Y la primera a parece en la posicion: ', pos('a', frase) );
+    
+    frase := '25 unidades';
+    writeln('Ahora la frase es: ',  frase);
+    val(frase, numero, codigoError);
+    writeln('Y el doble de su valor es: ', numero*2 );
+    writeln('La conversión ha sido correcta hasta la posición: ', codigoError );
+end. 
+
+(* Resultado de este programa:
+La primera palabra (letras 1 a 4) es: Esta
+Si anadimos más texto: Esta es una frase de ejemplo facilito
+Si borramos la segunda palabra (letras 5 a 7) es: Esta  una frase de ejemplo
+Y si insertamos una nueva segunda (y tercera) palabra: Esta si es una frase de ejemplo
+La longitud de la frase es: 31
+Y la primera a parece en la posicion: 4
+Ahora la frase es: 25
+Y el doble de su valor es: 50
+Finalmente la frase es: 25 unidades
+Y el doble de su valor es: 0
+La conversion ha sido correcta hasta la posicion: 3
+*)
+</code></pre></p>
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   5385 visitas desde el 06-10-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas06f.html">Anterior</a></li>
+                    <li><a href="cupas07.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas06g.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+</html>
+        

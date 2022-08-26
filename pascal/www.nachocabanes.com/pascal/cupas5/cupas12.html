@@ -1,0 +1,766 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Creación de gráficos</title>
+
+    
+    <meta name="description" content="12. Creación de gráficos - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="generalidades,freepascal" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            12. Creación de gráficos          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="index-2.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="index-2.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+          
+<h1>12. Creación de gráficos</h1>
+
+<h2>12.1. Contacto con los gráficos por ordenador.</h2>
+
+<p>Casi cualquier ordenador creado después de 1985 permitirá no sólo escribir 
+textos, sino también acceder de forma individual a los puntos que forman la 
+pantalla. La cantidad de puntos y de colores que se pueden mostrar en pantalla 
+de forma simultánea depende principalmente de la cantidad de memoria gráfica 
+que tenga el sistema. Por ejemplo en un equipo "PC o compatible" que tenga una 
+tarjeta gráfica VGA o posterior (a partir del año 1988), con 256 kb de memoria gráfica, podríamos optar, entre 
+otros, por un modo con 640x480 puntos en 16 colores, o si necesitamos mayor 
+cantidad de colores simultáneos uno de 320x200 puntos con 256 colores (en el 
+que, a cambio de más colores, tendremos "menos puntos" en pantalla,  lo que 
+implica que los puntos serán "más gordos" y las imágenes serán menos definidas). </p>
+
+<p>Incluso en un ordenador que permita crear gráficos, no siempre será posible
+realizarlo desde un cierto lenguaje. Para eso necesitaremos tener los "drivers"
+adecuados, que permitan acceder a esos modos gráficos desde nuestro entorno
+de programación.</p>
+
+<p>En general, esos drivers nos permitirán al menos dibujar puntos en ciertas 
+coordenadas de pantalla usando cierto color. Es habitual que también 
+dispongamos de órdenes para dibujar líneas, círculos o rellenar zonas. En 
+algunos entornos más avanzados podremos incluso mostrar imágenes a partir de 
+ficheros, o indicar niveles de transparencia, o mover "figuras animadas" 
+(conocidas como "sprites") por pantalla sin demasiado esfuerzo.</p>
+
+
+<p>En el caso del lenguaje Pascal, no existe un estándar oficial aceptado por 
+todos los compiladores, pero sí existen una serie de funcionalidades que se 
+podían conseguir desde Turbo Pascal y que imitan los compiladores que buscan 
+compatibilidad con él, como Free Pascal y TMT Pascal. Nosotros nos centraremos 
+en esos sistemas: Turbo Pascal (versión 5 y posteriores) y compatibles, que son 
+los más extendidos. </p>
+
+
+<h2>12.2. Nuestro primer gráfico con Turbo Pascal y Free Pascal.</h2>
+
+
+<p>Junto con Turbo Pascal (y Turbo C/C++), se distribuían unos drivers, los 
+<b>BGI</b> (Borland Graphics Interface), que son los que se encargan de acceder 
+a la pantalla. Así, nosotros no tenemos más que decir &quot;dibuja un 
+punto&quot;, y el BGI sabrá como hacerlo, en función de la tarjeta gráfica que 
+haya instalada y del modo de pantalla (cantidad de puntos y de colores 
+disponibles) que queramos usar. </p> 
+
+
+<p>Existen otras alternativas, como podría ser el acceder directamente a la 
+memoria de pantalla, con lo que podemos conseguir una mayor velocidad y un 
+menor tamaño del programa ejecutable (.EXE) resultante, pero a cambio será 
+mucho más difícil crear el programa y su portabilidad será menor: no se podrá 
+llevar con facilidad a otro sistema. Veremos más adelante un breve contacto con 
+esta forma de trabajar. </p> 
+
+
+<p>Un ejemplo básico que dibuje una línea en pantalla, desde la esquina 
+superior izquierda hasta el centro de la pantalla, usando los drivers BGI 
+podría ser así: </p> 
+
+
+<p><pre><code class='language-pascal'>(* GRAPH01.PAS, Linea en modo gráfico  *)
+(* Parte de CUPAS5, por Nacho Cabanes  *) 
+ 
+program Graph01;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+
+begin
+    Driver := Vga;                      { Para pantalla VGA (o superior) }
+    Modo := VgaHi;                            { Modo 640x480, 16 colores }
+    InitGraph(Driver, Modo, 'c:\tp\bgi');                { Inicializamos }
+    Line( 0, 0, 320, 240 );                            { Línea en blanco }
+    Readln;                                { Esperamos a que pulse Intro }
+    CloseGraph                                              { Y se acabó }
+end. 
+</code></pre></p>
+<p><img src="img/graph01.png"></center></p> 
+
+<p>(En Free Pascal para Windows y para DOS debería funcionar igual, aunque
+quizá aparezca una segunda ventana de consola, que es en la que habría que
+pulsar Intro para terminar:</p> 
+
+<p><img src="img/graph01b.png"></center></p>
+
+<p>Los pasos que sigue este programa son:</p>
+
+<ul>
+
+<li> Debe comenzar indicando que va a utilizar la unidad Graph (&quot;uses graph&quot;).</li> 
+
+<li>Ya en el cuerpo del programa, debemos inicializar el sistema de gráficos mediante el procedimiento <b>InitGraph</b>. Este tiene como parámetros los siguientes: </li> 
+
+    <ul>
+        
+      <li>El código del driver concreto de tarjeta gráfica que vamos a usar (VGA 
+      funcionara en cualquier equipo moderno, o podemos optar por Detect si tenemos 
+      un equipo antiguo y queremos que detecte automáticamente cual está instalada; 
+      luego veremos qué otras opciones hay).</li> 
+
+      <li>El modo de pantalla que vamos a usar para ese driver (los modos 
+      disponibles dependerán de cada driver; de momento usaremos VgaHi para el modo 
+      VGA de alta resolución, con 640x480 y 16 colores; luego veremos otras 
+      opciones).</li> 
+
+      <li>El directorio en el que están los drivers. </li> 
+      
+    </ul> 
+
+</ul>
+
+<p>Para Turbo Pascal se debe indicar el directorio, porque los drivers están en 
+forma de unos ficheros de extensión BGI: HERC.BGI, CGA,BGI, EGAVGA.BGI, etc., 
+que el programa buscará en el momento de ejecutarlo.  Para <b>Free Pascal</b> no es 
+necesario indicar ningún directorio, pero puede haber problemas de 
+portabilidad: con Free Pascal para MsDos quiza no funcione otro driver que no 
+sea VGA, lo mismo puede ocurrir bajo ciertas versiones de Windows.</p> 
+
+<p>En <b>Linux</b> 
+quizá no esté incluida la biblioteca "graph" porque se considera obsoleta 
+(además de algún problema adicional, como apoyarse en "svgalib", que sólo puede 
+usada "root", el administrador del sistema), pero en ese caso puedes probar a 
+ver si tienes suerte y compila con "uses ggigraph" o con "uses "ptcgraph", que 
+son dos bibliotecas alternativas (que no son parte de todas las distribuciones
+de Free Pascal). En cualquier caso, asume que quizá no puedas hacer funcionar
+estos ejemplos en Linux.</p> 
+
+
+
+<p>Cuando terminemos de usar la pantalla en modo gráfico, deberemos usar la 
+orden <b>CloseGraph</b> para cerrar el modo gráfico .</p> <br /><br /> 
+
+
+
+<h2>12.3. Detección de modo gráfico</h2>
+
+<p>Si usamos el código &quot;<b>detect</b>&quot; para que el compilador 
+intente detectar la tarjeta que hay instalada en el ordenador en el cual 
+esté funcionando el programa, no hace falta indicar el modo, sino que él 
+tomará el de mayor resolución que permita esa tarjeta. </p> 
+
+<p>En este caso, no sabemos a priori el número de puntos que hay en 
+pantalla, ni la cantidad de colores, pero lo podemos descubrir mirando los 
+valores de GetMaxX, GetMaxX y GetMaxColor. </p> 
+ 
+<p><pre><code class='language-pascal'>(* GRAPH02.PAS, Autodetección de modo gráfico *)
+(* Parte de CUPAS5, por Nacho Cabanes         *) 
+ 
+program Graph02;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+    centroX, centroY: Integer;
+
+begin
+    Driver := Detect;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    centroX := GetMaxX div 2;
+    centroY := GetMaxY div 2;
+    Line( 0, 0, centroX, centroY );
+    Readln;
+    CloseGraph
+end. 
+</code></pre></p>
+
+<p>En "FreePascal", en que GetMaxX puede tener un valor muy grande, quizá
+obtengamos un mensaje de error: Incompatible types: got "Extended" expected "SmallInt".
+En ese caso, </p>
+
+<h2>12.4. Principales órdenes gráficas</h2>
+<a name="ordenesGraf"></a>
+
+Las <b>órdenes gráficas</b> más habituales son:
+<ul> 
+  <li><b>PutPixel</b>(x,y,color): dibuja un punto en un color dado. </li> 
+  <li><b>Line</b>(x1,y1,x2,y2): dibuja una linea con el color y estilo predefinido. </li> 
+  <li><b>SetColor</b>(color): escoge el color predefinido, que se usará a partir de ese momento. </li> 
+  <li><b>SetLineStyle</b>(estilo, patron, color): cambia el estilo con que se dibujarán las líneas. Para elegir el estilo de línea, tenemos predefinidas constantes como SolidLn (línea continua), DottedLn (de puntos), etc. Para el grosor también tenemos constantes: NormWidth (normal), ThickWidth (gruesa). </li> 
+  <li><b>Circle</b>(x,y,radio): dibuja un circulo con el color predefinido. </li> 
+  <li><b>Ellipse</b>(x,y,anguloIni, anguloFin, radioX, radioY): dibuja una elipse o un arco de elipse. </li> 
+  <li><b>Arc</b>(x,y,anguloIni, anguloFin, radio): dibuja un arco circular. </li> 
+  <li><b>Rectangle</b>(x1,y2,x2,y2): dibuja un rectángulo con el color y el tipo de línea predefinido. Los puntos son las esquinas superior izquierda e inferior derecha </li> 
+  <li><b>Bar</b>(x1,y1,x2,y2): dibuja un rectángulo relleno con el color de relleno (y el patrón de relleno, si es el caso) dados por SetFillStyle y SetFillPattern. </li> 
+  <li><b>SetFillStyle</b>(patron, color): elige el patrón y color de relleno. </li> 
+  <li><b>SetFillPattern</b>(patron, color): permite redefinir el patrón con que se rellenarán las figuras. </li> 
+  <li><b>Bar3D</b>(x1,y1,x2,y2,profund,tapa): dibuja un rectángulo relleno, con una cierta profundidad en 3D (si la profundidad es 0, equivale a &quot;Bar&quot; pero como una barra exterior. </li> 
+  <li><b>FloodFill</b>(x,y,borde): rellena una zona cerrada, cuyo borde sea de un cierto color. Usa el color y patrón de relleno actual. </li> 
+  <li><b>OutText</b>(texto): escribe un texto en la posición actual del cursor. </li> 
+  <li><b>OutTextXY</b>(x,y,texto): escribe un texto en una posición dada. </li> 
+  <li><b>SetTextStyle</b>(fuente,direccion,tamaño): elige la fuente (tipo de letra), la direccion y el tamaño con que se escribirán los textos. </li> 
+  <li>(etc) </li> 
+</ul>Vamos a ver sólo un <b>ejemplo</b> que use las más frecuentes:<br /> 
+ 
+<br /> 
+ 
+<p><pre><code class='language-pascal'>(* GRAPH03.PAS, Funciones gráficas más frecuentes *)
+(* Parte de CUPAS5, por Nacho Cabanes             *) 
+
+program Graph03;
+
+uses graph;
+
+var
+    driver, modo: integer;
+    x, y: integer;
+    i: integer;
+
+begin
+    driver := Vga;
+    modo := VgaHi;
+    initgraph(driver, modo, '');
+    randomize;
+
+    { Linea diagonal descendente }
+    line(0,0,639,479);
+
+    { 200 puntos en coordenadas al azar }
+    for i := 1 to 200 do       
+        PutPixel(random(640), random(480), random(15)+1);
+     
+    { 50 círculos de color al azar}
+    for i := 1 to 50 do
+        begin
+        SetColor(random(15)+1);
+        circle(random(640), random(480), random(50));
+        end;
+     
+    { 30 rectángulos }
+    for i := 1 to 30 do
+        begin
+        x := random(500);
+        y := random(400);
+        SetColor(random(15)+1);
+        rectangle(x, y, x+random(140), y+random(80));
+        end;
+
+    { 15 rectángulos rellenos con texturas al azar }
+    for i := 1 to 15 do        
+        begin
+        x := random(500);
+        y := random(400);
+        SetColor(random(15)+1);
+        SetFillStyle(random(11), random(15)+1);
+        bar(x, y, x+random(140), y+random(80));
+        end;
+                              
+    { Recuadro con texto sombreado en su interior }
+    SetFillStyle(SolidFill, LightBlue);
+    SetColor(Yellow);
+    Bar3D(93,93,440,112, 5, true);
+    SetColor(Red);
+    OutTextXY(99,99,'Prueba del modo grafico desde Turbo Pascal');
+    SetColor(White);
+    OutTextXY(100,100,'Prueba del modo grafico desde Turbo Pascal');
+    
+    { Y un círculo cuyo interior vamos a rellenar }
+    SetColor(Yellow);    
+    circle(320,200,50);
+    SetFillStyle(SolidFill, Blue);
+    FloodFill(320,200, Yellow);
+    
+    { Y hemos terminado }
+    readln;
+    closegraph;
+end. 
+</code></pre></p> 
+
+
+<p><img src="img/graph03.png"></center></p>
+ 
+<p>Este ejemplo debería funcionar sin ningún cambio también con Free Pascal, 
+tanto en su versión de DOS como de Windows.</p> 
+
+
+<h2>12.5. Un sencillo programa de dibujo</h2>
+
+<p>Vamos a ver un ejemplo de aplicación gráfica interactiva. </p>
+Otro ejemplo de programa, en este caso m&aacute;s sencillo, pero espero
+que tambi&eacute;n m&aacute;s &uacute;til, ser&iacute;a un programita sencillo
+de <b>dibujo</b>:
+<br><a NAME="progDib"></a>
+
+<p><pre><code class='language-pascal'>(* GRAPH04.PAS, Programa sencillo de dibujo *)
+(* Parte de CUPAS5, por Nacho Cabanes       *) 
+
+program Graph04;
+
+uses graph, wincrt;
+
+var
+    driver, modo: integer;
+    tecla: char;
+    x, y: integer;
+
+begin
+     { 256 colores, 640 x 480 }
+    driver := D8bit;
+    modo := m640x480;
+    initgraph(driver, modo, '');
+    
+    { Comienzo en el centro }
+    x := GetMaxX div 2;   
+    y := GetMaxY div 2;
+    SetColor(cyan);
+    
+    { Escribo una breve ayuda }
+    OutTextXY(3,3,
+        'Usa 2,4,6,8 para mover, f para finalizar');
+    
+    { Y el bloque repetitivo es el que dibuja }
+    repeat
+        putpixel(x,y, 15);
+        tecla := readkey;
+        case tecla of
+            '8': y := y-1;
+            '4': x := x-1;
+            '6': x := x+1;
+            '2': y := y+1;
+        end;
+    until tecla = 'f';
+    closegraph;
+end. 
+</code></pre></p>
+<p>Creo que la idea en s&iacute; es muy sencilla: si se pulsan las teclas
+2, 4, 6, 8 (del teclado num&eacute;rico), el puntito que dibuja se va desplazando
+por la pantalla, y dibujando un punto en el color 15 (que normalmente es
+el blanco).&nbsp; Cuando se pulse "f", acaba el programa.</p>
+
+
+<p>En este ejemplo he usado la nomenclatura para drivers y modos de
+pantalla que propone Free Pascal (y que no se puede emplear en Turbo
+Pascal): el "driver" indicará la "profundidad de color": 1 bit = blanco y negro,
+4 bits = 16 colores, 8 bits = 256 colores, 16 bits = 65536 colores, etc.</p>
+
+<pre>
+D1bit = 11;
+D2bit = 12;
+D4bit = 13;
+D6bit = 14;  { 64 colors Half-brite mode - Amiga }
+D8bit = 15;
+D12bit = 16; { 4096 color modes HAM mode - Amiga }
+D15bit = 17;
+D16bit = 18;
+D24bit = 19; { not yet supported }
+D32bit = 20; { not yet supported }
+D64bit = 21; { not yet supported }
+</pre>
+
+<p>Mientras que el "modo" indica la cantidad de puntos en pantalla (no
+todos los modos se podrán utilizar en todos los sistemas):</p>
+
+<pre>
+detectMode = 30000;
+m320x200 = 30001;
+m320x256 = 30002; { amiga resolution (PAL) }
+m320x400 = 30003; { amiga/atari resolution }
+m512x384 = 30004; { mac resolution }
+m640x200 = 30005; { vga resolution }
+m640x256 = 30006; { amiga resolution (PAL) }
+m640x350 = 30007; { vga resolution }
+m640x400 = 30008;
+m640x480 = 30009;
+m800x600 = 30010;
+m832x624 = 30011; { mac resolution }
+m1024x768 = 30012;
+m1280x1024 = 30013;
+m1600x1200 = 30014;
+m2048x1536 = 30015;
+</pre>
+
+
+<h2>12.6. Jugando con la paleta de colores</h2>
+
+<p>Para empezar, vamos a dibujar algo parecido a un <b>cono</b>, formado por
+varios c&iacute;rculos. Buscamos un resultado similar a &eacute;ste:</p>
+<center>
+
+<p><img src="img/graph05.png"></center></p>
+
+<p>Y lo podemos conseguir as&iacute;:</p>
+
+<p><pre><code class='language-pascal'>(* GRAPH05.PAS, Cono formado por varios círculos *)
+(* Parte de CUPAS5, por Nacho Cabanes            *)
+
+program Graph05;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+    i: word;
+
+begin
+    Driver := Vga;
+    Modo := VgaHi;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    SetColor(LightRed);
+    for bucle := 1 to 40 do            { Dibujaremos 40 círculos }
+        circle ( bucle*5, bucle*5, bucle*5 );
+    Readln;
+    CloseGraph
+end.
+</code></pre></p>
+
+<p>Hemos dibujado 40 c&iacute;rculos, cuyas coordenadas x e y, y cuyo radio
+son iguales en cada c&iacute;rculo.&nbsp; El efecto es vistoso, pero se
+puede <b>mejorar</b>...</p>
+
+
+
+<a NAME="setrgb"></a>
+
+<p>Podemos
+cambiar la <b>paleta de colores</b> para que quede m&aacute;s vistoso a&uacute;n.&nbsp;
+Con la orden <b>SetRGBPalette</b> podemos fijar los componentes de rojo,
+verde y azul de un cierto color base.&nbsp; El formato es SetRGBPalette(Color,
+R,G,B) donde
+<ul>
+
+    <li> Color va de 0 a 15, en este caso, y de 0 a GetMaxColor en el caso 
+    general (como ya hemos comentado, GetMaxColor es una funci&oacute;n que 
+    nos dice el n&uacute;mero de colores disponibles seg&uacute;n el driver 
+    y modo que estemos usando.</li>
+
+    <li>R,G,B van de 0 (negro) a 63 (intensidad m&aacute;xima de cada uno de 
+    ellos) en una tarjeta gráfica VGA estándar, o podrían llegar a 255 en 
+    modos gráficos con 24 bits de color o más.</li>
+
+
+</ul>
+<a NAME="progGraf2b"></a>
+<br>As&iacute;, nuestro "cono" retocado quedar&iacute;a:
+
+<p><pre><code class='language-pascal'>(* GRAPH05B.PAS, Cono de círculos con los colores cambiados *)
+(* Parte de CUPAS5, por Nacho Cabanes                       *)
+
+program Graph05b;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+    intensidad: byte;
+    i: word;
+
+begin
+    Driver := Vga;
+    Modo := VgaHi;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    intensidad := 30;
+    for i := 1 to 15 do
+        begin
+        SetColor(i );
+        intensidad := i * 15;
+        SetRGBPalette(i, Intensidad, 30, 30);           { Cambia la paleta }
+        circle ( i*10, i*10, i*10 );
+        end;
+    Readln;
+    CloseGraph
+end.
+</code></pre></p>
+<p><img src="img/graph05b.png"></center></p>
+
+
+<h2>12.7. Modos de dibujado</h2>
+
+<p>El siguiente ejemplo dibuja <b>l&iacute;neas</b> desde
+el origen (0,0) a cada uno de los puntos de la l&iacute;nea inferior.</p>
+<a NAME="progGraf3"></a>
+
+<p><pre><code class='language-pascal'>(* GRAPH06.PAS, Líneas desde el punto (0,0) *)
+(* Parte de CUPAS5, por Nacho Cabanes                       *)
+
+program Graph06;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+    i: word;
+
+begin
+    Driver := Vga;
+    Modo := VgaHi;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    SetColor(LightRed);
+    for i := 0 to 639 do
+        line (0,0,i,479);
+    Readln;
+    CloseGraph
+end. 
+</code></pre></p>
+<p><center><img src="img/graph06.png"></center></p>
+
+<p>Sencillo, &iquest;no?
+Ahora veamos lo que ocurre si dibujamos los puntos de cada l&iacute;nea
+haciendo una operaci&oacute;n <b>XOR</b> con los que ya exist&iacute;an,
+en vez de dibujarlos encima simplemente.&nbsp; El efecto es mucho m&aacute;s
+llamativo:</p>
+
+
+<p><center><img src="img/graph06b.png"></center></p>
+
+<p><pre><code class='language-pascal'>(* GRAPH06B.PAS, Líneas dibujadas con XOR *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
+
+program Graph06b;
+
+uses Graph;
+
+var
+    Driver, Modo: Integer;
+    i: word;
+
+begin
+    Driver := Vga;
+    Modo := VgaHi;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    SetColor(LightRed);
+    SetWriteMode(XORPut);               { <-- Este es el cambio }
+    for i := 0 to 639 do
+        line (0,0,i,479);
+    for i := 0 to 479 do
+        line (0,0,639,i);
+    Readln;
+    CloseGraph
+end. 
+</code></pre></p>
+<p>El efecto se obtiene a partir del resultado de la operación "XOR",
+que, como vimos en el tema ###, es "reversible": un segundo dibujado
+de un punto hace que se vuelva negro; al dibujar líneas desde un
+mismo origen, una gran cantidad de puntos son dibujados varias veces,
+lo que da lugar a patrones así de caprichosos.</p>
+
+<p>El dibujado mediante XOR se empleaba en algunos de los primeros
+ordenadores que permitían dibujar puntos en pantalla, como forma
+simple de hacer animaciones, porque no hacía falta volver a borrar
+toda la pantalla en cada fotograma, sino sólo borrar y redibujar
+los elementos que hubieran cambiado de posición, y un XOR es una
+forma poco costosa de conseguirlo, como se ve en este ejemplo, en 
+que se dibuja una línea y luego, para borrarla, no hace falta memorizar
+qué puntos habían quedado tapados por ella, sino que basta con
+volver a dibujar (usando XOR en ambos casos como método de dibujado):</p>
+
+<p><center><img src="img/graph06c.png"></center></p>
+
+
+<p><pre><code class='language-pascal'>(* GRAPH06C.PAS, Animación básica con XOR *)
+(* Parte de CUPAS5, por Nacho Cabanes     *)
+
+program Graph06c;
+
+uses Graph, WinCrt;
+
+var
+    Driver, Modo: integer;
+    fila: word;
+    incremento: integer;
+
+begin
+    Driver := Vga;
+    Modo := VgaHi;
+    InitGraph(Driver, Modo, 'c:\tp\bgi');
+    
+    { Triángulo para que se note que no "rompemos" el fondo al borrar }
+    SetColor(LightCyan);
+    line (320,100, 500,300);
+    SetColor(Yellow);
+    line (140,300, 500,300);
+    SetColor(LightGreen);
+    line (320,100, 140,300);
+    
+    { Y dibujaremos (y borraremos líneas rojas) }
+    SetColor(LightRed);
+    SetWriteMode(XORPut);
+    fila := 0;
+    incremento := 10;
+    while not keypressed do
+        begin
+        line (0,fila, 640, fila);  { Dibujamos }
+        delay(100);                { Esperamos }
+        line (0,fila, 640, fila);  { Y borramos al dibujar nuevamente }
+        fila := fila + incremento;
+        if (fila > 460) or (fila < 10) then { Rebotamos en los extremos }
+            incremento := - incremento;
+        end;
+    CloseGraph
+end. 
+</code></pre></p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   16005 visitas desde el 23-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="index-2.html">Anterior</a></li>
+                    <li><a href="index-2.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas12.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+</html>
+        

@@ -1,0 +1,596 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupasejercicios.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - Ejercicios propuestos</title>
+
+    
+    <meta name="description" content="Curso de Pascal - Ejercicios propuestos - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="ejercicios" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - Ejercicios propuestos          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="index-2.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="index-2.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h2>Lista de ejercicios propuestos</h2>
+
+<p>(Cantidad de ejercicios propuestos en esta versión del curso: 246)</p>
+<ul>
+<li>Apartado 0.2.1: Crea un programa que te salude por tu nombre (por ejemplo, "Hola, Nacho").</li>
+<li>Apartado 0.2.2: Crea un programa que primero te diga "Hola" y luego te diga "Adios", usando dos órdenes "Write" distintas. (¿Se comporta como esperabas?)</li>
+<li>Apartado 0.2.3: Crea una nueva versión del programa anterior que incluya dos comentarios: uno antes de decirte "Hola" y otro antes de decirte "Adios". (¿Cambia su comportamiento?)</li>
+<li>Apartado 1.1.1: Crea un programa que calcule la suma de 23 y 38.</li>
+<li>Apartado 1.1.2: Crea un programa que muestre el resultado de sumar 123456 y 789012.</li>
+<li>Apartado 1.1.3: Crea un programa que muestre la operación "1234 + 5486" y su resultado.</li>
+<li>Apartado 1.1.4: Crea un programa que muestre la operación "5486 - 1234" y su resultado.</li>
+<li>Apartado 1.2.1: Crea un programa que escriba "Hola" y, en la línea siguiente, tu nombre.</li>
+<li>Apartado 1.2.2: Crea un programa que muestre la suma de 78 y 41 y, en la línea siguiente, su diferencia.</li>
+<li>Apartado 1.3.1: Crea un programa que muestre el producto de 56 y 39.</li>
+<li>Apartado 1.3.2: Crea un programa que calcule la multiplicación de 12345 por 98765.</li>
+<li>Apartado 1.3.3: Crea un programa que muestre el resultado de dividir 12345 entre 974.</li>
+<li>Apartado 1.3.4: Crea un programa que muestre la división entera (sin decimales) de 12345 entre 974.</li>
+<li>Apartado 1.3.5: Crea un programa que calcule la multiplicación de 12345 por 98765.</li>
+<li>Apartado 1.3.6: Crea un programa que, para los números 133 y 7, calcule: su producto lógico, su suma lógica,
+        su suma exclusiva, el complemento del segundo, el resultado de desplazar el segundo dos veces a la izquierda y el resultado de desplazar el primero dos veces a la derecha.</li>
+<li>Apartado 1.4.1: Crea un programa que defina una variable llamada "numero1" y otra llamada "numero2". La primera tendrá el valor 14 y la segunda el valor 37. Guarda su multiplicación en una variable llamada "producto" y luego muestra el valor de dicha multiplicación en pantalla.</li>
+<li>Apartado 1.4.2: Crea una variable "n", que tenga el valor 123, y muestra el valor de la variable en pantalla. Ahora cambia su valor por 145 y comprueba que realmente se ha modificado. Finalmente, muestra el resultado de multiplicar esa variable por 7</li>
+<li>Apartado 1.5.1: Crea un programa que pida un número al usuario y muestre su triple. Debe usar una única variable llamada "n".</li>
+<li>Apartado 1.5.2: Crea un programa que pida dos números enteros y muestre su suma, usando variables llamadas "n1", "n2" y "suma".</li>
+<li>Apartado 1.5.3: Crea un programa que pida dos números enteros y muestre su suma, diferencia, producto división del primero entre el segundo, y división del segundo entre el primero, usando dos variables llamadas "primerNumero" y "segundoNumero".</li>
+<li>Apartado 1.5.4: Pide dos números al usuario y muestra su división entera (el primer número entre el segundo) y el resto de dicha división. Usa los nombres de variables que quieras.</li>
+<li>Apartado 1.6.1.1: Crea un programa que te pregunte dos números del 1 al 10 y escriba su suma. Escoge un tipo de datos que no desperdicie mucho espacio.</li>
+<li>Apartado 1.6.1.2: Crea un programa que pida al usuario dos números enteros entre el -1000 y el 1000, calcule su producto su producto y lo guarde en una nueva variable, para finalmente mostrar dicho producto.</li>
+<li>Apartado 1.6.1.3: Crea un programa que pida al usuario la cantidad de habitantes de su país y cantidad de provincias o estados. A partir de esos datos calculará una estimación de la cantidad media de habitantes en cada provincia o estado. Finalmente mostrará ese resultado en pantalla. Debe usar los tipos de datos más adecuados. Recuerda emplear "div" para calcular una división entera.</li>
+<li>Apartado 1.6.2.1: Crea un programa que te pida dos números reales y muestre en pantalla el resultado de multiplicarlos.</li>
+<li>Apartado 1.6.2.2: Pide al usuario dos números reales y muestra en pantalla el resultado de su división, con dos cifras decimales.</li>
+<li>Apartado 1.6.2.3: Crea un programa que convierta de kilómetros a millas, usando la equivalencia 1 milla = 1619 metros. Debe mostrar el resultado con 3 cifras decimales.</li>
+<li>Apartado 1.6.2.4: Crea un programa que pida al usuario dos números reales con al menos 13 cifras de precisión y muestre el resultado de su división, con 8 cifras decimales.</li>
+<li>Apartado 1.6.3.1: Crea un programa que te pida un número y calcule su raíz cuarta (la raíz cuadrada de su raíz cuadrada).</li>
+<li>Apartado 1.6.3.2: Pide un número y calcula su cuarta potencia (el cuadrado de su cuadrado).</li>
+<li>Apartado 1.6.3.3: Crea un programa que genere un número al azar entre 1 y 20 (ambos incluidos).</li>
+<li>Apartado 1.6.3.4: Crea un programa que genere un número al azar entre 100 y 500 (ambos incluidos).</li>
+<li>Apartado 1.6.3.5: Crea un programa que pida al usuario un ángulo en grados y muestre su seno y su coseno.</li>
+<li>Apartado 1.6.3.6: Crea un programa que pida al usuario un ángulo en grados y muestre su tangente (seno /  coseno).</li>
+<li>Apartado 1.6.4.1: Crea un programa que te pregunte tres letras y luego las escriba en orden inverso.</li>
+<li>Apartado 2.1.1.1: Crea un programa que pida al usuario un número real y diga si es mayor de 10.</li>
+<li>Apartado 2.1.1.2: Crea un programa que pida al usuario un número entero y diga si es par (pista: habrá que comprobar el resto de la división entre 2).</li>
+<li>Apartado 2.1.1.3: Crea un programa que pida al usuario un número entero y diga si ha tecleado el número 5 o ha tecleado un número distinto.</li>
+<li>Apartado 2.1.2.1: Crea un programa que pida al usuario un número real y diga si ha tecleado el número 5 o ha tecleado un número distinto, usando "else".</li>
+<li>Apartado 2.1.2.2: Crea un programa que pida al usuario un número entero y diga si es par o es impar.</li>
+<li>Apartado 2.1.2.3: Crea un programa que pida al usuario dos números enteros y diga el resultado de dividir el primero entre el segundo si el segundo no es cero, o que escriba "no se puede dividir" en caso contrario.</li>
+<li>Apartado 2.1.2.4: Crea un programa que pida al usuario un número real y muestre su valor absoluto (si es positivo, lo mostrará tal cual; si es negativo, le cambiará el signo).</li>
+<li>Apartado 2.1.3.1: Crea un programa que pida al usuario su identificador (un número entero). Sólo si ese identificador es "2001", deberá entonces pedirle una contraseña (otro número entero), y en caso de que la contraseña sea "1234", le responderá diciendo "Bienvenido!"</li>
+<li>Apartado 2.1.3.2: Pide al usuario dos números enteros. Si el segundo es cero, deberás mostrar el texto "No se puede dividir entre cero", y en caso contrario, se calculará el valor de la división en una nueva variable y después se mostrará el valor de dicha variable"</li>
+<li>Apartado 2.1.4.1: Crea un programa que pida al usuario un número entero y diga si es mayor de 10, es menor de 10 o es exactamente 10.</li>
+<li>Apartado 2.1.4.2: Crea un programa que pida al usuario dos números reales y que diga si son iguales, o, en caso contrario, diga cual es el mayor de los dos.</li>
+<li>Apartado 2.1.5.1: Crea un programa que pida al usuario un número entero y diga si es par y a la vez múltiplo de 3.</li>
+<li>Apartado 2.1.5.2: Crea un programa que pida al usuario dos números reales y diga si ambos son positivos.</li>
+<li>Apartado 2.2.1: Crea un programa que cree una variable de tipo boolean, le asigne el valor TRUE y luego muestre dicho valor en pantalla.</li>
+<li>Apartado 2.2.2: Crea un programa que pida al usuario un número real y diga si es cero o no, usando una variable boolean.</li>
+<li>Apartado 2.2.3: Crea un programa que pida al usuario un número entero y diga si es positivo, negativo o cero, usando dos variables boolean (esPositivo y esNegativo).</li>
+<li>Apartado 2.2.4: Crea un programa que pida al usuario un número entero y diga si es positivo, negativo o cero, usando tres variables boolean (esPositivo, esNegativo y esCero).</li>
+<li>Apartado 2.3.1: Crea un programa que pida al usuario un símbolo y diga si es una letra en mayúsculas, una letra en minúsculas o algún otro símbolo.</li>
+<li>Apartado 2.3.2: Crea un programa que pida al usuario una letra y diga si es una vocal o una consonante.</li>
+<li>Apartado 2.3.3: Crea un programa que pida al usuario un número entero del 1 al 3, y escriba en pantalla "Uno", "Dos", "Tres" o "Número incorrecto" según corresponda.</li>
+<li>Apartado 2.3.4: Crea un programa que pida al usuario un número, una operación (+, -, * o /) y otro número, y muestre el resultado de aplicar esa operación a esos dos números.</li>
+<li>Apartado 3.2.1.1: Crea un programa que muestre los números del 10 al 15, cada uno en una línea.</li>
+<li>Apartado 3.2.1.2: Crea un programa que muestre los números del 5 al 20, todos ellos en la misma línea, separados por espacios en blanco.</li>
+<li>Apartado 3.2.1.3: Crea un programa que escriba 10 veces "Hola" (en la misma línea).</li>
+<li>Apartado 3.2.2.1: Crea un programa que escriba tres veces seguidas los números del 1 al 3, ocupando 9 líneas distintas en pantalla.</li>
+<li>Apartado 3.2.2.2: Crea un programa que escriba 3 líneas, cada una de las cuales contendrá 4 veces la palabra "Hola" seguida por un espacio.</li>
+<li>Apartado 3.2.3.1: Crea un programa que escriba 10 veces "Hola" (en una línea) y luego la palabra "Adios" (en otra línea).</li>
+<li>Apartado 3.2.3.2: Crea un programa que escriba un rectángulo de asteriscos, con la anchura y altura que escoja el usuario.</li>
+<li>Apartado 3.2.3.3: Crea un programa que escriba un cuadrado de asteriscos, con la anchura que escoja el usuario.</li>
+<li>Apartado 3.2.3.4: Crea un programa que escriba un triángulo de asteriscos, que en la primera línea tendrá la anchura que escoja el usuario (por ejemplo, 4), en la siguiente línea tendrá uno menos (3), y así sucesivamente hasta que la última línea tenga anchura 1.</li>
+<li>Apartado 3.2.3.5: Crea un programa que escriba un rectángulo hueco, con la anchura y altura que escoja el usuario, que tendrá asteriscos en el borde (primera y última fila, primera y última columna) y espacios en blanco en el interior.</li>
+<li>Apartado 3.2.4.1: Crea un programa que escriba las letras de la B a la M (B mayúscula hasta M mayúscula).</li>
+<li>Apartado 3.2.5.1: Crea un programa que escriba los números del 10 al 1 (de forma descendente).</li>
+<li>Apartado 3.2.5.2: Crea un programa que escriba las letras de la Z a la A (de forma descendente).</li>
+<li>Apartado 3.2.6.1: Un programa que escriba la secuencia de números 2, 4, 6, 8 ... 16.</li>
+<li>Apartado 3.2.6.2: Un programa que escriba la secuencia de números 6, 5, 4,..., 1.</li>
+<li>Apartado 3.2.6.3: Un programa que escriba la secuencia de números 3, 5, 7,..., 21.</li>
+<li>Apartado 3.2.6.4: Un programa que escriba la secuencia de números 12, 10, 8,..., 0..</li>
+<li>Apartado 3.3.1: Crea un programa vaya sumando los números que el usuario introduzca, y mostrando dicha suma, hasta que introduzca el número 0, usando "while".</li>
+<li>Apartado 3.3.2: Crea un programa que escriba en pantalla los números del 1 al 10, usando "while".</li>
+<li>Apartado 3.4.1: Crea un programa que pida números positivos al usuario, y vaya calculando la suma de todos ellos (terminará cuando se teclea un número negativo o cero), usando "repeat". </li>
+<li>Apartado 3.4.2: Crea un programa que escriba en pantalla los números pares del 26 al 10 (descen­diendo), usando "repeat".</li>
+<li>Apartado 3.4.3: Crea un programa que pida al usuario su código de usuario y su contraseña (ambos serán números enteros), y no le permita seguir hasta que introduzca como código "1000" y como contraseña "1234", usando "repeat"</li>
+<li>Apartado 3.4.4: Mejora el programa de la clave de acceso con "repeat" (3.4.3), para que avise si la clave no es correcta. </li>
+<li>Apartado 3.4.5: Mejora más todavía el programa de la clave de acceso con "repeat" (3.4.4), para que sólo haya tres intentos.</li>
+<li>Apartado 3.4.6: Crea un programa en el que el usuario deba adivinar un número entre 1 y 100, en 7 intentos o menos. El número a adivinar estará prefijado. Tras cada intento, se le debe decir si ha acertado, se ha pasado o se ha quedado corto.</li>
+<li>Apartado 4.1.1.1: Crea un programa que reserve espacio para un Array de 3 números enteros, que asigne a sus elementos los valores 3, 5 y 8, y que después muestre en pantalla la suma de los valores de sus 3 elementos.</li>
+<li>Apartado 4.1.1.2: Crea un programa que pida al usuario cinco números enteros, los guarde en un array y luego muestre el primero y el último.</li>
+<li>Apartado 4.1.1.3: Crea un programa que pida al usuario diez números enteros, los guarde en un array y luego muestre los que se encuentran en posiciones impares (1, 3, 5, 7, 9).</li>
+<li>Apartado 4.1.1.4: Crea un programa que pida al usuario diez números enteros, los guarde en un array y luego muestre los que son impares.</li>
+<li>Apartado 4.1.1.5: Crea un programa que sume dos vectores, cuyos componentes indicará el usuario. Por ejemplo, la suma de (1,2,3) y (7,11,-1) sería (8,13,2).</li>
+<li>Apartado 4.1.1.6: Crea un programa que halle el producto escalar dos vectores, cuyos componentes indicará el usuario.</li>
+<li>Apartado 4.1.2.1: Crea un programa que pida al usuario diez números enteros, los guarde en un array y luego le pida un número más y diga si era parte de los 10 datos originales o no.</li>
+<li>Apartado 4.1.2.2: Crea un programa que pida al usuario diez números enteros, los guarde en un array y luego le vaya preguntando qué número quiere buscar de forma repetitiva, y diga si era parte de los 10 datos originales o no. Terminará cuando el número introducido sea 9999.</li>
+<li>Apartado 4.1.2.3: Crea un programa que pida al usuario dos listas de 5 números enteros, usando dos arrays distintos, y luego muestre en pantalla los números que aparecen en ambas listas.</li>
+<li>Apartado 4.1.3.1: Crea un programa que pida al usuario diez números reales, los guarde en un array y luego busque y muestre el menor de esos números.</li>
+<li>Apartado 4.1.3.2: Crea una versión alternativa, que pida al usuario diez números reales y muestre el menor de todos ellos, sin usar arrays.</li>
+<li>Apartado 4.1.3.3: Crea un programa que pida al usuario 10 nombres de personas y sus 10 estaturas. Estos datos se guardarán en dos arrays distintos. A continuación deberás mostrar el nombre de la persona más alta.</li>
+<li>Apartado 4.1.4.1: Crea un programa que pida al usuario dos bloques de 3 números enteros y luego muestre en pantalla las dos filas de tres datos cada una.</li>
+<li>Apartado 4.1.4.2: Crea un programa que pida al usuario dos bloques de 5 números enteros y luego diga la suma de ambos bloques.</li>
+<li>Apartado 4.1.4.3: Crea un programa que sume dos matrices de tamaño 3x3.</li>
+<li>Apartado 4.1.4.4: Si has estudiado álgebra matricial, crea un programa que multiplique dos matrices de tamaño 3x3.</li>
+<li>Apartado 4.1.4.5: Si has estudiado álgebra matricial, crea un programa que calcule el determinante de una matriz de tamaño 3x3.</li>
+<li>Apartado 4.1.4.6: Si has estudiado álgebra matricial, crea un programa que calcule el determinante de una matriz de tamaño 4x4.</li>
+<li>Apartado 4.1.4.7: Si has estudiado álgebra matricial, crea un programa de resolución de sistemas de ecuaciones de 3 ecuaciones con 3 incógnitas usando el método de Gauss.</li>
+<li>Apartado 4.1.5.1: Crea un programa que pida al usuario tantos números reales como desee, para después mostrar todos los datos con dos cifras decimales.</li>
+<li>Apartado 4.1.5.2: Crea un programa que pida al usuario tantos números reales como desee, para después mostrar su media aritmética y los datos que están por encima de esa media.</li>
+<li>Apartado 4.1.5.3: Crea un programa que pida al usuario tantos números reales como desee, para después mostrar su media aritmética, sin utilizar arrays.</li>
+<li>Apartado 4.1.6.1: Crea una variante del programa que borra un elemento de un array. En esta ocasión, deberá insertar el valor "10" en la tercera posición y mostrar el resultado.</li>
+<li>Apartado 4.1.6.2: Crea un programa que permita al usuario guardar tantos números
+    enteros como desee (hasta un máximo de 1000). Deberá permitir añadir datos
+    al final, insertar en cualquier posición, borrar cualquier posición o
+    mostrar los datos que hay almacenados.</li>
+<li>Apartado 4.1.7.1: Modifica el programa de ordenación mediante burbuja, para que muestre
+    en pantalla el resultado de cada paso intermedio.</li>
+<li>Apartado 4.1.7.2: Crea un programa que permita al usuario guardar tantos números
+    enteros como desee (hasta un máximo de 1000) y luego los muestre ordenados.</li>
+<li>Apartado 4.2.1.1: Crea un programa que te pida tres palabras
+    y las muestre separadas por espacios y en el orden contrario a como las
+    has introducido (primero la tercera palabra, después la segunda y finalmente la primera).</li>
+<li>Apartado 4.2.1.2: Crea un programa que pida al usuario su nombre y su apellido y luego los escriba al revés, separados por una coma. Por ejemplo si el usuario introduce Nacho como nombre y Cabanes como apellido, se escribirá Cabanes, Nacho.</li>
+<li>Apartado 4.2.1.3: Crea un programa que pida al usuario su nombre. Si es Nacho, le dirá "Hola";
+    si es otro nombre, le responderá "No te conozco".</li>
+<li>Apartado 4.2.1.4: Crea un programa que pida nombres al usuario. Cuando el usuario introduzca
+    un nombre, por ejemplo "Juan", le responderá saludándole (por ejemplo, "Hola, Juan").
+    Terminará cuando el nombre que introduzca el usuario sea "fin".</li>
+<li>Apartado 4.2.2.1: Crea un programa que te pida tu nombre y lo muestre al revés (de la última letra a la primera).</li>
+<li>Apartado 4.2.2.2: Crea un programa que te pida tu nombre y muestre las letras separadas por espacios (por ejemplo, "Nacho" se convertiría en "N a c h o".</li>
+<li>Apartado 4.2.3.1: Crea un programa que pida al usuario su nombre y su apellido,
+    cree una cadena formada por el apellido, una coma y el nombre (por ejemplo
+    si el usuario introduce Nacho como nombre y Cabanes como apellido, la
+    cadena contendrá "Cabanes, Nacho"), y finalmente escriba esa cadena.</li>
+<li>Apartado 4.2.3.2: Crea un programa que cree y muestre una cadena formada por 20 símbolos de
+    exclamación (!).</li>
+<li>Apartado 4.2.3.3: Crea un programa que te pida tu nombre y escriba un triángulo creciente, que empiece con una letra, siga con dos y vaya aumentando hasta mostrar todas las letras:<br> N<br>Na<br>Nac<br>Nach<br>Nacho</li>
+<li>Apartado 4.2.3.4: Crea un programa que pida al usuario una frase y diga si contiene
+    la palabra "hola" y, en caso afirmativo, en qué posición.</li>
+<li>Apartado 4.2.3.5: Crea un programa que pida al usuario su nombre. Si el nombre incluye "Sr. ", deberás borrar esa partícula. Donde estuviera ese "Sr. ", deberás incluir "Usuario del sistema: ".</li>
+<li>Apartado 4.2.3.6: Crea un programa que pida al usuario su nombre y lo muestre en mayúsculas</li>
+<li>Apartado 4.2.4.1: Crea un programa que pida 5 frases al usuario y luego las muestre en orden contrario a como se introdujeron (de la última frase a la primera).</li>
+<li>Apartado 4.2.4.2: Crea un programa que te pida 5 nombres, los guarde en un array y luego muestre sus iniciales.</li>
+<li>Apartado 4.2.4.3: Crea un programa que pida al usuario el número de un mes (por ejemplo, 3) y responda la cantidad de días que tiene ese mes (31) y su nombre (marzo). Utiliza para ello dos arrays, uno que contenga números enteros y otro que contenga textos.</li>
+<li>Apartado 4.2.4.4: Crea un programa que pida al usuario el nombre de un mes (por ejemplo, "marzo") y responda el nombre de ese mes en inglés ("march"), usando dos arrays de cadenas de texto.</li>
+<li>Apartado 4.2.4.5: Crea un programa que pida al usuario el nombre de un mes (por ejemplo, "marzo") y responda el nombre de ese mes en inglés ("march"), usando un array bidimensional de cadenas de texto.</li>
+<li>Apartado 4.3.1.1: Crea un programa que defina una variable que sea un registro con dos campos: X e Y, ambos números enteros. El campo X debe valer 20, e Y debe valer 30. Después deberá mostrar en pantalla la suma de X e Y.</li>
+<li>Apartado 4.3.1.2: Crea un programa que use un "record" para almacenar el nombre de una ciudad y su cantidad de habitantes. Ambos datos se deben pedir al usuario y deben ser mostrados a continuación.</li>
+<li>Apartado 4.3.1.3: Crea un programa que use un "record" para almacenar las coordenadas X, Y, Z de un punto 3D, números reales. Debe pedir los tres datos al usuario, almacenarlos y luego mostrar la distancia desde ese punto al origen (que será la raíz cuadrada de x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>).</li>
+<li>Apartado 4.3.2.1: Empleando "with", crea una nueva versión del programa que define un registro con dos campos X e Y, enteros, con valores X=20, e Y=30 y muestra la suma de X e Y.</li>
+<li>Apartado 4.3.2.2: Empleando "with", crea una nueva versión del programa que usa un "record" para almacenar el nombre de una ciudad y su cantidad de habitantes, pide ambos datos al usuario y luego los muestra.</li>
+<li>Apartado 4.3.2.3: Empleando "with", crea una nueva versión del programa  que emplea un "record" para almacenar las coordenadas X, Y, Z de un punto 3D, pide los tres datos al usuario y muestra la distancia desde ese punto al origen.</li>
+<li>Apartado 4.3.3.1: Crea un array de 4 "puntos3D", pide al usuario los valores correspondientes y luego muestra la media de X, la media de Y y la media de Z.</li>
+<li>Apartado 4.3.3.2: Crea un array de hasta 20 "puntos3D", y permite al usuario añadir los datos de un nuevo punto, mostrar todos los valores introducidos, o mostrar la media de X, Y y Z.</li>
+<li>Apartado 4.3.3.3: Crea un programa que sirva al usuario para guardar datos de hasta 30 ciudades
+    (nombre y cantidad de habitantes).
+    Debe mostrar un menú que permita: añadir los datos de una nueva ciudad, mostrar los datos de
+    todas las ciudades existentes, o mostrar los dato de una ciudad concreta cuyo nombre introduzca el usuario.</li>
+<li>Apartado 4.3.3.4: Amplía el esqueleto de agenda, para que se haga una pausa tras mostrar 24 datos, cuando se pide "ver todas las fichas". Pista: puedes usar "readLn".</li>
+<li>Apartado 4.3.3.5: Mejora el esqueleto de agenda, para que la búsqueda sea independiente de mayúsculas y minúsculas. Pista: puedes hacerlo comparando los textos convertidos a mayúsculas.</li>
+<li>Apartado 4.3.4.1: Crea un registro variante "puntos2D", que permita anotar los datos de un punto usando coordenadas cartesianas (x,y) o coordenadas polares (radio, ángulo).</li>
+<li>Apartado 4.3.4.2: Crea un registro variante "fecha", que permita guardar una fecha como string o como bloque de 3 números enteros (día, mes, año).</li>
+<li>Apartado 4.4.1.1: Crea un programa que pida un dato del 1 al 12 y muestre el nombre del mes
+    correspondiente. El dato debe ser de tipo subrango, y los nombres deben estar guardados
+    en un array de strings.</li>
+<li>Apartado 4.4.1.2: Usando subrangos, crea un programa que pida una hora (de 0 a 24),
+    unos minutos (de 0 a 60) y unos segundos (de 0 a 60) y calcule cuántos
+    segundos han pasado desde la medianoche.</li>
+<li>Apartado 4.4.2.1: Crea un programa que permita al usuario sumar, restar,
+    multiplicar o dividir dos números. Debe introducir un primer número, luego
+    el segundo número y finalmente escoger la operación. Las posibles operaciones
+    deben estar enumeradas. Debe funcionar en cualquier versión de Pascal, no
+    sólo en Free Pascal.</li>
+<li>Apartado 4.4.2.2: Si usas Free Pascal, crea un tipo enumerado que contenga los nombres
+    de los meses, y muestra sus valores usando "for".</li>
+<li>Apartado 4.4.3.1: Crea un programa que pida al usuario que pulse "s" o "n"
+    y no le deje seguir hasta que escoja una de esas dos opciones. Usa
+    un conjunto para los datos aceptables y el operador "in" para ver si lo
+    que ha tecleado el usuario es uno de esos datos aceptables.</li>
+<li>Apartado 4.4.3.2: Crea un programa que muestre un menú y permita al usuario introducir letras
+    en un conjunto (usando la operación "unión"), eliminarlas (usando la
+    "diferencia") o ver si una cierta letra aparece en en el conjunto (con "in").</li>
+<li>Apartado 5.1.1.1: Crea una nueva versión del programa 4.1.3.1 (pedir 10 números reales, guardarlos en un array y luego buscar el menor de todos ellos), usando una constante para el tamaño del array, en vez de una variable.</li>
+<li>Apartado 5.1.1.2: Crea una nueva versión del programa de adivinar números (3.4.6) para que el número a adivinar deba estar entre 1 y 1000 (estos límites se definirán mediante constantes) y el máximo de intentos permitidos sea 10 (también usando una constante).</li>
+<li>Apartado 5.1.2.1: Crea un programa que pida al usuario 10 números enteros y vaya calculando
+    y mostrando su suma. No debes almacenar los datos en un array, y la suma
+    debe guardarse en una variable que se haya inicializado a 0, usando una
+    "constante con tipo".</li>
+<li>Apartado 5.1.2.2: Crea un programa que pida al usuario 5 números enteros y vaya calculando
+    y mostrando su producto. No debes almacenar los datos en un array, y el producto
+    se debe guardar en una variable que se haya inicializado a 1, empleando una
+    "constante con tipo".</li>
+<li>Apartado 5.1.3.1: Crea una nueva versión del programa
+    4.1.1.1 (que reserva espacio para un array de 3 números enteros, asigna a sus elementos los valores 3, 5 y 8, y que después muestre en pantalla la suma de los valores de sus 3 elementos), empleando
+    constantes con tipo para dar esos valores iniciales.</li>
+<li>Apartado 5.1.3.2: Crea un programa que pida al usuario el número de un mes
+    y muestre la cantidad de días que tiene ese mes, así como el nombre del mes,
+    usando dos arrays definidos mediante "constantes con tipo".</li>
+<li>Apartado 5.1.3.3: Crea un programa que pida al usuario el nombre de un mes
+    y muestre la cantidad de días que tiene ese mes,
+    usando dos arrays definidos mediante "constantes con tipo".</li>
+<li>Apartado 5.1.3.4: Crea un programa que pida al usuario un número del 1 al 7
+    y muestre el nombre del correspondiente día de la semana,
+    usando un array definido con una "constante con tipo".</li>
+<li>Apartado 5.2.1: Crea un tipo de datos "DiasSemana", con valores enumerados desde "lunes" hasta "domingo". Crea una variable de ese tipo y asígnale el valor "viernes".</li>
+<li>Apartado 5.2.2: Crea un tipo de datos "DiasMes", que será un subrango del 1 al 31. Crea una variable de ese tipo, pide su valor al usuario y muestra el valor siguiente al introducido.</li>
+<li>Apartado 5.2.3: Crea un tipo de datos "ConjuntoNumeros", que será un conjunto de datos tipo byte. Crea una variable de ese tipo, dándole un valor inicial vacío. Luego añade el número 35, el 43 y el 74.</li>
+<li>Apartado 5.2.4: Crea una nueva versión de la "agenda0b" (apartado 4.3.3), llamada, "agenda1", que use una constante para la capacidad del array y que declare un tipo de datos "tipoPersona", que representará un "record" de nuestra agenda.</li>
+<li>Apartado 6.1.1: Crea un procedimiento llamado "Escribir10guiones", que escriba 10 guiones (el símbolo de la resta) en pantalla. Empléalo en un programa.</li>
+<li>Apartado 6.1.2: Crea un procedimiento llamado "DibujarRectanguloAsteriscos", que muestre en pantalla un rectángulo de 10 asteriscos de ancho y 5 de alto. Utilízalo en un programa.</li>
+<li>Apartado 6.1.3: Crea un procedimiento "EscribirVector", que escriba en pantalla los datos de un vector de números reales de 3 elementos. Los datos deben aparecer separados por comas, y debe haber un paréntesis abierto antes del primer dato y un paréntesis cerrado tras el tercer dato. El vector a mostrar será una variable global llamada "datos". Aplícalo a un programa que pida los datos al usuario y luego los muestre.</li>
+<li>Apartado 6.1.4: Crear un procedimiento "LimpiarPantalla", que escriba 25 líneas en blanco en la pantalla, de modo que el texto que estaba escrito anteriormente en pantalla deje de estar visible (en una pantalla de texto convencional de 80x25 caracteres).</li>
+<li>Apartado 6.2.1: Crea un procedimiento llamado "EscribirGuiones", que escriba en pantalla tantos guiones como se indique como parámetro. Empléalo en un programa.</li>
+<li>Apartado 6.2.2: Crea un procedimiento llamado "DibujarRectanguloAsteriscos", que muestre en pantalla un rectángulo de asteriscos, del ancho y alto que se indiquen como parámetros. Utilízalo en un programa.</li>
+<li>Apartado 6.2.3: Crea un procedimiento "EscribirVector", que escriba en pantalla los datos de un vector de números reales de 3 elementos. El vector se pasará al procedimiento como parámetro. Los datos deben aparecer separados por comas, y debe haber un paréntesis abierto antes del primer dato y un paréntesis cerrado tras el tercer dato.</li>
+<li>Apartado 6.3.1: Crea una función "triple", que reciba un número real como parámetro, y devuelva como resultado ese número multiplicado por tres.</li>
+<li>Apartado 6.3.2: Prepara una función llamada "media", que reciba dos números reales como parámetros, y devuelva como resultado su media aritmética.</li>
+<li>Apartado 6.3.3: Crear una función "potenciaReal", que trabaje con números reales, y permita cálculos como 3.2 elevado a 1.7 (pista; hay que usar exponenciales y logaritmos, como vimos en el apartado 1.6.3</li>
+<li>Apartado 6.3.4: Haz una función que halle la raíz cúbica del número que se le indique (pista: hallar una raíz cúbica es lo mismo que elevar a 1/3).</li>
+<li>Apartado 6.3.5: Define las funciones Suma3 y Producto3, que calculen suma y producto de tres números enteros, y crea un programa que haga una operación u otra según escoja el usuario (empleando "case").</li>
+<li>Apartado 6.4.1: Crea un procedimiento "Intercambia", que intercambie el valor de los dos números enteros que se le indiquen como parámetro.</li>
+<li>Apartado 6.4.2: Crea un procedimiento "ObtenerIniciales", que reciba una cadena como "Nacho Cabanes" y devuelva las letras N y C (primera letra, y letra situada tras el primer espacio), usando parámetros por referencia.</li>
+<li>Apartado 6.4.3: Crea un procedimiento "ResolverEcuacionCuadratica", que resuelva una ecuación de segundo grado en la forma y=ax<sup>2</sup>+bx+c. Recibirá como parámetros por valor a, b, y c, y devolverá las dos soluciones x1 y x2 (suponiendo que tenga dos soluciones reales) como parámetros por referencia.</li>
+<li>Apartado 6.5.1: Crear otra función que halle la potencia (a elevado a b) de dos números enteros positivos, de forma recursiva, usando varias multiplicaciones. Pista: el caso base, la potencia más sencilla, será si elevas un número a 1, caso en el que obtienes el mismo número. Para el caso general, tendrás que pensar cómo pasar de la potencia "n" a la "n-1", por ejemplo de 3<sup>6</sup> a 3<sup>5</sup>.</li>
+<li>Apartado 6.5.2: Crea una función recursiva que halle el producto de dos números enteros positivos, usando sumas.</li>
+<li>Apartado 6.5.3: Crea un programa que emplee recursividad para calcular un número de la serie Fibonacci (en la que los dos primeros elementos valen 1, y para los restantes, cada elemento es la suma de los dos anteriores).</li>
+<li>Apartado 6.5.4: Crea una función recursiva que devuelva invertida la cadena de texto que se pase como parámetros (piensa cuántos elementos deberá tener la cadena más sencilla y de invertir, y cómo invertir una cadena de longitud "n" si ya sabes cómo quedan invertidas sus "n-1" primeras (o últimas) letras.</li>
+<li>Apartado 6.5.5: Crea un programa que emplee recursividad para calcular la suma de los elementos de un vector (piensa cuántos elementos deberá tener el caso base, el más sencillo, y como pasar de los "n" primeros elementos a los "n+1" primeros (o últimos).</li>
+<li>Apartado 6.5.6: Crear un programa que encuentre el máximo común divisor de dos números usando el algoritmo de Euclides: Dados dos números enteros positivos m y n, tal que m > n, para encontrar su máximo común divisor, es decir, el mayor entero positivo que divide a ambos: - Dividir m por n para obtener el resto r (0 ? r < n) ; - Si r = 0, el MCD es n.; - Si no, el máximo común divisor es MCD(n,r).</li>
+<li>Apartado 7.1.1.1: Crea un programa que pida frases al usuario, hasta que teclee "fin". Todas esas frases se almacenarán en un fichero llamado "registro.txt".</li>
+<li>Apartado 7.1.1.2: Crea un programa que genere las tablas de multiplicar del 1 al 10, separadas por un espacio en blanco. Estas tablas de multiplicar no se deben mostrar en pantalla, sino guardar en un fichero llamado "multipli.txt".</li>
+<li>Apartado 7.1.1.3: Crea un programa que pida al usuario una anchura y una altura, y muestre un rectángulo hueco formado por asteriscos. Este rectángulo se debe volcar también a un fichero llamado "rectang.txt". Para facilitar la lectura, en una primera línea del fichero se anotará la cantidad de filas del rectángulo, y luego se guardarán dichas filas.</li>
+<li>Apartado 7.1.2.1: Crea un programa que lea y muestre en pantalla la primera frase del fichero "registro.txt".</li>
+<li>Apartado 7.1.2.2: Crea un programa que lea y muestre en pantalla las 10 primeras líneas del fichero "multipli.txt".</li>
+<li>Apartado 7.1.2.3: Crea un programa que lea y muestre en pantalla el contenido del fichero "rectang.txt". Recuerda que la primera línea contiene la cantidad de filas del rectángulo.</li>
+<li>Apartado 7.1.3.1: Crea un programa que muestre en pantalla todo el contenido del fichero "registro.txt".</li>
+<li>Apartado 7.1.3.2: Crea un programa que muestre en pantalla todo el contenido del fichero "multipli.txt".</li>
+<li>Apartado 7.1.3.3: Crea un programa que muestre en pantalla todo el contenido del fichero "rectang.txt", excepto la primera línea.</li>
+<li>Apartado 7.1.4.1: Crea un programa que muestre en pantalla todo el contenido del fichero "registro.txt", si es que dicho fichero existe; si el fichero no existe, mostrará un mensaje de aviso.</li>
+<li>Apartado 7.1.4.2: Crea un programa que pida al usuario el nombre de un fichero, y muestre en pantalla todo el contenido de ese fichero (o un mensaje de error si el fichero no existe).</li>
+<li>Apartado 7.1.4.3: Crea un programa que pida al usuario el nombre de un fichero, y muestre en pantalla todo el contenido de ese fichero, convertido a mayúsculas (o un mensaje de error si el fichero no existe).</li>
+<li>Apartado 7.1.4.4: Crea un programa que pida al usuario el nombre de un fichero, le pida también una letra, y muestre en pantalla todas las líneas de ese fichero que comienzan por esa letra (o un mensaje de error si el fichero no existe).</li>
+<li>Apartado 7.1.4.5: Crea un programa que pida al usuario el nombre de un fichero, le pida también una palabra, y muestre en pantalla todas las líneas de ese fichero que contienen esa palabra (o un mensaje de error si el fichero no existe). Si no se encuentra esa palabra en ninguna línea, se deberá mostrar un mensaje de aviso.</li>
+<li>Apartado 7.1.4.6: Crea un programa que pida al usuario el nombre de un fichero y escriba "Hola" en él. Si el fichero ya existe, deberá pedir confirmación al usuario antes de reemplazarlo.</li>
+<li>Apartado 7.1.5.1: Crea un programa que cree un fichero "numeros.txt", que contenga una línea con el número 1. Luego usa un "for" y la orden "append" para añadir nuevas líneas, cada una de las cuales contendrá uno de los números del 2 al 10.</li>
+<li>Apartado 7.1.5.2: Crea un programa que pida al usuario una frase y la añada al final del fichero "registro.txt" (recuerda usar "rewrite" si el fichero no existe, o "append" si el fichero existe).
+    dos números y muestre su suma en pantalla. Esa suma se debe añadir también al fichero "sumas.txt".</li>
+<li>Apartado 7.1.5.3: Crea un programa que pida al usuario dos números y muestre su suma en pantalla. Esa suma se debe añadir también al fichero "sumas.txt".</li>
+<li>Apartado 7.2.1: Crea un programa que pida al usuario los nombres de los 12 meses y la cantidad de días de cada mes, almacene cada uno de esos pares de datos en un "record" y los guarde en un "fichero con tipo" llamado "meses.dat".</li>
+<li>Apartado 7.2.2: Crea un programa que lea el fichero "meses.dat" como si fuera un fichero de texto y muestre en pantalla lo que va leyendo. Comprobarás que no se comportará correctamente, aunque hayas guardado "sólo" textos y números en el fichero.</li>
+<li>Apartado 7.2.3: Crea un programa que lea y muestre el fichero "meses.dat" como "fichero con tipo", usando la construcción "while not eof".</li>
+<li>Apartado 7.2.4: Crea un programa que lea y muestre el fichero "meses.dat" como "fichero con tipo", usando "filesize" y un bucle "for".</li>
+<li>Apartado 7.2.5: Crea un programa que pida al usuario el número de un mes, de 1 (enero) a 12 (diciembre) y muestre el nombre de ese mes y la cantidad de días que contiene, usando "seek" en el fichero "meses.dat".</li>
+<li>Apartado 7.2.6: Crea un programa que lea y muestre el fichero "meses.dat" en orden inverso (del último mes al primero), usando "filesize", "seek" y un bucle "for".</li>
+<li>Apartado 7.3.1: Crea un programa que abra un fichero con extensión EXE (cuyo nombre introducirá el usuario) y compruebe si realmente se trata de un ejecutable, mirando si los dos primeros bytes del fichero corresponden a una letra "M" y una letra "Z", respectivamente.</li>
+<li>Apartado 7.3.2: Crea un programa que pida al usuario dos nombres de ficheros y los compare byte a byte, para decir finalmente si son iguales o no.</li>
+<li>Apartado 7.3.3: Crea un programa que pida al usuario el nombre de un fichero y vuelque a un segundo fichero todo el contenido del primero que sea imprimible (todos los caracteres por encima del 31). El segundo fichero tendrá el mismo nombre que el primero, pero se le añadirá al final ".txt" para que se pueda abrir con cualquier editor de texto.</li>
+<li>Apartado 7.3.4: Crea un programa que abra un fichero con extensión BMP (cuyo nombre introducirá el usuario) y mire si parece ser una imagen BMP válida, viendo si los dos primeros bytes del fichero corresponden a una letra "B" (posición 0) y una letra "M" (posición 1), respectivamente. Si es así, mostrará el ancho de la imagen (bytes 18 a 21) y su alto (bytes 22 a 25).</li>
+<li>Apartado 7.3.5: Crea un programa que muestre la información sobre un fichero MP3, a partir de estos detalles: Muchos ficheros MP3 incluyen una "cabecera" al final del fichero, conocida como"ID3 versión 1". Se trata de un bloque de tamaño fijo de 128 bytes al final del fichero en cuestión. Si es fichero contiene realmente es cabecera ID3 V1, aparecerán en primer lugar eso caracteres TAG, luego el Título (30 caracteres), el Artista (30 caracteres), el Álbum (30 caracteres), el Año (4 caracteres), un comentario (30 caracteres) y el género musical (un carácter). Todas las etiquetas usan caracteres ASCII (terminados en espacios o en carácter nulo), excepto el género, que es un número entero almacenado en un único byte. El género musical asociado a cada byte está predefinido en el estándar e incluye definiciones de 80 géneros, numerados del 0 al 79, aunque algunos programas de reproducción han ampliado por su cuenta los géneros definidos (a partir del número 80). </li>
+<li>Apartado 7.4.1: Crea un nueva versión del programa 7.3.1, que abre un fichero con extensión EXE (cuyo nombre introducirá el usuario) y comprueba si realmente se trata de un ejecutable, mirando si los dos primeros bytes del fichero corresponden a una letra "M" y una letra "Z", respectivamente. Esta nueva versión debe abrir el fichero en modo sólo de lectura.</li>
+<li>Apartado 8.1.1: Crea un programa emplee la biblioteca CRT y un bucle "for" para mostrar el texto "Hola"
+    usando todos los colores (desde el 1 hasta el 15).</li>
+<li>Apartado 8.1.2: Crea un programa emplee la biblioteca CRT para crear un procedimiento "EscribirTeletipo",
+    que recibirá como parámetros una coordenada X, una coordenada Y, un texto, y escribirá el texto en
+    esas coordenadas, letra a letra, haciendo una pausa de 100 milisegundos entre cada letra y la
+    siguiente.</li>
+<li>Apartado 8.1.3: Crea un programa emplee la biblioteca CRT y la orden GotoXY para dibujar un rectángulo
+    hueco, cuyo borde sean letras X, cuya anchura sea 10 y cuya altura sea 5. Debe estar a 4 líneas
+    del borde superior de la pantalla y a 12 columnas del borde izquierdo.</li>
+<li>Apartado 8.2.1: Crea una biblioteca llamada "TEXTOS", que incluya una función "IZQUIERDA(texto, n)", que devolverá
+    la subcadena formada por las primeras N letras de una cadena de texto, y otra función "DERECHA(texto, n)", que devolverá
+    la subcadena formada por las últimas N letras de la cadena de texto que se le indique como parámetro,</li>
+<li>Apartado 8.2.2: Amplía la biblioteca TEXTOS con una función INVERTIR(texto), que devuelva
+    invertida (de la última letra a la primera) la cadena de texto que se le pase
+    como parámetro.</li>
+<li>Apartado 9.1.1: Como primera aproximación al uso de memoria dinámica,
+    crea un programa que pida al usuario una cantidad indeterminada de números,
+    y tras cada número muestre la suma de todos los números que se han introducido
+    hasta ese momento. Terminará cuando se introduzca "fin" en vez de un número.
+    (Pista: ¿necesitas almacenar todos esos números?)</li>
+<li>Apartado 9.1.2: Como segunda aproximación al uso de memoria dinámica,
+    crea un programa que pida al usuario una cantidad indeterminada de números,
+    y tras cada número muestre todos los que se han introducido
+    hasta ese momento, en orden inverso, en una misma línea.
+    Terminará cuando se introduzca "fin" en vez de un número.
+    (Pista: ¿necesitas almacenar todos esos números? Reserva espacio para 10 números, ¿qué ocurre
+    cuando intentas guardar más?)</li>
+<li>Apartado 9.1.3: Como tercera aproximación al uso de memoria dinámica, crea
+    un programa que permita guardar (hasta) 10 strings. Se mostrará al
+    usuario un menú que le permita añadir un nuevo string (a continuación de
+    los ya existentes), ver todos los datos existentes o salir. Cuando el espacio
+    para (10) datos esté lleno, se deberá avisar al usuario, en vez de intentar
+    añadir nuevos datos e interrumpir la ejecución.</li>
+<li>Apartado 9.2.1: Crea un programa que permita guardar una pila de "puntos". Cada
+    punto tendrá dos coordenadas, llamadas X e Y. Ambas serán números reales.
+    El programa pedirá datos de puntos al usuario, tanto como éste desee.
+    Terminará cuando tanto la X como la Y valgan -1000. En ese momento, se
+    mostrarán las coordenadas X e Y de todos los puntos almacenados.</li>
+<li>Apartado 9.2.2: Crea una "pila de cadenas de texto". Utilízala para mostrar el
+    contenido de un fichero de texto al revés (de la última línea a la
+    primera).</li>
+<li>Apartado 9.3.1: Crea un programa que permita guardar una cola de números reales.
+    El usuario introducirá tantos datos como desee (usando 99999 para terminar),
+    y en ese momento se le mostrará la media de los valores y todos los que
+    están por encima de esa media.</li>
+<li>Apartado 9.3.2: Crea una "cola de cadenas de texto". Utilízala para mostrar
+    el contenido de un fichero de texto, paginado (haciendo una pausa tras
+    cada 24 líneas de texto, hasta que el usuario pulse Intro, momento en
+    el que se mostrarán las siguientes 24 líneas).</li>
+<li>Apartado 9.4.1: Crea un programa que permita guardar una lista de números reales.
+    El usuario introducirá tantos datos como desee (usando 99999 para terminar),
+    y en ese momento se le mostrará la media de los valores, después todos los que
+    están por encima de esa media (en una misma línea, separados por espacios en blanco)
+    y finalmente todos los que
+    están por debajo de esa media (en una nueva línea, también separados por espacios en blanco).</li>
+<li>Apartado 9.4.2: Crea un programa que permita guardar una lista ilimitada de nombres
+    (cadenas de texto).
+    El usuario introducirá tantos datos como desee (hasta terminar con una cadena vacía).
+    A continuación se le preguntará qué nombres quiere buscar, y se le dirá si esa frase aparece
+    como una de las cadenas de texto originales o no. Esta fase de búsqueda acabará también
+    cuando el usuario introduzca una cadena vacía.</li>
+<li>Apartado 9.4.3: Crea una "lista de cadenas de texto". Utilízala para mostrar
+    el contenido de un fichero de texto, permitiendo scroll vertical: aparecerán las primeras 24 líneas;
+    si el usario pulsa Z, se avanzará una línea; si pulsa A, se retrocederá una línea. La ejecución
+    terminará cuando pulse Q.</li>
+<li>Apartado 9.5.1: Crea un programa que permita guardar una lista ordenada de números reales.
+    El usuario introducirá tantos datos como desee (usando 99999 para terminar),
+    y en ese momento se le mostrarán los datos ordenados.</li>
+<li>Apartado 9.5.2: Crea un programa que permita guardar una lista ilimitada ordenada de nombres
+    (cadenas de texto).
+    El usuario introducirá tantos datos como desee (hasta terminar con una cadena vacía).
+    A continuación se le preguntará qué nombres quiere buscar, y se le dirá si esa frase aparece
+    como una de las cadenas de texto originales o no (no se debe revisar todos los datos, sino interrumpir
+    la búsqueda cuando se sepa que el dato no existe, aprovechando que están ordenados). Esta fase de búsqueda acabará también
+    cuando el usuario introduzca una cadena vacía.</li>
+<li>Apartado 9.5.3: Crea una "lista de cadenas de texto". Utilízala para mostrar ordenado
+    el contenido de un fichero de texto cuyo nombre indicará el usuario.</li>
+<li>Apartado 9.7.1: Crea un programa que permita al usuario guardar una lista de
+    números reales. El usuario introducirá tantos datos como desee (usando
+    99999 para terminar), y en ese momento se le mostrará la media de los
+    valores, después todos los que están por encima de esa media (en una misma
+    línea, separados por espacios en blanco) y finalmente todos los que están
+    por debajo de esa media (en una nueva línea, también separados por espacios
+    en blanco). Debes usar un array dinámico, que comenzará con tamaño 1 y
+    aumentará en una nueva unidad cada vez que se introduzca un dato.</li>
+<li>Apartado 9.7.2: Crea una nueva versión del programa 9.7.1, en la que el tamaño
+    inicial del array sea 20, y aumente de 10 en 10 cada vez que sea necesario</li>
+<li>Apartado 9.8.1: Crea un programa que permita al usuario guardar una lista de
+    frases. El usuario introducirá tantas frases como desee, e indicará que
+    ha terminado pulsando Intro sin ningún otro texto. En ese momento la lista
+    se guardará a fichero ("frases.txt"). Finalmente, se le preguntará qué texto quiere buscar
+    (por ejemplo, "hola") y se le responderá cuántas frases contienen ese texto.
+    La ejecución terminará cuando se pulse Intro en vez de un texto a buscar.</li>
+<li>Apartado 9.8.2: Crea una nueva versión del programa 9.8.1, en la que se lean
+    inicialmente las frases que ya formaban parte del fichero "frases.txt",
+    en caso de que este existiera.</li>
+<li>Apartado 9.8.3: Crea una versión mejorada del programa 9.8.2, que muestre un
+    menú que permita añadir, contar las frases que contengan un cierto texto,
+    mostrar las frases que contengan un texto, mostrar todas las frases o 
+    terminar.</li>
+<li>Apartado 9.8.4: Crea un programa que permita al usuario guardar una lista de
+    números reales. El usuario introducirá tantos datos como desee (usando
+    99999 para terminar), y en ese momento se le mostrará la media de los
+    valores, después todos los que están por encima de esa media (en una misma
+    línea, separados por espacios en blanco) y finalmente todos los que están
+    por debajo de esa media (en una nueva línea, también separados por espacios
+    en blanco). Debes usar una lista de strings para guardar los datos.</li>
+<li>Apartado 11.1.1: Crea un programa que escriba la palabra Hola en pantalla 15 veces,
+    con fondo negro (0) y colores que variarán desde el 1 hasta el 15.</li>
+<li>Apartado 11.1.2: Crea un procedimiento "Escribir" que reciba un texto y unas coordenadas
+    X e Y como parámetros. Deberá escribir el texto en esas coordenadas.</li>
+<li>Apartado 11.1.3: Crea un procedimiento "EscribirTeletipo" que reciba un texto y unas coordenadas
+    X e Y como parámetros. Deberá escribir el texto en esas coordenadas, letra
+    a letra, haciendo una pausa de 100 milisegundos entre cada letra y la siguiente.</li>
+<li>Apartado 11.1.4: Crea un programa que te permita descubrir los códigos asociados
+    a cada letra: esperará hasta que se pulse una tecla y mostrará su código numérico en
+    pantalla. Se repetirá hasta que se pulse ESC (que tiene código 27).</li>
+<li>Apartado 11.1.5: Crea un procedimiento "Play" que reproduzca música a partir de
+    su descripción en notación anglosajona (C=Do, D=Re, E=Mi, etc). Todas las
+    notas se reproducirán durante medio segundo. Usa las siguientes frecuencias
+    para cada nota: C=261.63, D=293.66, E=329.63, F=349.23, G=392.00,
+    A=440.00, B=493.88. Un ejemplo de uso sería "Play('CDECDE');"</li>
+<li>Apartado 11.1.6: Crea un "juego del ahorcado": Un primer jugador deberá
+    introducir una frase y un límite de intentos (por ejemplo, 8).
+    La pantalla se borrará, y en lugar de cada letra
+    aparecerá un guión. El segundo jugador deberá ir tecleando letras.  Si
+    falla, ha gastado uno de sus intentos.  Si acierta, la letra acertada
+    deberá aparecer en las posiciones en que se encuentre. El juego acaba
+    cuando se aciertan todas las letras o se acaban los intentos.</li>
+<li>Apartado 11.1.7: Crea una versión mejorada del "juego del ahorcado", para
+    un único jugador:  El n&uacute;mero de intentos estará
+    prefijado en el programa, y existirá una serie de palabras
+    (en un array de strings) de las que el
+    ordenador escoja una al azar (usando "random" y "randomize",
+    como se vio en el apartado 1.6.3).</li>
+<li>Apartado 11.1.8: Crea un una función "EntradaMejorada", que reciba una
+    coordenada X, una Y y una longitud máxima. Mostrará una serie de puntos
+    para indicar esa longitud máxima, delimitados por corchetes, así: [.....].
+    Deberá leer letra a letra (hasta que se pulse Intro), permitir borrar
+    con la tecla de Retroceso, limitar la longitud a la que se ha indicado
+    como parámetro y permitir moverse hacia detrás y hacia delante con las flechas del
+    teclado y con las teclas Inicio y Fin.</li>
+<li>Apartado 13.1.1: Crea un programa que muestra la hora actual en la esquina superior
+    izquierda de la pantalla, en formato HH:MM:SS. Debe actualizarse continuamente,
+    hasta que se pulse una tecla.</li>
+<li>Apartado 13.2.1.1: Muestra el espacio libre en todas las unidades de disco de tu
+    sistema (sólo las que realmente existan, es decir, aquellas para las que
+    DiskFree no valga -1).</li>
+<li>Apartado 13.2.2.1: Haz un programa que muestre la lista de ejecutables de la
+    carpeta actual.</li>
+<li>Apartado 13.2.2.2: Crea un programa que muestre la lista de subdirectorios de la
+    carpeta actual.</li>
+<li>Apartado 13.2.3.1: Crea un programa que pida al usuario el nombre de un fichero,
+    y le diga la fecha y hora de ese fichero o un aviso de "El fichero no existe",
+    según corresponda.</li>
+<li>Apartado 13.2.3.2: Crea un programa que pida al usuario el nombre de un fichero
+    y cambie su fecha y hora por la del instante actual.</li>
+<li>Apartado 13.3.1: Crea un programa que muestre el nombre de la carpeta temporal del sistema,
+    que suele estar guardada en la variable de entorno llamada "TMP".</li>
+<li>Apartado 13.4.1: Crea un programa que permita acceder pulsando una sola tecla a algunas
+    aplicaciones que tengas en tu sistema (por ejemplo, en Windows tendrás el
+    bloc de notas como NOTEPAD.EXE, la calculadora como CALC.EXE y WordPad como
+    WRITE.EXE, todos ellos en la carpeta de Windows).</li>
+</ul>
+<p>&nbsp;</p>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   5118 visitas desde el 25-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="index-2.html">Anterior</a></li>
+                    <li><a href="index-2.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupasejercicios.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:26 GMT -->
+</html>
+        

@@ -1,0 +1,287 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - 3 - Estructuras repetitivas</title>
+
+    
+    <meta name="description" content="3 - Estructuras repetitivas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="while,repeat" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - 3 - Estructuras repetitivas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas03.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas04.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h2>3.3. Mientras... (while)</h2>
+
+<p>Hemos como visto podemos crear estructuras repetitivas con la orden
+"for". Pero muchas veces no sabremos la cantidad de veces que se debe repetir
+un bloque de un programa, sino que deberemos repetir mientras se cumpla una
+condición. La primera forma de conseguirlo es con "<b>while</b>", que se usa:</p>
+
+<p><pre><code class='language-pascal'>while condicion do
+    Sentencia;</code></pre></p>
+<p>Que se podría traducir como
+"MIENTRAS se cumpla la condición HAZ sentencia".
+</p>
+
+<p>Un ejemplo que nos diga el doble de todos los números que queramos podría ser:</p> 
+
+<p><pre><code class='language-pascal'>(* WHILE1.PAS, "while" para ver el doble de varios numeros *)
+(* Parte de CUPAS5, por Nacho Cabanes                      *)
+
+Program While1;
+
+var
+    num: integer;
+
+begin
+    writeLn('Dime numeros y te dire su doble. Usa 0 para terminar.');
+    write( 'Primer numero? ' );
+    readLn( num );
+    while num <> 0 do
+    begin
+        writeLn( 'Su doble es ', num*2 );
+        write( 'Siguiente numero? ' );
+        readLn( num )
+    end
+end. 
+</code></pre></p>
+<p>En el ejemplo anterior, sólo se entra al bloque begin-end (una sentencia 
+compuesta) si el primer número es correcto (no es cero). 
+Entonces se escribe su doble, se pide el siguiente número y vuelve a comprobar 
+que sea correcto. </p>
+
+
+
+
+<p>Si ya de principio la condición es <b>falsa</b>,
+entonces la
+sentencia no se ejecuta ninguna vez, como ocurre en este ejemplo:
+
+<p><pre><code class='language-pascal'>(* WHILE2.PAS, "while" que no se llega a repetir *)
+(* Parte de CUPAS5, por Nacho Cabanes            *)
+
+Program While2;
+
+begin
+    while (2 < 1) do
+        writeLn('Dos es menor que uno');
+end. 
+</code></pre></p>
+
+<blockquote><i><b>Ejercicio propuesto 3.3.1:</b> Crea un programa vaya sumando los números que el usuario introduzca, y mostrando dicha suma, hasta que introduzca el número 0, usando "while".</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.3.2:</b> Crea un programa que escriba en pantalla los números del 1 al 10, usando "while".</i></blockquote>
+
+
+<h2>3.4. Repetir... hasta (Repeat)</h2> 
+
+<p>Si queremos asegurarnos de que el bloque repetitivo se ejecute al menos una
+vez, deberemos comprobar la condición al final. Para eso tenemos la estructura
+repeat...until, que se usa así:
+</p>
+
+<p><pre><code class='language-pascal'>repeat 
+    sentencia; 
+    (* ... *)
+    sentencia; 
+    sentencia 
+until condicion;</code></pre></p>
+<p>Es decir, REPITE un grupo de sentencias HASTA que la condición sea 
+cierta.  Cuidado con eso: se trata de un <b>grupo de sentencias</b>, no sólo 
+una, como ocurría en "while", de modo que ahora no necesitaremos "begin" y 
+"end" para crear sentencias compuestas.
+</p>
+
+<p>El conjunto de sentencias se ejecutará <b>al menos una vez</b>, porque la 
+comprobación se realiza al final.
+</p>
+
+<p>La condición será <b>la opuesta</b> al caso de usar un while: "mientras sea 
+positivo" es lo mismo que decir "hasta que sea negativo o cero".</p>
+
+<p>Como último detalle, de menor importancia, no hace falta terminar con 
+punto y coma la sentencia que va justo antes de "until", al igual que ocurre 
+con "end". </p>
+
+<p>Un ejemplo clásico del uso de repeat..until es un programa de "clave de acceso",
+como éste, que iremos 
+mejorando cuando veamos cómo manejar cadenas de texto y formas de "esconder" 
+lo que se teclea, bien cambiando colores o bien escribiendo asteriscos u 
+otras letras en su lugar:</p>
+
+<p><pre><code class='language-pascal'>(* REPEAT1.PAS, comprobacion de una clave de acceso *)
+(* Parte de CUPAS5, por Nacho Cabanes               *)
+
+program Repeat1;
+
+var
+    ClaveCorrecta, Intento: integer;
+
+begin
+    ClaveCorrecta := 123;
+    repeat
+        WriteLn( 'Introduce la clave de acceso...' );
+        ReadLn( Intento )
+    until Intento = ClaveCorrecta
+    (* Aquí iría el resto del programa *)
+end. 
+</code></pre></p> 
+<blockquote><i><b>Ejercicio propuesto 3.4.1:</b> Crea un programa que pida números positivos al usuario, y vaya calculando la suma de todos ellos (terminará cuando se teclea un número negativo o cero), usando "repeat". </i></blockquote><blockquote><i><b>Ejercicio propuesto 3.4.2:</b> Crea un programa que escriba en pantalla los números pares del 26 al 10 (descen­diendo), usando "repeat".</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.4.3:</b> Crea un programa que pida al usuario su código de usuario y su contraseña (ambos serán números enteros), y no le permita seguir hasta que introduzca como código "1000" y como contraseña "1234", usando "repeat"</i></blockquote><blockquote><i><b>Ejercicio propuesto 3.4.4:</b> Mejora el programa de la clave de acceso con "repeat" (3.4.3), para que avise si la clave no es correcta. </i></blockquote><blockquote><i><b>Ejercicio propuesto 3.4.5:</b> Mejora más todavía el programa de la clave de acceso con "repeat" (3.4.4), para que sólo haya tres intentos.</i></blockquote>
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   10734 visitas desde el 12-03-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas03.html">Anterior</a></li>
+                    <li><a href="cupas04.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas03b.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:16 GMT -->
+</html>
+        

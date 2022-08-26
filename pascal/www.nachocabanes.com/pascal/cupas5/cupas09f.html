@@ -1,0 +1,508 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas09f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9.6. Árboles binarios</title>
+
+    
+    <meta name="description" content="9.6. Árboles binarios - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="generalidades,freepascal" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            9.6. Árboles binarios          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="cupas09e.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="cupas09g.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+<h2>9.6. Árboles binarios</h2>
+
+<p>###</p>
+
+<p><pre><code class='language-pascal'>type
+    puntero = ^ nodo;</code></pre></p>
+
+
+<p>En las listas, cada elemento tiene un siguiente.  Esto supone que, cuando busquemos un dato, en el mejor de los casos se encuentre en la primera posición, y en el peor de los casos se encuentre en la última posición. Eso supone que como medida, podamos respetar que un dato se encuentre en n/2 pasos. Es decir, si buscamos números al azar en un conjunto de 1.000, como medida necesitaremos 500 comparaciones para encontrarlo. Con un millón de datos, sería esperable hacer cerca de 500.000 comparaciones. Eso mejora ligeramente si los datos están ordenados, pero sigue siendo un coste relativamente alto. Si queremos una mejora sustancial de velocidad, hay que cambiar el planteamiento. 
+
+###
+
+Una estructura alternativa, que hace que las búsquedas sean más rápidas, es que cada elemento tenga más de un sucesor. Por ejemplo, si cada elemento tiene dos "hijos", uno que sea menor que él y otro que sea mayor que él, la estructura que obtenemos no es lineal, como en las listas, sino ramificada, un "árbol". En una estructura como esa, si tuviéramos 1.000 datos (perfectamente equilibrados, algo en lo que no profundizaremos todavía), bastaría con 10 comparaciones para ver si existe un dato concreto. Y si fuera un millón de datos, sólo necesitaríamos 20 comparaciones. La diferencia es abismal. 
+
+Vamos a detallar un poco más y a ver un ejemplo.... 
+###
+
+</p>
+
+<p>Un árbol es una estructura dinámica
+en la que cada nodo (elemento) puede tener más de un "siguiente". 
+Nos centraremos en los árboles binarios, en los que cada nodo puede
+tener un hijo izquierdo, un hijo derecho, ambos o ninguno (es decir, dos hijos como
+máximo).
+</p>
+
+<p>Para puntualizar aun más, aviso que trataremos los árboles
+binarios de búsqueda, en los que tenemos prefijado un cierto orden,
+que nos ayudará a encontrar un cierto dato dentro de un árbol
+con mucha rapidez.
+</p>
+
+<p>¿Y como es este "orden prefijado"?  Sencillo: para cada
+nodo tendremos que:
+</p>
+
+<p>- la rama de la izquierda contendrá elementos menores.
+<br />- la rama de la derecha contendrá elementos mayores.
+</p>
+
+<p>¿Asusta?  Con un ejemplo seguro que no:  Vamos a introducir
+en un árbol binario de búsqueda los datos 5,3,7,2,4,8,9
+
+##
+
+
+<pre>
+Primer número:  5 (directo)
+
+        5 
+        
+Segundo número: 3 (menor que 5)
+
+        5 
+       / 
+      3 
+      
+Tercer número: 7 (mayor que 5)
+
+        5 
+       / \ 
+      3   7 
+      
+Cuarto: 2 (menor que 5, menor que 3)
+
+        5 
+       / \ 
+      3   7 
+     / 
+    2 
+    
+Quinto: 4 (menor que 5, mayor que 3)
+
+        5 
+       / \ 
+      3   7 
+     / \ 
+    2   4 
+    
+Sexto: 8 (mayor que 5, mayor que 7)
+
+        5 
+       / \ 
+      3   7 
+     / \   \ 
+    2   4   8 
+
+Séptimo: 9 (mayor que 5, mayor que 7, mayor que 8)
+
+        5 
+       / \ 
+      3   7 
+     / \   \ 
+    2   4   8 
+             \ 
+              9 
+</pre>
+
+###
+Una operación adicional que podríamos hacer, y en la que vamos a profundizar, es "equilibrar" el árbol, para que no haya un desnivel entre ramas superior a uno. Por ejemplo, una estructura como 
+
+
+se convertiría en algo como 
+
+
+<p>Haciendo este paso adicional cada vez que sea necesario, el número máximo de comparaciones que tendríamos
+que hacer sería log2( n ), lo que supone que si tenemos 1.000. 000 datos,
+en una lista podríamos llegar a tener que hacer 1.000. 000 comparaciones en el peor caso,
+mientras que en un arbol binario serán log2(1000000) =&gt; 20 comparaciones como máximo. 
+
+Pero no veremos cómo programar ese tipo de operaciones, 
+que son propias de un curso de programación más avanzado,
+o incluso de uno de "Tipos Abstractos de Datos" o de "Algorítmica", y nos centraremos en la operaciones básicas, como añadir un dato o mostrar todo el árbol. 
+###
+
+</p><p>Recordemos que la idea importante es todo dato menor estará a
+la izquierda del nodo que miramos, y los datos mayores estarán a
+su derecha.
+</p><p>Ahora la estructura de cada <b>nodo</b> (dato) será:
+
+<p><pre><code class='language-pascal'>
+type
+  TipoDato = string[10]; { Vamos a guardar texto, por ejemplo }
+  Puntero = ^TipoBase;   { El puntero al tipo base }
+  TipoBase = record      { El tipo base en sÃ­: }
+    dato: TipoDato;      { - un dato }
+    hijoIzq: Puntero;    { - puntero a su hijo izquierdo }
+    hijoDer: Puntero;    { - puntero a su hijo derecho }
+  end; 
+</code></pre></p>
+ 
+</p><p>Y las rutinas de inserción, búsqueda, escritura, borrado,
+etc., podrán ser recursivas.  Como primer ejemplo, la de <b>escritura</b> 
+de todo el árbol (la más sencilla) sería:
+
+<p><pre><code class='language-pascal'>
+procedure Escribir(punt: puntero);
+  begin
+  if punt <> nil then { Si no hemos llegado a una hoja }
+  begin
+    Escribir(punt^.hijoIzq); { Mira la izqda recursivamente }
+    write(punt^.dato); { Escribe el dato del nodo }
+    Escribir(punt^.hijoDer); { Y luego mira por la derecha }
+  end;
+end; 
+</code></pre></p>
+<p>Si alguien no se cree que funciona, que coja lápiz y papel y
+lo compruebe con el árbol que hemos puesto antes como ejemplo. 
+Es MUY IMPORTANTE que este procedimiento quede claro antes de seguir leyendo,
+porque los demás serán muy parecidos.
+
+</p><p>La rutina de <b>inserción</b> sería:
+</p>
+
+<p><pre><code class='language-pascal'>
+procedure Insertar(var punt: puntero; valor: TipoDato);
+begin
+  if punt = nil then      { Si hemos llegado a una hoja }
+  begin
+    new(punt);            { Reservamos memoria }
+    punt^.dato := valor;  { Guardamos el dato }
+    punt^.hijoIzq := nil; { No tiene hijo izquierdo }
+    punt^.hijoDer := nil; { Ni derecho }
+  end
+  else { Si no es hoja }
+    if punt^.dato > valor            { Y encuentra un dato mayor }
+      Insertar(punt^.hijoIzq, valor) { Mira por la izquierda }
+    else                             { En caso contrario (menor) }
+      Insertar(punt^.hijoDer, valor) { Mira por la derecha }
+end; 
+</code></pre></p>
+
+<p>Y finalmente, la de <b>borrado</b> de todo el árbol, casi igual
+que la de escritura:
+
+<p><pre><code class='language-pascal'>
+procedure BorrarArbol(punt: puntero);
+begin
+  if punt <> nil then { Si queda algo que borrar }
+  begin
+    BorrarArbol(punt^.hijoIzq); { Borra la izqda recursivamente }
+    dispose(punt); { Libera lo que ocupaba el nodo }
+    BorrarArbol(punt^.hijoDer); { Y luego va por la derecha }
+  end;
+end; 
+</code></pre></p>
+
+<p>Sólo un comentario: esta última rutina es <b>peligrosa</b>,
+porque indicamos que "punt" está libre y después miramos
+cual es su hijo izquierdo (después de haber borrado la variable). 
+Esto funciona en Turbo Pascal
+porque marca esa zona de memoria como disponible pero no la borra físicamente,
+pero puede dar problemas con otros compiladores o si se adapta esta
+rutina a otros lenguajes (como C).  Una forma más <b>segura</b> 
+de hacer lo anterior sería memorizando lo que hay a la derecha antes de borrar
+el nodo central:
+
+<p><pre><code class='language-pascal'>
+procedure BorrarArbol2(punt: puntero);
+var 
+  derecha: puntero; { AquÃ­ guardaremos el hijo derecho }
+begin
+  if punt <> nil then { Si queda algo que borrar }
+  begin
+    BorrarArbol2(punt^.hijoIzq); { Borra la izqda recursivamente }
+    derecha := punt^.hijoDer; { Guardamos el hijo derecho <=== }
+    dispose(punt); { Libera lo que ocupaba el nodo }
+    BorrarArbol2(derecha); { Y luego va hacia por la derecha }
+  end;
+end; 
+</code></pre></p>
+
+<p>O bien, simplemente, se pueden borrar recursivamente los dos hijos antes
+que el padre (ahora ya no hace falta ir "en orden", porque no estamos leyendo,
+sino borrando todo):
+
+<p><pre><code class='language-pascal'>
+procedure BorrarArbol(punt: puntero);
+begin
+  if punt <> nil then { Si queda algo que borrar }
+  begin
+    BorrarArbol(punt^.hijoIzq); { Borra la izqda recursivamente }
+    BorrarArbol(punt^.hijoDer); { Y luego va hacia la derecha }
+    dispose(punt); { Libera lo que ocupaba el nodo }
+  end;
+end; 
+</code></pre></p>
+</p><p>Finalmente, vamos a juntar casi todo esto en un ejemplo "que funcione":
+<br /><a name="progArbol"></a> 
+</p>
+
+<p><pre><code class='language-pascal'>{--------------------------}
+{  Ejemplo en Pascal:      }
+{                          }
+{    Ejemplo de árboles    }
+{    binarios de búsqueda  }
+{    ARBOL.PAS             }
+{                          }
+{  Este fuente procede de  }
+{  CUPAS, curso de Pascal  }
+{  por Nacho Cabanes       }
+{                          }
+{  Comprobado con:         }
+{    - Free Pascal 2.2.0w  }
+{    - Turbo Pascal 7.0    }
+{    - Tmt Pascal Lt 1.20  }
+{--------------------------}
+
+type
+
+  TipoDato = integer;    { Vamos a guardar texto, por ejemplo }
+
+  Puntero = ^TipoBase;      { El puntero al tipo base }
+  TipoBase = record         { El tipo base en sí: }
+    dato:    TipoDato;      {   - un dato }
+    hijoIzq: Puntero;       {   - puntero a su hijo izquierdo }
+    hijoDer: Puntero;       {   - puntero a su hijo derecho }
+  end;
+
+procedure Escribir(punt: puntero);
+begin
+  if punt <> nil then          { Si no hemos llegado a una hoja }
+    begin
+    Escribir(punt^.hijoIzq);   { Mira la izqda recursivamente }
+    write(punt^.dato, ' ');    { Escribe el dato del nodo }
+    Escribir(punt^.hijoDer);   { Y luego mira por la derecha }
+    end;
+end;
+
+procedure Insertar(var punt: puntero; valor: TipoDato);
+begin
+  if punt = nil then          { Si hemos llegado a una hoja }
+    begin
+    new(punt);                { Reservamos memoria }
+    punt^.dato := valor;      { Guardamos el dato }
+    punt^.hijoIzq := nil;     { No tiene hijo izquierdo }
+    punt^.hijoDer := nil;     { Ni derecho }
+    end
+  else                                 { Si no es hoja }
+    if punt^.dato > valor              { Y encuentra un dato mayor }
+    then
+      Insertar(punt^.hijoIzq, valor)   { Mira por la izquierda }
+    else                               { En caso contrario (menor) }
+      Insertar(punt^.hijoDer, valor)   { Mira por la derecha }
+end;
+
+{ Cuerpo del programa }
+
+var
+  arbol1: Puntero;
+
+begin
+  arbol1 := nil;
+  Insertar(arbol1, 5);
+  Insertar(arbol1, 3);
+  Insertar(arbol1, 7);
+  Insertar(arbol1, 2);
+  Insertar(arbol1, 4);
+  Insertar(arbol1, 8);
+  Insertar(arbol1, 9);
+  Escribir(arbol1);
+end.
+</code></pre></p>
+ 
+<p><b>Nota</b>: en versiones anteriores de este fuente, la variable se
+llamaba "arbol".  En la versión 3.5.1 del curso, he cambiado
+esta variable por "arbol1", dado que Tmt Pascal Lite protesta si usamos
+alguna variable que se llame igual que el nombre del programa (avisa de
+que estamos usando dos veces un identificador: "duplicate identifier").
+<br /> 
+</p><p> 
+</p>
+
+#####
+<p>¿Y qué <b>ventajas</b> tiene esto?  Pues la rapidez:
+tenemos 7 elementos, lo que en una lista supone que si buscamos un dato
+que casualmente está al final, haremos 7 comparaciones; en este
+árbol, tenemos 4 alturas =&gt; 4 comparaciones como máximo.
+</p><p>Y si además hubiéramos "<b>equilibrado</b>" el árbol
+(irlo recolocando, de modo que siempre tenga la menor altura posible),
+serían 3 alturas.
+</p><p>Esto es lo que se hace en la práctica cuando en el árbol
+se va a hacer muchas más lecturas que escrituras: se reordena internamente
+después de añadir cada nuevo dato, de modo que la altura
+sea mínima en cada caso.
+</p><p>De este modo, el número máximo de comparaciones que tendríamos
+que hacer sería log2( n ), lo que supone que si tenemos 1000 datos,
+en una lista podríamos llegar a tener que hacer 1000 comparaciones,
+y en un arbol binario, log2(1000) =&gt; 10 comparaciones como máximo. 
+La ganancia es clara, ¿verdad?
+</p><p>No vamos a ver cómo se hace eso de los "equilibrados", que considero
+que sería propio de un curso de programación más avanzado,
+o incluso de uno de "Tipos Abstractos de Datos" o de "Algorítmica",
+y vamos a empezar a ver rutinas para manejar estos árboles binarios
+de búsqueda.<hr /> 
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   1998 visitas desde el 23-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="cupas09e.html">Anterior</a></li>
+                    <li><a href="cupas09g.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas09f.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+</html>
+        

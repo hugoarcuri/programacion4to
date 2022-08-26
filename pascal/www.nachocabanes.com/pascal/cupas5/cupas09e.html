@@ -1,0 +1,578 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas09e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9.5. Listas ordenadas</title>
+
+    
+    <meta name="description" content="9.5. Listas ordenadas - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="generalidades,freepascal" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            9.5. Listas ordenadas          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="index-2.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="index-2.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+        
+
+<h2>9.5. Listas ordenadas</h2>
+
+<p>Es muy habitual trabajar con datos ordenados. En estructuras estáticas, como 
+un array, habitualmente añadimos los datos nuevos al final y ordenamos en un 
+paso posterior, pero usando estructuras dinámicas podemos avanzar en cada 
+inserción sólo hasta donde sea necesario, de modo que cada dato quede colocado 
+directamente en su posición correcta.</p>
+
+<p>Vamos a partir de la lista dinámica anterior, para crear las siguientes 
+operaciones: añadir un dato, obtener un dato, borrar un dato. Esta vez no 
+indicaremos la posición de ese dato cuando añadimos, porque no es necesario, 
+ya que la lista está ordenada: cada dato se insertará de modo automático en la 
+posición que le corresponda. Sí podremos obtener un dato por posición (por 
+ejemplo, el segundo dato), para poder obtener el segundo. También podríamos 
+borrar el dato que se encuentra en una posición específica. Podemos enriquecer la lista 
+con una función para saber si existe un cierto valor (ya no será necesario 
+recorrer toda la lista: si encontramos un número mayor, es que no existía 
+ese dato), igual que podríamos incorporar una que permita borrar por valor 
+(además de hacerlo por posición). </p>
+
+<p>Con estos cambios, la versión estática (basada en un array) podría ser así:</p>
+
+<p><pre><code class='language-pascal'>(* LISTAOE.PAS, Ejemplo de lista ordenada estÃ¡tica *)
+(* No incluye ninguna comprobacion de errores      *)
+(* Parte de CUPAS5, por Nacho Cabanes              *) 
+
+program listaOrdenadaEstatica;
+
+var
+    datos: array[1..10] of integer;
+    cantidad: integer;
+    
+procedure InicializarLista;
+begin
+    cantidad := 0;
+end;
+
+procedure Anadir(nuevoDato: integer);
+var 
+    i: integer;
+    posicion: integer;
+begin
+    { Tenemos un dato mas }
+    cantidad := cantidad + 1;    
+    posicion := cantidad;
+    { Primero buscamos la posicion en que debe acabar }
+    for i := 1 to cantidad do
+        if datos[i] > nuevoDato then
+            begin
+            posicion := i;
+            break;
+            end;
+    { Si la posicion no es la ultima, hay que desplazar todos }
+    if posicion <= cantidad then
+        for i := cantidad+1 downto posicion+1 do
+            datos[i] := datos[i-1];
+    { Y finalmente guardamos }
+    datos[posicion] := nuevoDato;
+
+end;    
+
+
+function Obtener(posicion: integer): integer;
+begin
+    Obtener := datos[posicion];
+end;
+
+
+procedure Borrar(posicion: integer);
+var 
+    i: integer;
+begin
+    for i := posicion to cantidad do
+        datos[i] := datos[i+1];
+    cantidad := cantidad - 1;
+end;
+ 
+ 
+function Existe(valor: integer): boolean;
+var 
+    i: integer;
+begin
+    { Presupongo que no esta }
+    Existe := false;
+    { Y reviso todos, cortando si aparece }
+    i := 1;
+    for i := 1 to cantidad do
+        if datos[i] = valor then
+            begin
+            Existe := true;
+            break;
+            end
+        else if datos[i] > valor then
+            break;
+end;
+
+
+function CantidadDatos: integer;
+begin
+    CantidadDatos := cantidad;
+end;
+
+{ --- Programa de prueba --- }
+
+var
+    i, n: integer;
+
+begin
+    InicializarLista;
+    WriteLn('Guardando 3 y 2...');
+    Anadir(3);
+    Anadir(2);
+    WriteLn('Los datos por ahora son:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Ahora 6 y 4...');
+    Anadir(6);
+    Anadir(4);
+    WriteLn('Y ahora son:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Y al reves:');
+    for i := CantidadDatos downto 1 do
+        WriteLn( Obtener(i) );
+        
+    WriteLn('Vamos a borrar el segundo dato...');
+    Borrar(2);
+    WriteLn('Ahora tenemos:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    
+    WriteLn('Ahora introduce nuevos datos, 0 para terminar...');
+    repeat
+        Write('Dato? ');
+        ReadLn( n );
+        if n <> 0 then
+            Anadir(n);
+    until n = 0;
+    
+    WriteLn('Ahora los datos en orden eran:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Y al reves:');
+    for i := CantidadDatos downto 1 do
+        WriteLn( Obtener(i) );
+end.
+</code></pre></p>  
+
+<p>Y en pantalla mostraría algo como:</p>
+
+<p><pre><code class='language-txt'>Su resultado serÃ­a
+
+Guardando 3 y 2...
+Los datos por ahora son:
+2
+3
+Ahora 6 y 4...
+Y ahora son:
+2
+3
+4
+6
+Y al reves:
+6
+4
+3
+2
+Vamos a borrar el segundo dato...
+Ahora tenemos:
+2
+4
+6
+Ahora introduce nuevos datos, 0 para terminar...
+Dato? 8
+Dato? 1
+Dato? 0
+Ahora los datos en orden eran:
+1
+2
+4
+6
+8
+Y al reves:
+8
+6
+4
+2
+1</code></pre></p> 
+
+
+<p>Y la versión dinámica, no es mucho más compleja que antes:</p>
+
+<ul>
+    
+    <li>Obtendremos el elemento número "n", de la misma forma que en la lista 
+    no ordenada.</li>
+    
+    <li>Tampoco habrá cambios para borrar.</li>
+    
+    <li>Para añadir, podemos crear una función recursiva que, si el dato es mayor
+    que el valor del nodo actual, siga buscando a partir del siguiente nodo.</li>
+    
+    <li>De igual modo, podemos crear una función "Mostrar" recursiva, que 
+    muestre toda la lista (realmente, todo lo que haya a partir de un cierto 
+    nodo), y que servirá de ejemplo de cómo se podríanrealizar operaciones más 
+    simples de forma recursiva sobre una lista enlazada.</li>
+    
+</ul>
+
+<p>La implementación real podría ser algo como...</p>
+
+<p><pre><code class='language-pascal'>(* LISTAOD.PAS, Ejemplo de lista ordenada dinamica *)
+(* No incluye ninguna comprobacion de errores      *)
+(* Parte de CUPAS5, por Nacho Cabanes              *)
+
+program listaOrdenadaDinamica;
+
+type
+    puntero = ^ nodo;
+
+    nodo = record
+        dato: integer;
+        siguiente:  puntero
+    end;
+
+var
+    comienzoLista: puntero;
+    contadorDeDatos: integer;
+
+procedure InicializarLista;
+begin
+    comienzoLista := nil;
+    contadorDeDatos := 0;
+end;
+
+
+procedure InsertarEnLista( var nodoInicial: puntero; valor: integer);
+var
+    nuevoNodo: puntero;                         { Variable auxiliar }
+begin
+    { Si hay lista }
+    if nodoInicial <> nil then
+        begin
+        { Si no hemos llegado a su sitio }
+        if nodoInicial^.dato < valor
+        then
+            { Miramos la siguiente posición, de forma recursiva }
+            InsertarEnLista(nodoInicial^.siguiente, valor)
+        else
+            begin
+            { Caso contrario: si hay lista pero hay que insertar ya }
+            { Reservamos espacio, }
+            new(nuevoNodo);
+            { guardamos el dato }
+            nuevoNodo^.dato := valor;
+            { ponemos el resto de la lista a continuación }
+            nuevoNodo^.siguiente := nodoInicial;
+            { y hacemos que el nuevo dato sea el punto de partida }
+            nodoInicial := nuevoNodo
+            end
+        end
+    { Si no hay lista, deberemos crearla }
+    else
+        begin
+        { Reservamos espacio, }
+        new(nuevoNodo);
+        { guardamos el dato }
+        nuevoNodo^.dato := valor;
+        { no habrá nada a continuación }
+        nuevoNodo^.siguiente := nil;
+        { y hacemos que la lista comience en el nuevo dato }
+        nodoInicial := nuevoNodo
+        end
+end;
+
+
+procedure Anadir(nuevoDato: integer);
+begin
+    { Tenemos un dato mas }
+    contadorDeDatos := contadorDeDatos + 1;
+    { Y llamamos a la función auxiliar recursiva }
+    InsertarEnLista(comienzoLista, nuevoDato);
+end;
+
+
+function Obtener(posicion: integer): integer;
+var
+    punteroActual: puntero;
+    i: integer;
+begin
+    punteroActual := comienzoLista;
+    { "Saltamos" tantas veces como corresponda }
+    for i := 1 to posicion-1 do
+        punteroActual := punteroActual^.siguiente;
+    { Y devolvemos el valor de esa posición }
+    Obtener := punteroActual^.dato;
+end;
+
+procedure Borrar(posicion: integer);
+var
+    punteroActual: puntero;
+    siguienteNodo: puntero;
+    nodoABorrar: puntero;
+    i: integer;
+begin
+    { Caso facil, al principio }
+    if posicion = 1 then
+        begin
+        nodoABorrar := comienzoLista;
+        comienzoLista := nodoABorrar;
+        end
+    { Si es mas adelante, hay que recorrer }
+    else
+        begin
+        punteroActual := comienzoLista;
+        { "Saltamos" tantas veces como corresponda para llegar al anterior }
+        for i := 1 to posicion-2 do
+            punteroActual := punteroActual^.siguiente;
+        { Memorizamos el enlace al siguiente }
+        siguienteNodo := punteroActual^.siguiente;
+        { Enlazamos el anterior con el nuevo }
+        punteroActual^.siguiente := siguienteNodo^.siguiente;
+        { Y el nuevo con el que antes era el siguiente }
+        nodoABorrar := siguienteNodo;
+        end;
+    contadorDeDatos := contadorDeDatos - 1;
+    dispose(nodoABorrar);
+end;
+
+
+function CantidadDatos: integer;
+begin
+    CantidadDatos := contadorDeDatos;
+end;
+
+
+procedure MostrarListaDesde ( comienzo: puntero );
+begin
+    { Si realmente hay lista }
+    if comienzo <> nil then
+        begin
+        { Escribimos el valor }
+        writeln(comienzo^.dato);
+        { Y miramos desde el siguiente }
+        MostrarListaDesde (comienzo^.siguiente )
+        end
+end;
+
+{ --- Programa de prueba --- }
+
+var
+    i, n: integer;
+
+begin
+    InicializarLista;
+    WriteLn('Guardando 3 y 2...');
+    Anadir(3);
+    Anadir(2);
+    WriteLn('Los datos por ahora son:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Ahora 6 y 4...');
+    Anadir(6);
+    Anadir(4);
+    WriteLn('Y ahora son:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Y al reves:');
+    for i := CantidadDatos downto 1 do
+        WriteLn( Obtener(i) );
+
+    WriteLn('Vamos a borrar el segundo dato...');
+    Borrar(2);
+    WriteLn('Ahora tenemos:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+
+    WriteLn('Ahora introduce nuevos datos, 0 para terminar...');
+    repeat
+        Write('Dato? ');
+        ReadLn( n );
+        if n <> 0 then
+            Anadir(n);
+    until n = 0;
+
+    WriteLn('Ahora los datos en orden eran:');
+    for i := 1 to CantidadDatos do
+        WriteLn( Obtener(i) );
+    WriteLn('Y al reves:');
+    for i := CantidadDatos downto 1 do
+        WriteLn( Obtener(i) );
+end.
+</code></pre></p>  
+
+<blockquote><i><b>Ejercicio propuesto 9.5.1:</b> Crea un programa que permita guardar una lista ordenada de números reales.
+    El usuario introducirá tantos datos como desee (usando 99999 para terminar),
+    y en ese momento se le mostrarán los datos ordenados.</i></blockquote><blockquote><i><b>Ejercicio propuesto 9.5.2:</b> Crea un programa que permita guardar una lista ilimitada ordenada de nombres
+    (cadenas de texto).
+    El usuario introducirá tantos datos como desee (hasta terminar con una cadena vacía).
+    A continuación se le preguntará qué nombres quiere buscar, y se le dirá si esa frase aparece
+    como una de las cadenas de texto originales o no (no se debe revisar todos los datos, sino interrumpir
+    la búsqueda cuando se sepa que el dato no existe, aprovechando que están ordenados). Esta fase de búsqueda acabará también
+    cuando el usuario introduzca una cadena vacía.</i></blockquote><blockquote><i><b>Ejercicio propuesto 9.5.3:</b> Crea una "lista de cadenas de texto". Utilízala para mostrar ordenado
+    el contenido de un fichero de texto cuyo nombre indicará el usuario.</i></blockquote>
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   3340 visitas desde el 23-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="index-2.html">Anterior</a></li>
+                    <li><a href="index-2.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas09e.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+</html>
+        

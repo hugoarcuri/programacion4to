@@ -1,0 +1,879 @@
+<!doctype html><!--[if IE 9]><html class="lt-ie10" lang="es" > <![endif]--><html class="no-js" lang="es" 
+    data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+  
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas10.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de Pascal - (Pronto)</title>
+
+    
+    <meta name="description" content="Curso de Pascal - (Pronto) - Por Nacho Cabanes" />
+    
+    <meta name="author" content="Nacho Cabanes" />
+    <meta name="keywords" content="generalidades,freepascal" />
+
+    <link rel="stylesheet" href="../../css/foundation.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+    <script src="../../js/modernizr.js"></script>
+    <script src="../../css/prism.js"></script>
+    <style type="text/css">
+    pre {
+      background: #F2F2F2;
+      padding: 15px;
+      line-height: 1.5em;
+      font-size: 1.1em;
+      display: block;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    </style>
+  </head>
+  <body>
+    
+<!-- Navegación (Nav) -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Título -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Curso de Pascal - (Pronto)          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Navegación derecha -->
+      <ul class="right">
+          <li class="divider"></li>
+          <li><a href="index-2.html">Índice</a></li>
+          <li class="divider"></li>
+            <li><a href="index-2.html">Anterior</a></li>
+            <li class="divider"></li>
+            <li><a href="index-2.html">Posterior</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- Fin de la barra superior -->
+  
+  
+    <!-- Aviso cookies -->
+           <!-- Fin de aviso cookies -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+ 
+       
+    <style type="text/css">
+.top-bar {
+  background: #4040F0;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #4040F0;
+}
+
+</style>
+<h2>10.  Programación Orientada a Objetos</h2>
+
+<h3>10.1.  ¿Por qué la programación Orientada a Objetos? </h3>
+
+
+<p>Cuando tenemos que realizar un proyecto grande, será necesario 
+descomponerlo en varios subprogramas, de forma que  podamos repartir el 
+trabajo entre varias personas.</p>
+
+<p>Esta descomposición no debe ser arbitaria. Por ejemplo, será deseable que 
+cada bloque tenga unas responsabilidades claras, y que cada bloque no 
+dependa de los detalles internos de otros bloques.</p>
+
+<p>Existen varias formas de descomponer un proyecto, pero posiblemente la 
+más recomendable consiste en tratar de verlo como una serie de "objetos" que 
+colaboran entre sí, cada uno de los cuales tiene unas ciertas 
+responsabilidades.</p>
+
+<p>Una forma de "descubrir" los objetos que forman parte de un programa es partir 
+de la descripción del problema, y subrayar los nombres con un color y los 
+verbos con otro color. </p>
+
+<p>Vamos a ver dos ejemplos: un primer ejemplo más completo,  en el que habrá 
+bastantes objetos y que no llegaremos a implementar en Pascal, y un segundo 
+ejemplo más sencillo, que sí crearemos y posteriormente ampliaremos. </p>
+
+
+<h3>10.2. Diseño Orientado a Objetos. Diagrama de clases. </h3>
+#####
+
+<p>Como primer acercamiento, vamos a dedicar un momento a pensar qué elementos 
+("objetos") hay en un juego como el clásico Space Invaders:</p>
+
+<img src="../../../www.aprendeaprogramar.com/recursos/java/invaders.png" alt="invaders" />
+
+<p>Observando la pantalla anterior, o (preferiblemente) tras jugar algunas 
+partidas, podríamos hacer una descripción del juego en lenguaje natural:</p>
+
+<blockquote>Nosotros manejamos una "nave", que movemos a izquierda y derecha y 
+que puede disparar. Nuestra nave se puede esconder detrás de "torres 
+defensivas". Nos atacan (nos disparan) "enemigos". Además, estos enemigos se 
+mueven de lado a lado, pero no de forma independiente, sino como un "bloque". 
+En concreto, hay cuatro "tipos" de enemigos, que no se diferencian en su 
+comportamiento, pero sí en su imagen. Además, en ocasiones aparece un "OVNI" en 
+la parte superior de la pantalla, que se mueve del lado izquierdo al lado 
+derecho y nos permite obtener puntuación extra si le impactamos con un disparo. 
+Igualmente, hay un "marcador", que muestra la puntuación actual y el récord 
+(mejor puntuación hasta el momento). Antes de cada "partida", pasamos por una 
+pantalla de "bienvenida", que muestra una animación que nos informa de cuántos 
+puntos obtenemos al destruir cada tipo de enemigo.</blockquote>
+
+<p>A partir de esa descripción, podemos buscar los nombres (puede ayudar si los 
+subrayamos con un rotulador de marcar),  que indicarán los objetos en los que 
+podemos descomponer el problema, y los verbos (con otro rotulador de marcar, en 
+otro color), que indicarán las acciones que puede realizar cada uno de esos objetos. </p>
+
+Por ejemplo,  el párrafo anterior se podría reescribir así :
+
+#####
+
+De dónde podemos extraer los siguientes objetos y las siguientes acciones:
+
+Nave : mover izquierda, mover derecha, disparar 
+Enemigos : mover, disparar 
+Ovni : mover 
+Bloque (formado por enemigos) : mover 
+Marcador : mostrar, reiniciar, incrementar puntos 
+Partida (contiene nave, enemigos, torres, ovni) 
+Juego (formado por bienvenida y partida) ####
+
+(En general, esta descomposición no tiene por qué ser única, distintos programadores o analistas pueden llegar a soluciones parcialmente distintas). 
+
+Esa serie de objetos,  con sus relaciones y sus acciones, se puede expresar mediante un "diagramas de clases", que en nuestro caso podría ser así (simplificado):
+
+#############
+
+
+<img src="../../../www.aprendeaprogramar.com/recursos/java/invaders-clases.png" alt="invaders, clases" />
+
+<p>Algunos de los detalles que se pueden leer de ese diagrama son:</p>
+
+<ul>
+    <li>La clase principal de nuestro proyecto se llama "Juego" (el diagrama típicamente se leerá de arriba a abajo).</li>
+    
+    <li>El juego contiene una "Bienvenida" y una "Partida" (ese relación de que un objeto "contiene" a otros se indica mediante un rombo en el extremo de la línea que une ambas clases, junto a la clase "contenedora").</li>
+    
+    <li>En una partida participan una "Nave", cuatro "Torres" defensivas, un "BloqueDeEnemigos" formado por varios "Enemigos" (que, a su vez, podrían ser de tres tipos distintos, pero no afinaremos tanto por ahora) y un "Ovni".</li>
+    
+    <li>Tanto la "Nave" como las "Torres", los "Enemigos" y el "Ovni" son tipos concretos de "Sprite" (esa relación entre un objeto más genérico y uno más específico se indica con las puntas de flecha, que señalan al objeto más genérico).</li>
+    
+    <li>Un "Sprite" es una figura gráfica de las que aparecen en el juego. Cada sprite tendrá detalles (atributos) como una "imagen" y una posición, dada por sus coordenadas "x" e "y". Será capaz de hacer operaciones (<b>métodos</b>) como "dibujarse" o "moverse" a una nueva posición. Cuando se programa toda esta estructura de clases, los atributos serán variables, mientras que los "métodos" serán funciones. Los subtipos de sprite "<b>heredarán</b>" las características de esta clase. Por ejemplo, como un Sprite tiene una coordenada X y una Y, también lo tendrá el OVNI, que es una subclase de Sprite.</li> 
+    
+    <li>El propio juego también tendrá métodos como "comprobarTeclas" (para ver qué teclas ha pulsado el usuario), "moverElementos" (para actualizar el movimiento de los elementos que deban moverse por ellos mismos), "comprobarColisiones" (para ver si dos elementos chocan, como un disparo y un enemigo, y actualizar el estado del juego según corresponda), o "dibujarElementos" (para mostrar en pantalla todos los elementos actualizados).</li>
+</ul>
+
+<p>En este punto, podríamos empezar a repartir trabajo: una persona se podría encargar de crear la pantalla de bienvenida, otra de la lógica del juego, otra del movimiento de los enemigos, otra de las peculiaridades de cada tipo de enemigo, otra del OVNI...<br /></p>
+
+<p>Nosotros no vamos a hacer proyectos tan grandes (al menos, no todavía), pero sí empezaremos a crear proyectos sencillos en los que colaboren varias clases, que permitan sentar las bases para proyectos más complejos, y también entender algunas peculiaridades de los temas que veremos a continuación, como el manejo de ficheros en Java.</p>
+
+
+<p>Vamos a ver qué es eso de los "objetos"...</p>
+#########
+<p>Hasta ahora estamos estado "<b>cuadriculando</b>" todo para obtener
+"algoritmos": tratábamos de convertir cualquier cosa en un procedimiento
+o una función que pudi&eacute;ramos emplear en nuestros programas.</p>
+
+<p>Pero no todo lo que nos rodea es tan fácil de cuadricular.&nbsp;
+Supongamos por ejemplo que tenemos que introducir datos sobre una puerta
+en nuestro programa.&nbsp; &iquest;Nos limitamos a programar los procedimientos
+AbrirPuerta y CerrarPuerta?&nbsp; Al menos, deberíamos ir a la zona
+de declaración de variables, y allí guardaríamos otras
+datos como su tama&ntilde;o, color, etc.</p>
+
+<p>No está mal, pero es <b>antinatural</b>.&nbsp; &iquest;A qu&eacute;
+me refiero?&nbsp; Pues a que una puerta es un <b>conjunto</b>: no podemos
+separar su color de su tama&ntilde;o, o de la forma en que debemos abrirla
+o cerrarla.&nbsp; Sus características son tanto las físicas
+(lo que hasta ahora llamábamos variables) como sus comportamientos
+en distintas circunstancias (lo que para nosotros eran los procedimientos).&nbsp;
+Todo ello va unido, formando un <b>OBJETO</b>.</p>
+
+<p>Por otra parte, si tenemos que explicar a alguien lo que es el portón
+de un garaje, y ese alguien no lo ha visto nunca, pero conoce cómo
+es la puerta de su casa, le podemos decir "se parece a una puerta de una
+casa, pero es más grande para que quepan los coches, está
+hecha de metal en vez de madera..."</p>
+
+<p>Finalmente, conviene recordar que "abrir" no se refiere sólo
+a una puerta.&nbsp; Tambi&eacute;n podemos hablar de abrir una ventana
+o un libro, por ejemplo.</p>
+
+<p>Pues con esta discusión filosófica ;-) hemos comentado
+casi sin saberlo las tres <b>características</b> más importantes
+de la Programación Orientada a Objetos (OOP):</p>
+
+<ul>
+
+<li>
+<b>ENCAPSULACION</b>:&nbsp; No podemos separar los comportamientos de las
+características de un objeto.&nbsp; Los comportamientos serán
+procedimientos o funciones, que en OOP llamaremos METODOS.&nbsp; Las características
+serán variables, como las que hemos usado siempre.&nbsp; La apariencia
+de un objeto en Pascal, como veremos un poco más adelante, recordará
+a un registro o "record".</li>
+
+<li>
+<b>HERENCIA</b>: Unos objetos pueden heredar m&eacute;todos y datos de
+otros.&nbsp; Esto hace más fácil definir objetos nuevos a
+partir de otros que ya teníamos anteriormente (como ocurría
+con el portón y la puerta) y facilitará la reescritura de
+los programas, pudiendo aprovechar buena parte de los anteriores... si
+están bien dise&ntilde;ados.</li>
+
+<li>
+<b>POLIMORFISMO</b>: Un mismo nombre de un m&eacute;todo puede hacer referencia
+a comportamientos distintos (como abrir una puerta o un libro).&nbsp; Igual
+ocurre para los datos: el peso de una puerta y el de un portón los
+podemos llamar de igual forma, pero obviamente no valdrán lo mismo.</li>
+
+</ul>
+
+<p>Comentado esto, vamos a empezar a ver ejemplos en Pascal para tratar de 
+fijar conceptos.&nbsp; Para todo lo que viene a continuación, ser
+á necesario emplear la versión <b>5.5 o superior</b> de Turbo 
+Pascal, o bien Free Pascal.</p>
+
+
+
+<p>Los <b>objetos en Pascal</b> se definen de forma parecida a los 
+registros (record), sólo que ahora tambi&eacute;n incluirán 
+procedimientos y funciones. Vamos a escribir un mensaje en una cierta posición
+de la pantalla.&nbsp; Este será nuestro objeto "tí
+tulo". <p>
+    
+    <tt>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Def. tipo }</tt>
+<br><tt>&nbsp; titulo = object</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; texto: string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Variables }</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; x,y : byte;</tt>
+<p><tt>&nbsp;&nbsp;&nbsp; procedure FijaCoords(nuevoX, nuevoY: byte);&nbsp;&nbsp;
+{ M&eacute;todos }</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; procedure FijaTexto(mensaje: string);</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; procedure Escribe;</tt>
+<br><tt>&nbsp; end;</tt>
+<p><tt>var</tt>
+<br><tt>&nbsp; miTitulo: titulo;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Variable de tipo objeto }</tt>
+<p>Accederemos a los m&eacute;todos y a los datos precediendo el nombre
+de cada uno por el nombre de la variable y por un punto, como hacíamos
+con los registros (record):
+<p><tt>miTitulo.x := 23;</tt>
+<br><tt>miTitulo.y := 12;</tt>
+<br><tt>miTitulo.FijaTexto('Hola');</tt>
+<br><tt>miTitulo.Escribe;</tt>
+<p>Lo anterior se entiende, &iquest;verdad?&nbsp; Sin embargo, hay algo
+que se puede pero no se debe hacer: NO SE DEBE ACCEDER DIRECTAMENTE A LOS
+DATOS. Esto es otra de las máximas de la OOP (la <b>ocultación
+de datos</b>).&nbsp; Para modificarlos, lo haremos siempre a trav&eacute;s
+de algún procedimiento (m&eacute;todo) del objeto.
+<p>Por eso es por lo que hemos definido los procedimientos FijaCoords y
+FijaTexto... &iquest;&iexcl;definido!?&nbsp; &iexcl;Pero si sólo
+está la primera línea!... }:-)
+<p>Don't panic!&nbsp; Esto no es nuevo para nosotros: cuando creábamos
+una unidad (unit), teníamos un encabezamiento (interface) en el
+que sólo poníamos las cabeceras de las funciones y procedimientos,
+y luego un desarrollo (implementation), donde realmente iba todo el código.
+&iquest;Verdad?&nbsp; Pues aquí ocurrirá algo parecido.
+<p>Vamos a ir <b>completando</b> el programa para que funcione, y así
+irá quedando todo más claro:
+<br><a NAME="progObjetos1"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+<p>&iquest;Y todo este rollazo de programa para escribir "Hola"?&nbsp;
+Nooooo....&nbsp; Ya iremos viendo las ventajas, pero eso el próximo
+día, para que no resulte demasiado denso...
+
+
+<h2>
+<font color="#000099">16.2: Herencia y polimorfismo.</font></h2>
+
+<p>En el apartado anterior del tema vimos una introducción a lo que
+eran los objetos y a cómo podíamos utilizarlos desde Turbo
+Pascal. Hoy vamos a ver qu&eacute; es eso de la <b>herencia</b> y el <b>polimorfismo</b>.</p>
+
+<p>Habíamos definido un objeto "título": un cierto texto
+que se escribía en unas coordenadas de la pantalla que nosotros
+fijásemos.
+<p><tt>type</tt>
+<br><tt>&nbsp;titulo = object</tt>
+<br><tt>&nbsp;&nbsp; texto: string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ El texto que se escribirá }</tt>
+<br><tt>&nbsp;&nbsp; x,y : byte;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ En qu&eacute; posición }</tt>
+<p><tt>&nbsp;&nbsp; procedure FijaCoords(nuevoX, nuevoY: byte);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Pues eso }</tt>
+<br><tt>&nbsp;&nbsp; procedure FijaTexto(mensaje: string);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Idem }</tt>
+<br><tt>&nbsp;&nbsp; procedure Escribe;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Lo escribe, claro }</tt>
+<br><tt>&nbsp;end;</tt>
+<p>Funciona, pero hemos tecleado mucho para hacer muy poco.&nbsp; Si de
+verdad queremos que se vaya pareciendo a un título, lo menos que
+deberíamos hacer es poder cambiar el color para que resalte un poco
+más.
+<p>Para conseguirlo, podemos modificar nuestro objeto o crear otro. Supongamos
+que nos interesa conservar ese tal y como está porque lo hemos usado
+en muchos programas, etc, etc.
+<p>Pues con el Pascal "de toda la vida" la opción que nos queda
+sería crear otro objeto.&nbsp; Con los editores de texto que tenemos
+a nuestro alcance, como los que incluye el Entorno de Desarrollo de TP6
+y TP7 esto no es mucho problema porque no hay que teclear demasiado: marcamos
+un bloque, lo copiamos y modificamos lo que nos interese.
+<p>Pero vamos teniendo nuevas versiones de nuestros objetos por ahí
+desperdigadas.&nbsp; Si un día descubrimos una orden más
+rápida o más adecuada que Write para usarla en el procedimiento
+"escribe", tendremos que buscar cada versión del objeto en cada
+programa, modificarla, etc...
+<p>La <b>herencia</b> nos evita todo esto.&nbsp; Podemos definir un nuevo
+objeto partiendo del que ya teníamos.&nbsp; En nuestro caso, conservaremos
+la base del objeto "Titulo" pero a&ntilde;adiremos el manejo del color
+y retocaremos "escribe" para que lo contemple.
+<p>El nuevo objeto quedaría:
+<p><tt>type</tt>
+<br><tt>&nbsp;TituloColor = object( titulo )</tt>
+<br><tt>&nbsp;&nbsp; color: byte;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ El color, claro }</tt>
+<br><tt>&nbsp;&nbsp; procedure FijaColores(pluma, fondo: byte);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Pues eso }</tt>
+<br><tt>&nbsp;&nbsp; procedure Escribe;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Lo escribe de distinta forma }</tt>
+<br><tt>&nbsp;end;</tt>
+<p>Aunque no lo parezca a primera vista, nuestro objeto sigue teniendo
+los m&eacute;todos "FijaCoords" y "FijaTexto".&nbsp; &iquest;Donde están?&nbsp;
+Pues en la primera línea:
+<p><tt>object ( titulo )</tt>
+<p>quiere decir que es un objeto <b>descendiente</b> de "titulo".&nbsp;
+Tendrá todos sus m&eacute;todos y variables más los nuevos
+que nosotros indiquemos (en este caso, "color" y "FijaColores").&nbsp;
+Además podemos redefinir el comportamiento de algún m&eacute;todo,
+como hemos hecho con Escribe.
+<p>Veamos cómo quedaría nuestro programa ampliado
+<br><a NAME="progObjetos2"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+<p>En el mismo programa, como quien no quiere la cosa ;-) , tenemos un
+ejemplo de <b>polimorfismo</b>: no es sólo que las variables "texto",
+"x" e "y" esten definidas en los dos objetos de igual forma y tengan valores
+diferentes, sino que incluso el m&eacute;todo "Escribe" se llama igual
+pero no actúa de la misma forma.
+<br>&nbsp;
+<p>Antes de dar este apartado por "sabido" para pasar a ver qu&eacute;
+son los constructores, los destructores, los m&eacute;todos virtuales,
+etc... un par de <b>comentarios</b>:
+<br>&nbsp;
+<ul>
+<li>
+&iquest;Verdad que la definición de "Escribe" se parece mucho en
+"Titulo" y en "TituloColor"?&nbsp; Hay una parte que es exactamente igual.&nbsp;
+&iexcl;Pues vaya asco de herencia si tenemos que volver a copiar partes
+que son iguales!&nbsp; X-D No, hay un truquillo en Turbo Pascal 7: tenemos
+la palabra clave "<b>inherited</b>" (heredado), con la que podríamos
+hacer:</li>
+</ul>
+
+<blockquote>&nbsp;
+<br><tt>procedure tituloColor.Escribe;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; textAttr := color;</tt>
+<br><tt>&nbsp; inherited escribe;</tt>
+<br><tt>end;</tt>
+<p>Es decir: cambiamos el color y luego todo es igual que el Escribe que
+hemos heredado del objeto padre ("titulo").&nbsp; En otras versiones anteriores
+de Turbo Pascal (5.5 y 6) no existe la palabra inherited, y deberíamos
+haber hecho
+<p><tt>procedure tituloColor.Escribe;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; textAttr := color;</tt>
+<br><tt>&nbsp; titulo.escribe;</tt>
+<br><tt>end;</tt>
+<p>que es equivalente.&nbsp; El inconveniente es que tenemos que recordar
+el nombre del padre.
+<p>Los problemas que puede haber con herencia de este tipo los veremos
+cuando digamos qu&eacute; son m&eacute;todos virtuales...</blockquote>
+
+<br>&nbsp;
+<ul>
+<li>
+Segundo comentario: &iquest;Qu&eacute; ocurre si ejecutamos "T1.Escribe"
+sin haber dado <b>valores</b> a las coordenadas ni al texto?&nbsp; Cualquier
+cosa...&nbsp; }:-)</li>
+</ul>
+
+<blockquote>Me explico: no hemos inicializado las variables, de modo que
+"x" valdrá lo que hubiera en la posición de memoria que el
+compilador le ha asignado a esta variable. Si este valor fuera mayor de
+80, estaríamos intentando escribir fuera de la pantalla.&nbsp; Igual
+con "y", y a saber lo que nos aparecería en "texto"...
+<p>&iquest;Cómo lo solucionamos?&nbsp; Pues por ejemplo creando
+un procedimiento "inicializar" o similar, que sea lo primero que ejecutemos
+al usar nuestro objeto.&nbsp; Por ejemplo:
+<p><tt>procedure titulo.init;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; x := 1;</tt>
+<br><tt>&nbsp; y := 1;</tt>
+<br><tt>&nbsp; texto := '';</tt>
+<br><tt>end;</tt>
+<br><tt>[...]</tt>
+<p><tt>procedure tituloColor.init;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; inherited init;</tt>
+<br><tt>&nbsp; color := 0;</tt>
+<br><tt>end;</tt>
+<p><tt>[...]</tt>
+<p><tt>begin</tt>
+<br><tt>&nbsp; titulo.Init;</tt>
+<br><tt>&nbsp; tituloColor.Init;</tt>
+<br><tt>&nbsp; [...]</tt>
+<br><tt>end.</tt></blockquote>
+
+<p><br>Antes de dar por terminada esta lección, un comentario sobre
+OOP en general, no centrado en Pascal: puede que alguien oiga por ahí
+el t&eacute;rmino "<b>sobrecarga</b>".&nbsp; Es un tipo de polimorfismo:
+sobrecarga es cuando tenemos varios m&eacute;todos que se llaman igual
+pero cuyo cuerpo es distinto, y polimorfismo puro sería cuando tenemos
+un solo m&eacute;todo que se aplica a argumentos de distinto tipo.
+<p>En C++ se habla incluso de la sobrecarga de operadores: podemos redefinir
+operadores como "+" (y muchos más) para sumar (en este caso) objetos
+que hayamos creado, de forma más cómoda y legible:
+<p><tt>&nbsp;matriz3 = matriz1 + matriz2</tt>
+<p>en vez de hacerlo mediante una función:
+<p><tt>matriz3 = suma( matriz1, matriz2 )</tt>
+<p>Continuará...&nbsp; :-)
+<p>
+    
+<h2>16.3: Problemas con la herencia.</h2>
+
+<p>Hemos visto una introducción a los objetos, y hemos empezado a manejar
+la herencia y el polimorfismo.&nbsp; Ahora vamos a ver algo que puede parecer
+desconcertante y que nos ayudará a entender qu&eacute; son los <b>m&eacute;todos
+virtuales</b> (espero)&nbsp; ;-)</p>
+
+<p>Por cierto, este tema es "denso".&nbsp; No intentes "dominarlo" a la
+primera lectura.&nbsp; Si te pierdes, prueba a releerlo entero.&nbsp; Si
+te siguen quedando dudas, pregunta...&nbsp; :-)
+<br>&nbsp;
+<p>Habíamos creado nuestro objeto "Titulo".&nbsp; Despues introdujimos
+otro llamado "TituloColor" que aprovechaba parte de las definiciones del
+primero, le a&ntilde;adimos cosas nuevas y retocamos las que nos interesaron.
+<p>Ahora vamos a crear un "TituloParpadeo", que será exactamente
+igual que "TituloColor", con la diferencia de que además el texto
+parpadeará.
+<p>Si alguien ha trabajado un poco con los colores en modo texto, sabrá
+que el único cambio que tenemos que hacer es sumar 128 al color
+que vamos a usar (o si lo preferís ver así: fijamos el primer
+bit de los atributos, que es el que indica el parpadeo).
+<p>Entonces crearemos un nuevo objeto que heredará todo de "TituloColor"
+y sólo redefinirá "FijaColores".&nbsp; El programa queda
+así:
+<br><a NAME="progObjetos3"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+
+<p>No hemos definido Escribe para TituloParpadeo y sin embargo lo hemos
+usado.&nbsp; Claro, es que tampoco hacía falta redefinirlo.&nbsp;
+Recordemos la definición de TituloColor.Escribe:
+<p><tt>procedure tituloColor.Escribe;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; textAttr := color;&nbsp;&nbsp;&nbsp; { Asignamos el color
+}</tt>
+<br><tt>&nbsp; Gotoxy(X,Y);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Vamos a la posición adecuada }</tt>
+<br><tt>&nbsp;Write(Texto);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Y escribimos el texto }</tt>
+<br><tt>end;</tt>
+<p>Todo nos sirve: queremos hacer eso mismo, pero con "TituloParpadeo"
+en vez de con "TituloColor".&nbsp; No hay problema, el compilador se da
+cuenta de que es T3 quien intenta escribir, y toma las variables X, Y,
+Color y Texto apropiadas.
+<p>Así tenemos el primer rótulo "Hola", con letras grises
+y fondo negro. El segundo, "Adiós", tiene letras amarillas y fondo
+verde.&nbsp; El tercero, "Y una más", tiene fondo azul claro y letras
+blancas parpadeantes.
+<p><b>Inciso</b> momentáneo:&nbsp; En OOP se suele llamar <b>CLASE</b>
+a una definición gen&eacute;rica de un objeto, como en nuestro caso
+"TituloColor" e <b>INSTANCIA</b> a una variable concreta que pertenece
+a ese clase, como T2 en nuestro ejemplo.&nbsp; Como ejemplo más
+general, "persona" sería una clase, formada por muchos individuos
+con unas características comunes, mientras que "Pepe" sería
+un <b>objeto</b> (sin ánimo de ofender) de la clase persona, una
+instancia de esa clase.
+<p>Así me puedo permitir el lujo de usar las palabras "clase" e
+"instancia" cuando quiera y ya nadie tiene excusa para protestar... O:-)
+<br>&nbsp;
+<p>
+    
+
+<h2>
+<font color="#000099">Curso de Pascal. Tema 16.4: Más detalles...</font></h2>
+
+<p>Volviendo a lo que nos interesa. Vamos a ver lo que ocurre si en
+vez de que el compilador determine a qui&eacute;n pertenecen X e Y (datos)
+le hacemos que tenga que determinar a qui&eacute;n pertenece un m&eacute;todo
+como Escribe.</p>
+
+<p>Para ello vamos a crear un nuevo m&eacute;todo que va a asignar y escribir
+el texto en un sólo paso.&nbsp; Nuestra nueva versión del
+programa queda:
+<br><a NAME="progObjetos4"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+
+<p>Aparentemente, todo bien, &iquest;verdad?&nbsp; Hemos hecho lo mismo
+que antes: no hemos redefinido "AsignaYEscribe" porque no nos hace falta:
+<p><tt>&nbsp;procedure titulo.AsignaYEscribe(nuevoTexto:string);</tt>
+<br><tt>&nbsp;begin</tt>
+<br><tt>&nbsp;&nbsp; FijaTexto(NuevoTexto);</tt>
+<br><tt>&nbsp;&nbsp; Escribe;</tt>
+<br><tt>&nbsp;end;</tt>
+<p>Queremos dar ese valor al texto y escribir el título.&nbsp; Pues
+sí, todo bien...&nbsp; &iquest;o no?
+<p>Si lo ejecutais vereis que no: el título que corresponde a T3
+no ha salido con los mismos colores de antes (blanco parpadeante sobre
+azul claro) sino con los que corresponden a T2 (amarillo sobre verde).
+<p>&iquest;Por qu&eacute;?
+<p>Veamos: &iquest;dónde está el Escribe de "TituloParpadeo"?&nbsp;
+&iexcl;No está!&nbsp; Claro, si lo hemos heredado...&nbsp; pero
+por ahí vienen los <b>fallos</b>...
+<p>Cuando el compilador ve que el m&eacute;todo AsignaYEscribe llama a
+Escribe, enlaza cada AsignaEscribe con su Escribe correspondiente.&nbsp;
+Pero para "TituloParpadeo" no existe Escribe, así que &iquest;qu&eacute;
+hace?&nbsp; Pues toma el más cercano, el de su padre, TítuloColor.
+<p>Como comprobación, podeis hacer que el programa termine así:
+<p><tt>&nbsp; T3.AsignaYEscribe('Y una más');&nbsp;&nbsp; { Con
+m&eacute;todos anidados }</tt>
+<br><tt>&nbsp; readln;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Esperamos que se pulse INTRO }</tt>
+<br><tt>&nbsp; T3.Escribe;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Y lo hacemos directamente }</tt>
+<br><tt>end.</tt>
+<p>En cuanto pulsamos INTRO, ejecuta T3.Escribe, y &eacute;ste ya sí
+que funciona bien.
+<br>&nbsp;
+<p>
+    
+<h2>
+<font color="#000099">Curso de Pascal. Tema 16.5: M&eacute;todos virtuales.</font></h2>
+Entonces está claro que el <b>error</b> aparece cuando un m&eacute;todo
+llama a otro que no hemos redefinido, porque puede <b>no saber</b> con
+quien enlazarlo.&nbsp; Lo intentará con su padre o ascendiente más
+cercano, y los resultados quizá no sean los adecuados.
+<p>Deberíamos rega&ntilde;ar a nuestro compilador y decirle...
+<p>&nbsp;&nbsp; "Mira, no me presupongas cosas.&nbsp; Cuando alguien te
+diga Escribe, haz
+<br>&nbsp;&nbsp; el favor de mirar qui&eacute;n es, y hacerlo como sabes
+que &eacute;l quiere."&nbsp; ;-)
+<p>&iquest;Ah, pero se puede hacer eso?&nbsp; Pues resulta que sí:
+lo que el compilador hace si no le decimos nada es un <b>enlace estático</b>
+o "temprano" (en ingl&eacute;s, <b>early binding</b>), en el momento de
+compilar el programa.&nbsp; Pero tambi&eacute;n podemos pedirle que haga
+un <b>enlace dinámico</b> o "tardío" (<b>late binding</b>)
+justo en el momento de la ejecución, que es lo que nos interesa
+en estos casos.
+<p>De modo que con el enlace dinámico damos una mayor flexibilidad
+y potencia a la Herencia.&nbsp; Por contra, como los enlaces se calculan
+en tiempo de ejecución, el programa resultante será ligeramente
+más lento.
+<p>&iquest;Y cómo se hace eso del enlace dinámico?&nbsp;
+Pues indicando que se trata de un m&eacute;todo <b>VIRTUAL</b>.&nbsp; &iquest;Y
+eso otro cómo se hace?&nbsp; Fácil:, en la cabecera del m&eacute;todo
+a&ntilde;adimos esa palabra despu&eacute;s del punto y coma:
+<p><tt>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Aquí definimos nuestro objeto }</tt>
+<br><tt>&nbsp; titulo = object</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; [...]</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; procedure Escribe; virtual;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; [...]</tt>
+<br><tt>&nbsp; end;</tt>
+<p>Antes de ver cómo quedaría nuestro programa, unos <b>comentarios</b>:
+<ul>
+<li>
+Si un m&eacute;todo es <b>virtual</b> en un cierto objeto, deberá
+serlo tambi&eacute;n en todos sus descendientes (objetos definidos a partir
+de &eacute;l mediante herencia).</li>
+
+<li>
+Antes de llamar al m&eacute;todo virtual, el compilador debe hacer alguna
+inicialización que le asegure que va a encontrar a dónde
+apunta ese m&eacute;todo virtual, etc.&nbsp; Para ello deberemos definir
+un m&eacute;todo&nbsp; constructor . El simple hecho de definir un m&eacute;todo
+(el primero que vayamos a utilizar) como "<b>constructor</b>" en vez de
+"procedure" hace que el compilador nos asegure que todo va a ir bien.&nbsp;
+Ese contructor podemos llamarlo, por ejemplo, "<b>init</b>" (inicializar,
+en ingl&eacute;s; es el nombre que usa Turbo Pascal en todos los ejemplos
+que incluye).</li>
+</ul>
+<a NAME="progObjetos5"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+<p>Continuará...&nbsp; :-)
+<p>
+    
+    <h2>Curso de Pascal. Tema 16.6: Programación Orientada
+a Objetos (6).</h2>
+
+<p>Se supone que ya entendemos la base de la OOP en Pascal.&nbsp; Hemos visto
+como definir y heredar datos o m&eacute;todos de una "clase" (objeto gen&eacute;rico),
+cómo redefinirlos, y como crear y manejar "instancias" de esa clase
+(variables concretas).</p>
+
+<p>Tambi&eacute;n hemos tratado los m&eacute;todos "virtuales", para que
+el compilador sepa siempre de qu&eacute; clase "padre" estamos heredando.</p>
+
+<p>En estos casos, necesitábamos emplear en primer lugar un m&eacute;todo
+"<b>constructor</b>", que prepararía una tabla dinámica en
+la que se van a almacenar todas estas referencias que permiten que nuestro
+programa sepa a qu&eacute; m&eacute;todo o dato debe acceder en cada momento.</p>
+
+<p>Tambi&eacute;n habíamos comentado que los constructores tenían
+otro uso, y que existía algo llamado "<b>destructores</b>".&nbsp;
+Eso es lo que vamos a ver hoy.</p>
+
+<p>Vamos a empezar por hacer una variante de nuestro objeto.&nbsp; En ella,
+el texto va a guardarse de forma <b>dinámica</b>, mediante un puntero.</p>
+
+<p>&iquest;Para qu&eacute;?&nbsp; Esto es repaso de la lección sobre
+punteros: la primera ventaja es que no vamos a reservarle memoria del segmento
+de datos (64K) sino del "heap" (los 640K de memoria convencional).&nbsp;
+La segunda es que podríamos enlazar unos con otros para crear una
+lista de textos tan grande como quisi&eacute;ramos (y la memoria nos permitiese,
+claro).</p>
+
+<p>No vamos a ver lo de la lista, que ya tratamos en su día, y que
+no nos interesa hoy especialmente, y vamos a centrarnos en las diferencias
+que introduciría este puntero en nuestro objeto.</p>
+
+<p>Antes de empezar a usar nuestro objeto, tendremos que reservar memoria
+para el texto, como hacíamos con cualquier otro puntero:</p>
+
+<p><tt>new( texto );</tt>
+
+<p>y cuando terminemos de usar el objeto, debemos liberar la memoria que
+habíamos reservado:</p>
+
+<p><tt>dispose( texto );</tt>
+<br>&nbsp;
+<p>Hasta ahora todo claro, &iquest;no?&nbsp; Pues vamos a ir fijando conceptos.&nbsp;
+La orden "new" la debemos usar antes que nada, al inicializar el objeto.
+Así que crearemos un m&eacute;todo encargado de <b>inicializar</b>
+el objeto (reservar memoria, darle los valores iniciales que nos interesen,
+etc).&nbsp;&nbsp; Lo llamar&eacute; "<b>init</b>", que es el nombre que
+suele usar Borland, pero se puede elegir cualquier otro nombre.
+<p>Entonces, nuestro "init" podría quedar simplemente así:
+<p><tt>procedure titulo.init(TextoInicial: string);</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; new(texto);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Reservamos memoria }</tt>
+<br><tt>&nbsp; texto^ := TextoInicial;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Damos valor al texto }</tt>
+<br><tt>end;</tt>
+<p>o mejor podemos aprovechar para dar valores iniciales a las demás
+variables:
+<p><tt>procedure titulo.init(TextoInicial: string);</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; new(texto);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Reservamos memoria }</tt>
+<br><tt>&nbsp; texto^ := TextoInicial;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Damos valor al texto }</tt>
+<br><tt>&nbsp; x :=1 ; y := 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Coordenadas por defecto }</tt>
+<br><tt>&nbsp; color := 7;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Gris sobre negro }</tt>
+<br><tt>end;</tt>
+<br>&nbsp;
+<p>A su vez, tendremos que <b>liberar</b> esta memoria al terminar, para
+lo que crearemos otro m&eacute;todo, que llamar&eacute; "<b>done</b>" (hecho)
+tambi&eacute;n por seguir el esquema que suele usar Borland.&nbsp; En nuestro
+caso, que es sencillo, bastaría con
+<p><tt>procedure titulo.done;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; dispose(texto);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Liberamos la memoria }</tt>
+<br><tt>end;</tt>
+<p>Vamos a ver cómo iría quedando nuestra clase con estos
+cambios:
+<br><a NAME="progObjetop1"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+
+<p>&iquest;Todo claro?&nbsp; Espero que sí.&nbsp; Hasta ahora no
+ha habido grandes cambios...
+<p>
+    
+<h2>Curso de Pascal. Tema 16.7: Programación Orientada
+a Objetos (7).</h2>
+
+<p>Pero &iquest;qu&eacute; ocurre si nuestra clase (objeto) tiene <b>m&eacute;todos
+virtuales</b>? Entonces recordemos que era necesario un m&eacute;todo <b>constructor</b>,
+que se ejecute antes que ningún otro.&nbsp; En nuestro caso es evidente
+que nos conviene que el constructor sea el "init".</p>
+
+<p>El programa queda ahora</p>
+<br><a NAME="progObjetop2"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+
+<p>Tampoco hay problemas, &iquest;no?&nbsp; Pues ahora vamos a rizar el
+rizo, y vamos a hacer que el propio <b>objeto</b> a su vez sea un <b>puntero</b>.&nbsp;
+No voy a repetir el motivo por el que nos puede interesar, y voy a centrarme
+en los cambios.</p>
+
+
+<h2>Curso de Pascal. Tema 16.8: Programación Orientada
+a Objetos (8).</h2>
+
+<p>Ahora nos hará falta un nuevo "new" para el objeto y un nuevo "dispose":</p>
+
+<p><tt>new(t1)</tt>
+<br><tt>t1^.init('Texto de ejemplo');</tt>
+<br><tt>...</tt>
+<br><tt>t1^.done;</tt>
+<br><tt>dispose(t1);</tt>
+
+<p>Pero aún hay más: al liberar un objeto dinámico,
+existe una palabra clave que nos garantiza que se va a liberar la cantidad
+de memoria justa (especialmente si nuestros objetos dinámicos contienen
+a su vez datos dinámicos, etc). Es la palabra "<b>destructor</b>"
+que reemplaza a "procedure" (igual que hacía "constructor").</p>
+
+<p>Entonces, nuestro último m&eacute;todo quedaría</p>
+
+<p><tt>destructor titulo.done;</tt>
+<br><tt>begin</tt>
+<br><tt>&nbsp; dispose(texto);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ Liberamos la memoria }</tt>
+<br><tt>end;</tt>
+
+<p>Se puede definir más de un destructor para una clase, y como
+es fácil que lo heredemos sin reescribirlo, puede resultar conveniente
+definirlo siempre como "virtual".</p>
+
+<p>Vamos a ver cómo quedaría ahora nuestro programita:</p>
+
+<br><a NAME="progObjetop3"></a>
+
+<p><pre><code class='language-pascal'></code></pre></p>
+
+<p>Finalmente, Turbo Pascal amplía tambi&eacute;n la <b>sintaxis</b>
+de la orden "<b>new</b>" para permitir reservar la memoria e inicializar
+el objeto en un solo paso, de modo que</p>
+
+<p><tt>new(T1);</tt>
+<br><tt>T1^.Init('Por defecto');</tt>
+<p>se puede escribir como
+<p><tt>new(T1, Init('Por defecto'));</tt>
+
+<p>es decir, ejecutamos "new" con dos parámetros: el objeto para
+el que queremos reservar la memoria, y el procedimiento que se va a encargar
+de inicializarlo.&nbsp; Lo mismo ocurre con "<b>dispose</b>".&nbsp; Así,
+el cuerpo de nuestro programa queda:</p>
+
+<p><tt>begin</tt>
+<br><tt>&nbsp; ClrScr;</tt>
+<br><tt>&nbsp; new(T1, Init('Por defecto'));</tt>
+<br><tt>&nbsp; T1^.Escribe;</tt>
+<br><tt>&nbsp; T1^.FijaCoords(37,12);</tt>
+<br><tt>&nbsp; T1^.FijaColores(14,2);</tt>
+<br><tt>&nbsp; T1^.FijaTexto('Modificado');</tt>
+<br><tt>&nbsp; T1^.Escribe;</tt>
+<br><tt>&nbsp; dispose(T1, Done);</tt>
+<br><tt>end.</tt>
+<br>&nbsp;
+
+<p>Pues esto es la OOP en Pascal.&nbsp; Este último apartado y el
+anterior (objetos dinámicos y m&eacute;todos virtuales) son, a mi
+parecer, los más difíciles y los más pesados.&nbsp;
+No todo el mundo va a utilizar objetos dinámicos, pero es raro no
+tener que usar nunca m&eacute;todos virtuales.</p>
+
+<p>Así que mi consejo es el de siempre: <b>experimentad</b>, que
+muchas veces es como más se aprende.</p>
+
+<br>&nbsp;
+<p>  
+
+        <p style="text-align: center"><br />
+      <script type="text/javascript"><!--
+        google_ad_client = "pub-4298821349414973";
+        google_ad_width = 320;
+        google_ad_height = 50;
+        google_ad_format = "320x50_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="";
+        google_color_border = "D1D1D1";
+        google_color_bg = "FFFFFF";
+        google_color_link = "516695";
+        google_color_url = "516695.html";
+        google_color_text = "000000";
+//--></script>
+      <script type="text/javascript"
+ src="../../../pagead2.googlesyndication.com/pagead/f.txt">
+      </script>
+      </p>
+                   </div>
+        </div>
+      </div>
+      
+    <!-- Pie (Footer) -->
+ 
+      <footer class="row">
+        <div class="large-12 columns"><hr>
+            <div class="row">
+ 
+              <div class="large-6 columns">
+                  <p>&copy; 2015 <a href="http://www.nachocabanes.com/">Nacho Cabanes</a>
+                   16004 visitas desde el 23-02-2014</p>
+              </div>
+ 
+              <div class="large-6 small-12 columns">
+                  <ul class="inline-list right">
+                    <li><a href="index-2.html">Índice</a></li>
+                    <li><a href="index-2.html">Anterior</a></li>
+                    <li><a href="index-2.html">Posterior</a></li>
+                    <li><a href="https://www.nachocabanes.com/">NachoCabanes.com</a></li>
+                  </ul>
+              </div>
+ 
+            </div>
+        </div>
+      </footer>
+ 
+    <!-- Fin del pie -->
+ 
+    </div>
+  </div>
+ 
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+    
+    
+  </body>
+
+<!-- Mirrored from www.nachocabanes.com/pascal/cupas5/cupas10.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Aug 2022 12:22:20 GMT -->
+</html>
+        
